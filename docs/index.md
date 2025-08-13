@@ -7,4 +7,4 @@ Welcome to the Bug Bounty Hub! Explore various bug bounty projects and resources
 - [Project 2](#) - Placeholder for future projects.
 - [Project 3](#) - Placeholder for future projects.
 
-[License](../LICENSE)
+[License](./../LICENSE)
