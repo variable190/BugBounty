@@ -28,6 +28,7 @@ nav:
       - Cheat Sheets:
           - Web Requests: bug-bounty-guide/web-requests.md
           - Information Gathering: bug-bounty-guide/info-gathering-cheat.md
+          - Attacking with Ffuf: bug-bounty-guide/ffuf-cheat.md
           - JavaScript Deobfuscation: bug-bounty-guide/js-deobfuscation-cheat.md
           - Cross-Site Scripting (XSS): bug-bounty-guide/xss-cheat.md
           - SQL Injection: bug-bounty-guide/sqli-cheat.md
