@@ -1,6 +1,6 @@
 # Attacking Web Applications with Ffuf
 
-[Relative Cheat Sheet](./ffuf-cheat.markdown)
+[Relative Cheat Sheet](./ffuf-cheat.md)
 
 ## Overview
 Ffuf (Fuzz Faster U Fool) is a fast web fuzzer used to discover hidden files, directories, subdomains, and parameters on web applications.

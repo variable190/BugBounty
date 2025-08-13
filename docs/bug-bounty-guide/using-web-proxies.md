@@ -1,7 +1,5 @@
 # Using Web Proxies
 
-[Relative Cheat Sheet](./web-proxies-cheat.markdown)
-
 ## Overview
 Web proxies intercept and manipulate HTTP/HTTPS traffic between client and server, aiding in security testing.
 

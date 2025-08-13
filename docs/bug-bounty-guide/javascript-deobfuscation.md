@@ -1,6 +1,6 @@
 # JavaScript Deobfuscation
 
-[Relative Cheat Sheet](./js-deobfuscation-cheat.markdown)
+[Relative Cheat Sheet](./js-deobfuscation-cheat.md)
 
 ## Overview
 JavaScript deobfuscation involves reversing the process of making code unreadable to uncover its original logic, often used to identify vulnerabilities like XSS or hidden API calls.

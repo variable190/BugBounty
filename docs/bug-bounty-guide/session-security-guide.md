@@ -1,7 +1,5 @@
 # Session Security
 
-[Relative Cheat Sheet](./session-security-cheat.md)
-
 ## Overview
 Session security vulnerabilities occur when the mechanisms used to manage user sessions—typically through cookies or tokens—are poorly implemented. These vulnerabilities allow attackers to hijack active sessions, fix session identifiers to gain unauthorized access, or forge requests to perform actions on behalf of users. Common issues include weak session ID generation, improper session timeouts, and insufficient protection against Cross-Site Request Forgery (CSRF). Understanding these risks is crucial for securing web applications and identifying exploitable weaknesses in bug bounty programs.
 

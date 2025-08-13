@@ -1,7 +1,5 @@
 # Web Service & API Attacks
 
-[Relative Cheat Sheet](./web-api-cheat.md)
-
 ## Overview
 Web service and API attacks target vulnerabilities in application programming interfaces (APIs), which are critical for modern web applications using REST, SOAP, or XML-RPC protocols. These attacks exploit weaknesses in authentication, input validation, and data handling, potentially leading to data breaches, remote code execution (RCE), or unauthorized access. APIs are often exposed to external users, making them a prime target in bug bounty hunting.
 
