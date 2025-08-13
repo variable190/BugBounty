@@ -15,17 +15,17 @@
 ### 3. Perform Reconnaissance
    - **Explanation**: Gather intel on targets using passive (CT logs, WHOIS) and active (subdomain brute-force) methods to map assets, tech stack, and endpoints.
    - **Why It's Done**: Builds a target profile, uncovering hidden subdomains or misconfigs for targeted attacks.
-   - **Example**: Use crt.sh for subdomains; link to [Information Gathering Guide](./information-gathering-guide.markdown) and [Cheat Sheet](./info-gathering-cheat.markdown).
+   - **Example**: Use crt.sh for subdomains; link to [Information Gathering Guide](./information-gathering-guide.md) and [Cheat Sheet](./info-gathering-cheat.md).
 
 ### 4. Map the Application
    - **Explanation**: Proxy traffic (Burp/ZAP) to understand layout, fuzz endpoints (ffuf), and analyze JS for client-side logic.
    - **Why It's Done**: Reveals structure, inputs, and flows for vuln discovery.
-   - **Example**: Intercept login requests; link to [Using Web Proxies](./using-web-proxies.markdown), [Attacking with Ffuf](./attacking-web-applications-with-ffuf.markdown), and [JavaScript Deobfuscation](./javascript-deobfuscation.markdown).
+   - **Example**: Intercept login requests; link to [Using Web Proxies](./using-web-proxies.md), [Attacking with Ffuf](./attacking-web-applications-with-ffuf.md), and [JavaScript Deobfuscation](./javascript-deobfuscation.md).
 
 ### 5. Scan for Vulnerabilities
    - **Explanation**: Use automated tools (Burp Scanner, WPScan) and manual testing for common vulns (XSS, SQLi, etc.), prioritizing based on recon.
    - **Why It's Done**: Identifies exploitable issues efficiently.
-   - **Example**: Scan for XSS in forms; link to guides like [Cross-Site Scripting (XSS)](./cross-site-scripting-guide.markdown), [SQL Injection](./sql-injection-guide.markdown), [Command Injections](./command-injections-guide.markdown), [File Upload Attacks](./file-upload-attacks-guide.markdown), [Server-side Attacks](./server-side-attacks-guide.markdown), [Login Brute Forcing](./login-brute-forcing-guide.markdown), [Broken Authentication](./broken-authentication-guide.markdown), [Web Attacks](./web-attacks-guide.markdown), [File Inclusion](./file-inclusion-guide.markdown), [Session Security](./session-security-guide.markdown), [Web Service & API Attacks](./web-service-api-attacks-guide.markdown), [Hacking WordPress](./hacking-wordpress-guide.markdown), and relevant cheat sheets.
+   - **Example**: Scan for XSS in forms; link to guides like [Cross-Site Scripting (XSS)](./cross-site-scripting-guide.md), [SQL Injection](./sql-injection-guide.md), [Command Injections](./command-injections-guide.md), [File Upload Attacks](./file-upload-attacks-guide.md), [Server-side Attacks](./server-side-attacks-guide.md), [Login Brute Forcing](./login-brute-forcing-guide.md), [Broken Authentication](./broken-authentication-guide.md), [Web Attacks](./web-attacks-guide.md), [File Inclusion](./file-inclusion-guide.md), [Session Security](./session-security-guide.md), [Web Service & API Attacks](./web-service-api-attacks-guide.md), [Hacking WordPress](./hacking-wordpress-guide.md), and relevant cheat sheets.
 
 ### 6. Exploit Vulnerabilities
    - **Explanation**: Develop PoCs to confirm impact (e.g., data exfil, RCE), chain vulns (XSS + CSRF), and test boundaries.
@@ -35,7 +35,7 @@
 ### 7. Report Findings
    - **Explanation**: Write detailed reports with title, description, PoC, impact, and remediation; submit via platform.
    - **Why It's Done**: Communicates vulns for fixes and bounties.
-   - **Example**: XSS report with PoC; link to [Bug Bounty Reporting Guide](./bug-bounty-reporting-guide.markdown).
+   - **Example**: XSS report with PoC; link to [Bug Bounty Reporting Guide](./bug-bounty-reporting-guide.md).
 
 ### 8. Interact with the Program
    - **Explanation**: Respond to triage queries, provide clarifications, and maintain professional communication.

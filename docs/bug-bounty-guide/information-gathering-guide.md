@@ -1,6 +1,6 @@
 # Information Gathering
 
-[Relative Cheat Sheet](./info-gathering-cheat.markdown)
+[Relative Cheat Sheet](./info-gathering-cheat.md)
 
 ## Step-by-Step Guide for Information Gathering in Bug Bounty Hunting
 
