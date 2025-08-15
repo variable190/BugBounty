@@ -123,9 +123,9 @@ Web archives like the Wayback Machine store historical website snapshots:
 | Hidden Directories | Explore removed or hidden directories. | Discover sensitive information or backups. |
 | Content Changes | Track changes in content. | Assess security posture evolution. |
 
-# Nmap Scans
+## Nmap Scans
 
-## Scan Types
+### Scan Types
 Common Nmap scan types and flags with examples:
 
 | Scan Type | Description | Flag |
@@ -140,7 +140,7 @@ Common Nmap scan types and flags with examples:
 | Aggressive Scan | Combines version, OS, script, and traceroute. Example: `nmap -A 192.168.1.1` | -A |
 | Idle/Zombie Scan | Stealth scan using spoofed IP. Example: `nmap -sI zombie.host 192.168.1.1` | -sI |
 
-## Commonly Used Nmap Flags
+### Commonly Used Nmap Flags
 Additional flags to customize Nmap scans:
 
 | Flag | Purpose |
