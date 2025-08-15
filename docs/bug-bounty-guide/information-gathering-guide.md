@@ -27,7 +27,7 @@
 ### 5. Enumerate Subdomains Actively
    - **Explanation**: Use tools like dnsenum for brute-forcing with wordlists or attempt zone transfers (`dig @ns.example.com example.com axfr`).
    - **Why It's Done**: Active methods uncover subdomains not in public logs, but carry detection risk; use sparingly.
-   - **Example**: `dnsenum example.com -f subdomains.txt` to brute-force common names.
+   - **Example**: `dnsenum example.com -f subdomains.txt` to brute-force common names. For FTP servers discovered, refer to [FTP Cheat Sheet](./ftp-cheat.md) for connection details.
 
 ### 6. Discover Virtual Hosts
    - **Explanation**: Fuzz the Host header with tools like gobuster (`gobuster vhost -u http://ip -w hostnames.txt`) to find multiple sites on the same IP.
