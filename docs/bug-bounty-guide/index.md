@@ -45,3 +45,4 @@ This is a comprehensive guide for bug bounty hunting, created with the assistanc
 - [Web Attacks](./web-attacks-cheat.md)
 - [File Inclusion](./file-inclusion-cheat.md)
 - [WordPress](./wordpress-cheat.md)
+- [FTP](./ftp-cheat.md)
