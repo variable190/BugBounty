@@ -30,7 +30,7 @@
    - **Example**: `dnsenum example.com -f subdomains.txt` to brute-force common names. For FTP servers discovered, refer to [FTP Cheat Sheet](./ftp-cheat.md) for connection details.
 
 ### 6. Discover Virtual Hosts
-   - **Explanation**: Fuzz the Host header with tools like gobuster (`gobuster vhost -u http://ip -w hostnames.txt`) to find multiple sites on the same IP.
+   - **Explanation**: Fuzz the Host header with tools like [gobuster](./gobuster-cheat.md) (`gobuster vhost -u http://ip -w hostnames.txt`) to find multiple sites on the same IP.
    - **Why It's Done**: Virtual hosts may have different security levels; one could be vulnerable.
    - **Example**: Discovering `admin.example.com` on the main IP.
 

@@ -68,7 +68,7 @@ dig @ns1.example.com example.com axfr
 **Note**: Many DNS servers restrict zone transfers to authorized servers.
 
 ## Virtual Hosts
-Virtual hosting allows multiple websites to share one IP address. Use `gobuster` to enumerate virtual hosts:
+Virtual hosting allows multiple websites to share one IP address. Use [gobuster](./gobuster-cheat.md) to enumerate virtual hosts:
 ```bash
 gobuster vhost -u http://192.0.2.1 -w hostnames.txt
 ```

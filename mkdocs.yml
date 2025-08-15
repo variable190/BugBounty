@@ -42,6 +42,7 @@ nav:
           - File Inclusion: bug-bounty-guide/file-inclusion-cheat.md
           - WordPress: bug-bounty-guide/wordpress-cheat.md
           - FTP: bug-bounty-guide/ftp-cheat.md
+          - Gobuster: bug-bounty-guide/gobuster-cheat.md
 theme: material
 plugins:
   - search

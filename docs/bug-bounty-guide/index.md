@@ -46,3 +46,4 @@ This is a comprehensive guide for bug bounty hunting, created with the assistanc
 - [File Inclusion](./file-inclusion-cheat.md)
 - [WordPress](./wordpress-cheat.md)
 - [FTP](./ftp-cheat.md)
+- [Gobuster](./gobuster-cheat.md)
