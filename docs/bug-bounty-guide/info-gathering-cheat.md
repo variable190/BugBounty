@@ -102,6 +102,7 @@ jq -r '.[] | select(.file != null) | .file' example_data.json | sort -u
 
 ## Search Engine Discovery
 Use search operators for OSINT:
+
 | Operator | Description | Example |
 |----------|-------------|---------|
 | `site:` | Restricts results to a website. | `site:example.com "password reset"` |
@@ -115,6 +116,7 @@ Use search operators for OSINT:
 
 ## Web Archives
 Web archives like the Wayback Machine store historical website snapshots:
+
 | Feature | Description | Use Case in Reconnaissance |
 |---------|-------------|----------------------------|
 | Historical Snapshots | View past versions of websites. | Identify past content or functionality. |
