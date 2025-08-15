@@ -1810,6 +1810,105 @@ class ExampleSpider(scrapy.Spider):
 </tr>
 </tbody>
 </table>
+<h1 id="nmap-scans">Nmap Scans</h1>
+<h2 id="scan-types">Scan Types</h2>
+<p>Common Nmap scan types and flags with examples:</p>
+<table>
+<thead>
+<tr>
+<th>Scan Type</th>
+<th>Description</th>
+<th>Flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP SYN Scan</td>
+<td>Stealthy half-open scan for TCP ports. Example: <code>nmap -sS -T4 192.168.1.1</code></td>
+<td>-sS</td>
+</tr>
+<tr>
+<td>TCP Connect Scan</td>
+<td>Full TCP connection scan. Example: <code>nmap -sT -p 1-1000 192.168.1.1</code></td>
+<td>-sT</td>
+</tr>
+<tr>
+<td>UDP Scan</td>
+<td>Scan for UDP ports. Example: <code>nmap -sU -sV 192.168.1.1</code></td>
+<td>-sU</td>
+</tr>
+<tr>
+<td>Ping Scan</td>
+<td>Host discovery without port scanning. Example: <code>nmap -sn 192.168.1.0/24</code></td>
+<td>-sn (or -sP)</td>
+</tr>
+<tr>
+<td>Version Detection</td>
+<td>Identify service versions on open ports. Example: <code>nmap -sV -p 80,443 192.168.1.1</code></td>
+<td>-sV</td>
+</tr>
+<tr>
+<td>OS Detection</td>
+<td>Fingerprint operating system. Example: <code>nmap -O 192.168.1.1</code></td>
+<td>-O</td>
+</tr>
+<tr>
+<td>Script Scan</td>
+<td>Run NSE scripts for additional info. Example: <code>nmap -sC 192.168.1.1</code></td>
+<td>-sC</td>
+</tr>
+<tr>
+<td>Aggressive Scan</td>
+<td>Combines version, OS, script, and traceroute. Example: <code>nmap -A 192.168.1.1</code></td>
+<td>-A</td>
+</tr>
+<tr>
+<td>Idle/Zombie Scan</td>
+<td>Stealth scan using spoofed IP. Example: <code>nmap -sI zombie.host 192.168.1.1</code></td>
+<td>-sI</td>
+</tr>
+</tbody>
+</table>
+<h2 id="commonly-used-nmap-flags">Commonly Used Nmap Flags</h2>
+<p>Additional flags to customize Nmap scans:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-p</code></td>
+<td>Defines a port range or specific ports to scan (e.g., <code>-p 1-1000</code> for ports 1-1000, <code>-p 80,443</code> for specific ports).</td>
+</tr>
+<tr>
+<td><code>-T&lt;0-5&gt;</code></td>
+<td>Sets timing template (0=paranoid to 5=insane) to control scan speed (e.g., <code>-T4</code> for faster scans).</td>
+</tr>
+<tr>
+<td><code>-A</code></td>
+<td>Enables aggressive scan features (version detection, OS detection, scripting, traceroute).</td>
+</tr>
+<tr>
+<td><code>-oN</code></td>
+<td>Outputs scan results to a normal file (e.g., <code>-oN scan.txt</code>).</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>Increases verbosity for detailed output during the scan.</td>
+</tr>
+<tr>
+<td><code>-Pn</code></td>
+<td>Treats all hosts as online, skipping host discovery (useful for firewalls).</td>
+</tr>
+<tr>
+<td><code>-iL</code></td>
+<td>Reads targets from a file (e.g., <code>-iL targets.txt</code> for a list of IPs).</td>
+</tr>
+</tbody>
+</table>
 
 
 
