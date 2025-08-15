@@ -27,7 +27,7 @@ FTP (File Transfer Protocol) is used to transfer files between a client and serv
 | `-p` | Enables passive mode to traverse firewalls (e.g., `ftp -p ftp.example.com`). |
 
 ## Exploitation Tips
-- **Anonymous Access**: Test `anonymous` login to upload files or exfiltrate data if permitted.
+- **Anonymous Access**: Test `anonymous` login to upload files or exfiltrate data if permitted (username: anonymous and password: user@domain.com when prompted).
 - **Brute Forcing**: Use tools like Hydra (`hydra -l user -P pass.txt ftp://ftp.example.com`) to guess credentials.
 - **File Upload**: Upload malicious scripts (e.g., PHP shells) if write access is granted.
 
