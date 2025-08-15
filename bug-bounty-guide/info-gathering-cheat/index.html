@@ -1730,24 +1730,86 @@ class ExampleSpider(scrapy.Spider):
 <pre><code class="language-bash">jq -r '.[] | select(.file != null) | .file' example_data.json | sort -u
 </code></pre>
 <h2 id="search-engine-discovery">Search Engine Discovery</h2>
-<p>Use search operators for OSINT:
-| Operator | Description | Example |
-|----------|-------------|---------|
-| <code>site:</code> | Restricts results to a website. | <code>site:example.com "password reset"</code> |
-| <code>inurl:</code> | Searches for a term in the URL. | <code>inurl:admin login</code> |
-| <code>filetype:</code> | Limits results to file types. | <code>filetype:pdf "confidential report"</code> |
-| <code>intitle:</code> | Searches for a term in the page title. | <code>intitle:"index of" /backup</code> |
-| <code>cache:</code> | Shows cached webpage. | <code>cache:example.com</code> |
-| <code>"search term"</code> | Exact phrase search. | <code>"internal error" site:example.com</code> |
-| <code>OR</code> | Combines terms. | <code>inurl:admin OR inurl:login</code> |
-| <code>-</code> | Excludes terms. | <code>inurl:admin -intext:wordpress</code> |</p>
+<p>Use search operators for OSINT:</p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>site:</code></td>
+<td>Restricts results to a website.</td>
+<td><code>site:example.com "password reset"</code></td>
+</tr>
+<tr>
+<td><code>inurl:</code></td>
+<td>Searches for a term in the URL.</td>
+<td><code>inurl:admin login</code></td>
+</tr>
+<tr>
+<td><code>filetype:</code></td>
+<td>Limits results to file types.</td>
+<td><code>filetype:pdf "confidential report"</code></td>
+</tr>
+<tr>
+<td><code>intitle:</code></td>
+<td>Searches for a term in the page title.</td>
+<td><code>intitle:"index of" /backup</code></td>
+</tr>
+<tr>
+<td><code>cache:</code></td>
+<td>Shows cached webpage.</td>
+<td><code>cache:example.com</code></td>
+</tr>
+<tr>
+<td><code>"search term"</code></td>
+<td>Exact phrase search.</td>
+<td><code>"internal error" site:example.com</code></td>
+</tr>
+<tr>
+<td><code>OR</code></td>
+<td>Combines terms.</td>
+<td><code>inurl:admin OR inurl:login</code></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>Excludes terms.</td>
+<td><code>inurl:admin -intext:wordpress</code></td>
+</tr>
+</tbody>
+</table>
 <h2 id="web-archives">Web Archives</h2>
-<p>Web archives like the Wayback Machine store historical website snapshots:
-| Feature | Description | Use Case in Reconnaissance |
-|---------|-------------|----------------------------|
-| Historical Snapshots | View past versions of websites. | Identify past content or functionality. |
-| Hidden Directories | Explore removed or hidden directories. | Discover sensitive information or backups. |
-| Content Changes | Track changes in content. | Assess security posture evolution. |</p>
+<p>Web archives like the Wayback Machine store historical website snapshots:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Use Case in Reconnaissance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Historical Snapshots</td>
+<td>View past versions of websites.</td>
+<td>Identify past content or functionality.</td>
+</tr>
+<tr>
+<td>Hidden Directories</td>
+<td>Explore removed or hidden directories.</td>
+<td>Discover sensitive information or backups.</td>
+</tr>
+<tr>
+<td>Content Changes</td>
+<td>Track changes in content.</td>
+<td>Assess security posture evolution.</td>
+</tr>
+</tbody>
+</table>
 
 
 
