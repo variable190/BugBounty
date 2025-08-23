@@ -6,6 +6,6 @@ Revision notes and cheat sheets from the Hack The Box Academy SOC Analyst course
 
 ## Guides
 
-- [Incident Handling Process](./incident-handling-process-guide.md)
+- [Incident Handling Process](./incident-handling-process.md)
 
 ## Cheat Sheets
