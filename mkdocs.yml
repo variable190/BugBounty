@@ -46,7 +46,7 @@ nav:
   - SOC Analyst Guide:
     - Contents: soc-analyst-guide/index.md
     - Guides:
-      - incident-handling-process.md
+      - Incident Handling Process: soc-analyst-guide/incident-handling-process.md
 
 theme: material
 plugins:
