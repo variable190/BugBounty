@@ -43,10 +43,6 @@ nav:
       - WordPress: bug-bounty-guide/wordpress-cheat.md
       - FTP: bug-bounty-guide/ftp-cheat.md
       - Gobuster: bug-bounty-guide/gobuster-cheat.md
-  - SOC Analyst Guide:
-    - Contents: soc-analyst-guide/index.md
-    - Guides:
-      - Incident Handling Process: soc-analyst-guide/incident-handling-process.md
 
 theme: material
 plugins:
