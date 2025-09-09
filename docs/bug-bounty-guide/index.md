@@ -1,13 +1,14 @@
 # Bug Bounty Guide
 
-This is a comprehensive guide for bug bounty hunting, created with the assistance of AI (Grok) while following the Hack The Box Academy Bug Bounty Hunter Job Role Path. The cheat sheets originate from the course materials.
+Revision materials and notes from the HTB Academy Bug Bounty Course.
 
 ## Contents
 
 ### Process
 - [Bug Bounty Process](./bug-bounty-process.md)
 
-### Guides
+### Modules
+- [Web Requests](./web-requests.md)
 - [Information Gathering](./information-gathering-guide.md)
 - [Cross-Site Scripting (XSS)](./cross-site-scripting-guide.md)
 - [SQL Injection](./sql-injection-guide.md) 
@@ -24,14 +25,12 @@ This is a comprehensive guide for bug bounty hunting, created with the assistanc
 - [Bug Bounty Reporting](./bug-bounty-reporting-guide.md)
 
 ### Informational Documents
-- [Web Requests](./web-requests.md)
 - [Introduction to Web Applications](./introduction-to-web-applications.md)
 - [Using Web Proxies](./using-web-proxies.md)
 - [Attacking Web Applications with Ffuf](./attacking-web-applications-with-ffuf.md)
 - [JavaScript Deobfuscation](./javascript-deobfuscation.md)
 
 ### Cheat Sheets
-- [Web Requests](./web-requests.md)
 - [Information Gathering](./info-gathering-cheat.md)
 - [JavaScript Deobfuscation](./js-deobfuscation-cheat.md)
 - [Cross-Site Scripting (XSS)](./xss-cheat.md)
