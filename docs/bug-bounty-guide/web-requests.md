@@ -46,7 +46,7 @@ Contain more information about the resource to be fetched, or about the client r
 | Referer | `https://example.com/page` | URL of the page that initiated the request |
 | Cookie | `sessionId=abc123; user=john` | Cookies previously set by the server, sent with the request |
 
-[Full list of request headers][https://datatracker.ietf.org/doc/html/rfc7231#section-5]
+[Full list of request headers](https://datatracker.ietf.org/doc/html/rfc7231#section-5)
 
 ### Response Headers
 Hold additional information about the response, like its location or about the server providing it.
@@ -142,4 +142,4 @@ Contain representation-independent information about payload data, including con
 | `[CTRL+SHIFT+E]` | Show Network tab |
 | `[CTRL+SHIFT+K]` | Show Console tab |
 
-**Tip:** Use the network tab to observe dynaic content in action
+**Tip:** Use the network tab to observe dynamic content in action
