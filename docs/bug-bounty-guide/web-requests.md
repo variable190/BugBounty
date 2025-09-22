@@ -26,9 +26,12 @@
 | 401 | Unauthorized | Authentication required |
 | 403 | Forbidden | Access denied |
 | 404 | Not Found | Resource not found |
+| 405 | Method Not Allowed | Known by the server but has been disabled and cannot be used |
+| 408 | Request Timeout | Sent on an idle connection by some servers, even without any previous request by the client |
 | 500 | Internal Server Error | Server error |
 | 502 | Bad Gateway | Invalid gateway response |
 | 503 | Service Unavailable | Server temporarily unavailable |
+| 504 | Gateway Timeout | The server is acting as a gateway and cannot get a response in time |
 
 ## HTTP Headers
 

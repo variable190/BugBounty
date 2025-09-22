@@ -9,6 +9,7 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 
 ### Modules
 - [Web Requests](./web-requests.md)
+- [Introduction to Web Applications](./introduction-to-web-applications.md)
 - [Information Gathering](./information-gathering-guide.md)
 - [Cross-Site Scripting (XSS)](./cross-site-scripting-guide.md)
 - [SQL Injection](./sql-injection-guide.md) 
@@ -25,7 +26,6 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 - [Bug Bounty Reporting](./bug-bounty-reporting-guide.md)
 
 ### Informational Documents
-- [Introduction to Web Applications](./introduction-to-web-applications.md)
 - [Using Web Proxies](./using-web-proxies.md)
 - [Attacking Web Applications with Ffuf](./attacking-web-applications-with-ffuf.md)
 - [JavaScript Deobfuscation](./javascript-deobfuscation.md)
