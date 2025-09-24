@@ -31,7 +31,6 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 - [JavaScript Deobfuscation](./javascript-deobfuscation.md)
 
 ### Cheat Sheets
-- [Information Gathering](./info-gathering-cheat.md)
 - [JavaScript Deobfuscation](./js-deobfuscation-cheat.md)
 - [Cross-Site Scripting (XSS)](./xss-cheat.md)
 - [SQL Injection](./sqli-cheat.md)

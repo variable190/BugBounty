@@ -1,62 +1,405 @@
 # Information Gathering
 
-[Relative Cheat Sheet](./info-gathering-cheat.md)
+## Nmap Scans
 
-## Step-by-Step Guide for Information Gathering in Bug Bounty Hunting
+### Scan Types
+Common Nmap scan types and flags with examples:
 
-### 1. Understand the Importance of Information Gathering
-   - **Explanation**: Information gathering, or reconnaissance, involves collecting data about the target application, its infrastructure, and potential entry points without directly interacting in a harmful way. This phase includes passive (using public sources) and active (probing the target) methods to build a profile of the target's attack surface.
-   - **Why It's Done**: A thorough recon phase reveals subdomains, technologies, and misconfigurations that could lead to vulnerabilities. It maximizes efficiency by focusing testing on high-value areas and minimizes detection risk during early stages.
-   - **Example**: Discovering a forgotten subdomain hosting an outdated CMS could lead to an easy exploit.
+| Scan Type | Description | Flag |
+|-----------|-------------|------|
+| TCP SYN Scan | Stealthy half-open scan for TCP ports. Example: `nmap -sS -T4 192.168.1.1` | -sS |
+| TCP Connect Scan | Full TCP connection scan. Example: `nmap -sT -p 1-1000 192.168.1.1` | -sT |
+| UDP Scan | Scan for UDP ports. Example: `nmap -sU -sV 192.168.1.1` | -sU |
+| Ping Scan | Host discovery without port scanning. Example: `nmap -sn 192.168.1.0/24` | -sn (or -sP) |
+| Version Detection | Identify service versions on open ports. Example: `nmap -sV -p 80,443 192.168.1.1` | -sV |
+| OS Detection | Fingerprint operating system. Example: `nmap -O 192.168.1.1` | -O |
+| Script Scan | Run NSE scripts for additional info. Example: `nmap -sC 192.168.1.1` | -sC |
+| Aggressive Scan | Combines version, OS, script, and traceroute. Example: `nmap -A 192.168.1.1` | -A |
+| Idle/Zombie Scan | Stealth scan using spoofed IP. Example: `nmap -sI zombie.host 192.168.1.1` | -sI |
 
-### 2. Define the Scope
-   - **Explanation**: Review the bug bounty program's rules to identify in-scope domains, IPs, and assets. Note out-of-scope items to avoid violations.
-   - **Why It's Done**: Ensures testing stays legal and focused, preventing wasted effort on irrelevant areas.
-   - **Example**: If the scope is `*.example.com`, prioritize subdomains like `api.example.com`.
+### Commonly Used Nmap Flags
+Additional flags to customize Nmap scans:
 
-### 3. Perform Passive Reconnaissance
-   - **Explanation**: Use public sources to gather info without touching the target. This includes WHOIS lookups for domain registration details, DNS queries for records (A, MX, NS), and search engines with dorks (e.g., `site:example.com filetype:pdf`) for sensitive files.
-   - **Why It's Done**: Passive recon is stealthy, reducing the chance of alerting the target, and often reveals valuable data like emails or old configs.
-   - **Example**: Run `whois example.com` to get owner contacts, or `dig example.com NS` for nameservers.
+| Flag | Purpose |
+|------|----------|
+| `-p` | Defines a port range or specific ports to scan (e.g., `-p 1-1000` for ports 1-1000, `-p 80,443` for specific ports). |
+| `-T<0-5>` | Sets timing template (0=paranoid to 5=insane) to control scan speed (e.g., `-T4` for faster scans). |
+| `-A` | Enables aggressive scan features (version detection, OS detection, scripting, traceroute). |
+| `-oN` | Outputs scan results to a normal file (e.g., `-oN scan.txt`). |
+| `-v` | Increases verbosity for detailed output during the scan. |
+| `-Pn` | Treats all hosts as online, skipping host discovery (useful for firewalls). |
+| `-iL` | Reads targets from a file (e.g., `-iL targets.txt` for a list of IPs). |
 
-### 4. Enumerate Subdomains Passively
-   - **Explanation**: Query Certificate Transparency (CT) logs via crt.sh or search engines for subdomains listed in certificates.
-   - **Why It's Done**: Subdomains may host vulnerable services or forgotten apps; passive methods avoid direct queries to the target's DNS.
-   - **Example**: `curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u` to list unique subdomains.
+## Web Reconnaissance
 
-### 5. Enumerate Subdomains Actively
-   - **Explanation**: Use tools like dnsenum for brute-forcing with wordlists or attempt zone transfers (`dig @ns.example.com example.com axfr`).
-   - **Why It's Done**: Active methods uncover subdomains not in public logs, but carry detection risk; use sparingly.
-   - **Example**: `dnsenum example.com -f subdomains.txt` to brute-force common names. For FTP servers discovered, refer to [FTP Cheat Sheet](./ftp-cheat.md) for connection details.
+### Goals
 
-### 6. Discover Virtual Hosts
-   - **Explanation**: Fuzz the Host header with tools like [gobuster](./gobuster-cheat.md) (`gobuster vhost -u http://ip -w hostnames.txt`) to find multiple sites on the same IP.
-   - **Why It's Done**: Virtual hosts may have different security levels; one could be vulnerable.
-   - **Example**: Discovering `admin.example.com` on the main IP.
+- **Identify Assets**: Discovering all associated domains, subdomains, and IP addresses provides a map of the target's online presence.
+- **Uncover Hidden Information**: Web reconnaissance aims to uncover directories, files, and technologies that are not readily apparent and could serve as entry points for an attacker.
+- **Analyse the Attack Surface**: By identifying open ports, running services, and software versions, you can assess the potential vulnerabilities and weaknesses of the target.
+- **Gather Intelligence**: Collecting information about employees, email addresses, and technologies used can aid in social engineering attacks or identifying specific vulnerabilities associated with certain software.
 
-### 7. Crawl the Website
-   - **Explanation**: Use spiders like Scrapy or ZAP to follow links, mapping directories and files. Check `robots.txt` for disallowed paths.
-   - **Why It's Done**: Reveals hidden directories, parameters, or old files that could be exploited.
-   - **Example**: Set up a Scrapy spider to extract links and analyze for sensitive extensions like `.bak`.
+### Active Reconnaissance
 
-### 8. Use Search Engine Discovery
-   - **Explanation**: Apply Google Dorks (e.g., `inurl:admin site:example.com`) or Bing for exposed files, directories, or errors.
-   - **Why It's Done**: Search engines index data the app might not intend to expose, like backups or login pages.
-   - **Example**: `intitle:"index of" /backup site:example.com` to find directory listings.
+| Technique         | Description            | Example                  | Tools           | Risk          |
+|-------------------|------------------------|--------------------------|-----------------|---------------|
+| Port Scanning     | Identifies open ports. | Nmap scans ports 80, 443.| Nmap, Masscan   | High          |
+| Vulnerability Scanning | Probes for vulnerabilities. | Nessus checks for XSS.   | Nessus, Nikto   | High          |
+| Network Mapping   | Maps network topology. | Traceroute tracks hops.  | Traceroute, Nmap| Medium-High   |
+| Banner Grabbing   | Retrieves service banners. | curl checks HTTP version.| Netcat, curl    | Low           |
+| OS Fingerprinting | Detects OS type.       | Nmap uses -O.            | Nmap, Xprobe2   | Low           |
+| Service Enumeration | Identifies service versions. | Nmap -sV on port 80. | Nmap            | Low           |
+| Web Spidering     | Crawls website structure. | Burp Spider maps pages.  | Burp, ZAP Spider| Low-Medium    |
 
-### 9. Check Web Archives
-   - **Explanation**: Use Wayback Machine or similar to view historical snapshots for removed content or configs.
-   - **Why It's Done**: Old versions may reveal vulnerabilities fixed in current but exploitable via other means.
-   - **Example**: Search Wayback for `example.com/wp-config.php` exposing DB creds in past snapshots.
+### Passive Reconnaissance
 
-### 10. Analyze and Prioritize Findings
-   - **Explanation**: Compile data on subdomains, tech stack (e.g., from headers), and potential weak points. Prioritize based on sensitivity (e.g., admin subdomains).
-   - **Why It's Done**: Organizes recon for efficient vulnerability scanning in later stages.
-   - **Example**: List subdomains with Wappalyzer to identify outdated tech like old WordPress.
+| Technique            | Description            | Example                  | Tools           | Risk          |
+|-----------------------|------------------------|--------------------------|-----------------|---------------|
+| Search Engine Queries | Uncovers public data.  | Google for employee names.| Google, Shodan  | Very Low      |
+| WHOIS Lookups         | Retrieves domain details. | whois on example.com.   | whois, online   | Very Low      |
+| DNS Analysis          | Identifies DNS records.| dig for subdomains.      | dig, dnsenum    | Very Low      |
+| Web Archive Analysis  | Reviews historical sites. | Wayback for old pages.  | Wayback Machine | Very Low      |
+| Social Media Analysis | Gathers social profiles.| LinkedIn for employees.  | LinkedIn, OSINT | Very Low      |
+| Code Repositories     | Analyzes public code.  | GitHub for credentials.  | GitHub, GitLab  | Very Low      |
 
-### 11. Assess Prevention Measures
-   - **Explanation**: Note if the target hides info (e.g., redacted WHOIS) or blocks crawlers.
-   - **Why It's Done**: Helps in reporting and understanding security posture.
-   - **Example**: If zone transfers are blocked, note as a good practice.
+### WHOIS
 
-This guide, based on the Information Gathering - Web Edition module and aligned with PortSwigger Web Security Academy, provides a detailed process for recon. Test ethically within scope.
+```bash
+whois example.com
+```
+**Note**: WHOIS data can be inaccurate or intentionally obscured, so verify from multiple sources. Privacy services may mask the true owner.
+
+## DNS
+
+```bash
+dig example.com A
+```
+This retrieves the A record (hostname to IPv4 address). The output includes the IP address and query details.
+
+### DNS Record Types
+
+| Record Type | Full Name               | Description                       |
+|-------------|-------------------------|-----------------------------------|
+| A           | Address Record          | Maps a hostname to its IPv4 address. |
+| AAAA        | IPv6 Address Record     | Maps a hostname to its IPv6 address. |
+| CNAME       | Canonical Name Record   | Creates an alias for a hostname, pointing to another hostname. |
+| MX          | Mail Exchange Record    | Specifies the mail server(s) responsible for handling email. |
+| NS          | Name Server Record      | Delegates a DNS zone to an authoritative name server. |
+| TXT         | Text Record             | Stores arbitrary text information, often for verification or policies. |
+| SOA         | Start of Authority Record | Specifies administrative details about a DNS zone. |
+| SRV         | Service Record          | Defines hostname and port for specific services. |
+| PTR         | Pointer Record          | Used for reverse DNS lookups, mapping an IP to a hostname. |
+
+### DNS Tools
+
+| Tool                | Key Features                     | Use Cases                      |
+|---------------------|----------------------------------|--------------------------------|
+| dig                 | Versatile DNS lookup, multiple query types | Manual queries, zone transfers, troubleshooting |
+| nslookup            | Simple DNS lookup for A, AAAA, MX | Basic resolution, mail checks  |
+| host                | Concise DNS lookup               | Quick A, AAAA, MX checks       |
+| dnsenum             | Automated enumeration, brute-forcing | Subdomain discovery, DNS data  |
+| fierce              | Subdomain enumeration, wildcard detection | DNS recon, target identification |
+| dnsrecon            | Multi-technique enumeration, various outputs | Comprehensive subdomain analysis |
+| theHarvester        | OSINT from DNS and other sources | Email, employee data collection |
+| Online DNS Lookup   | User-friendly lookup interfaces  | Quick lookups, domain checks   |
+
+## Subdomains
+
+### Subdomain Enumeration 
+
+| Approach | Examples |
+|----------|----------|
+| Active Enumeration | Brute-forcing, DNS zone transfers |
+| Passive Enumeration | Certificate Transparency (CT) logs, search engine queries |
+
+### Brute-Force Enumeration Tools
+
+| Tool      | Description                          |
+|-----------|--------------------------------------|
+| dnsenum   | Comprehensive DNS enumeration        |
+| fierce    | User-friendly subdomain discovery    |
+| dnsrecon  | Versatile multi-technique enumeration|
+| amass     | Actively maintained subdomain tool   |
+| assetfinder | Lightweight subdomain finder       |
+| puredns   | Powerful DNS brute-forcing           |
+
+**Examples:**
+
+```bash
+dnsenum --enum inlanefreight.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -r
+```
+**Note:** -r enables recursive subdomain brute-forcing.
+
+```bash
+ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://hackthebox.eu/
+```
+
+```bash
+gobuster dns -d https://hackthebox.eu/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+```
+
+## DNS Zone Transfers
+
+```bash
+dig @nsztm1.digi.ninja zonetransfer.me axfr
+```
+- dig: DNS lookup utility.
+- @ns1.example.com: Specifies the nameserver to query (e.g., ns1.example.com).
+- example.com: Domain to perform the lookup on.
+- axfr: Requests a zone transfer, retrieving all DNS records for the domain.
+
+**Note**
+- Many DNS servers restrict zone transfers to authorized servers.
+- zonetransfer.me is a service specifically setup to demonstrate the risks of zone transfers so that the dig command will return the full zone record.
+
+## Virtual Hosts
+
+### Virtual Host Discovery Tools
+
+| Tool        | Description         | Features                |
+|-------------|---------------------|-------------------------|
+| gobuster    | Multi-purpose brute-forcer | Fast, custom wordlists  |
+| Feroxbuster | Rust-based fuzzer   | Recursion, filters      |
+| ffuf        | Fast web fuzzer     | Custom input, filtering |
+
+**Example:**
+```bash
+gobuster vhost -u http://192.0.2.1 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
+```
+
+**Common flags:**
+| Flag | Description                     |
+|------|---------------------------------|
+| -t   | Increase threads for faster scanning |
+| -k   | Ignore SSL/TLS certificate errors |
+| -o   | Save output to a file            |
+
+## Certificate Transparency (CT) Logs
+CT logs record SSL/TLS certificates, revealing subdomains.
+
+### Searching CT Logs
+
+| Tool   | Key Features                     | Use Cases                     | Pros             | Cons                  |
+|--------|----------------------------------|--------------------------------|------------------|-----------------------|
+| crt.sh | User-friendly interface, domain search, SAN details | Quick subdomain checks, certificate history | Free, no registration | Limited filtering     |
+| Censys | Advanced filtering, IP/certificate search | In-depth analysis, misconfigurations | Extensive data, API | Requires registration |
+**Example:**
+```bash
+curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
+```
+
+## Fingerprinting 
+
+### Techniques
+
+| Technique             | Description                                      |
+|-----------------------|--------------------------------------------------|
+| Banner Grabbing       | Analyzes server banners for software and version details. |
+| Analysing HTTP Headers| Examines headers (e.g., Server, X-Powered-By) for tech info. |
+| Probing for Responses | Sends crafted requests to elicit unique tech-specific responses. |
+| Analysing Page Content| Reviews page elements (e.g., copyright) for tech clues. |
+
+### Tools
+
+| Tool     | Description                       | Features                          |
+|----------|-----------------------------------|-----------------------------------|
+| Wappalyzer| Browser extension for tech profiling | Identifies CMSs, frameworks, analytics |
+| BuiltWith | Web tech profiler with reports    | Free/paid plans, detailed stacks  |
+| WhatWeb  | Command-line website fingerprinting| Uses signature database           |
+| Nmap     | Versatile network scanner         | NSE for specialised fingerprinting|
+| Netcraft  | Web security and fingerprinting   | Tech, hosting, security reports   |
+| wafw00f  | WAF identification tool           | Detects WAF type and configuration|
+
+### Banner Grabbing
+
+```bash
+curl -I inlanefreight.com
+```
+
+### Wafw00f
+
+```bash
+pip3 install git+https://github.com/EnableSecurity/wafw00f
+wafw00f inlanefreight.com
+```
+
+### Nikto
+
+```bash
+sudo apt update && sudo apt install -y perl
+git clone https://github.com/sullo/nikto
+cd nikto/program
+chmod +x ./nikto.pl
+nikto -h inlanefreight.com -Tuning b
+```
+- -h specifies the target host.
+- -Tuning b flag tells Nikto to only run the Software Identification modules.
+
+## robots.txt
+
+### robots.txt Structure
+The robots.txt file is a plain text file in the website's root, using records separated by blank lines.
+
+| Component   | Description                                      |
+|-------------|--------------------------------------------------|
+| User-agent  | Specifies crawler or bot the rules apply to (e.g., * for all, Googlebot, Bingbot). |
+| Directives  | Instructions for the specified user-agent.       |
+
+### Common Directives
+
+| Directive   | Description                          | Example                  |
+|-------------|--------------------------------------|--------------------------|
+| Disallow    | Blocks bot from paths or patterns.   | Disallow: /admin/        |
+| Allow       | Permits specific paths despite Disallow. | Allow: /public/      |
+| Crawl-delay | Sets delay (seconds) between requests. | Crawl-delay: 10       |
+| Sitemap     | Provides XML sitemap URL.            | Sitemap: sitemap.xml    |
+
+## Well-Known URIs
+The .well-known standard (RFC 8615) centralizes website metadata in /.well-known/.
+
+### Examples
+| URI Suffix         | Description                            | Status     | Reference                                   |
+|--------------------|----------------------------------------|------------|---------------------------------------------|
+| security.txt       | Contact info for vulnerability reports | Permanent  | RFC 9116                                    |
+| change-password    | URL for password change                | Provisional| https://w3c.github.io/webappsec-change-password-url/ |
+| openid-configuration | OpenID Connect configuration        | Permanent  | http://openid.net/specs/openid-connect-discovery-1_0.html |
+| assetlinks.json    | Verifies digital asset ownership       | Permanent  | https://github.com/google/digitalassetlinks/blob/master/well-known/specification.md |
+| mta-sts.txt        | SMTP MTA-STS security policy           | Permanent  | RFC 8461                                    |
+
+[All well-known URIs](https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml)
+
+## Web Crawling
+
+Web crawling maps a website's structure by following links. Analyze `robots.txt` for hidden directories.
+
+### Popular Web Crawlers
+
+| Tool            | Description                       |
+|-----------------|-----------------------------------|
+| Burp Suite Spider | Active crawler for mapping and vulnerability discovery. |
+| OWASP ZAP       | Open-source scanner with spider for vulnerability checks. |
+| Scrapy          | Python framework for custom, scalable crawling.         |
+| Apache Nutch    | Scalable Java crawler for large-scale recon.            |
+
+### Scrapy:
+
+Using custom Scrapy spider, ReconSpider, output will be in JSON:
+
+```bash
+pip3 install scrapy
+wget -O ReconSpider.zip https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
+unzip ReconSpider.zip 
+python3 ReconSpider.py http://inlanefreight.com
+```
+
+| Key          | Description                             |
+|--------------|-----------------------------------------|
+| emails       | Lists email addresses found on the domain. |
+| links        | Lists URLs of links found within the domain. |
+| external_files | Lists URLs of external files such as PDFs. |
+| js_files     | Lists URLs of JavaScript files used by the website. |
+| form_fields  | Lists form fields found on the domain (empty in this example). |
+| images       | Lists URLs of images found on the domain. |
+| videos       | Lists URLs of videos found on the domain (empty in this example). |
+| audio        | Lists URLs of audio files found on the domain (empty in this example). |
+| comments     | Lists HTML comments found in the source code. |
+
+### Spider code example
+
+```python
+import scrapy
+
+class ExampleSpider(scrapy.Spider):
+    name = "example"
+    start_urls = ['http://example.com/']
+
+    def parse(self, response):
+        for link in response.css('a::attr(href)').getall():
+            if any(link.endswith(ext) for ext in self.interesting_extensions):
+                yield {"file": link}
+            elif not link.startswith("#") and not link.startswith("mailto:"):
+                yield response.follow(link, callback=self.parse)
+```
+
+**Extract links:**
+```bash
+jq -r '.[] | select(.file != null) | .file' example_data.json | sort -u
+```
+
+## Search Engine Discovery
+
+### Google Dorking
+
+| Operator      | Description                       | Example                         | Example Description                          |
+|---------------|-----------------------------------|---------------------------------|----------------------------------------------|
+| site:         | Limits results to a domain.       | site:example.com               | Find all pages on example.com.               |
+| inurl:        | Finds term in URL.                | inurl:login                    | Search for login pages.                      |
+| filetype:     | Searches for specific file types. | filetype:pdf                   | Find downloadable PDFs.                      |
+| intitle:      | Finds term in title.              | intitle:"confidential report"  | Look for pages titled "confidential report". |
+| intext:       | Searches term in body text.       | intext:"password reset"        | Identify pages with "password reset".        |
+| cache:        | Shows cached webpage version.     | cache:example.com              | View cached content of example.com.          |
+| link:         | Finds pages linking to URL.       | link:example.com               | Identify sites linking to example.com.       |
+| related:      | Finds similar websites.           | related:example.com            | Discover sites like example.com.             |
+| info:         | Shows webpage summary.            | info:example.com               | Get details about example.com.               |
+| define:       | Provides word/phrase definitions. | define:phishing                | Get "phishing" definitions.                  |
+| numrange:     | Searches within number range.     | site:example.com numrange:1000-2000 | Find numbers 1000-2000 on example.com. |
+| allintext:    | Requires all words in body.       | allintext:admin password reset | Find pages with "admin" and "password reset". |
+| allinurl:     | Requires all words in URL.        | allinurl:admin panel           | Find URLs with "admin" and "panel".          |
+| allintitle:   | Requires all words in title.      | allintitle:confidential report 2023 | Find titles with "confidential report 2023". |
+| AND           | Requires all terms.               | site:example.com AND (inurl:admin OR inurl:login) | Find admin/login on example.com. |
+| OR            | Includes any of the terms.        | "linux" OR "ubuntu" OR "debian" | Search for Linux, Ubuntu, or Debian pages.   |
+| NOT           | Excludes specified term.          | site:bank.com NOT inurl:login  | Find bank.com pages excluding login.         |
+| * (wildcard)  | Represents any character/word.    | site:socialnetwork.com filetype:pdf user* manual | Find user manuals in PDFs. |
+| ... (range)   | Finds results in numerical range. | site:ecommerce.com "price" 100..500 | Find products priced 100-500. |
+| " " (quotes)  | Searches exact phrase.            | "information security policy" | Find exact "information security policy".   |
+| - (minus)     | Excludes terms.                   | site:news.com -inurl:sports   | Find news.com pages excluding sports.        |
+
+[Google Hacking Database](https://www.exploit-db.com/google-hacking-database)
+
+## Web Archives
+Web archives like the Wayback Machine store historical website snapshots:
+
+| Feature | Description | Use Case in Reconnaissance |
+|---------|-------------|----------------------------|
+| Historical Snapshots | View past versions of websites. | Identify past content or functionality. |
+| Hidden Directories | Explore removed or hidden directories. | Discover sensitive information or backups. |
+| Content Changes | Track changes in content. | Assess security posture evolution. |
+
+## Automating Recon
+
+### Reconnaissance Frameworks
+These frameworks provide a complete suite of tools for web reconnaissance.
+
+| Framework   | Description                                      |
+|-------------|--------------------------------------------------|
+| FinalRecon  | Python tool for SSL, Whois, headers, and crawling. |
+| Recon-ng    | Python framework for DNS, subdomains, and exploits.|
+| theHarvester| Python tool for emails, subdomains, and banners.  |
+| SpiderFoot  | OSINT tool for IPs, domains, emails, and scanning.|
+| OSINT Framework | Collection of tools for social media and records. |
+
+### FinalRecon
+
+```bash
+git clone https://github.com/thewhiteh4t/FinalRecon.git
+cd FinalRecon
+pip3 install -r requirements.txt
+chmod +x ./finalrecon.py
+```
+
+### Command Options
+
+| Option         | Argument    | Description                         |
+|----------------|-------------|-------------------------------------|
+| -h, --help     |             | Show the help message and exit.     |
+| --url          | URL         | Specify the target URL.             |
+| --headers      |             | Retrieve header information.        |
+| --sslinfo      |             | Get SSL certificate information.    |
+| --whois        |             | Perform a Whois lookup.             |
+| --crawl        |             | Crawl the target website.           |
+| --dns          |             | Perform DNS enumeration.            |
+| --sub          |             | Enumerate subdomains.               |
+| --dir          |             | Search for directories.             |
+| --wayback      |             | Retrieve Wayback URLs.              |
+| --ps           |             | Perform a fast port scan.           |
+| --full         |             | Perform a full reconnaissance scan. |
