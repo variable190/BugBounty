@@ -169,6 +169,7 @@ gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/D
 ```
 
 **Common flags:**
+
 | Flag | Description                     |
 |------|---------------------------------|
 | -t   | Increase threads for faster scanning |
@@ -217,6 +218,10 @@ curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[].name_value' | 
 ```bash
 curl -I inlanefreight.com
 ```
+**Find CMS info:**
+```bash
+curl -s http://app.inlanefreight.local/index.php | grep '<meta name="generator"'
+```
 
 ### Wafw00f
 
@@ -260,6 +265,7 @@ The robots.txt file is a plain text file in the website's root, using records se
 The .well-known standard (RFC 8615) centralizes website metadata in /.well-known/.
 
 ### Examples
+
 | URI Suffix         | Description                            | Status     | Reference                                   |
 |--------------------|----------------------------------------|------------|---------------------------------------------|
 | security.txt       | Contact info for vulnerability reports | Permanent  | RFC 9116                                    |
