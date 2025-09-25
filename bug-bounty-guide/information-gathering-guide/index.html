@@ -2618,12 +2618,29 @@
 <pre><code class="language-bash">gobuster vhost -u http://192.0.2.1 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
 gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 60 --append-domain
 </code></pre>
-<p><strong>Common flags:</strong>
-| Flag | Description                     |
-|------|---------------------------------|
-| -t   | Increase threads for faster scanning |
-| -k   | Ignore SSL/TLS certificate errors |
-| -o   | Save output to a file            |</p>
+<p><strong>Common flags:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-t</td>
+<td>Increase threads for faster scanning</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>Ignore SSL/TLS certificate errors</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>Save output to a file</td>
+</tr>
+</tbody>
+</table>
 <h2 id="certificate-transparency-ct-logs">Certificate Transparency (CT) Logs</h2>
 <p>CT logs record SSL/TLS certificates, revealing subdomains.</p>
 <h3 id="searching-ct-logs">Searching CT Logs</h3>
@@ -2729,6 +2746,9 @@ gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/D
 </table>
 <h3 id="banner-grabbing">Banner Grabbing</h3>
 <pre><code class="language-bash">curl -I inlanefreight.com
+</code></pre>
+<p><strong>Find CMS info:</strong></p>
+<pre><code class="language-bash">curl -s http://app.inlanefreight.local/index.php | grep '&lt;meta name=&quot;generator&quot;'
 </code></pre>
 <h3 id="wafw00f">Wafw00f</h3>
 <pre><code class="language-bash">pip3 install git+https://github.com/EnableSecurity/wafw00f
