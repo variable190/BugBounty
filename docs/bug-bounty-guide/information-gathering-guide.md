@@ -162,9 +162,10 @@ dig @nsztm1.digi.ninja zonetransfer.me axfr
 | Feroxbuster | Rust-based fuzzer   | Recursion, filters      |
 | ffuf        | Fast web fuzzer     | Custom input, filtering |
 
-**Example:**
+**Examples:**
 ```bash
 gobuster vhost -u http://192.0.2.1 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
+gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 60 --append-domain
 ```
 
 **Common flags:**
@@ -183,6 +184,7 @@ CT logs record SSL/TLS certificates, revealing subdomains.
 |--------|----------------------------------|--------------------------------|------------------|-----------------------|
 | crt.sh | User-friendly interface, domain search, SAN details | Quick subdomain checks, certificate history | Free, no registration | Limited filtering     |
 | Censys | Advanced filtering, IP/certificate search | In-depth analysis, misconfigurations | Extensive data, API | Requires registration |
+
 **Example:**
 ```bash
 curl -s "https://crt.sh/?q=facebook.com&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
@@ -304,6 +306,12 @@ python3 ReconSpider.py http://inlanefreight.com
 | audio        | Lists URLs of audio files found on the domain (empty in this example). |
 | comments     | Lists HTML comments found in the source code. |
 
+**Searching Results:**
+```bash
+cat results.json | jq '.emails'
+cat results.json | jq '.comments'
+```
+
 ### Spider code example
 
 ```python
@@ -325,6 +333,7 @@ class ExampleSpider(scrapy.Spider):
 ```bash
 jq -r '.[] | select(.file != null) | .file' example_data.json | sort -u
 ```
+
 
 ## Search Engine Discovery
 

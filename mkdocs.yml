@@ -3,7 +3,6 @@ nav:
   - Home: index.md
   - Bug Bounty Guide:
     - Contents: bug-bounty-guide/index.md
-    - Bug Bounty Process: bug-bounty-guide/bug-bounty-process.md
     - Modules:
       - Web Requests: bug-bounty-guide/web-requests.md
       - Introduction to Web Applications: bug-bounty-guide/introduction-to-web-applications.md

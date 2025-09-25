@@ -4,9 +4,6 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 
 ## Contents
 
-### Process
-- [Bug Bounty Process](./bug-bounty-process.md)
-
 ### Modules
 - [Web Requests](./web-requests.md)
 - [Introduction to Web Applications](./introduction-to-web-applications.md)
