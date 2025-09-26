@@ -1,46 +1,60 @@
 # Attacking Web Applications with Ffuf
 
-[Relative Cheat Sheet](./ffuf-cheat.md)
+## Flags
 
-## Overview
-Ffuf (Fuzz Faster U Fool) is a fast web fuzzer used to discover hidden files, directories, subdomains, and parameters on web applications.
+| Flag    | Use                            | Example                     |
+|---------|--------------------------------|-----------------------------|
+| -u      | Specify target URL             | -u http://example.com/FUZZ  |
+| -w      | Set wordlist file              | -w wordlist.txt             |
+| -ic     | Ignore wordlist comments       | -ic                         |
+| -H      | Add custom HTTP headers        | -H "Authorization: Bearer token" |
+| -X      | Set HTTP method                | -X POST                     |
+| -e      | Extend wordlist with extensions | -e .php,.html               |
+| -s      | Enable silent mode             | -s                          |
+| -v      | Increase verbosity             | -v                          |
+| -t      | Set number of threads          | -t 50                       |
+| -k      | Ignore SSL/TLS errors          | -k                          |
+| -o      | Output results to file         | -o results.txt              |
+| -timeout | Set request timeout in seconds | -timeout 30                |
+| -recursion | Enable recursive directory scanning | -recursion          |
+| -recursion-depth | Set maximum recursion depth   | -recursion-depth 2  |
+| -s      | Filter by status codes         | -s 200,404                  |
+| -mc     | Match by status codes          | -mc 200                     |
+| -ml     | Match by line count            | -ml 50                      |
+| -mw     | Match by word count            | -mw 100                     |
+| -ms     | Match by size in bytes         | -ms 1024                    |
+| -fc     | Filter by status codes         | -fc 404                     |
+| -fl     | Filter by line count           | -fl 0                       |
+| -fw     | Filter by word count           | -fw 0                       |
+| -fs     | Filter by size in bytes        | -fs 512                     |
 
-## Web Fuzzing
-- **Purpose**: Identifies unlinked or hidden resources by sending multiple requests with varying inputs.
-- **Use Case**: Finding backup files or admin panels.
+## Commands
 
-## Directory Fuzzing
-- **Process**: Uses wordlists to guess directory names (e.g., `/admin`, `/backup`).
-- **Benefit**: Uncovers accessible but unadvertised directories.
+| Command | Description |
+|---------|-------------|
+| `ffuf -h` | Display ffuf help menu |
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ` | Directory Fuzzing to discover hidden directories |
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/web-extensions.txt:FUZZ -u http://SERVER_IP:PORT/indexFUZZ` | Extension Fuzzing to identify file types |
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/blog/FUZZ.php` | Page Fuzzing to find dynamic pages |
+| `ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://FUZZ.hackthebox.eu/` | Sub-domain Fuzzing to enumerate subdomains |
+| `ffuf -w /opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u http://academy.htb:PORT/ -H 'Host: FUZZ.academy.htb' -fs xxx` | VHost Fuzzing to detect virtual hosts, filtering by size |
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php?FUZZ=key -fs xxx` | Parameter Fuzzing - GET to find injectable parameters, filter by size |
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` | Parameter Fuzzing - POST to test POST-based parameters |
+| `ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` | Value Fuzzing to test parameter value vulnerabilities |
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v` | Recursive Fuzzing to explore subdirectories with verbose output |
 
-## Page Fuzzing
-- **Process**: Fuzzes page names or extensions (e.g., `/login.php`, `/index.html`).
-- **Benefit**: Detects dynamic pages or misconfigured file types.
+## Wordlists
 
-## Recursive Fuzzing
-- **Process**: Recursively explores subdirectories with `-recursion`.
-- **Benefit**: Maps deep site structure for comprehensive testing.
+[Seclists](https://github.com/danielmiessler/SecLists)
 
-## DNS Records and Sub-domain Fuzzing
-- **Process**: Fuzzes subdomains (e.g., `dev.example.com`) using DNS queries.
-- **Benefit**: Reveals hidden or forgotten subdomains.
+Create a sequence wordlist for value fuzzing:
+```bash
+for i in $(seq 1 1000); do echo $i >> ids.txt; done
+```
 
-## Vhost Fuzzing
-- **Process**: Fuzzes Host headers to find virtual hosts on the same IP.
-- **Benefit**: Identifies multiple sites with potentially different security.
+## Misc
 
-## Filtering Results
-- **Process**: Use `-fs` to filter by response size or status to reduce noise.
-- **Benefit**: Focuses on valid findings, ignoring irrelevant responses.
-
-## Parameter Fuzzing (GET/POST)
-- **Process**: Fuzzes GET (`?id=FUZZ`) or POST (`-d 'id=FUZZ'`) parameters.
-- **Benefit**: Discovers injectable parameters for exploitation.
-
-## Value Fuzzing
-- **Process**: Fuzzes parameter values to test input validation.
-- **Benefit**: Identifies weak validation leading to vulns like SQLi.
-
-## Tools
-- Ffuf ([https://github.com/ffuf/ffuf](https://github.com/ffuf/ffuf)) for setup and usage.
-- SecLists ([https://github.com/danielmiessler/SecLists](https://github.com/danielmiessler/SecLists)) for wordlists.
+| Command | Description |
+|---------|-------------|
+| `sudo sh -c 'echo "SERVER_IP academy.htb" >> /etc/hosts'` | Add a DNS entry to resolve custom domains |
+| `curl http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=key' -H 'Content-Type: application/x-www-form-urlencoded'` | Example curl command with POST request |

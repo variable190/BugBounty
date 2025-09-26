@@ -8,6 +8,7 @@ nav:
       - Introduction to Web Applications: bug-bounty-guide/introduction-to-web-applications.md
       - Using Web Proxies: bug-bounty-guide/using-web-proxies.md
       - Information Gathering: bug-bounty-guide/information-gathering-guide.md
+      - Attacking Web Applications with Ffuf: bug-bounty-guide/attacking-web-applications-with-ffuf.md
       - Cross-Site Scripting (XSS): bug-bounty-guide/cross-site-scripting-guide.md
       - SQL Injection: bug-bounty-guide/sql-injection-guide.md
       - Command Injections: bug-bounty-guide/command-injections-guide.md
@@ -22,10 +23,8 @@ nav:
       - Hacking WordPress: bug-bounty-guide/hacking-wordpress-guide.md
       - Bug Bounty Reporting: bug-bounty-guide/bug-bounty-reporting-guide.md
     - Informational Documents:
-      - Attacking Web Applications with Ffuf: bug-bounty-guide/attacking-web-applications-with-ffuf.md
       - JavaScript Deobfuscation: bug-bounty-guide/javascript-deobfuscation.md
     - Cheat Sheets:
-      - Attacking with Ffuf: bug-bounty-guide/ffuf-cheat.md
       - JavaScript Deobfuscation: bug-bounty-guide/js-deobfuscation-cheat.md
       - Cross-Site Scripting (XSS): bug-bounty-guide/xss-cheat.md
       - SQL Injection: bug-bounty-guide/sqli-cheat.md
