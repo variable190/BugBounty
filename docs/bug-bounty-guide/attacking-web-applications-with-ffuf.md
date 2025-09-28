@@ -9,7 +9,7 @@
 | -ic     | Ignore wordlist comments       | -ic                         |
 | -H      | Add custom HTTP headers        | -H "Authorization: Bearer token" |
 | -X      | Set HTTP method                | -X POST                     |
-| -e      | Extend wordlist with extensions | -e .php,.html               |
+| -e      | Extend wordlist with extensions | -e .php,.html              |
 | -s      | Enable silent mode             | -s                          |
 | -v      | Increase verbosity             | -v                          |
 | -t      | Set number of threads          | -t 50                       |
@@ -27,6 +27,7 @@
 | -fl     | Filter by line count           | -fl 0                       |
 | -fw     | Filter by word count           | -fw 0                       |
 | -fs     | Filter by size in bytes        | -fs 512                     |
+| -ac     | Automatically calibrate filtering | -ac                      |
 
 ## Commands
 
@@ -42,6 +43,8 @@
 | `ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'FUZZ=key' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` | Parameter Fuzzing - POST to test POST-based parameters |
 | `ffuf -w ids.txt:FUZZ -u http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs xxx` | Value Fuzzing to test parameter value vulnerabilities |
 | `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v` | Recursive Fuzzing to explore subdirectories with verbose output |
+| `ffuf -w /opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://faculty.academy.htb:STMPO/FUZZ -recursion -recursion-depth 1 -e .php,.phps,.php7 -fs 287 -mr "You don't have access!" -t 100` | Recursive Fuzzing to explore subdirectories, check for variation of the php extensions, match a specific response, 100 threads |
+| `ffuf -w /opt/useful/SecLists/Usernames/Names/names.txt:FUZZ -u http://faculty.academy.htb:STMPO/courses/linux-security.php7 -X POST -d 'username=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs 781` | Fuzzing the username post parameter and filter response size |
 
 ## Wordlists
 
