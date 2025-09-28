@@ -1460,6 +1460,11 @@
 <td>Filter by size in bytes</td>
 <td>-fs 512</td>
 </tr>
+<tr>
+<td>-ac</td>
+<td>Automatically calibrate filtering</td>
+<td>-ac</td>
+</tr>
 </tbody>
 </table>
 <h2 id="commands">Commands</h2>
@@ -1510,6 +1515,14 @@
 <tr>
 <td><code>ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://SERVER_IP:PORT/FUZZ -recursion -recursion-depth 1 -e .php -v</code></td>
 <td>Recursive Fuzzing to explore subdirectories with verbose output</td>
+</tr>
+<tr>
+<td><code>ffuf -w /opt/useful/SecLists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://faculty.academy.htb:STMPO/FUZZ -recursion -recursion-depth 1 -e .php,.phps,.php7 -fs 287 -mr "You don't have access!" -t 100</code></td>
+<td>Recursive Fuzzing to explore subdirectories, check for variation of the php extensions, match a specific response, 100 threads</td>
+</tr>
+<tr>
+<td><code>ffuf -w /opt/useful/SecLists/Usernames/Names/names.txt:FUZZ -u http://faculty.academy.htb:STMPO/courses/linux-security.php7 -X POST -d 'username=FUZZ' -H 'Content-Type: application/x-www-form-urlencoded' -fs 781</code></td>
+<td>Fuzzing the username post parameter and filter response size</td>
 </tr>
 </tbody>
 </table>
