@@ -1,4 +1,4 @@
-# Server-side Attacks Cheat Sheet
+# Server-Side Attacks
 
 ## SSRF
 ### Exploitation

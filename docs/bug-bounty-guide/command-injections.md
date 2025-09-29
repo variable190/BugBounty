@@ -1,4 +1,4 @@
-# Command Injections Cheat Sheet
+# Command Injections
 
 ## Injection Operators
 | Injection Operator | Injection Character | URL-Encoded Character | Executed Command |

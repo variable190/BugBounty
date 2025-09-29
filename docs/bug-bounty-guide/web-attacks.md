@@ -1,4 +1,4 @@
-# Web Attacks Cheat Sheet
+# Web Attacks
 
 ## HTTP Verb Tampering
 ### HTTP Method

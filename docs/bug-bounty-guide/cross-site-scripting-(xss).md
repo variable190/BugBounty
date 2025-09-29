@@ -1,4 +1,4 @@
-# Cross-Site Scripting (XSS) Cheat Sheet
+# Cross-Site Scripting (XSS)
 
 ## XSS Payloads
 | Code | Description |

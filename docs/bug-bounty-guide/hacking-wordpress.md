@@ -1,4 +1,4 @@
-# Hacking WordPress Cheat Sheet
+# Hacking WordPress
 
 ## Commands
 | Command | Description |

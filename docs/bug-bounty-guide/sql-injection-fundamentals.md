@@ -1,4 +1,4 @@
-# SQL Injection Fundamentals Cheat Sheet
+# SQL Injection
 
 ## MySQL
 ### General

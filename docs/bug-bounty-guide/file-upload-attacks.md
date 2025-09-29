@@ -1,4 +1,4 @@
-# File Upload Attacks Cheat Sheet
+# File Upload Attacks
 
 ## Web Shells
 | Web Shell | Description |

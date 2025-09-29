@@ -7,34 +7,24 @@ nav:
       - Web Requests: bug-bounty-guide/web-requests.md
       - Introduction to Web Applications: bug-bounty-guide/introduction-to-web-applications.md
       - Using Web Proxies: bug-bounty-guide/using-web-proxies.md
-      - Information Gathering: bug-bounty-guide/information-gathering-guide.md
+      - Information Gathering Web Edition: bug-bounty-guide/information-gathering-web-edition.md
       - Attacking Web Applications with Ffuf: bug-bounty-guide/attacking-web-applications-with-ffuf.md
       - JavaScript Deobfuscation: bug-bounty-guide/javascript-deobfuscation.md
-      - Cross-Site Scripting (XSS): bug-bounty-guide/cross-site-scripting-guide.md
-      - SQL Injection: bug-bounty-guide/sql-injection-guide.md
-      - Command Injections: bug-bounty-guide/command-injections-guide.md
-      - File Upload Attacks: bug-bounty-guide/file-upload-attacks-guide.md
-      - Server-side Attacks: bug-bounty-guide/server-side-attacks-guide.md
-      - Login Brute Forcing: bug-bounty-guide/login-brute-forcing-guide.md
-      - Broken Authentication: bug-bounty-guide/broken-authentication-guide.md
-      - Web Attacks: bug-bounty-guide/web-attacks-guide.md
-      - File Inclusion: bug-bounty-guide/file-inclusion-guide.md
-      - Session Security: bug-bounty-guide/session-security-guide.md
-      - Web Service & API Attacks: bug-bounty-guide/web-service-api-attacks-guide.md
-      - Hacking WordPress: bug-bounty-guide/hacking-wordpress-guide.md
-      - Bug Bounty Reporting: bug-bounty-guide/bug-bounty-reporting-guide.md
+      - Cross-Site Scripting (XSS): bug-bounty-guide/cross-site-scripting-(xss).md
+      - SQL Injection Fundamentals: bug-bounty-guide/sql-injection-fundamentals.md
+      - SQLMap Essentials: bug-bounty-guide/sqlmap-essentials.md
+      - Command Injections: bug-bounty-guide/command-injections.md
+      - File Upload Attacks: bug-bounty-guide/file-upload-attacks.md
+      - Server-side Attacks: bug-bounty-guide/server-side-attacks.md
+      - Login Brute Forcing: bug-bounty-guide/login-brute-forcing.md
+      - Broken Authentication: bug-bounty-guide/broken-authentication.md
+      - Web Attacks: bug-bounty-guide/web-attacks.md
+      - File Inclusion: bug-bounty-guide/file-inclusion.md
+      - Session Security: bug-bounty-guide/session-security.md
+      - Web Service & API Attacks: bug-bounty-guide/web-service-and-api-attacks.md
+      - Hacking WordPress: bug-bounty-guide/hacking-wordpress.md
+      - Bug Bounty Hunting Process: bug-bounty-guide/bug-bounty-hunting-process.md
     - Cheat Sheets:
-      - Cross-Site Scripting (XSS): bug-bounty-guide/xss-cheat.md
-      - SQL Injection: bug-bounty-guide/sqli-cheat.md
-      - SQLMap: bug-bounty-guide/sqlmap-cheat.md
-      - Command Injection: bug-bounty-guide/cmd-injection-cheat.md
-      - File Upload: bug-bounty-guide/file-upload-cheat.md
-      - Server-Side: bug-bounty-guide/server-side-cheat.md
-      - Brute Forcing: bug-bounty-guide/brute-forcing-cheat.md
-      - Broken Authentication: bug-bounty-guide/broken-auth-cheat.md
-      - Web Attacks: bug-bounty-guide/web-attacks-cheat.md
-      - File Inclusion: bug-bounty-guide/file-inclusion-cheat.md
-      - WordPress: bug-bounty-guide/wordpress-cheat.md
       - FTP: bug-bounty-guide/ftp-cheat.md
       - Gobuster: bug-bounty-guide/gobuster-cheat.md
 

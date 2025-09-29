@@ -1,4 +1,4 @@
-# Broken Authentication Cheat Sheet
+# Broken Authentication
 
 ## Categories of Authentication
 - Knowledge: passwords, PINs, ...

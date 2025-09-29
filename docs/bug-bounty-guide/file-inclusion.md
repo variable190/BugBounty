@@ -1,4 +1,4 @@
-# File Inclusion Cheat Sheet
+# File Inclusion
 
 ## Local File Inclusion
 | Command | Description |
