@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../web-service-and-api-attacks/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../bug-bounty-hunting-process/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>Hacking WordPress - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#hacking-wordpress" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              Hacking WordPress
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -808,10 +730,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../hacking-wordpress/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Hacking WordPress
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -822,6 +766,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,36 +957,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#commands" class="md-nav__link">
     <span class="md-ellipsis">
       Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
     </span>
   </a>
   
@@ -1035,46 +981,7 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
-</tr>
-<tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
-</tr>
-<tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
-</tr>
-<tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
-</tr>
-<tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
-</tr>
-<tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
-</tr>
-<tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
-</tr>
-</tbody>
-</table>
+<h1 id="hacking-wordpress">Hacking WordPress</h1>
 <h2 id="commands">Commands</h2>
 <table>
 <thead>
@@ -1085,126 +992,48 @@
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><code>tree -L 1</code></td>
+<td>Lists contents of current directory</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><code>curl -s -X GET &lt;url&gt;</code></td>
+<td>Makes a GET request to a webserver and receives HTML source code of requested web page</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
+<td><code>curl -I -X GET &lt;url&gt;</code></td>
+<td>Prints the response header of the GET request from the requested web page</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
+<td><code>curl -X POST -d &lt;data&gt; &lt;url&gt;</code></td>
+<td>Sends a POST request with data to specific webserver</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
+<td><code>wpscan --url &lt;url&gt; -e ap</code></td>
+<td>Scans specific WordPress application to enumerate plugins</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
+<td><code>wpscan --url &lt;url&gt; -e u</code></td>
+<td>Scans specific WordPress application to enumerate users</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
+<td><code>msfconsole</code></td>
+<td>Starts Metasploit Framework</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
+<td><code>html2text</code></td>
+<td>Converts redirected HTML output or files to easily readable output</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
-</tr>
-</tbody>
-</table>
-<h2 id="useful-websites">Useful Websites</h2>
-<table>
-<thead>
-<tr>
-<th>Site</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td><code>grep &lt;pattern&gt;</code></td>
+<td>Filters specific pattern in files or redirected output</td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td><code>jq</code></td>
+<td>Transforms JSON input and streams of JSON entities</td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
-</tr>
-<tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
-</tr>
-<tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
-</tr>
-<tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
-</tr>
-<tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
-</tr>
-<tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="misc">Misc</h2>
-<table>
-<thead>
-<tr>
-<th>Command/Action</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
-</tr>
-<tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
-</tr>
-<tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
-</tr>
-<tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td><code>man &lt;tool&gt;</code></td>
+<td>Man provides you with the manpage of the specific tool</td>
 </tr>
 </tbody>
 </table>

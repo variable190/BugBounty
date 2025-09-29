@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../server-side-attacks/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../broken-authentication/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>Login Brute Forcing - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#login-brute-forcing" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              Login Brute Forcing
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -670,10 +592,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../login-brute-forcing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Login Brute Forcing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -684,6 +628,191 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-brute-forcing" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is Brute Forcing?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#factors-influencing-brute-force-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Factors Influencing Brute Force Attacks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-brute-forcing-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How Brute Forcing Works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-brute-forcing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Brute Forcing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Credentials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brute-forcing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brute-Forcing Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Brute-Forcing Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hydra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medusa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medusa
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Medusa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#medusa-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medusa Module
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-wordlists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Wordlists
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Wordlists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#username-anarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Username Anarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cupp-common-user-passwords-profiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      CUPP (Common User Passwords Profiler)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#password-policy-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Password Policy Filtering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Password Policy Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-requirements-and-grep-regex-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Requirements and Grep Regex Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,38 +1113,167 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#what-is-brute-forcing" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      What is Brute Forcing?
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#factors-influencing-brute-force-attacks" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Factors Influencing Brute Force Attacks
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
+  <a href="#how-brute-forcing-works" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful Websites
+      How Brute Forcing Works
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
+  <a href="#types-of-brute-forcing" class="md-nav__link">
     <span class="md-ellipsis">
-      Misc
+      Types of Brute Forcing
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Credentials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brute-forcing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Brute-Forcing Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Brute-Forcing Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hydra">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hydra-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hydra Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#medusa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medusa
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Medusa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#medusa-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Medusa Module
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-wordlists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Wordlists
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Wordlists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#username-anarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Username Anarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cupp-common-user-passwords-profiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      CUPP (Common User Passwords Profiler)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#password-policy-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Password Policy Filtering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Password Policy Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-requirements-and-grep-regex-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Requirements and Grep Regex Patterns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1035,176 +1293,267 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
+<h1 id="login-brute-forcing">Login Brute Forcing</h1>
+<h2 id="what-is-brute-forcing">What is Brute Forcing?</h2>
+<p>A trial-and-error method used to crack passwords, login credentials, or encryption keys by systematically trying every possible combination of characters.</p>
+<h2 id="factors-influencing-brute-force-attacks">Factors Influencing Brute Force Attacks</h2>
+<ul>
+<li>Complexity of the password or key</li>
+<li>Computational power available to the attacker</li>
+<li>Security measures in place</li>
+</ul>
+<h2 id="how-brute-forcing-works">How Brute Forcing Works</h2>
+<ol>
+<li>Start: The attacker initiates the brute force process.</li>
+<li>Generate Possible Combination: The software generates a potential password or key combination.</li>
+<li>Apply Combination: The generated combination is attempted against the target system.</li>
+<li>Check if Successful: The system evaluates the attempted combination.</li>
+<li>Access Granted (if successful): The attacker gains unauthorized access.</li>
+<li>End (if unsuccessful): The process repeats until the correct combination is found or the attacker gives up.</li>
+</ol>
+<h2 id="types-of-brute-forcing">Types of Brute Forcing</h2>
 <table>
 <thead>
 <tr>
-<th>Term</th>
+<th>Attack Type</th>
 <th>Description</th>
+<th>Best Used When</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
+<td>Simple Brute Force</td>
+<td>Tries every possible character combination in a set (e.g., lowercase, uppercase, numbers, symbols).</td>
+<td>When there is no prior information about the password.</td>
 </tr>
 <tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
+<td>Dictionary Attack</td>
+<td>Uses a pre-compiled list of common passwords.</td>
+<td>When the password is likely weak or follows common patterns.</td>
 </tr>
 <tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
+<td>Hybrid Attack</td>
+<td>Combines brute force and dictionary attacks, adding numbers or symbols to dictionary words.</td>
+<td>When the target uses slightly modified versions of common passwords.</td>
 </tr>
 <tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
+<td>Credential Stuffing</td>
+<td>Uses leaked credentials from other breaches to access different services where users may have reused passwords.</td>
+<td>When you have a set of leaked credentials, and the target may reuse passwords.</td>
 </tr>
 <tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
+<td>Password Spraying</td>
+<td>Attempts common passwords across many accounts to avoid detection.</td>
+<td>When account lockout policies are in place.</td>
 </tr>
 <tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
+<td>Rainbow Table Attack</td>
+<td>Uses precomputed tables of password hashes to reverse them into plaintext passwords.</td>
+<td>When a large number of password hashes need cracking, and storage for tables is available.</td>
 </tr>
 <tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
+<td>Reverse Brute Force</td>
+<td>Targets a known password against multiple usernames.</td>
+<td>When there’s a suspicion of password reuse across multiple accounts.</td>
+</tr>
+<tr>
+<td>Distributed Brute Force</td>
+<td>Distributes brute force attempts across multiple machines to speed up the process.</td>
+<td>When the password is highly complex, and a single machine isn't powerful enough.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="commands">Commands</h2>
+<h2 id="default-credentials">Default Credentials</h2>
 <table>
 <thead>
 <tr>
-<th>Command</th>
-<th>Description</th>
+<th>Device</th>
+<th>Username</th>
+<th>Password</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td>Linksys Router</td>
+<td>admin</td>
+<td>admin</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td>Netgear Router</td>
+<td>admin</td>
+<td>password</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
+<td>TP-Link Router</td>
+<td>admin</td>
+<td>admin</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
+<td>Cisco Router</td>
+<td>cisco</td>
+<td>cisco</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
+<td>Ubiquiti UniFi AP</td>
+<td>ubnt</td>
+<td>ubnt</td>
 </tr>
 </tbody>
 </table>
-<h2 id="useful-websites">Useful Websites</h2>
+<h2 id="brute-forcing-tools">Brute-Forcing Tools</h2>
+<h3 id="hydra">Hydra</h3>
+<p>Fast network login cracker. Supports numerous protocols. Uses parallel connections for speed. Flexible and adaptable. Relatively easy to use.</p>
+<pre><code class="language-bash">hydra [-l LOGIN|-L FILE] [-p PASS|-P FILE] [-C FILE] -m MODULE [service://server[:PORT][/OPT]]
+</code></pre>
+<h4 id="hydra-service">Hydra Service</h4>
 <table>
 <thead>
 <tr>
-<th>Site</th>
+<th>Service/Protocol</th>
 <th>Description</th>
+<th>Example Command</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td>ftp</td>
+<td>File Transfer Protocol (FTP). Used to brute-force login credentials for FTP services, commonly used to transfer files over a network.</td>
+<td><code>hydra -l admin -P /path/to/password_list.txt ftp://192.168.1.100</code></td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td>ssh</td>
+<td>Secure Shell (SSH). Targets SSH services to brute-force credentials, commonly used for secure remote login to systems.</td>
+<td><code>hydra -l root -P /path/to/password_list.txt ssh://192.168.1.100</code></td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
-</tr>
-<tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
-</tr>
-<tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
-</tr>
-<tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
-</tr>
-<tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
-</tr>
-<tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
+<td>http-get/post</td>
+<td>HTTP Web Services. Used to brute-force login credentials for HTTP web login forms using either GET or POST requests.</td>
+<td><code>hydra -l admin -P /path/to/password_list.txt 127.0.0.1 http-post-form "/login.php:user=^USER^&amp;pass=^PASS^:F=incorrect"</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="misc">Misc</h2>
+<h3 id="medusa">Medusa</h3>
+<p>Fast, massively parallel, modular login brute-forcer. Supports a wide array of services.</p>
+<pre><code class="language-bash">medusa [-h host|-H file] [-u username|-U file] [-p password|-P file] [-C file] -M module [OPT]
+</code></pre>
+<h4 id="medusa-module">Medusa Module</h4>
 <table>
 <thead>
 <tr>
-<th>Command/Action</th>
+<th>Module</th>
+<th>Service/Protocol</th>
 <th>Description</th>
+<th>Example Command</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
+<td>ssh</td>
+<td>Secure Shell (SSH)</td>
+<td>Brute force SSH login for the admin user.</td>
+<td><code>medusa -h 192.168.1.100 -u admin -P passwords.txt -M ssh</code></td>
 </tr>
 <tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
+<td>ftp</td>
+<td>File Transfer Protocol (FTP)</td>
+<td>Brute force FTP with multiple usernames and passwords using 5 parallel threads.</td>
+<td><code>medusa -h 192.168.1.100 -U users.txt -P passwords.txt -M ftp -t 5</code></td>
 </tr>
 <tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
+<td>rdp</td>
+<td>Remote Desktop Protocol (RDP)</td>
+<td>Brute force RDP login.</td>
+<td><code>medusa -h 192.168.1.100 -u admin -P passwords.txt -M rdp</code></td>
 </tr>
 <tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td>http-get</td>
+<td>HTTP Web Services</td>
+<td>Brute force HTTP Basic Authentication.</td>
+<td><code>medusa -h www.example.com -U users.txt -P passwords.txt -M http -m GET</code></td>
+</tr>
+<tr>
+<td>ssh</td>
+<td>Secure Shell (SSH)</td>
+<td>Stop after the first valid SSH login is found.</td>
+<td><code>medusa -h 192.168.1.100 -u admin -P passwords.txt -M ssh -f</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="custom-wordlists">Custom Wordlists</h2>
+<h3 id="username-anarchy">Username Anarchy</h3>
+<p>Generates potential usernames based on a target's name.
+| Command | Description |
+|---------|-------------|
+| <code>username-anarchy Jane Smith</code> | Generate possible usernames for "Jane Smith" |
+| <code>username-anarchy -i names.txt</code> | Use a file (names.txt) with names for input. Can handle space, CSV, or TAB delimited names. |
+| <code>username-anarchy -a --country us</code> | Automatically generate usernames using common names from the US dataset. |
+| <code>username-anarchy -l</code> | List available username format plugins. |
+| <code>username-anarchy -f format1,format2</code> | Use specific format plugins for username generation (comma-separated). |
+| <code>username-anarchy -@ example.com</code> | Append @example.com as a suffix to each username. |
+| <code>username-anarchy --case-insensitive</code> | Generate usernames in case-insensitive (lowercase) format. |</p>
+<h3 id="cupp-common-user-passwords-profiler">CUPP (Common User Passwords Profiler)</h3>
+<p>Creates personalized password wordlists based on gathered intelligence.
+| Command | Description |
+|---------|-------------|
+| <code>cupp -i</code> | Generate wordlist based on personal information (interactive mode). |
+| <code>cupp -w profiles.txt</code> | Generate a wordlist from a predefined profile file. |
+| <code>cupp -l</code> | Download popular password lists like rockyou.txt. |</p>
+<h2 id="password-policy-filtering">Password Policy Filtering</h2>
+<p>Password policies often dictate specific requirements for password strength, such as minimum length, inclusion of certain character types, or exclusion of common patterns. grep combined with regular expressions can filter wordlists to identify passwords that adhere to a given policy.</p>
+<h3 id="policy-requirements-and-grep-regex-patterns">Policy Requirements and Grep Regex Patterns</h3>
+<table>
+<thead>
+<tr>
+<th>Policy Requirement</th>
+<th>Grep Regex Pattern</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minimum Length (e.g., 8 characters)</td>
+<td><code>grep -E '^.{8,}$' wordlist.txt</code></td>
+<td><code>^</code> matches the start of the line, <code>.</code> matches any character, <code>{8,}</code> matches 8 or more occurrences, <code>$</code> matches the end of the line.</td>
+</tr>
+<tr>
+<td>At Least One Uppercase Letter</td>
+<td><code>grep -E '[A-Z]' wordlist.txt</code></td>
+<td><code>[A-Z]</code> matches any uppercase letter.</td>
+</tr>
+<tr>
+<td>At Least One Lowercase Letter</td>
+<td><code>grep -E '[a-z]' wordlist.txt</code></td>
+<td><code>[a-z]</code> matches any lowercase letter.</td>
+</tr>
+<tr>
+<td>At Least One Digit</td>
+<td><code>grep -E '[0-9]' wordlist.txt</code></td>
+<td><code>[0-9]</code> matches any digit.</td>
+</tr>
+<tr>
+<td>At Least One Special Character</td>
+<td><code>grep -E '[!@#$%^&amp;*()_+-=[]{};':"\,.&lt;&gt;/?]' wordlist.txt</code></td>
+<td><code>[!@#$%^&amp;*()_+-=[]{};':"\,.&lt;&gt;/?]</code> matches any special character (symbol).</td>
+</tr>
+<tr>
+<td>No Consecutive Repeated Characters</td>
+<td><code>grep -E '(.)\1' wordlist.txt</code></td>
+<td><code>(.)</code> captures any character, <code>\1</code> matches the previously captured character. This pattern will match any line with consecutive repeated characters. Use <code>grep -v</code> to invert the match.</td>
+</tr>
+<tr>
+<td>Exclude Common Patterns (e.g., "password")</td>
+<td><code>grep -v -i 'password' wordlist.txt</code></td>
+<td><code>-v</code> inverts the match, <code>-i</code> makes the search case-insensitive. This pattern will exclude any line containing "password" (or "Password", "PASSWORD", etc.).</td>
+</tr>
+<tr>
+<td>Exclude Dictionary Words</td>
+<td><code>grep -v -f dictionary.txt wordlist.txt</code></td>
+<td><code>-f</code> reads patterns from a file. <code>dictionary.txt</code> should contain a list of common dictionary words, one per line.</td>
+</tr>
+<tr>
+<td>Combination of Requirements</td>
+<td><code>grep -E '^.{8,}$' wordlist.txt | grep -E '[A-Z]'</code></td>
+<td>Filters a wordlist to meet multiple password policy requirements. Ensures each word has a minimum length of 8 characters and contains at least one uppercase letter.</td>
 </tr>
 </tbody>
 </table>

