@@ -10,6 +10,7 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 - [Using Web Proxies](./using-web-proxies.md)
 - [Information Gathering](./information-gathering-guide.md)
 - [Attacking Web Applications with Ffuf](./attacking-web-applications-with-ffuf.md)
+- [JavaScript Deobfuscation](./javascript-deobfuscation.md)
 - [Cross-Site Scripting (XSS)](./cross-site-scripting-guide.md)
 - [SQL Injection](./sql-injection-guide.md) 
 - [Command Injections](./command-injections-guide.md)
@@ -24,11 +25,7 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 - [Hacking WordPress](./hacking-wordpress-guide.md)
 - [Bug Bounty Reporting](./bug-bounty-reporting-guide.md)
 
-### Informational Documents
-- [JavaScript Deobfuscation](./javascript-deobfuscation.md)
-
 ### Cheat Sheets
-- [JavaScript Deobfuscation](./js-deobfuscation-cheat.md)
 - [Cross-Site Scripting (XSS)](./xss-cheat.md)
 - [SQL Injection](./sqli-cheat.md)
 - [SQLMap](./sqlmap-cheat.md)

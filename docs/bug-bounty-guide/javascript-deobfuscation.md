@@ -1,39 +1,53 @@
 # JavaScript Deobfuscation
 
-[Relative Cheat Sheet](./js-deobfuscation-cheat.md)
+## Terms
 
-## Overview
-JavaScript deobfuscation involves reversing the process of making code unreadable to uncover its original logic, often used to identify vulnerabilities like XSS or hidden API calls.
+| Term | Description |
+|------|-------------|
+| Code minification | Reduces code to a single line often saved as .min.js. |
+| Packing | Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)". |
+| JSFuck | Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar). |
+| Base 64 | Contains only alpha-numeric, + and /. Padded with '='. |
+| Hex | Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f. |
+| Ceasar | Shifts each char by a fixed number |
+| Rot13 | Most common ceaser cipher, shifts by 13 |
 
-## Source Code
-- **Types**: Minified, encoded (base64, hex), or packed with tools like UglifyJS.
-- **Purpose**: Protects intellectual property but can hide malicious intent.
+## Commands
 
-## Code Obfuscation
-- **Basic**: Renaming variables, removing whitespace.
-- **Advanced**: String encryption, control flow flattening.
+| Command | Description |
+|---------|-------------|
+| `curl http://SERVER_IP:PORT/`     | cURL GET request        |
+| `curl -s http://SERVER_IP:PORT/ -X POST` | cURL POST request    |
+| `curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"` | cURL POST with data |
+| `echo hackthebox | base64` | base64 encode |
+| `echo ENCODED_B64 | base64 -d` | base64 decode |
+| `echo hackthebox | xxd -p` | hex encode |
+| `echo ENCODED_HEX | xxd -p -r` | hex decode |
+| `echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'` | rot13 encode |
+| `echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'` | rot13 decode |
 
-## Deobfuscation Process
-- **Manual**: Analyze with browser DevTools (Ctrl+Shift+I).
-- **Automated**: Use online tools to beautify and decode.
+## Useful Websites
 
-## Tools and Websites
-- **Prettier** ([https://prettier.io/](https://prettier.io/)): Formats code for readability.
-- **Beautifier** ([http://jsbeautifier.org/](http://jsbeautifier.org/)): Unminifies JavaScript.
-- **JSNice** ([http://jsnice.org/](http://jsnice.org/)): Infers variable names.
-- **JS Console**: Built-in browser tool for step-through debugging.
+| Site              | Description                          |
+|-------------------|--------------------------------------|
+| [JS Console](https://jsconsole.com/)      | Interactive JavaScript console for testing code. |
+| [JS Minifier](https://www.toptal.com/developers/javascript-minifier) | Minifies JavaScript for performance optimization. |
+| [BeatifyTools](https://beautifytools.com/javascript-obfuscator.php) | Obfuscates JavaScript to protect code. |
+| [JS Obfuscator Tool](https://obfuscator.io/) | Tool to obfuscate JavaScript code securely. |
+| [JSFuck](https://jsfuck.com/)             | Encodes JavaScript using only six characters. |
+| [jjencode](https://utf-8.jp/public/jjencode.html) | Encodes JavaScript with JJEncode technique. |
+| [aaencode](https://utf-8.jp/public/aaencode.html) | Encodes JavaScript with AAEncode method. |
+| [Prettier](https://prettier.io/playground/) | Formats and beautifies JavaScript code. |
+| [js-beautify](https://beautifier.io/)     | Beautifies minified or obfuscated JavaScript. |
+| [UnPacker](https://matthewfl.com/unPacker.html) | Deobfuscates and unpacks JavaScript code. |
+| [rot13.com](https://rot13.com/)           | Applies ROT13 encoding/decoding for text. |
+| [Cipher Identifier](https://www.boxentriq.com/code-breaking/cipher-identifier) | Identifies cipher types in encoded text. |
 
-## Code Analysis
-- **Focus**: Look for DOM manipulation (e.g., `innerHTML` for XSS), HTTP requests (e.g., `fetch` for SSRF), or eval() usage.
-- **Technique**: Step through with breakpoints to observe execution.
+## Misc
 
-## HTTP Requests
-- **Inspection**: Decode requests in obfuscated code to find endpoints or parameters.
-- **Exploit**: Modify requests to test for injection or bypass.
-
-## Decoding Techniques
-- **Base64**: Use `echo "encoded" | base64 -d`.
-- **Hex**: Convert with `xxd -r -p`.
-- **Rot13**: Apply `tr 'A-Za-z' 'N-ZA-Mn-za-m'`.
-
-This guide leverages knowledge from JavaScript security practices and online resources, aiding in vulnerability discovery.
+| Command/Action | Description |
+|----------------|-------------|
+| `ctrl+u` | Show HTML source code in Firefox |
+| `ctrl+shift+z` | Open browser debugger tab |
+| '{ }' button | Pretty print in debugger tab |
+| Unpack | Replace eval function with console.log |
