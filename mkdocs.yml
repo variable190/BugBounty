@@ -3,7 +3,7 @@ nav:
   - Home: index.md
   - Bug Bounty Guide:
     - Contents: bug-bounty-guide/index.md
-    - Modules:
+    - Bug Bounty Hunter Modules:
       - Web Requests: bug-bounty-guide/web-requests.md
       - Introduction to Web Applications: bug-bounty-guide/introduction-to-web-applications.md
       - Using Web Proxies: bug-bounty-guide/using-web-proxies.md
@@ -24,6 +24,11 @@ nav:
       - Web Service & API Attacks: bug-bounty-guide/web-service-and-api-attacks.md
       - Hacking WordPress: bug-bounty-guide/hacking-wordpress.md
       - Bug Bounty Hunting Process: bug-bounty-guide/bug-bounty-hunting-process.md
+    - Web Penetration Tester Modules:
+      - Web Fuzzing: bug-bounty-guide/web-fuzzing.md
+      - Attacking GraphQL: bug-bounty-guide/attacking-graphql.md
+      - API Attacks: bug-bounty-guide/api-attacks.md
+      - Attacking Common Applications: bug-bounty-guide/attacking-common-applications.md
     - Cheat Sheets:
       - FTP: bug-bounty-guide/ftp-cheat.md
       - Gobuster: bug-bounty-guide/gobuster-cheat.md

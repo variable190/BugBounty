@@ -1,10 +1,19 @@
 # Bug Bounty Guide
 
-Revision materials and notes from the HTB Academy Bug Bounty Course.
+Revision materials and notes from the HTB Academy Bug Bounty Hunter Course.
+In October 2025 the course named changed to Web Pentration Tester and the certificate to Certified Web Exploitation Specialist.
+The following changes were made to the course material
+
+| Retired Module | Replacement |
+|----------------|-------------|
+| Information Gathering - Web Edition | Web Fuzzing |
+| Session Security | Attacking GraphQL |
+| Web Service & API Attacks | API Attacks |
+| Hacking WordPress | Attacking Common Applications |
 
 ## Contents
 
-### Modules
+### Bug Bounty Hunter Modules
 - [Web Requests](./web-requests.md)
 - [Introduction to Web Applications](./introduction-to-web-applications.md)
 - [Using Web Proxies](./using-web-proxies.md)
@@ -26,6 +35,12 @@ Revision materials and notes from the HTB Academy Bug Bounty Course.
 - [Hacking WordPress](./hacking-wordpress.md)
 - [Bug Bounty Reporting](./bug-bounty-hunting-process.md)
 
-### Cheat Sheets
+### New Web Pentration Tester Modules
+- [Web Fuzzing](./web-fuzzing.md)
+- [Attacking GraphQL](./attacking-graphql.md)
+- [API Attacks](./api-attacks.md)
+- [Attacking Common Applications](./attacking-common-applications.md)
+
+### Additional Cheat Sheets
 - [FTP](./ftp-cheat.md)
 - [Gobuster](./gobuster-cheat.md)
