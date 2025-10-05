@@ -90,7 +90,7 @@ Removal code:
 document.getElementById('urlform').remove()
 ```
 
-Adding a comment tag to the end of the payload will remove proceeding code:
+Adding a comment tag to the end of the payload will remove any remaining code after the exploit form:
 
 ```html
 ...PAYLOAD... <!-- 
@@ -134,6 +134,7 @@ sudo php -S 0.0.0.0:8080
 ## Blind XSS detection
 
 Occur with forms only accessible by certain user:
+
 - Contact Forms
 - Reviews
 - User Details
