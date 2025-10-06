@@ -530,6 +530,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#types-of-sql-injection-sqli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of SQL Injection (SQLi)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mysql" class="md-nav__link">
     <span class="md-ellipsis">
       MySQL
@@ -1215,6 +1224,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#types-of-sql-injection-sqli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of SQL Injection (SQLi)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mysql" class="md-nav__link">
     <span class="md-ellipsis">
       MySQL
@@ -1360,6 +1378,55 @@
 
 
 <h1 id="sql-injection">SQL Injection</h1>
+<h2 id="types-of-sql-injection-sqli">Types of SQL Injection (SQLi)</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+<th>Useful/Where Can't Be Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classic</td>
+<td>Direct injection into input fields.</td>
+<td><code>' OR '1'='1</code></td>
+<td>Useful for basic input fields; can't use if input is sanitized.</td>
+</tr>
+<tr>
+<td>Union-Based</td>
+<td>Uses UNION operator to extract data.</td>
+<td><code>' UNION SELECT NULL, username, password --</code></td>
+<td>Useful with multiple columns; can't use if UNION is blocked.</td>
+</tr>
+<tr>
+<td>Error-Based</td>
+<td>Exploits database errors to reveal data.</td>
+<td><code>' AND 1=(SELECT COUNT(*))</code></td>
+<td>Useful with error messages; can't use if errors are suppressed.</td>
+</tr>
+<tr>
+<td>Blind (Boolean)</td>
+<td>Infers data via true/false responses.</td>
+<td><code>' AND SUBSTRING(version(), 1, 1)=5</code></td>
+<td>Useful when errors are suppressed; can't use if responses are identical.</td>
+</tr>
+<tr>
+<td>Blind (Time-Based)</td>
+<td>Delays response based on conditions.</td>
+<td><code>' OR IF(1=1, SLEEP(5), 0)</code></td>
+<td>Useful with no output; can't use if timing controls are strict.</td>
+</tr>
+<tr>
+<td>Stacked Queries</td>
+<td>Executes multiple statements.</td>
+<td><code>'; DROP TABLE users; --</code></td>
+<td>Useful if multi-queries allowed; can't use if DBMS restricts it.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="mysql">MySQL</h2>
 <h3 id="general">General</h3>
 <table>
