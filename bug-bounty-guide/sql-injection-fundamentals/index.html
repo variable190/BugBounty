@@ -530,9 +530,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#types-of-sql-injection-sqli" class="md-nav__link">
+  <a href="#types-of-sql-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      Types of SQL Injection (SQLi)
+      Types of SQL Injection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful links
     </span>
   </a>
   
@@ -563,6 +572,21 @@
       Tables
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-table-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create table example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1224,9 +1248,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#types-of-sql-injection-sqli" class="md-nav__link">
+  <a href="#types-of-sql-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      Types of SQL Injection (SQLi)
+      Types of SQL Injection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful links
     </span>
   </a>
   
@@ -1257,6 +1290,21 @@
       Tables
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Tables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-table-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create table example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1378,7 +1426,7 @@
 
 
 <h1 id="sql-injection">SQL Injection</h1>
-<h2 id="types-of-sql-injection-sqli">Types of SQL Injection (SQLi)</h2>
+<h2 id="types-of-sql-injection">Types of SQL Injection</h2>
 <table>
 <thead>
 <tr>
@@ -1427,6 +1475,12 @@
 </tr>
 </tbody>
 </table>
+<h2 id="useful-links">Useful links</h2>
+<ul>
+<li><a href="https://dev.mysql.com/doc/">MySQL Documentation</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/8.0/en/data-types.html">Data types</a></li>
+<li><a href="https://mariadb.com/docs/server">MariaDB Documentation</a></li>
+</ul>
 <h2 id="mysql">MySQL</h2>
 <h3 id="general">General</h3>
 <table>
@@ -1439,18 +1493,24 @@
 <tbody>
 <tr>
 <td><code>mysql -u root -h docker.hackthebox.eu -P 3306 -p</code></td>
-<td>login to mysql database</td>
+<td>Login to mysql database. No space after -p when entering password</td>
 </tr>
 <tr>
-<td><code>SHOW DATABASES</code></td>
+<td><code>CREATE DATABASE users;</code></td>
+<td>Create a new datase called users</td>
+</tr>
+<tr>
+<td><code>SHOW DATABASES;</code></td>
 <td>List available databases</td>
 </tr>
 <tr>
-<td><code>USE users</code></td>
+<td><code>USE users;</code></td>
 <td>Switch to database</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Note:</strong> SQL statements are not case sensitive but names are.
+<strong>Note:</strong> 3306 is the default port for MySQL.</p>
 <h3 id="tables">Tables</h3>
 <table>
 <thead>
@@ -1461,31 +1521,44 @@
 </thead>
 <tbody>
 <tr>
-<td><code>CREATE TABLE logins (id INT, ...)</code></td>
+<td><code>CREATE TABLE logins (id INT, ...);</code></td>
 <td>Add a new table</td>
 </tr>
 <tr>
-<td><code>SHOW TABLES</code></td>
+<td><code>SHOW TABLES;</code></td>
 <td>List available tables in current database</td>
 </tr>
 <tr>
-<td><code>DESCRIBE logins</code></td>
+<td><code>DESCRIBE logins;</code></td>
 <td>Show table properties and columns</td>
 </tr>
 <tr>
-<td><code>INSERT INTO table_name VALUES (value_1,..)</code></td>
-<td>Add values to table</td>
+<td><code>INSERT INTO table_name VALUES (value_1,..);</code></td>
+<td>Add values to table, requires values for all columns in the table</td>
 </tr>
 <tr>
-<td><code>INSERT INTO table_name(column2, ...) VALUES (column2_value, ..)</code></td>
-<td>Add values to specific columns in a table</td>
+<td><code>INSERT INTO table_name(username, password) VALUES ('john', 'john123!');</code></td>
+<td>Add values to specific columns in a table <strong>Note:</strong> skipping columns with the 'NOT NULL' constraint will result in an error (unless AUTO_INCREMENT)</td>
 </tr>
 <tr>
-<td><code>UPDATE table_name SET column1=newvalue1, ... WHERE &lt;condition&gt;</code></td>
-<td>Update table values</td>
+<td><code>INSERT INTO logins(username, password) VALUES ('john', 'john123!'), ('tom', 'tom123!');</code></td>
+<td>Insert multiple records at once by separating them with a comma</td>
+</tr>
+<tr>
+<td><code>UPDATE logins SET password = 'change_password' WHERE id &gt; 1;</code></td>
+<td>Update specific records</td>
 </tr>
 </tbody>
 </table>
+<h4 id="create-table-example">Create table example</h4>
+<pre><code class="language-sql">CREATE TABLE logins (
+    id INT NOT NULL AUTO_INCREMENT, -- set to auto increment
+    username VARCHAR(100) UNIQUE NOT NULL, -- must be unique and cannot be left blank
+    password VARCHAR(100),
+    date_of_joining DATETIME DEFAULT NOW(), -- default value will be when the entry is added
+    PRIMARY KEY (id) -- makes the id column the primary key
+    );
+</code></pre>
 <h3 id="columns">Columns</h3>
 <table>
 <thead>
@@ -1496,31 +1569,31 @@
 </thead>
 <tbody>
 <tr>
-<td><code>SELECT * FROM table_name</code></td>
+<td><code>SELECT * FROM table_name;</code></td>
 <td>Show all columns in a table</td>
 </tr>
 <tr>
-<td><code>SELECT column1, column2 FROM table_name</code></td>
+<td><code>SELECT username, password FROM table_name;</code></td>
 <td>Show specific columns in a table</td>
 </tr>
 <tr>
-<td><code>DROP TABLE logins</code></td>
+<td><code>DROP TABLE logins;</code></td>
 <td>Delete a table</td>
 </tr>
 <tr>
-<td><code>ALTER TABLE logins ADD newColumn INT</code></td>
+<td><code>ALTER TABLE logins ADD newColumn INT;</code></td>
 <td>Add new column</td>
 </tr>
 <tr>
-<td><code>ALTER TABLE logins RENAME COLUMN newColumn TO oldColumn</code></td>
+<td><code>ALTER TABLE logins RENAME COLUMN newColumn TO oldColumn;</code></td>
 <td>Rename column</td>
 </tr>
 <tr>
-<td><code>ALTER TABLE logins MODIFY oldColumn DATE</code></td>
+<td><code>ALTER TABLE logins MODIFY oldColumn DATE;</code></td>
 <td>Change column datatype</td>
 </tr>
 <tr>
-<td><code>ALTER TABLE logins DROP oldColumn</code></td>
+<td><code>ALTER TABLE logins DROP oldColumn;</code></td>
 <td>Delete column</td>
 </tr>
 </tbody>
@@ -1535,32 +1608,44 @@
 </thead>
 <tbody>
 <tr>
-<td><code>SELECT * FROM logins ORDER BY column_1</code></td>
-<td>Sort by column</td>
+<td><code>SELECT * FROM logins ORDER BY password;</code></td>
+<td>Sort by column (ascending by default)</td>
 </tr>
 <tr>
-<td><code>SELECT * FROM logins ORDER BY column_1 DESC</code></td>
+<td><code>SELECT * FROM logins ORDER BY password DESC;</code></td>
 <td>Sort by column in descending order</td>
 </tr>
 <tr>
-<td><code>SELECT * FROM logins ORDER BY column_1 DESC, id ASC</code></td>
-<td>Sort by two-columns</td>
+<td><code>SELECT * FROM logins ORDER BY password DESC, id ASC;</code></td>
+<td>Sort by two-columns, by id for duplicate password entries</td>
 </tr>
 <tr>
-<td><code>SELECT * FROM logins LIMIT 2</code></td>
+<td><code>SELECT * FROM logins LIMIT 2;</code></td>
 <td>Only show first two results</td>
 </tr>
 <tr>
-<td><code>SELECT * FROM logins LIMIT 1, 2</code></td>
-<td>Only show first two results starting from index 2</td>
+<td><code>SELECT * FROM logins LIMIT 1, 2;</code></td>
+<td>Only show first two results starting from index 2 (1 being the offset in this example)</td>
 </tr>
 <tr>
-<td><code>SELECT * FROM logins WHERE &lt;condition&gt;</code></td>
+<td><code>SELECT * FROM logins WHERE id &gt; 1;</code></td>
 <td>List results that meet a condition</td>
 </tr>
 <tr>
-<td><code>SELECT * FROM logins WHERE username LIKE 'admin%'</code></td>
+<td><code>SELECT * FROM logins WHERE username LIKE 'admin%';</code></td>
 <td>List results where the name is similar to a given string</td>
+</tr>
+<tr>
+<td><code>SELECT * FROM logins WHERE username like '___';</code></td>
+<td>Where username is exactly 3 chars, '_' = 1 char</td>
+</tr>
+<tr>
+<td><code>SELECT last_name FROM employees WHERE first_name LIKE 'Bar%' AND hire_date='1990-01-01';</code></td>
+<td>Last name of the employee whose first name starts with Bar and was hired on 1990-01-01</td>
+</tr>
+<tr>
+<td><code>SELECT COUNT(*) FROM titles WHERE emp_no &gt; 10000 OR title NOT LIKE '%engineer%';</code></td>
+<td>The number of all records where the employee number is greater than 10000 or the employee title does not contain the string engineer</td>
 </tr>
 </tbody>
 </table>
