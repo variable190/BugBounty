@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#web-fuzzing" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -826,6 +831,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Web Fuzzing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -838,6 +858,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fuzzing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1037,6 +1118,58 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installing Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installing Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fuzzing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1052,9 +1185,74 @@
 
 
 
-  <h1>Web Fuzzing</h1>
-
-
+<h1 id="web-fuzzing">Web Fuzzing</h1>
+<h2 id="installing-tools">Installing Tools</h2>
+<h3 id="prerequisits">Prerequisits</h3>
+<p>Installing Go, Python and PIPX</p>
+<pre><code class="language-bash">sudo apt update
+sudo apt install -y golang
+sudo apt install -y python3 python3-pip
+sudo apt install pipx
+pipx ensurepath
+sudo pipx ensurepath --global
+</code></pre>
+<h3 id="tools">Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Use Cases</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FFUF</td>
+<td>Fast Go-based web fuzzer for enumeration.</td>
+<td>Directory/file enumeration, parameter discovery, brute-force attacks.</td>
+</tr>
+<tr>
+<td>Gobuster</td>
+<td>Simple, fast web directory fuzzer.</td>
+<td>Content discovery, DNS subdomain enumeration, WordPress detection.</td>
+</tr>
+<tr>
+<td>FeroxBuster</td>
+<td>Rust-based recursive content discovery tool.</td>
+<td>Recursive scanning, unlinked content discovery, high-performance scans.</td>
+</tr>
+<tr>
+<td>wfuzz/wenum</td>
+<td>Versatile Python fuzzer for parameter testing.</td>
+<td>Directory/file enumeration, parameter discovery, brute-force attacks.</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-bash">go install github.com/ffuf/ffuf/v2@latest
+go install github.com/OJ/gobuster/v3@latest
+curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | sudo bash -s $HOME/.local/bin
+pipx install git+https://github.com/WebFuzzForge/wenum
+pipx runpip wenum install setuptools
+</code></pre>
+<h2 id="fuzzing">Fuzzing</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -u http://IP:PORT/FUZZ</code></td>
+<td>Directory fuzzing</td>
+</tr>
+<tr>
+<td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://IP:PORT/w2ksvrus/FUZZ -e .php,.html,.txt,.bak,.js -v</code></td>
+<td>File fuzzing</td>
+</tr>
+</tbody>
+</table>
 
 
 
