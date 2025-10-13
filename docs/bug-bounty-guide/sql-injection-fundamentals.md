@@ -146,8 +146,11 @@ MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g.,
 
 | Payload            | Description                     | How It Works                                   |
 |--------------------|---------------------------------|------------------------------------------------|
-| `admin' or '1'='1` | Basic Auth Bypass               | Appends TRUE condition (`'1'='1`) to bypass login check. |
+| `admin' or '1'='1` | Basic Auth Bypass (works if admin is a valid username) | Appends TRUE condition (`'1'='1`) to bypass login check. |
+| Username:`notadmin' or '1'='1` Password: `something' or '1'='1` | Basic Auth Bypass (works when username not known) | This works since the query evaluate to true irrespective of the username or password. |
 | `admin')-- -`      | Basic Auth Bypass With Comments | Closes query early with `)` and comments out rest with `--`. |
+
+[Payload all the things: authentication bypass section](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass)
 
 ### Union Injection
 
