@@ -1800,8 +1800,13 @@ $result = $conn-&gt;query($query);
 <tbody>
 <tr>
 <td><code>admin' or '1'='1</code></td>
-<td>Basic Auth Bypass</td>
+<td>Basic Auth Bypass (works if admin is a valid username)</td>
 <td>Appends TRUE condition (<code>'1'='1</code>) to bypass login check.</td>
+</tr>
+<tr>
+<td>Username:<code>notadmin' or '1'='1</code> Password: <code>something' or '1'='1</code></td>
+<td>Basic Auth Bypass (works when username not known)</td>
+<td>This works since the query evaluate to true irrespective of the username or password.</td>
 </tr>
 <tr>
 <td><code>admin')-- -</code></td>
@@ -1810,6 +1815,7 @@ $result = $conn-&gt;query($query);
 </tr>
 </tbody>
 </table>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass">Payload all the things: authentication bypass section</a></p>
 <h3 id="union-injection">Union Injection</h3>
 <table>
 <thead>
