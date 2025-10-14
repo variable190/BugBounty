@@ -33,6 +33,14 @@ nav:
       - FTP: bug-bounty-guide/ftp-cheat.md
       - Gobuster: bug-bounty-guide/gobuster-cheat.md
 
-theme: material
-plugins:
-  - search
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
