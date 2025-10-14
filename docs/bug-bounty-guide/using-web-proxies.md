@@ -25,6 +25,7 @@
 | Fuzzing                   | [https://academy.hackthebox.com/module/110/section/1054](https://academy.hackthebox.com/module/110/section/1054) | [https://academy.hackthebox.com/module/110/section/1056](https://academy.hackthebox.com/module/110/section/1056) |
 | Web Scanner               | [https://academy.hackthebox.com/module/110/section/1084](https://academy.hackthebox.com/module/110/section/1084) | [https://academy.hackthebox.com/module/110/section/1086](https://academy.hackthebox.com/module/110/section/1086) |
 | Extensions                | [https://portswigger.net/bappstore](https://portswigger.net/bappstore) | [https://www.zaproxy.org/addons/](https://www.zaproxy.org/addons/) |
+| DOM Invader               | Available in integrated browser https://portswigger.net/burp/documentation/desktop/tools/dom-invader | Burp Only |
 
 ## Burp Shortcuts
 

