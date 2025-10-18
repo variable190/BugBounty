@@ -79,3 +79,38 @@
 | `[Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes('whoami'))` | Encode a string with base64 |
 | `echo -n whoami \| iconv -f utf-8 -t utf-16le \| base64` | Base 64 encode with linux to be decoded on windows |
 | `iex "$([System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String('dwBoAG8AYQBtAGkA')))"` | Execute b64 encoded string |
+
+## Evasion Tools
+
+### Linux (Bashfuscator)
+
+https://github.com/Bashfuscator/Bashfuscator
+
+```bash
+git clone https://github.com/Bashfuscator/Bashfuscator
+cd Bashfuscator
+pip3 install setuptools==65
+python3 setup.py install --user
+cd ./bashfuscator/bin/
+./bashfuscator -h ## show help screen
+./bashfuscator -c 'cat /etc/passwd' ## random choice obfuscation technique
+./bashfuscator -c 'cat /etc/passwd' -s 1 -t 1 --no-mangling --layers 1 ## short and simple obfuscated command
+```
+
+### Windows (DOSfuscation)
+
+https://github.com/danielbohannon/Invoke-DOSfuscation
+
+```PowerShell
+git clone https://github.com/danielbohannon/Invoke-DOSfuscation.git
+cd Invoke-DOSfuscation
+Import-Module .\Invoke-DOSfuscation.psd1
+Invoke-DOSfuscation
+Invoke-DOSfuscation> help ## show help screen
+Invoke-DOSfuscation> SET COMMAND type C:\Users\htb-student\Desktop\flag.txt
+Invoke-DOSfuscation> encoding
+Invoke-DOSfuscation\Encoding> 1 ## encode type 1 
+```
+
+Run windows powershell on linux with [pwsh](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.5)
+
