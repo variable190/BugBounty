@@ -21,8 +21,9 @@
 
 | Command | Description |
 |---------|-------------|
-| **Client-Side Bypass** | |
-| `[CTRL+SHIFT+C]` | Toggle Page Inspector |
+| **Client-Side Bypass (firefox shortcuts)** | |
+| `[CTRL+SHIFT+C]` | Toggle Page Inspector and amend front end code (also inspect displayed files after upload to find location) or use burp to alter request |
+| `[CTRL+SHIFT+K]` | Load browser console to review JS functions by typing their name in |
 | **Blacklist Bypass** | |
 | `shell.phtml` | Uncommon Extension |
 | `shell.pHp` | Case Manipulation |
