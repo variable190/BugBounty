@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -980,6 +980,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#parameter-fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Fuzzing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ffuf-commands" class="md-nav__link">
     <span class="md-ellipsis">
       FFUF Commands
@@ -1347,6 +1356,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#parameter-fuzzing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameter Fuzzing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ffuf-commands" class="md-nav__link">
     <span class="md-ellipsis">
       FFUF Commands
@@ -1462,23 +1480,23 @@
 <tbody>
 <tr>
 <td>Hidden Directories/Files</td>
-<td>Discover unlinked paths.</td>
+<td>Discover unlinked paths</td>
 </tr>
 <tr>
 <td>Insecure APIs</td>
-<td>Identify unprotected endpoints.</td>
+<td>Identify unprotected endpoints</td>
 </tr>
 <tr>
 <td>SQL Injection</td>
-<td>Find injectable query points.</td>
+<td>Find injectable query points</td>
 </tr>
 <tr>
 <td>XSS Vulnerabilities</td>
-<td>Detect script injection flaws.</td>
+<td>Detect script injection flaws</td>
 </tr>
 <tr>
 <td>Command Injection</td>
-<td>Uncover system command exploits.</td>
+<td>Uncover system command exploits</td>
 </tr>
 </tbody>
 </table>
@@ -1505,22 +1523,22 @@ sudo pipx ensurepath --global
 <tr>
 <td>FFUF</td>
 <td>Fast Go-based web fuzzer for enumeration.</td>
-<td>Directory/file enumeration, parameter discovery, brute-force attacks.</td>
+<td>Directory/file enumeration, parameter discovery, brute-force attacks</td>
 </tr>
 <tr>
 <td>Gobuster</td>
 <td>Simple, fast web directory fuzzer.</td>
-<td>Content discovery, DNS subdomain enumeration, WordPress detection.</td>
+<td>Content discovery, DNS subdomain enumeration, WordPress detection</td>
 </tr>
 <tr>
 <td>FeroxBuster</td>
 <td>Rust-based recursive content discovery tool.</td>
-<td>Recursive scanning, unlinked content discovery, high-performance scans.</td>
+<td>Recursive scanning, unlinked content discovery, high-performance scans</td>
 </tr>
 <tr>
 <td>wfuzz/wenum</td>
 <td>Versatile Python fuzzer for parameter testing.</td>
-<td>Directory/file enumeration, parameter discovery, brute-force attacks.</td>
+<td>Directory/file enumeration, parameter discovery, brute-force attacks</td>
 </tr>
 </tbody>
 </table>
@@ -1541,15 +1559,15 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td><code>sudo sh -c 'echo "SERVER_IP academy.htb" &gt;&gt; /etc/hosts'</code></td>
-<td>Add DNS entry to hosts file.</td>
+<td>Add DNS entry to hosts file</td>
 </tr>
 <tr>
 <td><code>for i in $(seq 1 1000); do echo $i &gt;&gt; ids.txt; done</code></td>
-<td>Create numerical wordlist (1-1000).</td>
+<td>Create numerical wordlist (1-1000)</td>
 </tr>
 <tr>
 <td><code>curl http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=key' -H 'Content-Type: application/x-www-form-urlencoded'</code></td>
-<td>Send POST request with data.</td>
+<td>Send POST request with data</td>
 </tr>
 </tbody>
 </table>
@@ -1564,19 +1582,19 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td><code>/usr/share/seclists/Discovery/Web-Content/common.txt</code></td>
-<td>Common directory/file names.</td>
+<td>Common directory/file names</td>
 </tr>
 <tr>
 <td><code>/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt</code></td>
-<td>Extensive directory names.</td>
+<td>Extensive directory names</td>
 </tr>
 <tr>
 <td><code>/usr/share/seclists/Discovery/Web-Content/raft-large-directories.txt</code></td>
-<td>Large directory collection.</td>
+<td>Large directory collection</td>
 </tr>
 <tr>
 <td><code>/usr/share/seclists/Discovery/Web-Content/big.txt</code></td>
-<td>Comprehensive directory/files.</td>
+<td>Comprehensive directory/files</td>
 </tr>
 </tbody>
 </table>
@@ -1591,26 +1609,32 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td>Choose Wordlists</td>
-<td>Select relevant wordlists for target.</td>
+<td>Select relevant wordlists for target</td>
 </tr>
 <tr>
 <td>Combine Wordlists</td>
-<td>Use multiple wordlists for breadth.</td>
+<td>Use multiple wordlists for breadth</td>
 </tr>
 <tr>
 <td>Customize Wordlists</td>
-<td>Tailor based on target knowledge.</td>
+<td>Tailor based on target knowledge</td>
 </tr>
 <tr>
 <td>Monitor Performance</td>
-<td>Adjust for resource-intensive lists.</td>
+<td>Adjust for resource-intensive lists</td>
 </tr>
 <tr>
 <td>Use Community Resources</td>
-<td>Leverage updated community wordlists.</td>
+<td>Leverage updated community wordlists</td>
 </tr>
 </tbody>
 </table>
+<h2 id="parameter-fuzzing">Parameter Fuzzing</h2>
+<ul>
+<li>Altering a product ID in a shopping cart URL could reveal pricing errors or unauthorized access to other users' orders.</li>
+<li>Modifying a hidden parameter in a request might unlock hidden features or administrative functions.</li>
+<li>Injecting malicious code into a search query could expose vulnerabilities like Cross-Site Scripting (XSS) or SQL Injection (SQLi).</li>
+</ul>
 <h2 id="ffuf-commands">FFUF Commands</h2>
 <table>
 <thead>
@@ -1622,39 +1646,43 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ</code></td>
-<td>Basic URL fuzzing.</td>
+<td>Basic URL fuzzing</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt</code></td>
-<td>Fuzz with wordlist.</td>
+<td>Fuzz with wordlist</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -ic</code></td>
-<td>Ignore wordlist comments.</td>
+<td>Ignore wordlist comments</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -c</code></td>
-<td>Colorize output.</td>
+<td>Colorize output</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -mc 200</code></td>
-<td>Filter by status code.</td>
+<td>Filter by status code</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -mr "Welcome"</code></td>
-<td>Filter by regex pattern.</td>
+<td>Filter by regex pattern</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -e .php,.html</code></td>
-<td>Add extensions.</td>
+<td>Add extensions</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -t 50</code></td>
-<td>Set threads (50).</td>
+<td>Set threads (50)</td>
 </tr>
 <tr>
 <td><code>ffuf -u http://example.com/FUZZ -w wordlist.txt -x http://127.0.0.1:8080</code></td>
-<td>Use proxy.</td>
+<td>Use proxy</td>
+</tr>
+<tr>
+<td><code>ffuf -u http://94.237.53.81:52991/post.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "y=FUZZ" -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200 -v</code></td>
+<td>POST parameter fuzzing, match status code 200</td>
 </tr>
 </tbody>
 </table>
@@ -1692,35 +1720,35 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt</code></td>
-<td>Directory fuzzing.</td>
+<td>Directory fuzzing</td>
 </tr>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt -x .php,.html</code></td>
-<td>Fuzz with extensions.</td>
+<td>Fuzz with extensions</td>
 </tr>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt -s 200</code></td>
-<td>Filter by status code.</td>
+<td>Filter by status code</td>
 </tr>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt -t 50</code></td>
-<td>Set threads (50).</td>
+<td>Set threads (50)</td>
 </tr>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt -o results.txt</code></td>
-<td>Save output.</td>
+<td>Save output</td>
 </tr>
 <tr>
 <td><code>gobuster dns -d example.com -w subdomains.txt</code></td>
-<td>DNS subdomain fuzzing.</td>
+<td>DNS subdomain fuzzing</td>
 </tr>
 <tr>
 <td><code>gobuster dns -d example.com -w subdomains.txt -i</code></td>
-<td>Show IPs for subdomains.</td>
+<td>Show IPs for subdomains</td>
 </tr>
 <tr>
 <td><code>gobuster dns -d example.com -w subdomains.txt -z</code></td>
-<td>Silent mode.</td>
+<td>Silent mode</td>
 </tr>
 </tbody>
 </table>
@@ -1734,32 +1762,36 @@ pipx runpip wenum install setuptools
 </thead>
 <tbody>
 <tr>
-<td><code>wenum -c -z file,wordlist.txt --hc 404 http://example.com/FUZZ</code></td>
-<td>Basic fuzzing, exclude 404.</td>
+<td><code>wenum -w /usr/share/seclists/Discovery/Web-Content/common.txt --hc 404 -u "http://94.237.53.81:52991/get.php?x=FUZZ"</code></td>
+<td>Parameter fuzzing, exclude 404</td>
 </tr>
 <tr>
 <td><code>wenum -c -z file,wordlist.txt -d 'username=FUZZ&amp;password=secret'</code></td>
-<td>Fuzz POST data.</td>
+<td>Fuzz POST data</td>
 </tr>
 <tr>
 <td><code>wenum -c -z file,wordlist.txt -b 'session=12345'</code></td>
-<td>Use cookie.</td>
+<td>Use cookie</td>
 </tr>
 <tr>
 <td><code>wenum -c -z file,wordlist.txt -H 'User-Agent: Wenum'</code></td>
-<td>Add custom header.</td>
+<td>Add custom header</td>
 </tr>
 <tr>
 <td><code>wenum -c -z file,wordlist.txt -t 50</code></td>
-<td>Set threads (50).</td>
+<td>Set threads (50)</td>
 </tr>
 <tr>
 <td><code>wenum -c -z file,wordlist.txt -u http://example.com/FUZZ -X PUT</code></td>
-<td>Fuzz with PUT method.</td>
+<td>Fuzz with PUT method</td>
 </tr>
 <tr>
 <td><code>wenum -c -z file,wordlist.txt --hl 50</code></td>
-<td>Filter by content length.</td>
+<td>Filter by content length</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1774,35 +1806,35 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt</code></td>
-<td>Basic URL fuzzing.</td>
+<td>Basic URL fuzzing</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt -e</code></td>
-<td>Include extensions.</td>
+<td>Include extensions</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt -x 404</code></td>
-<td>Exclude 404 responses.</td>
+<td>Exclude 404 responses</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt -t 50</code></td>
-<td>Set threads (50).</td>
+<td>Set threads (50)</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt --depth 3</code></td>
-<td>Set recursion depth (3).</td>
+<td>Set recursion depth (3)</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt -o results.txt</code></td>
-<td>Save output.</td>
+<td>Save output</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt --no-recursion</code></td>
-<td>Disable recursion.</td>
+<td>Disable recursion</td>
 </tr>
 <tr>
 <td><code>feroxbuster -u http://example.com -w wordlist.txt --url-redirect</code></td>
-<td>Follow redirects.</td>
+<td>Follow redirects</td>
 </tr>
 </tbody>
 </table>
@@ -1818,18 +1850,18 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td>REST</td>
-<td>Uses HTTP methods for resources.</td>
-<td>JSON/XML, stateless, scalable, caching.</td>
+<td>Uses HTTP methods for resources</td>
+<td>JSON/XML, stateless, scalable, caching</td>
 </tr>
 <tr>
 <td>SOAP</td>
-<td>XML-based protocol for services.</td>
-<td>XML, stateful/stateless, WS-Security.</td>
+<td>XML-based protocol for services</td>
+<td>XML, stateful/stateless, WS-Security</td>
 </tr>
 <tr>
 <td>GraphQL</td>
-<td>Query language for APIs.</td>
-<td>JSON, single endpoint, flexible queries.</td>
+<td>Query language for APIs</td>
+<td>JSON, single endpoint, flexible queries</td>
 </tr>
 </tbody>
 </table>
@@ -1844,31 +1876,31 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td>Test All Methods</td>
-<td>Check GET, POST, PUT, DELETE for vulns.</td>
+<td>Check GET, POST, PUT, DELETE for vulns</td>
 </tr>
 <tr>
 <td>Validate Input Fields</td>
-<td>Fuzz inputs with unexpected data.</td>
+<td>Fuzz inputs with unexpected data</td>
 </tr>
 <tr>
 <td>Examine Errors</td>
-<td>Analyze messages for info disclosure.</td>
+<td>Analyze messages for info disclosure</td>
 </tr>
 <tr>
 <td>Test Authentication</td>
-<td>Check for weak auth controls.</td>
+<td>Check for weak auth controls</td>
 </tr>
 <tr>
 <td>Explore Rate Limits</td>
-<td>Test throttling for bypasses.</td>
+<td>Test throttling for bypasses</td>
 </tr>
 <tr>
 <td>Use Comprehensive Payloads</td>
-<td>Test SQLi, XSS payloads.</td>
+<td>Test SQLi, XSS payloads</td>
 </tr>
 <tr>
 <td>Check Representations</td>
-<td>Test JSON/XML for consistency flaws.</td>
+<td>Test JSON/XML for consistency flaws</td>
 </tr>
 </tbody>
 </table>
@@ -1883,31 +1915,31 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td>Analyze WSDL Files</td>
-<td>Understand service operations.</td>
+<td>Understand service operations</td>
 </tr>
 <tr>
 <td>Validate XML Schema</td>
-<td>Test for validation flaws.</td>
+<td>Test for validation flaws</td>
 </tr>
 <tr>
 <td>Check XML Injection</td>
-<td>Fuzz for injection vulnerabilities.</td>
+<td>Fuzz for injection vulnerabilities</td>
 </tr>
 <tr>
 <td>Test SOAP Headers</td>
-<td>Identify header misconfigurations.</td>
+<td>Identify header misconfigurations</td>
 </tr>
 <tr>
 <td>Evaluate WS-Security</td>
-<td>Verify security implementations.</td>
+<td>Verify security implementations</td>
 </tr>
 <tr>
 <td>Test Transport Security</td>
-<td>Ensure HTTPS enforcement.</td>
+<td>Ensure HTTPS enforcement</td>
 </tr>
 <tr>
 <td>Examine SOAP Faults</td>
-<td>Check for info leakage in faults.</td>
+<td>Check for info leakage in faults</td>
 </tr>
 </tbody>
 </table>
@@ -1922,31 +1954,31 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td>Test Query Depth</td>
-<td>Check handling of complex queries.</td>
+<td>Check handling of complex queries</td>
 </tr>
 <tr>
 <td>Validate Input Types</td>
-<td>Fuzz arguments for validation flaws.</td>
+<td>Fuzz arguments for validation flaws</td>
 </tr>
 <tr>
 <td>Examine Query Aliasing</td>
-<td>Test aliased queries for leakage.</td>
+<td>Test aliased queries for leakage</td>
 </tr>
 <tr>
 <td>Check Introspection</td>
-<td>Ensure no sensitive schema exposure.</td>
+<td>Ensure no sensitive schema exposure</td>
 </tr>
 <tr>
 <td>Assess Authorization</td>
-<td>Verify query access controls.</td>
+<td>Verify query access controls</td>
 </tr>
 <tr>
 <td>Evaluate Rate Limiting</td>
-<td>Test handling of excessive queries.</td>
+<td>Test handling of excessive queries</td>
 </tr>
 <tr>
 <td>Fuzz Mutations</td>
-<td>Test data-altering queries for flaws.</td>
+<td>Test data-altering queries for flaws</td>
 </tr>
 </tbody>
 </table>
@@ -1998,10 +2030,10 @@ pipx runpip wenum install setuptools
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
