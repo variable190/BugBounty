@@ -1,6 +1,8 @@
 # File Upload Attacks
 
-**Tip:** Find what language runs the web app by fuzzing the extention of the index page for common file types (/index.FUZZ).
+**Tips:** 
+- Find what language runs the web app by fuzzing the extention of the index page for common file types (/index.FUZZ).
+- "Open image in new tab" to see upload location (maybe encoded in the URL).
 
 [Wappalyzer](https://www.wappalyzer.com/) can also be used to detect what languages and othertechnologies are used.
 
@@ -57,7 +59,8 @@ done
 
 ```bash
 wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
-cat web-all-content-types.txt | grep 'image/' > image-content-types.txt
+cat web-all-content-types.txt | grep 'image/' > image-content-types.txt # method 1
+cat web-all-content-types.txt | grep 'image/' | xclip -se c # method 2
 ```
 
 ## Limited Uploads
@@ -111,5 +114,13 @@ exiftool HTB.jpg
 <svg>&xxe;</svg>
 ```
 
-- View page source of the upload page to see the returned file from abpve payload.
+- View page source of the upload page to see the returned file from above payload.
 - PDF, Word Documents, PowerPoint Documents all include XML elements.
+
+## Other Upload Attacks
+
+| Attack Type | Description |
+|-------------|-------------|
+| Injections in File Name | When file name is displayed on page (reflected) e.g. `file$(whoami).jpg`, ``file`whoami`.jpg``, `file.jpg\|\|whoami`, `<script>alert(window.origin);</script>.jpeg`,    `file';select+sleep(5);--.jpg` |
+| Upload Directory Disclosure | When no access to the link or uploaded file, use other methods to find the uploads directory i.e. fuzzing, LFI, XXE, forcing error messages (upload file with a name that already exists/extremely long name) |
+| Windows-specific Attacks | Using reserved characters (|, <, >, *, or ?) or reserved names (CON, COM1, LPT1, or NUL) may cause an error to display the upload directory. Use Windows [8.3 Filename Convention](https://en.wikipedia.org/wiki/8.3_filename) to overwrite existing files e.g. WEB~1.CON to overwrite the web.conf file |
