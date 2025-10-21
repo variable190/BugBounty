@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -709,6 +709,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#other-upload-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Upload Attacks
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1271,6 +1280,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#other-upload-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Upload Attacks
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1288,7 +1306,9 @@
 
 
 <h1 id="file-upload-attacks">File Upload Attacks</h1>
-<p><strong>Tip:</strong> Find what language runs the web app by fuzzing the extention of the index page for common file types (/index.FUZZ).</p>
+<p><strong>Tips:</strong> 
+- Find what language runs the web app by fuzzing the extention of the index page for common file types (/index.FUZZ).
+- "Open image in new tab" to see upload location (maybe encoded in the URL).</p>
 <p><a href="https://www.wappalyzer.com/">Wappalyzer</a> can also be used to detect what languages and othertechnologies are used.</p>
 <h2 id="web-shells">Web Shells</h2>
 <table>
@@ -1421,7 +1441,8 @@ done
 </code></pre>
 <h3 id="limiting-content-type-wordlist-example">Limiting Content-Type wordlist example</h3>
 <pre><code class="language-bash">wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
-cat web-all-content-types.txt | grep 'image/' &gt; image-content-types.txt
+cat web-all-content-types.txt | grep 'image/' &gt; image-content-types.txt # method 1
+cat web-all-content-types.txt | grep 'image/' | xclip -se c # method 2
 </code></pre>
 <h2 id="limited-uploads">Limited Uploads</h2>
 <ul>
@@ -1484,9 +1505,32 @@ exiftool HTB.jpg
 &lt;svg&gt;&amp;xxe;&lt;/svg&gt;
 </code></pre>
 <ul>
-<li>View page source of the upload page to see the returned file from abpve payload.</li>
+<li>View page source of the upload page to see the returned file from above payload.</li>
 <li>PDF, Word Documents, PowerPoint Documents all include XML elements.</li>
 </ul>
+<h2 id="other-upload-attacks">Other Upload Attacks</h2>
+<table>
+<thead>
+<tr>
+<th>Attack Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Injections in File Name</td>
+<td>When file name is displayed on page (reflected) e.g. <code>file$(whoami).jpg</code>, <code>file`whoami`.jpg</code>, <code>file.jpg\|\|whoami</code>, <code>&lt;script&gt;alert(window.origin);&lt;/script&gt;.jpeg</code>,    <code>file';select+sleep(5);--.jpg</code></td>
+</tr>
+<tr>
+<td>Upload Directory Disclosure</td>
+<td>When no access to the link or uploaded file, use other methods to find the uploads directory i.e. fuzzing, LFI, XXE, forcing error messages (upload file with a name that already exists/extremely long name)</td>
+</tr>
+<tr>
+<td>Windows-specific Attacks</td>
+<td>Using reserved characters (</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1535,10 +1579,10 @@ exiftool HTB.jpg
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>
