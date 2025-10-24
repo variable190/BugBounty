@@ -66,6 +66,12 @@ We can use [Gopherus](https://github.com/tarunkant/Gopherus) to craft these payl
 - `file:///etc/passwd` can be used for local file inclusion
 - `gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Aadminpw%3Dadmin` can be used to send arbitrary payloads with internal services
 
+### Blind SSRF
+
+- Can still confirm by sending request to a netcat listener.
+- Local port scan may work by comparing error messages, but error message may be the same for closed ports/other services that are open.
+- LFI attempts may show different error messages for files that exist versus files that don't.
+
 ## SSTI
 ### Exploitation
 Templating Engines are used to dynamically generate content
