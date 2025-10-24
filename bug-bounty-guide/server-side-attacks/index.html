@@ -736,6 +736,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#blind-ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blind SSRF
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1392,6 +1401,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#blind-ssrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blind SSRF
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1566,6 +1584,12 @@ ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-
 <li><code>http://127.0.0.1/</code> or <code>https://</code> can be used to access internal or external endpoints</li>
 <li><code>file:///etc/passwd</code> can be used for local file inclusion</li>
 <li><code>gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Aadminpw%3Dadmin</code> can be used to send arbitrary payloads with internal services</li>
+</ul>
+<h3 id="blind-ssrf">Blind SSRF</h3>
+<ul>
+<li>Can still confirm by sending request to a netcat listener.</li>
+<li>Local port scan may work by comparing error messages, but error message may be the same for closed ports/other services that are open.</li>
+<li>LFI attempts may show different error messages for files that exist versus files that don't.</li>
 </ul>
 <h2 id="ssti">SSTI</h2>
 <h3 id="exploitation_1">Exploitation</h3>
