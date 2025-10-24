@@ -32,7 +32,7 @@ ffuf -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -u http://10.12
 
 - Consider we find and endpoint admin.php through fuzzing which returns a POST form:
 
-![admin.php](../images/admin_php.png){width=300}
+![admin.php](../images/admin_php.png)
 
 ### Protocols
 
