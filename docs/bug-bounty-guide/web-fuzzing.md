@@ -49,6 +49,7 @@ pipx runpip wenum install setuptools
 | Command                           | Description                          |
 |-----------------------------------|--------------------------------------|
 | `sudo sh -c 'echo "SERVER_IP academy.htb" >> /etc/hosts'` | Add DNS entry to hosts file |
+| `echo "SERVER_IP academy.htb" \| sudo tee -a /etc/hosts` | Add DNS entry to hosts file |
 | `for i in $(seq 1 1000); do echo $i >> ids.txt; done` | Create numerical wordlist (1-1000) |
 | `curl http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=key' -H 'Content-Type: application/x-www-form-urlencoded'` | Send POST request with data  |
 
@@ -112,6 +113,13 @@ pipx runpip wenum install setuptools
 | `gobuster dns -d example.com -w subdomains.txt` | DNS subdomain fuzzing |
 | `gobuster dns -d example.com -w subdomains.txt -i` | Show IPs for subdomains |
 | `gobuster dns -d example.com -w subdomains.txt -z` | Silent mode    |
+
+### Examples
+
+| Command | Description |
+|---------|-------------|
+| `gobuster vhost -u http://inlanefreight.htb:44915 -w /usr/share/seclists/Discovery/Web-Content/common.txt --append-domain` | vhost fuzzing, `--append-domain` instructs Gobuster to append the base domain (inlanefreight.htb) to each word in the wordlist |
+| `gobuster dns -d inlanefreight.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt` | Subdomain fuzzing |
 
 ## Wenum Commands
 
