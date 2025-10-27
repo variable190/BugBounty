@@ -1019,6 +1019,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Gobuster Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1395,6 +1410,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Gobuster Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1559,6 +1589,10 @@ pipx runpip wenum install setuptools
 <tbody>
 <tr>
 <td><code>sudo sh -c 'echo "SERVER_IP academy.htb" &gt;&gt; /etc/hosts'</code></td>
+<td>Add DNS entry to hosts file</td>
+</tr>
+<tr>
+<td><code>echo "SERVER_IP academy.htb" \| sudo tee -a /etc/hosts</code></td>
 <td>Add DNS entry to hosts file</td>
 </tr>
 <tr>
@@ -1749,6 +1783,25 @@ pipx runpip wenum install setuptools
 <tr>
 <td><code>gobuster dns -d example.com -w subdomains.txt -z</code></td>
 <td>Silent mode</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples_1">Examples</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gobuster vhost -u http://inlanefreight.htb:44915 -w /usr/share/seclists/Discovery/Web-Content/common.txt --append-domain</code></td>
+<td>vhost fuzzing, <code>--append-domain</code> instructs Gobuster to append the base domain (inlanefreight.htb) to each word in the wordlist</td>
+</tr>
+<tr>
+<td><code>gobuster dns -d inlanefreight.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt</code></td>
+<td>Subdomain fuzzing</td>
 </tr>
 </tbody>
 </table>
