@@ -474,6 +474,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Netstat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nmap-scans" class="md-nav__link">
     <span class="md-ellipsis">
       Nmap Scans
@@ -1569,6 +1578,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#netstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Netstat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#nmap-scans" class="md-nav__link">
     <span class="md-ellipsis">
       Nmap Scans
@@ -2032,7 +2050,12 @@
 
 
 <h1 id="information-gathering">Information Gathering</h1>
+<h2 id="netstat">Netstat</h2>
+<p>Once a foothold has been gained (ssh creds for example) use netstat to scan for other active services</p>
+<pre><code class="language-bash">netstat -tulpn | grep LISTEN
+</code></pre>
 <h2 id="nmap-scans">Nmap Scans</h2>
+<p><code>nmap localhost</code> for internal scan after initial ingress, similar to netsat above.</p>
 <h3 id="scan-types">Scan Types</h3>
 <p>Common Nmap scan types and flags with examples:</p>
 <table>
