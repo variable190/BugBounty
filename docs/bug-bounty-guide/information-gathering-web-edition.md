@@ -1,6 +1,16 @@
 # Information Gathering
 
+## Netstat
+
+Once a foothold has been gained (ssh creds for example) use netstat to scan for other active services
+
+```bash
+netstat -tulpn | grep LISTEN
+```
+
 ## Nmap Scans
+
+`nmap localhost` for internal scan after initial ingress, similar to netsat above.
 
 ### Scan Types
 Common Nmap scan types and flags with examples:

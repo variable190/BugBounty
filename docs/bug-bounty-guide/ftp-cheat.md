@@ -18,6 +18,10 @@ FTP (File Transfer Protocol) is used to transfer files between a client and serv
 | `ascii` | Switch to ASCII mode for text files | `ascii` |
 | `bye` or `quit` | Disconnect from the FTP server | `bye` |
 
+**Tip:** `ftp ftp://username:password\!@localhost` local connection with known credentials, after connection through ssh for example.
+
+
+
 ## Commonly Used Flags
 | Flag | Purpose |
 |------|----------|
