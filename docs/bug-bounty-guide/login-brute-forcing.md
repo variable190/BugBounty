@@ -96,7 +96,7 @@ for password in passwords:
 
 ## Hybrid Attacks
 
-![Hybrid attacks](..\images\hybrid-attacks.png)
+![Hybrid attacks](../images/hybrid-attacks.png)
 
 ## Brute-Forcing Tools
 
