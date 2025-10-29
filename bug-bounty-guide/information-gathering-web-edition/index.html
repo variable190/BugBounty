@@ -2052,8 +2052,8 @@
 <h1 id="information-gathering">Information Gathering</h1>
 <h2 id="netstat">Netstat</h2>
 <p>Once a foothold has been gained (ssh creds for example) use netstat to scan for other active services</p>
-<pre><code class="language-bash">netstat -tulpn | grep LISTEN
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>netstat<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LISTEN
+</code></pre></div></td></tr></table></div>
 <h2 id="nmap-scans">Nmap Scans</h2>
 <p><code>nmap localhost</code> for internal scan after initial ingress, similar to netsat above.</p>
 <h3 id="scan-types">Scan Types</h3>
@@ -2282,13 +2282,13 @@
 </tbody>
 </table>
 <h3 id="whois">WHOIS</h3>
-<pre><code class="language-bash">whois example.com
-</code></pre>
-<p><strong>Note</strong>: WHOIS data can be inaccurate or intentionally obscured, so verify from multiple sources. Privacy services may mask the true owner.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>whois<span class="w"> </span>example.com
+</code></pre></div></td></tr></table></div>
+<strong>Note</strong>: WHOIS data can be inaccurate or intentionally obscured, so verify from multiple sources. Privacy services may mask the true owner.</p>
 <h2 id="dns">DNS</h2>
-<pre><code class="language-bash">dig example.com A
-</code></pre>
-<p>This retrieves the A record (hostname to IPv4 address). The output includes the IP address and query details.</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>dig<span class="w"> </span>example.com<span class="w"> </span>A
+</code></pre></div></td></tr></table></div>
+This retrieves the A record (hostname to IPv4 address). The output includes the IP address and query details.</p>
 <h3 id="dns-record-types">DNS Record Types</h3>
 <table>
 <thead>
@@ -2454,22 +2454,20 @@
 </tbody>
 </table>
 <p><strong>Examples:</strong></p>
-<pre><code class="language-bash">dnsenum --enum inlanefreight.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -r
-</code></pre>
-<p><strong>Note:</strong> -r enables recursive subdomain brute-forcing.</p>
-<pre><code class="language-bash">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://hackthebox.eu/
-</code></pre>
-<pre><code class="language-bash">gobuster dns -d https://hackthebox.eu/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
-</code></pre>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>dnsenum<span class="w"> </span>--enum<span class="w"> </span>inlanefreight.com<span class="w"> </span>-f<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt<span class="w"> </span>-r
+</code></pre></div></td></tr></table></div>
+<strong>Note:</strong> -r enables recursive subdomain brute-forcing.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ffuf<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ<span class="w"> </span>-u<span class="w"> </span>https://hackthebox.eu/
+</code></pre></div></td></tr></table></div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>gobuster<span class="w"> </span>dns<span class="w"> </span>-d<span class="w"> </span>https://hackthebox.eu/<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+</code></pre></div></td></tr></table></div>
 <h2 id="dns-zone-transfers">DNS Zone Transfers</h2>
-<pre><code class="language-bash">dig @nsztm1.digi.ninja zonetransfer.me axfr
-</code></pre>
-<ul>
-<li>dig: DNS lookup utility.</li>
-<li>@ns1.example.com: Specifies the nameserver to query (e.g., ns1.example.com).</li>
-<li>example.com: Domain to perform the lookup on.</li>
-<li>axfr: Requests a zone transfer, retrieving all DNS records for the domain.</li>
-</ul>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>dig<span class="w"> </span>@nsztm1.digi.ninja<span class="w"> </span>zonetransfer.me<span class="w"> </span>axfr
+</code></pre></div></td></tr></table></div>
+- dig: DNS lookup utility.
+- @ns1.example.com: Specifies the nameserver to query (e.g., ns1.example.com).
+- example.com: Domain to perform the lookup on.
+- axfr: Requests a zone transfer, retrieving all DNS records for the domain.</p>
 <p><strong>Note</strong>
 - Many DNS servers restrict zone transfers to authorized servers.
 - zonetransfer.me is a service specifically setup to demonstrate the risks of zone transfers so that the dig command will return the full zone record.</p>
@@ -2501,10 +2499,11 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Examples:</strong></p>
-<pre><code class="language-bash">gobuster vhost -u http://192.0.2.1 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
-gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 60 --append-domain
-</code></pre>
+<p><strong>Examples:</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>gobuster<span class="w"> </span>vhost<span class="w"> </span>-u<span class="w"> </span>http://192.0.2.1<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt<span class="w"> </span>--append-domain
+gobuster<span class="w"> </span>vhost<span class="w"> </span>-u<span class="w"> </span>http://web1337.inlanefreight.htb:8888<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt<span class="w"> </span>-t<span class="w"> </span><span class="m">60</span><span class="w"> </span>--append-domain
+</code></pre></div></td></tr></table></div></p>
 <p><strong>Common flags:</strong></p>
 <table>
 <thead>
@@ -2558,9 +2557,9 @@ gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/D
 </tr>
 </tbody>
 </table>
-<p><strong>Example:</strong></p>
-<pre><code class="language-bash">curl -s &quot;https://crt.sh/?q=facebook.com&amp;output=json&quot; | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u
-</code></pre>
+<p><strong>Example:</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://crt.sh/?q=facebook.com&amp;output=json&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[].name_value&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\*\.//g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+</code></pre></div></td></tr></table></div></p>
 <h2 id="fingerprinting">Fingerprinting</h2>
 <h3 id="techniques">Techniques</h3>
 <table>
@@ -2632,26 +2631,29 @@ gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/D
 </tbody>
 </table>
 <h3 id="banner-grabbing">Banner Grabbing</h3>
-<pre><code class="language-bash">curl -I inlanefreight.com
-</code></pre>
-<p><strong>Find CMS info:</strong></p>
-<pre><code class="language-bash">curl -s http://app.inlanefreight.local/index.php | grep '&lt;meta name=&quot;generator&quot;'
-</code></pre>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span>inlanefreight.com
+</code></pre></div></td></tr></table></div>
+<strong>Find CMS info:</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>http://app.inlanefreight.local/index.php<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;meta name=&quot;generator&quot;&#39;</span>
+</code></pre></div></td></tr></table></div></p>
 <h3 id="wafw00f">Wafw00f</h3>
-<pre><code class="language-bash">pip3 install git+https://github.com/EnableSecurity/wafw00f
-wafw00f inlanefreight.com
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>git+https://github.com/EnableSecurity/wafw00f
+wafw00f<span class="w"> </span>inlanefreight.com
+</code></pre></div></td></tr></table></div>
 <h3 id="nikto">Nikto</h3>
-<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt install -y perl
-git clone https://github.com/sullo/nikto
-cd nikto/program
-chmod +x ./nikto.pl
-nikto -h inlanefreight.com -Tuning b
-</code></pre>
-<ul>
-<li>-h specifies the target host.</li>
-<li>-Tuning b flag tells Nikto to only run the Software Identification modules.</li>
-</ul>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>perl
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sullo/nikto
+<span class="nb">cd</span><span class="w"> </span>nikto/program
+chmod<span class="w"> </span>+x<span class="w"> </span>./nikto.pl
+nikto<span class="w"> </span>-h<span class="w"> </span>inlanefreight.com<span class="w"> </span>-Tuning<span class="w"> </span>b
+</code></pre></div></td></tr></table></div>
+- -h specifies the target host.
+- -Tuning b flag tells Nikto to only run the Software Identification modules.</p>
 <h2 id="robotstxt">robots.txt</h2>
 <h3 id="robotstxt-structure">robots.txt Structure</h3>
 <p>The robots.txt file is a plain text file in the website's root, using records separated by blank lines.</p>
@@ -2782,11 +2784,14 @@ nikto -h inlanefreight.com -Tuning b
 </table>
 <h3 id="scrapy">Scrapy:</h3>
 <p>Using custom Scrapy spider, ReconSpider, output will be in JSON:</p>
-<pre><code class="language-bash">pip3 install scrapy
-wget -O ReconSpider.zip https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
-unzip ReconSpider.zip 
-python3 ReconSpider.py http://inlanefreight.com
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>pip3<span class="w"> </span>install<span class="w"> </span>scrapy
+wget<span class="w"> </span>-O<span class="w"> </span>ReconSpider.zip<span class="w"> </span>https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
+unzip<span class="w"> </span>ReconSpider.zip<span class="w"> </span>
+python3<span class="w"> </span>ReconSpider.py<span class="w"> </span>http://inlanefreight.com
+</code></pre></div></td></tr></table></div>
 <table>
 <thead>
 <tr>
@@ -2833,27 +2838,39 @@ python3 ReconSpider.py http://inlanefreight.com
 </tr>
 </tbody>
 </table>
-<p><strong>Searching Results:</strong></p>
-<pre><code class="language-bash">cat results.json | jq '.emails'
-cat results.json | jq '.comments'
-</code></pre>
+<p><strong>Searching Results:</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>cat<span class="w"> </span>results.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.emails&#39;</span>
+cat<span class="w"> </span>results.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.comments&#39;</span>
+</code></pre></div></td></tr></table></div></p>
 <h3 id="spider-code-example">Spider code example</h3>
-<pre><code class="language-python">import scrapy
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">scrapy</span>
 
-class ExampleSpider(scrapy.Spider):
-    name = &quot;example&quot;
-    start_urls = ['http://example.com/']
+<span class="k">class</span><span class="w"> </span><span class="nc">ExampleSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;example&quot;</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://example.com/&#39;</span><span class="p">]</span>
 
-    def parse(self, response):
-        for link in response.css('a::attr(href)').getall():
-            if any(link.endswith(ext) for ext in self.interesting_extensions):
-                yield {&quot;file&quot;: link}
-            elif not link.startswith(&quot;#&quot;) and not link.startswith(&quot;mailto:&quot;):
-                yield response.follow(link, callback=self.parse)
-</code></pre>
-<p><strong>Extract links:</strong></p>
-<pre><code class="language-bash">jq -r '.[] | select(.file != null) | .file' example_data.json | sort -u
-</code></pre>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getall</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interesting_extensions</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">link</span><span class="p">}</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">link</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">link</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;mailto:&quot;</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Extract links:</strong>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[] | select(.file != null) | .file&#39;</span><span class="w"> </span>example_data.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+</code></pre></div></td></tr></table></div></p>
 <h2 id="search-engine-discovery">Search Engine Discovery</h2>
 <h3 id="google-dorking">Google Dorking</h3>
 <table>
@@ -3057,11 +3074,14 @@ class ExampleSpider(scrapy.Spider):
 </tbody>
 </table>
 <h3 id="finalrecon">FinalRecon</h3>
-<pre><code class="language-bash">git clone https://github.com/thewhiteh4t/FinalRecon.git
-cd FinalRecon
-pip3 install -r requirements.txt
-chmod +x ./finalrecon.py
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thewhiteh4t/FinalRecon.git
+<span class="nb">cd</span><span class="w"> </span>FinalRecon
+pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+chmod<span class="w"> </span>+x<span class="w"> </span>./finalrecon.py
+</code></pre></div></td></tr></table></div>
 <h4 id="command-options">Command Options</h4>
 <table>
 <thead>

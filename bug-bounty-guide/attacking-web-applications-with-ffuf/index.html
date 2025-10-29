@@ -1448,10 +1448,11 @@
 </tbody>
 </table>
 <p><a href="https://github.com/danielmiessler/SecLists">Seclists</a></p>
-<p>Create a sequence wordlist for value fuzzing:</p>
-<pre><code class="language-bash">for i in $(seq 1 1000); do echo $i &gt;&gt; ids.txt; done
-seq -w 0 9999 &gt; tokens.txt # -w pads numbers with prepending zeros
-</code></pre>
+<p>Create a sequence wordlist for value fuzzing:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1000</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$i</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>ids.txt<span class="p">;</span><span class="w"> </span><span class="k">done</span>
+seq<span class="w"> </span>-w<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">9999</span><span class="w"> </span>&gt;<span class="w"> </span>tokens.txt<span class="w"> </span><span class="c1"># -w pads numbers with prepending zeros</span>
+</code></pre></div></td></tr></table></div></p>
 <h2 id="misc">Misc</h2>
 <table>
 <thead>

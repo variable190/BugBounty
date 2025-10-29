@@ -1629,26 +1629,40 @@
 <h2 id="evasion-tools">Evasion Tools</h2>
 <h3 id="linux-bashfuscator">Linux (Bashfuscator)</h3>
 <p>https://github.com/Bashfuscator/Bashfuscator</p>
-<pre><code class="language-bash">git clone https://github.com/Bashfuscator/Bashfuscator
-cd Bashfuscator
-pip3 install setuptools==65
-python3 setup.py install --user
-cd ./bashfuscator/bin/
-./bashfuscator -h ## show help screen
-./bashfuscator -c 'cat /etc/passwd' ## random choice obfuscation technique
-./bashfuscator -c 'cat /etc/passwd' -s 1 -t 1 --no-mangling --layers 1 ## short and simple obfuscated command
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Bashfuscator/Bashfuscator
+<span class="nb">cd</span><span class="w"> </span>Bashfuscator
+pip3<span class="w"> </span>install<span class="w"> </span><span class="nv">setuptools</span><span class="o">==</span><span class="m">65</span>
+python3<span class="w"> </span>setup.py<span class="w"> </span>install<span class="w"> </span>--user
+<span class="nb">cd</span><span class="w"> </span>./bashfuscator/bin/
+./bashfuscator<span class="w"> </span>-h<span class="w"> </span><span class="c1">## show help screen</span>
+./bashfuscator<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;cat /etc/passwd&#39;</span><span class="w"> </span><span class="c1">## random choice obfuscation technique</span>
+./bashfuscator<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;cat /etc/passwd&#39;</span><span class="w"> </span>-s<span class="w"> </span><span class="m">1</span><span class="w"> </span>-t<span class="w"> </span><span class="m">1</span><span class="w"> </span>--no-mangling<span class="w"> </span>--layers<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="c1">## short and simple obfuscated command</span>
+</code></pre></div></td></tr></table></div>
 <h3 id="windows-dosfuscation">Windows (DOSfuscation)</h3>
 <p>https://github.com/danielbohannon/Invoke-DOSfuscation</p>
-<pre><code class="language-PowerShell">git clone https://github.com/danielbohannon/Invoke-DOSfuscation.git
-cd Invoke-DOSfuscation
-Import-Module .\Invoke-DOSfuscation.psd1
-Invoke-DOSfuscation
-Invoke-DOSfuscation&gt; help ## show help screen
-Invoke-DOSfuscation&gt; SET COMMAND type C:\Users\htb-student\Desktop\flag.txt
-Invoke-DOSfuscation&gt; encoding
-Invoke-DOSfuscation\Encoding&gt; 1 ## encode type 1 
-</code></pre>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">danielbohannon</span><span class="p">/</span><span class="nb">Invoke-DOSfuscation</span><span class="p">.</span><span class="n">git</span>
+<span class="nb">cd Invoke-DOSfuscation</span>
+<span class="nb">Import-Module</span> <span class="p">.\</span><span class="nb">Invoke-DOSfuscation</span><span class="p">.</span><span class="n">psd1</span>
+<span class="nb">Invoke-DOSfuscation</span>
+<span class="nb">Invoke-DOSfuscation</span><span class="p">&gt;</span> <span class="n">help</span> <span class="c">## show help screen</span>
+<span class="nb">Invoke-DOSfuscation</span><span class="p">&gt;</span> <span class="nb">SET </span><span class="n">COMMAND</span> <span class="nb">type </span><span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">htb-student</span><span class="p">\</span><span class="n">Desktop</span><span class="p">\</span><span class="n">flag</span><span class="p">.</span><span class="n">txt</span>
+<span class="nb">Invoke-DOSfuscation</span><span class="p">&gt;</span> <span class="n">encoding</span>
+<span class="nb">Invoke-DOSfuscation</span><span class="p">\</span><span class="n">Encoding</span><span class="p">&gt;</span> <span class="n">1</span> <span class="c">## encode type 1 </span>
+</code></pre></div></td></tr></table></div>
 <p>Run windows powershell on linux with <a href="https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.5">pwsh</a></p>
 
 
