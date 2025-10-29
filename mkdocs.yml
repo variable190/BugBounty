@@ -49,7 +49,4 @@ plugins:
   - search
 markdown_extensions:
   - attr_list
-  - pymdownx.highlight:
-      linenums: true
-  - pymdownx.superfences
-  - pymdownx.inlinehilite
+  - codehilite
