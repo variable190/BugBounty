@@ -51,7 +51,5 @@ markdown_extensions:
   - attr_list
   - pymdownx.highlight:
       linenums: true
-      use_pygments: true
-      pygments_style: default
   - pymdownx.superfences
   - pymdownx.inlinehilite
