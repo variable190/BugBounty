@@ -1732,24 +1732,7 @@
 </tbody>
 </table>
 <h2 id="basic-python-brute-force-script">Basic Python Brute Force Script</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">ip</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>  <span class="c1"># Change this to your instance IP address</span>
 <span class="n">port</span> <span class="o">=</span> <span class="mi">1234</span>       <span class="c1"># Change this to your instance port number</span>
@@ -1767,7 +1750,8 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct PIN found: </span><span class="si">{</span><span class="n">formatted_pin</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flag: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">break</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
+
 <h2 id="common-wordlists">Common Wordlists</h2>
 <h2 id="wordlists">Wordlists</h2>
 <table>
@@ -1812,26 +1796,7 @@
 </tbody>
 </table>
 <h2 id="basic-python-dictionary-solver">Basic Python Dictionary Solver</h2>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
 
 <span class="n">ip</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>  <span class="c1"># Change this to your instance IP address</span>
 <span class="n">port</span> <span class="o">=</span> <span class="mi">1234</span>       <span class="c1"># Change this to your instance port number</span>
@@ -1851,7 +1816,8 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correct password found: </span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flag: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;flag&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">break</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
+
 <h2 id="hybrid-attacks">Hybrid Attacks</h2>
 <p><img alt="Hybrid attacks" src="../../images/hybrid-attacks.png" /></p>
 <h2 id="brute-forcing-tools">Brute-Forcing Tools</h2>
@@ -1976,14 +1942,12 @@
 </tbody>
 </table>
 <h4 id="examples">Examples</h4>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>hydra<span class="w"> </span>-l<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>toor<span class="w"> </span>-M<span class="w"> </span>targets.txt<span class="w"> </span>ssh<span class="w"> </span><span class="c1"># Use the username &quot;root&quot;/Use the password &quot;toor&quot;/Target all IP addresses listed in the targets.txt file/Employ the ssh module for the attack</span>
+<div class="codehilite"><pre><span></span><code>hydra<span class="w"> </span>-l<span class="w"> </span>root<span class="w"> </span>-p<span class="w"> </span>toor<span class="w"> </span>-M<span class="w"> </span>targets.txt<span class="w"> </span>ssh<span class="w"> </span><span class="c1"># Use the username &quot;root&quot;/Use the password &quot;toor&quot;/Target all IP addresses listed in the targets.txt file/Employ the ssh module for the attack</span>
 hydra<span class="w"> </span>-L<span class="w"> </span>usernames.txt<span class="w"> </span>-P<span class="w"> </span>passwords.txt<span class="w"> </span>-s<span class="w"> </span><span class="m">2121</span><span class="w"> </span>-V<span class="w"> </span>ftp.example.com<span class="w"> </span>ftp<span class="w"> </span><span class="c1"># Target the FTP service on ftp.example.com via port 2121</span>
 hydra<span class="w"> </span>-l<span class="w"> </span>administrator<span class="w"> </span>-x<span class="w"> </span><span class="m">6</span>:8:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<span class="w"> </span><span class="m">192</span>.168.1.100<span class="w"> </span>rdp<span class="w"> </span><span class="c1"># Generate and test passwords ranging from 6 to 8 characters, using the specified character set</span>
 hydra<span class="w"> </span>-l<span class="w"> </span>basic-auth-user<span class="w"> </span>-P<span class="w"> </span><span class="m">2023</span>-200_most_used_passwords.txt<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>http-get<span class="w"> </span>/<span class="w"> </span>-s<span class="w"> </span><span class="m">81</span><span class="w"> </span><span class="c1"># Target service is an HTTP server and the attack should be performed using HTTP GET requests to the root path (&#39;/&#39;)</span>
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
+
 <h3 id="medusa">Medusa</h3>
 <h4 id="medusa-parameters">Medusa Parameters</h4>
 <table>
