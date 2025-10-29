@@ -51,16 +51,35 @@ ffuf -w ./tokens.txt -u http://bf_2fa.htb/2fa.php -X POST -H "Content-Type: appl
 ## Authentication Bypasses
 
 - Accessing the protected page directly
+  - go directly to hidden page /admin.ph 
+  - catch the response in burp
+  - change status code from 302 to 200
 - Manipulating HTTP Parameters to access protected pages
+  - Log in as regular user dirrcts to /admin.php?user_id=183
+  - guess or bruteforce id parameter
+```bash
+seq 1 1000 > user_ids.txt
+ffuf -w user_ids.txt -u http://STMIP:STMPO/admin.php?user_id=FUZZ -fr "Could not load admin data."
+```
 
 ## Session Attacks
 
 - Brute-Forcing cookies with insufficient entropy
-- **Session Fixation**
+  - Capture multiple session tokens and compare for similarities
+  - Session cookie maybe long but most of it is fixed with only a small amount changing with each user
+  - Session cookies could also increment and not be random thus easy to enumerate passed/future session tokens
+  - Tokens maybe encoded values of the logon information
+  - Try decoding session tokens to see if no truly random
+```bash
+echo -n dXNlcj1odGItc3RkbnQ7cm9sZT11c2Vy | base64 -d
+echo -n 'user=htb-stdnt;role=admin' | base64 # base64 encode
+echo -n 'user=htb-stdnt;role=admin' | xxd -p # hex encode
+```
+- **[Session Fixation](https://owasp.org/www-community/attacks/Session_fixation)**
   - Attacker obtains valid session identifier
   - Attacker coerces victim to use this session identifier (social engineering)
   - Victim authenticates to the vulnerable web application
   - Attacker knows the victim's session identifier and can hijack their account
-- **Improper Session Timeout**
+- **[Improper Session Timeout](https://owasp.org/www-community/Session_Timeout)**
   - Sessions should expire after an appropriate time interval
   - Session validity duration depends on the web application
