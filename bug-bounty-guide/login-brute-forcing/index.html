@@ -2092,23 +2092,69 @@ hydra -l basic-auth-user -P 2023-200_most_used_passwords.txt 127.0.0.1 http-get 
 <p><strong>Tip:</strong> <code>medusa -h 10.0.0.5 -U usernames.txt -e ns -M service_name</code> checks for empty passwords (-e n) and passwords matching the username (-e s).</p>
 <h2 id="custom-wordlists">Custom Wordlists</h2>
 <h3 id="username-anarchy">Username Anarchy</h3>
-<p>Generates potential usernames based on a target's name.
-| Command | Description |
-|---------|-------------|
-| <code>username-anarchy Jane Smith &gt; jane_smith_usernames.txt</code> | Generate possible usernames for "Jane Smith" |
-| <code>username-anarchy -i names.txt</code> | Use a file (names.txt) with names for input. Can handle space, CSV, or TAB delimited names. |
-| <code>username-anarchy -a --country us</code> | Automatically generate usernames using common names from the US dataset. |
-| <code>username-anarchy -l</code> | List available username format plugins. |
-| <code>username-anarchy -f format1,format2</code> | Use specific format plugins for username generation (comma-separated). |
-| <code>username-anarchy -@ example.com</code> | Append @example.com as a suffix to each username. |
-| <code>username-anarchy --case-insensitive</code> | Generate usernames in case-insensitive (lowercase) format. |</p>
+<p>Generates potential usernames based on a target's name.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>username-anarchy Jane Smith &gt; jane_smith_usernames.txt</code></td>
+<td>Generate possible usernames for "Jane Smith"</td>
+</tr>
+<tr>
+<td><code>username-anarchy -i names.txt</code></td>
+<td>Use a file (names.txt) with names for input. Can handle space, CSV, or TAB delimited names.</td>
+</tr>
+<tr>
+<td><code>username-anarchy -a --country us</code></td>
+<td>Automatically generate usernames using common names from the US dataset.</td>
+</tr>
+<tr>
+<td><code>username-anarchy -l</code></td>
+<td>List available username format plugins.</td>
+</tr>
+<tr>
+<td><code>username-anarchy -f format1,format2</code></td>
+<td>Use specific format plugins for username generation (comma-separated).</td>
+</tr>
+<tr>
+<td><code>username-anarchy -@ example.com</code></td>
+<td>Append @example.com as a suffix to each username.</td>
+</tr>
+<tr>
+<td><code>username-anarchy --case-insensitive</code></td>
+<td>Generate usernames in case-insensitive (lowercase) format.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="cupp-common-user-passwords-profiler">CUPP (Common User Passwords Profiler)</h3>
-<p>Creates personalized password wordlists based on gathered intelligence.
-| Command | Description |
-|---------|-------------|
-| <code>cupp -i</code> | Generate wordlist based on personal information (interactive mode). |
-| <code>cupp -w profiles.txt</code> | Generate a wordlist from a predefined profile file. |
-| <code>cupp -l</code> | Download popular password lists like rockyou.txt. |</p>
+<p>Creates personalized password wordlists based on gathered intelligence.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cupp -i</code></td>
+<td>Generate wordlist based on personal information (interactive mode).</td>
+</tr>
+<tr>
+<td><code>cupp -w profiles.txt</code></td>
+<td>Generate a wordlist from a predefined profile file.</td>
+</tr>
+<tr>
+<td><code>cupp -l</code></td>
+<td>Download popular password lists like rockyou.txt.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="password-policy-filtering">Password Policy Filtering</h2>
 <p>Password policies often dictate specific requirements for password strength, such as minimum length, inclusion of certain character types, or exclusion of common patterns. grep combined with regular expressions can filter wordlists to identify passwords that adhere to a given policy.</p>
 <h3 id="policy-requirements-and-grep-regex-patterns">Policy Requirements and Grep Regex Patterns</h3>
