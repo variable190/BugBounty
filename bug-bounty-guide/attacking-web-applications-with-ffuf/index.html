@@ -524,6 +524,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#common-wordlists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Wordlists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     <span class="md-ellipsis">
       Misc
@@ -1185,6 +1194,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#common-wordlists" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Wordlists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#misc" class="md-nav__link">
     <span class="md-ellipsis">
       Misc
@@ -1402,9 +1420,37 @@
 </tbody>
 </table>
 <h2 id="wordlists">Wordlists</h2>
+<h2 id="common-wordlists">Common Wordlists</h2>
+<table>
+<thead>
+<tr>
+<th>Wordlist</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt</code></td>
+<td>Directory/Page Wordlist</td>
+</tr>
+<tr>
+<td><code>/opt/useful/seclists/Discovery/Web-Content/web-extensions.txt</code></td>
+<td>Extensions Wordlist</td>
+</tr>
+<tr>
+<td><code>/opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt</code></td>
+<td>Domain Wordlist</td>
+</tr>
+<tr>
+<td><code>/opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt</code></td>
+<td>Parameters Wordlist</td>
+</tr>
+</tbody>
+</table>
 <p><a href="https://github.com/danielmiessler/SecLists">Seclists</a></p>
 <p>Create a sequence wordlist for value fuzzing:</p>
 <pre><code class="language-bash">for i in $(seq 1 1000); do echo $i &gt;&gt; ids.txt; done
+seq -w 0 9999 &gt; tokens.txt # -w pads numbers with prepending zeros
 </code></pre>
 <h2 id="misc">Misc</h2>
 <table>
