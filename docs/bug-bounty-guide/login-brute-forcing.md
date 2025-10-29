@@ -182,6 +182,7 @@ hydra -l basic-auth-user -P 2023-200_most_used_passwords.txt 127.0.0.1 http-get 
 ### Username Anarchy
 
 Generates potential usernames based on a target's name.
+
 | Command | Description |
 |---------|-------------|
 | `username-anarchy Jane Smith > jane_smith_usernames.txt` | Generate possible usernames for "Jane Smith" |
@@ -195,6 +196,7 @@ Generates potential usernames based on a target's name.
 ### CUPP (Common User Passwords Profiler)
 
 Creates personalized password wordlists based on gathered intelligence.
+
 | Command | Description |
 |---------|-------------|
 | `cupp -i` | Generate wordlist based on personal information (interactive mode). |
