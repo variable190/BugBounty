@@ -48,11 +48,21 @@
 
 ## Wordlists
 
+## Common Wordlists
+
+| Wordlist                                      | Description            |
+|-----------------------------------------------|------------------------|
+| `/opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt` | Directory/Page Wordlist |
+| `/opt/useful/seclists/Discovery/Web-Content/web-extensions.txt` | Extensions Wordlist    |
+| `/opt/useful/seclists/Discovery/DNS/subdomains-top1million-5000.txt` | Domain Wordlist         |
+| `/opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt` | Parameters Wordlist     |
+
 [Seclists](https://github.com/danielmiessler/SecLists)
 
 Create a sequence wordlist for value fuzzing:
 ```bash
 for i in $(seq 1 1000); do echo $i >> ids.txt; done
+seq -w 0 9999 > tokens.txt # -w pads numbers with prepending zeros
 ```
 
 ## Misc
