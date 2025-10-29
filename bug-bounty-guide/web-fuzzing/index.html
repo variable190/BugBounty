@@ -1533,14 +1533,13 @@
 <h2 id="installing-tools">Installing Tools</h2>
 <h3 id="prerequisits">Prerequisits</h3>
 <p>Installing Go, Python and PIPX</p>
-<div class="codehilite"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>golang
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>python3<span class="w"> </span>python3-pip
-sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pipx
-pipx<span class="w"> </span>ensurepath
-sudo<span class="w"> </span>pipx<span class="w"> </span>ensurepath<span class="w"> </span>--global
-</code></pre></div>
-
+<pre><code class="language-bash">sudo apt update
+sudo apt install -y golang
+sudo apt install -y python3 python3-pip
+sudo apt install pipx
+pipx ensurepath
+sudo pipx ensurepath --global
+</code></pre>
 <h3 id="tools">Tools</h3>
 <table>
 <thead>
@@ -1573,13 +1572,12 @@ sudo<span class="w"> </span>pipx<span class="w"> </span>ensurepath<span class="w
 </tr>
 </tbody>
 </table>
-<div class="codehilite"><pre><span></span><code>go<span class="w"> </span>install<span class="w"> </span>github.com/ffuf/ffuf/v2@latest
-go<span class="w"> </span>install<span class="w"> </span>github.com/OJ/gobuster/v3@latest
-curl<span class="w"> </span>-sL<span class="w"> </span>https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span><span class="nv">$HOME</span>/.local/bin
-pipx<span class="w"> </span>install<span class="w"> </span>git+https://github.com/WebFuzzForge/wenum
-pipx<span class="w"> </span>runpip<span class="w"> </span>wenum<span class="w"> </span>install<span class="w"> </span>setuptools
-</code></pre></div>
-
+<pre><code class="language-bash">go install github.com/ffuf/ffuf/v2@latest
+go install github.com/OJ/gobuster/v3@latest
+curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh | sudo bash -s $HOME/.local/bin
+pipx install git+https://github.com/WebFuzzForge/wenum
+pipx runpip wenum install setuptools
+</code></pre>
 <h2 id="miscellaneous-commands">Miscellaneous Commands</h2>
 <table>
 <thead>
