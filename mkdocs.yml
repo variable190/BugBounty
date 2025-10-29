@@ -49,5 +49,6 @@ plugins:
   - search
 markdown_extensions:
   - attr_list
-  - pymdownx.superfences:
+  - pymdownx.superfences
+  - pymdownx.highlight:
       pygments_style: dracula
