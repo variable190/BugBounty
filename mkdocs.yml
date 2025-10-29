@@ -49,6 +49,4 @@ plugins:
   - search
 markdown_extensions:
   - attr_list
-  - pymdownx.highlight:
-      use_pygments: true
-      pygments_style: monokai
+  - pymdownx.inlinehilite
