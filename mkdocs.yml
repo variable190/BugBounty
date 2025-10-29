@@ -49,4 +49,4 @@ plugins:
   - search
 markdown_extensions:
   - attr_list
-  - pymdownx.inlinehilite
+  - pymdownx.superfences
