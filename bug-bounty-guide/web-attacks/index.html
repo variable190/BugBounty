@@ -826,6 +826,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="XML External Entity (XXE) Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      XML
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1323,6 +1338,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="XML External Entity (XXE) Injection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      XML
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1569,6 +1599,45 @@ and pass the value to mass download files:
 </tbody>
 </table>
 <h2 id="xml-external-entity-xxe-injection"><a href="https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing">XML External Entity (XXE) Injection</a></h2>
+<h3 id="xml">XML</h3>
+<div class="language-xml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span id="__span-10-2"><span class="nt">&lt;email&gt;</span>
+</span><span id="__span-10-3"><span class="w">  </span><span class="nt">&lt;date&gt;</span>01-01-2022<span class="nt">&lt;/date&gt;</span>
+</span><span id="__span-10-4"><span class="w">  </span><span class="nt">&lt;time&gt;</span>10:00<span class="w"> </span>am<span class="w"> </span>UTC<span class="nt">&lt;/time&gt;</span>
+</span><span id="__span-10-5"><span class="w">  </span><span class="nt">&lt;sender&gt;</span>john@inlanefreight.com<span class="nt">&lt;/sender&gt;</span>
+</span><span id="__span-10-6"><span class="w">  </span><span class="nt">&lt;recipients&gt;</span>
+</span><span id="__span-10-7"><span class="w">    </span><span class="nt">&lt;to&gt;</span>HR@inlanefreight.com<span class="nt">&lt;/to&gt;</span>
+</span><span id="__span-10-8"><span class="w">    </span><span class="nt">&lt;cc&gt;</span>
+</span><span id="__span-10-9"><span class="w">        </span><span class="nt">&lt;to&gt;</span>billing@inlanefreight.com<span class="nt">&lt;/to&gt;</span>
+</span><span id="__span-10-10"><span class="w">        </span><span class="nt">&lt;to&gt;</span>payslips@inlanefreight.com<span class="nt">&lt;/to&gt;</span>
+</span><span id="__span-10-11"><span class="w">    </span><span class="nt">&lt;/cc&gt;</span>
+</span><span id="__span-10-12"><span class="w">  </span><span class="nt">&lt;/recipients&gt;</span>
+</span><span id="__span-10-13"><span class="w">  </span><span class="nt">&lt;body&gt;</span>
+</span><span id="__span-10-14"><span class="w">  </span>Hello,
+</span><span id="__span-10-15"><span class="w">      </span>Kindly<span class="w"> </span>share<span class="w"> </span>with<span class="w"> </span>me<span class="w"> </span>the<span class="w"> </span>invoice<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>payment<span class="w"> </span>made<span class="w"> </span>on<span class="w"> </span>January<span class="w"> </span>1,<span class="w"> </span>2022.
+</span><span id="__span-10-16"><span class="w">  </span>Regards,
+</span><span id="__span-10-17"><span class="w">  </span>John
+</span><span id="__span-10-18"><span class="w">  </span><span class="nt">&lt;/body&gt;</span><span class="w"> </span>
+</span><span id="__span-10-19"><span class="nt">&lt;/email&gt;</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 
