@@ -34,7 +34,7 @@ if(preg_match($pattern, $_GET["code"])) {
 - Trial and error change Verb in intercepted requests in burp.
 - `#!bash curl -i -X OPTIONS http://SERVER_IP:PORT/` to see what verbs are accepted.
 
-## [IDOR](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References)
+## [Insecure Direct Object Referencing (IDOR)](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References)
 
 ### Identify IDORs
 
@@ -147,7 +147,84 @@ done
 | `md5sum` | MD5 hash a string |
 | `base64` | Base64 encode a string |
 
-## [XXE](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing)
+## [XML External Entity (XXE) Injection](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing)
+
+### XML
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<email>
+  <date>01-01-2022</date>
+  <time>10:00 am UTC</time>
+  <sender>john@inlanefreight.com</sender>
+  <recipients>
+    <to>HR@inlanefreight.com</to>
+    <cc>
+        <to>billing@inlanefreight.com</to>
+        <to>payslips@inlanefreight.com</to>
+    </cc>
+  </recipients>
+  <body>
+  Hello,
+      Kindly share with me the invoice for the payment made on January 1, 2022.
+  Regards,
+  John
+  </body> 
+</email>
+```
+
+| Key        | Definition                                                                 | Example                          |
+|------------|----------------------------------------------------------------------------|----------------------------------|
+| Tag       | The keys of an XML document, usually wrapped with </> characters.          | <date>                           |
+| Entity    | XML variables, usually wrapped with &/; characters.                        | &lt;                             |
+| Element   | The root element or any of its child elements, and its value is stored in between a start-tag and an end-tag. | <date>01-01-2022</date>         |
+| Attribute | Optional specifications for any element that are stored in the tags, which may be used by the XML parser. | version="1.0"/encoding="UTF-8"  |
+| Declaration | Usually the first line of an XML document, and defines the XML version and encoding to use when parsing it. | <?xml version="1.0" encoding="UTF-8"?> |
+
+### XML Document Type Definition (DTD)
+
+Defines an XML documents structure/can be validated against
+
+``` xml
+<!DOCTYPE email [
+  <!ELEMENT email (date, time, sender, recipients, body)>
+  <!ELEMENT recipients (to, cc?)>
+  <!ELEMENT cc (to*)>
+  <!ELEMENT date (#PCDATA)>
+  <!ELEMENT time (#PCDATA)>
+  <!ELEMENT sender (#PCDATA)>
+  <!ELEMENT to  (#PCDATA)>
+  <!ELEMENT body (#PCDATA)>
+]>
+```
+
+Referenced within the XML document itself
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email SYSTEM "email.dtd">
+```
+or
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email SYSTEM "http://inlanefreight.com/email.dtd">
+```
+Defining XML variables in DTD
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email [
+  <!ENTITY company "Inlane Freight">
+]>
+```
+The above defined company variable can be referenced in the XML document like this: `&company;`
+Variables can also be referenced externally using the SYSTEM (or PUBLIC) keyword:
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email [
+  <!ENTITY company SYSTEM "http://localhost/company.txt">
+  <!ENTITY signature SYSTEM "file:///var/www/html/signature.txt">
+]>
+```
 
 | Code | Description |
 |------|-------------|
