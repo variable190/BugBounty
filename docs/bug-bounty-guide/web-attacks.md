@@ -185,18 +185,7 @@ done
 
 Defines an XML documents structure/can be validated against
 
-``` xml
-<!DOCTYPE email [
-  <!ELEMENT email (date, time, sender, recipients, body)>
-  <!ELEMENT recipients (to, cc?)>
-  <!ELEMENT cc (to*)>
-  <!ELEMENT date (#PCDATA)>
-  <!ELEMENT time (#PCDATA)>
-  <!ELEMENT sender (#PCDATA)>
-  <!ELEMENT to  (#PCDATA)>
-  <!ELEMENT body (#PCDATA)>
-]>
-```
+
 
 Referenced within the XML document itself
 
