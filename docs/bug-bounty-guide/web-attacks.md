@@ -173,6 +173,14 @@ done
 </email>
 ```
 
+| Key | Definition | Example |
+|-----|------------|---------|
+| Tag | The keys of an XML document, usually wrapped with `</>` characters | `<date>` |
+| Entity | XML variables, usually wrapped with `&/;` characters | `&lt;` |
+| Element | The root element or any of its child elements, and its value is stored in between a start-tag and an end-tag | `<date>01-01-2022</date>` |
+| Attribute | Optional specifications for any element that are stored in the tags, which may be used by the XML parser | `version="1.0"/encoding="UTF-8"` |
+| Declaration | Usually the first line of an XML document, and defines the XML version and encoding to use when parsing it | `<?xml version="1.0" encoding="UTF-8"?>` |
+
 ### XML Document Type Definition (DTD)
 
 Defines an XML documents structure/can be validated against
