@@ -185,35 +185,19 @@ done
 
 Defines an XML documents structure/can be validated against
 
-
-
-Referenced within the XML document itself
-
 ``` xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE email SYSTEM "email.dtd">
-```
-or
-``` xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE email SYSTEM "http://inlanefreight.com/email.dtd">
-```
-Defining XML variables in DTD
-``` xml
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE email [
-  <!ENTITY company "Inlane Freight">
+  <!ELEMENT email (date, time, sender, recipients, body)>
+  <!ELEMENT recipients (to, cc?)>
+  <!ELEMENT cc (to*)>
+  <!ELEMENT date (#PCDATA)>
+  <!ELEMENT time (#PCDATA)>
+  <!ELEMENT sender (#PCDATA)>
+  <!ELEMENT to  (#PCDATA)>
+  <!ELEMENT body (#PCDATA)>
 ]>
 ```
-The above defined company variable can be referenced in the XML document like this: `&company;`
-Variables can also be referenced externally using the SYSTEM (or PUBLIC) keyword:
-``` xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE email [
-  <!ENTITY company SYSTEM "http://localhost/company.txt">
-  <!ENTITY signature SYSTEM "file:///var/www/html/signature.txt">
-]>
-```
+
 
 | Code | Description |
 |------|-------------|
