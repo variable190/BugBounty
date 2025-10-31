@@ -2052,8 +2052,8 @@
 <h1 id="information-gathering">Information Gathering</h1>
 <h2 id="netstat">Netstat</h2>
 <p>Once a foothold has been gained (ssh creds for example) use netstat to scan for other active services</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>netstat<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LISTEN
-</span></code></pre></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">netstat<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>LISTEN
+</span></code></pre></div></td></tr></table></div>
 <h2 id="nmap-scans">Nmap Scans</h2>
 <p><code>nmap localhost</code> for internal scan after initial ingress, similar to netsat above.</p>
 <h3 id="scan-types">Scan Types</h3>
@@ -2282,12 +2282,12 @@
 </tbody>
 </table>
 <h3 id="whois">WHOIS</h3>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>whois<span class="w"> </span>example.com
-</span></code></pre></div>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">whois<span class="w"> </span>example.com
+</span></code></pre></div></td></tr></table></div>
 <strong>Note</strong>: WHOIS data can be inaccurate or intentionally obscured, so verify from multiple sources. Privacy services may mask the true owner.</p>
 <h2 id="dns">DNS</h2>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>dig<span class="w"> </span>example.com<span class="w"> </span>A
-</span></code></pre></div>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">dig<span class="w"> </span>example.com<span class="w"> </span>A
+</span></code></pre></div></td></tr></table></div>
 This retrieves the A record (hostname to IPv4 address). The output includes the IP address and query details.</p>
 <h3 id="dns-record-types">DNS Record Types</h3>
 <table>
@@ -2454,16 +2454,16 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </tbody>
 </table>
 <p><strong>Examples:</strong></p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>dnsenum<span class="w"> </span>--enum<span class="w"> </span>inlanefreight.com<span class="w"> </span>-f<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt<span class="w"> </span>-r
-</span></code></pre></div>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">dnsenum<span class="w"> </span>--enum<span class="w"> </span>inlanefreight.com<span class="w"> </span>-f<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt<span class="w"> </span>-r
+</span></code></pre></div></td></tr></table></div>
 <strong>Note:</strong> -r enables recursive subdomain brute-forcing.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ffuf<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ<span class="w"> </span>-u<span class="w"> </span>https://hackthebox.eu/
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gobuster<span class="w"> </span>dns<span class="w"> </span>-d<span class="w"> </span>https://hackthebox.eu/<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
-</span></code></pre></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">ffuf<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ<span class="w"> </span>-u<span class="w"> </span>https://hackthebox.eu/
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">gobuster<span class="w"> </span>dns<span class="w"> </span>-d<span class="w"> </span>https://hackthebox.eu/<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+</span></code></pre></div></td></tr></table></div>
 <h2 id="dns-zone-transfers">DNS Zone Transfers</h2>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>dig<span class="w"> </span>@nsztm1.digi.ninja<span class="w"> </span>zonetransfer.me<span class="w"> </span>axfr
-</span></code></pre></div>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">dig<span class="w"> </span>@nsztm1.digi.ninja<span class="w"> </span>zonetransfer.me<span class="w"> </span>axfr
+</span></code></pre></div></td></tr></table></div>
 - dig: DNS lookup utility.
 - @ns1.example.com: Specifies the nameserver to query (e.g., ns1.example.com).
 - example.com: Domain to perform the lookup on.
@@ -2500,9 +2500,10 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </tbody>
 </table>
 <p><strong>Examples:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gobuster<span class="w"> </span>vhost<span class="w"> </span>-u<span class="w"> </span>http://192.0.2.1<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt<span class="w"> </span>--append-domain
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>gobuster<span class="w"> </span>vhost<span class="w"> </span>-u<span class="w"> </span>http://web1337.inlanefreight.htb:8888<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt<span class="w"> </span>-t<span class="w"> </span><span class="m">60</span><span class="w"> </span>--append-domain
-</span></code></pre></div></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">gobuster<span class="w"> </span>vhost<span class="w"> </span>-u<span class="w"> </span>http://192.0.2.1<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt<span class="w"> </span>--append-domain
+</span><span id="__span-7-2">gobuster<span class="w"> </span>vhost<span class="w"> </span>-u<span class="w"> </span>http://web1337.inlanefreight.htb:8888<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt<span class="w"> </span>-t<span class="w"> </span><span class="m">60</span><span class="w"> </span>--append-domain
+</span></code></pre></div></td></tr></table></div></p>
 <p><strong>Common flags:</strong></p>
 <table>
 <thead>
@@ -2557,8 +2558,8 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </tbody>
 </table>
 <p><strong>Example:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://crt.sh/?q=facebook.com&amp;output=json&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[].name_value&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\*\.//g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
-</span></code></pre></div></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://crt.sh/?q=facebook.com&amp;output=json&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[].name_value&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\*\.//g&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+</span></code></pre></div></td></tr></table></div></p>
 <h2 id="fingerprinting">Fingerprinting</h2>
 <h3 id="techniques">Techniques</h3>
 <table>
@@ -2630,22 +2631,27 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </tbody>
 </table>
 <h3 id="banner-grabbing">Banner Grabbing</h3>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl<span class="w"> </span>-I<span class="w"> </span>inlanefreight.com
-</span></code></pre></div>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">curl<span class="w"> </span>-I<span class="w"> </span>inlanefreight.com
+</span></code></pre></div></td></tr></table></div>
 <strong>Find CMS info:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>http://app.inlanefreight.local/index.php<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;meta name=&quot;generator&quot;&#39;</span>
-</span></code></pre></div></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">curl<span class="w"> </span>-s<span class="w"> </span>http://app.inlanefreight.local/index.php<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;meta name=&quot;generator&quot;&#39;</span>
+</span></code></pre></div></td></tr></table></div></p>
 <h3 id="wafw00f">Wafw00f</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>git+https://github.com/EnableSecurity/wafw00f
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>wafw00f<span class="w"> </span>inlanefreight.com
-</span></code></pre></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1">pip3<span class="w"> </span>install<span class="w"> </span>git+https://github.com/EnableSecurity/wafw00f
+</span><span id="__span-11-2">wafw00f<span class="w"> </span>inlanefreight.com
+</span></code></pre></div></td></tr></table></div>
 <h3 id="nikto">Nikto</h3>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>perl
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sullo/nikto
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nb">cd</span><span class="w"> </span>nikto/program
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./nikto.pl
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>nikto<span class="w"> </span>-h<span class="w"> </span>inlanefreight.com<span class="w"> </span>-Tuning<span class="w"> </span>b
-</span></code></pre></div>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>perl
+</span><span id="__span-12-2">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sullo/nikto
+</span><span id="__span-12-3"><span class="nb">cd</span><span class="w"> </span>nikto/program
+</span><span id="__span-12-4">chmod<span class="w"> </span>+x<span class="w"> </span>./nikto.pl
+</span><span id="__span-12-5">nikto<span class="w"> </span>-h<span class="w"> </span>inlanefreight.com<span class="w"> </span>-Tuning<span class="w"> </span>b
+</span></code></pre></div></td></tr></table></div>
 - -h specifies the target host.
 - -Tuning b flag tells Nikto to only run the Software Identification modules.</p>
 <h2 id="robotstxt">robots.txt</h2>
@@ -2778,11 +2784,14 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </table>
 <h3 id="scrapy">Scrapy:</h3>
 <p>Using custom Scrapy spider, ReconSpider, output will be in JSON:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>scrapy
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>wget<span class="w"> </span>-O<span class="w"> </span>ReconSpider.zip<span class="w"> </span>https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>unzip<span class="w"> </span>ReconSpider.zip<span class="w"> </span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>python3<span class="w"> </span>ReconSpider.py<span class="w"> </span>http://inlanefreight.com
-</span></code></pre></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1">pip3<span class="w"> </span>install<span class="w"> </span>scrapy
+</span><span id="__span-13-2">wget<span class="w"> </span>-O<span class="w"> </span>ReconSpider.zip<span class="w"> </span>https://academy.hackthebox.com/storage/modules/144/ReconSpider.v1.2.zip
+</span><span id="__span-13-3">unzip<span class="w"> </span>ReconSpider.zip<span class="w"> </span>
+</span><span id="__span-13-4">python3<span class="w"> </span>ReconSpider.py<span class="w"> </span>http://inlanefreight.com
+</span></code></pre></div></td></tr></table></div>
 <table>
 <thead>
 <tr>
@@ -2830,26 +2839,38 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </tbody>
 </table>
 <p><strong>Searching Results:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>cat<span class="w"> </span>results.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.emails&#39;</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>cat<span class="w"> </span>results.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.comments&#39;</span>
-</span></code></pre></div></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">cat<span class="w"> </span>results.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.emails&#39;</span>
+</span><span id="__span-14-2">cat<span class="w"> </span>results.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.comments&#39;</span>
+</span></code></pre></div></td></tr></table></div></p>
 <h3 id="spider-code-example">Spider code example</h3>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">scrapy</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">ExampleSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;example&quot;</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://example.com/&#39;</span><span class="p">]</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getall</span><span class="p">():</span>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interesting_extensions</span><span class="p">):</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>                <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">link</span><span class="p">}</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>            <span class="k">elif</span> <span class="ow">not</span> <span class="n">link</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">link</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;mailto:&quot;</span><span class="p">):</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>                <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
-</span></code></pre></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><span class="kn">import</span><span class="w"> </span><span class="nn">scrapy</span>
+</span><span id="__span-15-2">
+</span><span id="__span-15-3"><span class="k">class</span><span class="w"> </span><span class="nc">ExampleSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+</span><span id="__span-15-4">    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;example&quot;</span>
+</span><span id="__span-15-5">    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://example.com/&#39;</span><span class="p">]</span>
+</span><span id="__span-15-6">
+</span><span id="__span-15-7">    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+</span><span id="__span-15-8">        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getall</span><span class="p">():</span>
+</span><span id="__span-15-9">            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">ext</span><span class="p">)</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interesting_extensions</span><span class="p">):</span>
+</span><span id="__span-15-10">                <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="n">link</span><span class="p">}</span>
+</span><span id="__span-15-11">            <span class="k">elif</span> <span class="ow">not</span> <span class="n">link</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">link</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;mailto:&quot;</span><span class="p">):</span>
+</span><span id="__span-15-12">                <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">link</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
 <p><strong>Extract links:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[] | select(.file != null) | .file&#39;</span><span class="w"> </span>example_data.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
-</span></code></pre></div></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.[] | select(.file != null) | .file&#39;</span><span class="w"> </span>example_data.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
+</span></code></pre></div></td></tr></table></div></p>
 <h2 id="search-engine-discovery">Search Engine Discovery</h2>
 <h3 id="google-dorking">Google Dorking</h3>
 <table>
@@ -3053,11 +3074,14 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 </tbody>
 </table>
 <h3 id="finalrecon">FinalRecon</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thewhiteh4t/FinalRecon.git
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">cd</span><span class="w"> </span>FinalRecon
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>chmod<span class="w"> </span>+x<span class="w"> </span>./finalrecon.py
-</span></code></pre></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/thewhiteh4t/FinalRecon.git
+</span><span id="__span-17-2"><span class="nb">cd</span><span class="w"> </span>FinalRecon
+</span><span id="__span-17-3">pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-17-4">chmod<span class="w"> </span>+x<span class="w"> </span>./finalrecon.py
+</span></code></pre></div></td></tr></table></div>
 <h4 id="command-options">Command Options</h4>
 <table>
 <thead>
@@ -3178,7 +3202,7 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
