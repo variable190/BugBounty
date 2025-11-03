@@ -989,13 +989,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ffuf-commands" class="md-nav__link">
+  <a href="#ffuf" class="md-nav__link">
     <span class="md-ellipsis">
-      FFUF Commands
+      FFUF
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="FFUF Commands">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1013,13 +1022,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gobuster-commands" class="md-nav__link">
+  <a href="#gobuster" class="md-nav__link">
     <span class="md-ellipsis">
-      Gobuster Commands
+      Gobuster
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Gobuster Commands">
+    <nav class="md-nav" aria-label="Gobuster">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1037,18 +1046,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wenum-commands" class="md-nav__link">
+  <a href="#wenum" class="md-nav__link">
     <span class="md-ellipsis">
-      Wenum Commands
+      Wenum
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#feroxbuster-commands" class="md-nav__link">
+  <a href="#feroxbuster" class="md-nav__link">
     <span class="md-ellipsis">
-      Feroxbuster Commands
+      Feroxbuster
     </span>
   </a>
   
@@ -1380,13 +1389,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ffuf-commands" class="md-nav__link">
+  <a href="#ffuf" class="md-nav__link">
     <span class="md-ellipsis">
-      FFUF Commands
+      FFUF
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="FFUF Commands">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1404,13 +1422,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gobuster-commands" class="md-nav__link">
+  <a href="#gobuster" class="md-nav__link">
     <span class="md-ellipsis">
-      Gobuster Commands
+      Gobuster
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Gobuster Commands">
+    <nav class="md-nav" aria-label="Gobuster">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1428,18 +1446,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wenum-commands" class="md-nav__link">
+  <a href="#wenum" class="md-nav__link">
     <span class="md-ellipsis">
-      Wenum Commands
+      Wenum
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#feroxbuster-commands" class="md-nav__link">
+  <a href="#feroxbuster" class="md-nav__link">
     <span class="md-ellipsis">
-      Feroxbuster Commands
+      Feroxbuster
     </span>
   </a>
   
@@ -1678,7 +1696,139 @@
 <li>Modifying a hidden parameter in a request might unlock hidden features or administrative functions.</li>
 <li>Injecting malicious code into a search query could expose vulnerabilities like Cross-Site Scripting (XSS) or SQL Injection (SQLi).</li>
 </ul>
-<h2 id="ffuf-commands">FFUF Commands</h2>
+<h2 id="ffuf">FFUF</h2>
+<h2 id="flags">Flags</h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-u</td>
+<td>Specify target URL</td>
+<td>-u http://example.com/FUZZ</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>Set wordlist file</td>
+<td>-w wordlist.txt</td>
+</tr>
+<tr>
+<td>-ic</td>
+<td>Ignore wordlist comments</td>
+<td>-ic</td>
+</tr>
+<tr>
+<td>-H</td>
+<td>Add custom HTTP headers</td>
+<td>-H "Authorization: Bearer token"</td>
+</tr>
+<tr>
+<td>-X</td>
+<td>Set HTTP method</td>
+<td>-X POST</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>Extend wordlist with extensions</td>
+<td>-e .php,.html</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>Enable silent mode</td>
+<td>-s</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>Increase verbosity</td>
+<td>-v</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>Set number of threads</td>
+<td>-t 50</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>Ignore SSL/TLS errors</td>
+<td>-k</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>Output results to file</td>
+<td>-o results.txt</td>
+</tr>
+<tr>
+<td>-timeout</td>
+<td>Set request timeout in seconds</td>
+<td>-timeout 30</td>
+</tr>
+<tr>
+<td>-recursion</td>
+<td>Enable recursive directory scanning</td>
+<td>-recursion</td>
+</tr>
+<tr>
+<td>-recursion-depth</td>
+<td>Set maximum recursion depth</td>
+<td>-recursion-depth 2</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>Filter by status codes</td>
+<td>-s 200,404</td>
+</tr>
+<tr>
+<td>-mc</td>
+<td>Match by status codes</td>
+<td>-mc 200</td>
+</tr>
+<tr>
+<td>-ml</td>
+<td>Match by line count</td>
+<td>-ml 50</td>
+</tr>
+<tr>
+<td>-mw</td>
+<td>Match by word count</td>
+<td>-mw 100</td>
+</tr>
+<tr>
+<td>-ms</td>
+<td>Match by size in bytes</td>
+<td>-ms 1024</td>
+</tr>
+<tr>
+<td>-fc</td>
+<td>Filter by status codes</td>
+<td>-fc 404</td>
+</tr>
+<tr>
+<td>-fl</td>
+<td>Filter by line count</td>
+<td>-fl 0</td>
+</tr>
+<tr>
+<td>-fw</td>
+<td>Filter by word count</td>
+<td>-fw 0</td>
+</tr>
+<tr>
+<td>-fs</td>
+<td>Filter by size in bytes</td>
+<td>-fs 512</td>
+</tr>
+<tr>
+<td>-ac</td>
+<td>Automatically calibrate filtering</td>
+<td>-ac</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -1752,7 +1902,49 @@
 </tr>
 </tbody>
 </table>
-<h2 id="gobuster-commands">Gobuster Commands</h2>
+<h2 id="gobuster">Gobuster</h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-u</code></td>
+<td>Specifies the target URL or domain (e.g., <code>-u http://example.com</code>).</td>
+</tr>
+<tr>
+<td><code>-w</code></td>
+<td>Defines the wordlist file for brute-forcing (e.g., <code>-w /usr/share/wordlists/dirb/common.txt</code>).</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>Sets the number of concurrent threads (e.g., <code>-t 50</code> for faster scanning).</td>
+</tr>
+<tr>
+<td><code>-x</code></td>
+<td>Specifies file extensions to test (e.g., <code>-x php,txt</code> for <code>.php</code> and <code>.txt</code>).</td>
+</tr>
+<tr>
+<td><code>-k</code></td>
+<td>Ignores SSL/TLS errors (e.g., <code>-k</code> for self-signed certificates).</td>
+</tr>
+<tr>
+<td><code>-o</code></td>
+<td>Outputs results to a file (e.g., <code>-o results.txt</code>).</td>
+</tr>
+<tr>
+<td><code>-s</code></td>
+<td>Filters by HTTP status codes (e.g., <code>-s 200,204</code> to show only 200 or 204 responses).</td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>Expands results to show full URLs (e.g., <code>-e</code> for detailed output).</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -1771,7 +1963,15 @@
 </tr>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt -s 200</code></td>
-<td>Filter by status code</td>
+<td>Filter by status code (only includes passed status code)</td>
+</tr>
+<tr>
+<td><code>gobuster dir -u http://example.com -w wordlist.txt -b 200</code></td>
+<td>Filter out status code (excludes passed status code)</td>
+</tr>
+<tr>
+<td><code>gobuster dir -u http://example.com -w wordlist.txt --exclude-length 0,404</code></td>
+<td>Filter out lengths (0 and 404 bytes filtered out)</td>
 </tr>
 <tr>
 <td><code>gobuster dir -u http://example.com -w wordlist.txt -t 50</code></td>
@@ -1814,7 +2014,73 @@
 </tr>
 </tbody>
 </table>
-<h2 id="wenum-commands">Wenum Commands</h2>
+<h2 id="wenum">Wenum</h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+<th>Example Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--hc (hide code)</td>
+<td>Exclude responses that match the specified status codes</td>
+<td>After fuzzing, the server returned many 400 Bad Request errors Use --hc 400 to hide them and focus on other responses</td>
+</tr>
+<tr>
+<td>--sc (show code)</td>
+<td>Include only responses that match the specified status codes</td>
+<td>You are only interested in successful requests (200 OK) Use --sc 200 to filter the results accordingly</td>
+</tr>
+<tr>
+<td>--hl (hide length)</td>
+<td>Exclude responses with the specified content length (in lines)</td>
+<td>The server returns verbose error messages with many lines Use --hl with a high value to hide these and focus on shorter responses</td>
+</tr>
+<tr>
+<td>--sl (show length)</td>
+<td>Include only responses with the specified content length (in lines)</td>
+<td>You suspect a specific response with a known line count is related to a vulnerability Use --sl to pinpoint it</td>
+</tr>
+<tr>
+<td>--hw (hide word)</td>
+<td>Exclude responses with the specified number of words</td>
+<td>The server includes common phrases in many responses Use --hw to filter out responses with those word counts</td>
+</tr>
+<tr>
+<td>--sw (show word)</td>
+<td>Include only responses with the specified number of words</td>
+<td>You are looking for short error messages Use --sw with a low value to find them</td>
+</tr>
+<tr>
+<td>--hs (hide size)</td>
+<td>Exclude responses with the specified response size (in bytes or characters)</td>
+<td>The server sends large files for valid requests Use --hs to filter out these large responses and focus on smaller ones</td>
+</tr>
+<tr>
+<td>--ss (show size)</td>
+<td>Include only responses with the specified response size (in bytes or characters)</td>
+<td>You are looking for a specific file size Use --ss to find it</td>
+</tr>
+<tr>
+<td>--hr (hide regex)</td>
+<td>Exclude responses whose body matches the specified regular expression</td>
+<td>Filter out responses containing the "Internal Server Error" message Use --hr "Internal Server Error"</td>
+</tr>
+<tr>
+<td>--sr (show regex)</td>
+<td>Include only responses whose body matches the specified regular expression</td>
+<td>Filter for responses containing the string "admin" using --sr "admin"</td>
+</tr>
+<tr>
+<td>--filter/--hard-filter</td>
+<td>General-purpose filter to show/hide responses or prevent their post-processing using a regular expression</td>
+<td>--filter "Login" will show only responses containing "Login", while --hard-filter "Login" will hide them and prevent any plugins from processing them</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -1857,7 +2123,58 @@
 </tr>
 </tbody>
 </table>
-<h2 id="feroxbuster-commands">Feroxbuster Commands</h2>
+<h2 id="feroxbuster">Feroxbuster</h2>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+<th>Example Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>--dont-scan (Request)</td>
+<td>Exclude specific URLs or patterns from being scanned (even if found in links during recursion)</td>
+<td>You know the /uploads directory contains only images, so you can exclude it using --dont-scan /uploads</td>
+</tr>
+<tr>
+<td>-S, --filter-size</td>
+<td>Exclude responses based on their size (in bytes) You can specify single sizes or comma-separated ranges</td>
+<td>You've noticed many 1KB error pages Use -S 1024 to exclude them</td>
+</tr>
+<tr>
+<td>-X, --filter-regex</td>
+<td>Exclude responses whose body or headers match the specified regular expression</td>
+<td>Filter out pages with a specific error message using -X "Access Denied"</td>
+</tr>
+<tr>
+<td>-W, --filter-words</td>
+<td>Exclude responses with a specific word count or range of word counts</td>
+<td>Eliminate responses with very few words (e.g., error messages) using -W 0-10</td>
+</tr>
+<tr>
+<td>-N, --filter-lines</td>
+<td>Exclude responses with a specific line count or range of line counts</td>
+<td>Filter out long, verbose pages with -N 50-</td>
+</tr>
+<tr>
+<td>-C, --filter-status</td>
+<td>Exclude responses based on specific HTTP status codes This operates as a denylist</td>
+<td>Suppress common error codes like 404 and 500 using -C 404,500</td>
+</tr>
+<tr>
+<td>--filter-similar-to</td>
+<td>Exclude responses that are similar to a given webpage</td>
+<td>Remove duplicate or near-duplicate pages based on a reference page using --filter-similar-to error.html</td>
+</tr>
+<tr>
+<td>-s, --status-codes</td>
+<td>Include only responses with the specified status codes This operates as an allowlist (default: all)</td>
+<td>Focus on successful responses using -s 200,204,301,302</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
