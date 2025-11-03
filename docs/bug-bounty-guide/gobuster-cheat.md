@@ -11,8 +11,9 @@ Gobuster is a fast and flexible tool for brute-forcing directories, files, DNS n
 | `gobuster vhost -u <url> -w <wordlist>` | Discover virtual hosts on a target IP. | `gobuster vhost -u http://10.10.10.10 -w vhosts.txt` |
 
 ## Commonly Used Flags
+
 | Flag | Purpose |
-|------|----------|
+|------|---------|
 | `-u` | Specifies the target URL or domain (e.g., `-u http://example.com`). |
 | `-w` | Defines the wordlist file for brute-forcing (e.g., `-w /usr/share/wordlists/dirb/common.txt`). |
 | `-t` | Sets the number of concurrent threads (e.g., `-t 50` for faster scanning). |

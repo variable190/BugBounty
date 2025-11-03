@@ -78,7 +78,36 @@ pipx runpip wenum install setuptools
 - Modifying a hidden parameter in a request might unlock hidden features or administrative functions.
 - Injecting malicious code into a search query could expose vulnerabilities like Cross-Site Scripting (XSS) or SQL Injection (SQLi).
 
-## FFUF Commands
+## FFUF
+
+## Flags
+
+| Flag    | Use                            | Example                     |
+|---------|--------------------------------|-----------------------------|
+| -u      | Specify target URL             | -u http://example.com/FUZZ  |
+| -w      | Set wordlist file              | -w wordlist.txt             |
+| -ic     | Ignore wordlist comments       | -ic                         |
+| -H      | Add custom HTTP headers        | -H "Authorization: Bearer token" |
+| -X      | Set HTTP method                | -X POST                     |
+| -e      | Extend wordlist with extensions | -e .php,.html              |
+| -s      | Enable silent mode             | -s                          |
+| -v      | Increase verbosity             | -v                          |
+| -t      | Set number of threads          | -t 50                       |
+| -k      | Ignore SSL/TLS errors          | -k                          |
+| -o      | Output results to file         | -o results.txt              |
+| -timeout | Set request timeout in seconds | -timeout 30                |
+| -recursion | Enable recursive directory scanning | -recursion          |
+| -recursion-depth | Set maximum recursion depth   | -recursion-depth 2  |
+| -s      | Filter by status codes         | -s 200,404                  |
+| -mc     | Match by status codes          | -mc 200                     |
+| -ml     | Match by line count            | -ml 50                      |
+| -mw     | Match by word count            | -mw 100                     |
+| -ms     | Match by size in bytes         | -ms 1024                    |
+| -fc     | Filter by status codes         | -fc 404                     |
+| -fl     | Filter by line count           | -fl 0                       |
+| -fw     | Filter by word count           | -fw 0                       |
+| -fs     | Filter by size in bytes        | -fs 512                     |
+| -ac     | Automatically calibrate filtering | -ac                      |
 
 | Command                           | Description                     |
 |-----------------------------------|---------------------------------|
@@ -101,13 +130,26 @@ pipx runpip wenum install setuptools
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -u http://IP:PORT/w2ksvrus/FUZZ -e .php,.html,.txt,.bak,.js -v -rate 500` | File fuzzing, verbose output, limit to 500 request per second |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2` | Recursive fuzzing, limit depth to 2 |
 
-## Gobuster Commands
+## Gobuster
+
+| Flag | Purpose |
+|------|---------|
+| `-u` | Specifies the target URL or domain (e.g., `-u http://example.com`). |
+| `-w` | Defines the wordlist file for brute-forcing (e.g., `-w /usr/share/wordlists/dirb/common.txt`). |
+| `-t` | Sets the number of concurrent threads (e.g., `-t 50` for faster scanning). |
+| `-x` | Specifies file extensions to test (e.g., `-x php,txt` for `.php` and `.txt`). |
+| `-k` | Ignores SSL/TLS errors (e.g., `-k` for self-signed certificates). |
+| `-o` | Outputs results to a file (e.g., `-o results.txt`). |
+| `-s` | Filters by HTTP status codes (e.g., `-s 200,204` to show only 200 or 204 responses). |
+| `-e` | Expands results to show full URLs (e.g., `-e` for detailed output). |
 
 | Command                           | Description                     |
 |-----------------------------------|---------------------------------|
 | `gobuster dir -u http://example.com -w wordlist.txt` | Directory fuzzing |
 | `gobuster dir -u http://example.com -w wordlist.txt -x .php,.html` | Fuzz with extensions |
-| `gobuster dir -u http://example.com -w wordlist.txt -s 200` | Filter by status code |
+| `gobuster dir -u http://example.com -w wordlist.txt -s 200` | Filter by status code (only includes passed status code) |
+| `gobuster dir -u http://example.com -w wordlist.txt -b 200` | Filter out status code (excludes passed status code) |
+| `gobuster dir -u http://example.com -w wordlist.txt --exclude-length 0,404` | Filter out lengths (0 and 404 bytes filtered out) |
 | `gobuster dir -u http://example.com -w wordlist.txt -t 50` | Set threads (50) |
 | `gobuster dir -u http://example.com -w wordlist.txt -o results.txt` | Save output |
 | `gobuster dns -d example.com -w subdomains.txt` | DNS subdomain fuzzing |
@@ -121,7 +163,21 @@ pipx runpip wenum install setuptools
 | `gobuster vhost -u http://inlanefreight.htb:44915 -w /usr/share/seclists/Discovery/Web-Content/common.txt --append-domain` | vhost fuzzing, `--append-domain` instructs Gobuster to append the base domain (inlanefreight.htb) to each word in the wordlist |
 | `gobuster dns -d inlanefreight.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt` | Subdomain fuzzing |
 
-## Wenum Commands
+## Wenum
+
+| Flag | Description | Example Scenario |
+|------|-------------|------------------|
+| --hc (hide code)     | Exclude responses that match the specified status codes                     | After fuzzing, the server returned many 400 Bad Request errors Use --hc 400 to hide them and focus on other responses |
+| --sc (show code)     | Include only responses that match the specified status codes                | You are only interested in successful requests (200 OK) Use --sc 200 to filter the results accordingly |
+| --hl (hide length)   | Exclude responses with the specified content length (in lines)              | The server returns verbose error messages with many lines Use --hl with a high value to hide these and focus on shorter responses |
+| --sl (show length)   | Include only responses with the specified content length (in lines)         | You suspect a specific response with a known line count is related to a vulnerability Use --sl to pinpoint it |
+| --hw (hide word)     | Exclude responses with the specified number of words                        | The server includes common phrases in many responses Use --hw to filter out responses with those word counts |
+| --sw (show word)     | Include only responses with the specified number of words                   | You are looking for short error messages Use --sw with a low value to find them |
+| --hs (hide size)     | Exclude responses with the specified response size (in bytes or characters) | The server sends large files for valid requests Use --hs to filter out these large responses and focus on smaller ones |
+| --ss (show size)     | Include only responses with the specified response size (in bytes or characters) | You are looking for a specific file size Use --ss to find it |
+| --hr (hide regex)    | Exclude responses whose body matches the specified regular expression       | Filter out responses containing the "Internal Server Error" message Use --hr "Internal Server Error" |
+| --sr (show regex)    | Include only responses whose body matches the specified regular expression  | Filter for responses containing the string "admin" using --sr "admin" |
+| --filter/--hard-filter | General-purpose filter to show/hide responses or prevent their post-processing using a regular expression | --filter "Login" will show only responses containing "Login", while --hard-filter "Login" will hide them and prevent any plugins from processing them |
 
 | Command                           | Description                     |
 |-----------------------------------|---------------------------------|
@@ -134,7 +190,18 @@ pipx runpip wenum install setuptools
 | `wenum -c -z file,wordlist.txt --hl 50` | Filter by content length  |
 | 
 
-## Feroxbuster Commands
+## Feroxbuster
+
+| Flag | Description | Example Scenario |
+|------|-------------|------------------|
+| --dont-scan (Request) | Exclude specific URLs or patterns from being scanned (even if found in links during recursion) | You know the /uploads directory contains only images, so you can exclude it using --dont-scan /uploads |
+| -S, --filter-size    | Exclude responses based on their size (in bytes) You can specify single sizes or comma-separated ranges | You've noticed many 1KB error pages Use -S 1024 to exclude them |
+| -X, --filter-regex   | Exclude responses whose body or headers match the specified regular expression | Filter out pages with a specific error message using -X "Access Denied" |
+| -W, --filter-words   | Exclude responses with a specific word count or range of word counts        | Eliminate responses with very few words (e.g., error messages) using -W 0-10 |
+| -N, --filter-lines   | Exclude responses with a specific line count or range of line counts        | Filter out long, verbose pages with -N 50- |
+| -C, --filter-status  | Exclude responses based on specific HTTP status codes This operates as a denylist | Suppress common error codes like 404 and 500 using -C 404,500 |
+| --filter-similar-to  | Exclude responses that are similar to a given webpage                       | Remove duplicate or near-duplicate pages based on a reference page using --filter-similar-to error.html |
+| -s, --status-codes   | Include only responses with the specified status codes This operates as an allowlist (default: all) | Focus on successful responses using -s 200,204,301,302 |
 
 | Command                           | Description                     |
 |-----------------------------------|---------------------------------|
