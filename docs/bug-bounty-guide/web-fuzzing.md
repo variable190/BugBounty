@@ -78,9 +78,79 @@ pipx runpip wenum install setuptools
 - Modifying a hidden parameter in a request might unlock hidden features or administrative functions.
 - Injecting malicious code into a search query could expose vulnerabilities like Cross-Site Scripting (XSS) or SQL Injection (SQLi).
 
+### Rest API Parameter Types
+
+| Parameter Type       | Description                                      | Example                          |
+|----------------------|--------------------------------------------------|----------------------------------|
+| Query Parameters     | Appended to URL after ? for filtering/sorting/pagination | /users?limit=10&sort=name |
+| Path Parameters      | Embedded in URL for specific resources           | /products/{id}pen_spark          |
+| Request Body Parameters | Sent in body of POST/PUT/PATCH for create/update | { "name": "New Product", "price": 99.99 } |
+
+### GraphQL 
+
+#### Components
+
+| Component      | Description                              | Example                  |
+|----------------|------------------------------------------|--------------------------|
+| Field          | Retrieves specific data (e.g., name, email) | name, email              |
+| Relationship   | Indicates connections between data types | posts                    |
+| Nested Object  | Field returning another object for deeper traversal | posts { title, body }    |
+| Argument       | Modifies query/field behavior (e.g., filter, sort) | posts(limit: 5)          |
+
+**Example**
+
+```json
+query {
+  user(id: 123) {
+    name
+    email
+    posts(limit: 5) {
+      title
+      body
+    }
+  }
+}
+```
+
+#### Mutations
+
+| Component  | Description                                      | Example                          |
+|------------|--------------------------------------------------|----------------------------------|
+| Operation  | Action to perform (e.g., createPost, updateUser) | createPost                       |
+| Argument   | Input data for the operation (e.g., title, body) | title: "New Post", body: "This is the content of the new post" |
+| Selection  | Fields to retrieve in response (e.g., id, title) |                                   |
+
+**Example**
+
+```json
+mutation {
+  createPost(title: "New Post", body: "This is the content of the new post") {
+    id
+    title
+  }
+}
+```
+
+### Discovering Parameters
+
+- API documentation (Rest/graphql)
+- WSDL Analysis (SOAP)
+- Introspection (graphql)
+- Network traffic analysis
+- Parameter name fuzzing
+
+### Fuzzing APIs
+
+```bash
+git clone https://github.com/PandaSt0rm/webfuzz_api.git
+cd webfuzz_api
+pip3 install -r requirements.txt
+python3 api_fuzzer.py http://IP:PORT
+```
+
 ## FFUF
 
-## Flags
+### Flags
 
 | Flag    | Use                            | Example                     |
 |---------|--------------------------------|-----------------------------|
