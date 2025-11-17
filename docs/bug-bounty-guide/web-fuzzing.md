@@ -199,6 +199,10 @@ python3 api_fuzzer.py http://IP:PORT
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -u http://IP:PORT/FUZZ -t 80` | Directory fuzzing, set to 80 threads |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -u http://IP:PORT/w2ksvrus/FUZZ -e .php,.html,.txt,.bak,.js -v -rate 500` | File fuzzing, verbose output, limit to 500 request per second |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2` | Recursive fuzzing, limit depth to 2 |
+| `ffuf -u http://STMIP:STMPO/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -recursion -e .php,.txt,.html` | Recursive directory fuzzing |
+| `ffuf -u http://STMIP:STMPO/admin/panel.php?accessID=FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -fw 8` | Value fuzzing |
+| `ffuf -u http://fuzzing_fun.htb:STMPO -w /usr/share/seclists/Discovery/Web-Content/common.txt -H 'Host: FUZZ.fuzzing_fun.htb:STMPO' -ac` | Vhost fuzzing |
+
 
 ## Gobuster
 
