@@ -2170,6 +2170,18 @@
 <td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2</code></td>
 <td>Recursive fuzzing, limit depth to 2</td>
 </tr>
+<tr>
+<td><code>ffuf -u http://STMIP:STMPO/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -recursion -e .php,.txt,.html</code></td>
+<td>Recursive directory fuzzing</td>
+</tr>
+<tr>
+<td><code>ffuf -u http://STMIP:STMPO/admin/panel.php?accessID=FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -fw 8</code></td>
+<td>Value fuzzing</td>
+</tr>
+<tr>
+<td><code>ffuf -u http://fuzzing_fun.htb:STMPO -w /usr/share/seclists/Discovery/Web-Content/common.txt -H 'Host: FUZZ.fuzzing_fun.htb:STMPO' -ac</code></td>
+<td>Vhost fuzzing</td>
+</tr>
 </tbody>
 </table>
 <h2 id="gobuster">Gobuster</h2>
