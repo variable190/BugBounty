@@ -2,3 +2,136 @@
 
 **[GraphQL Learn](https://graphql.org/learn/)**
 
+## Basic Example
+
+**GraphQL Request**
+```json
+{
+  users {
+    id
+    username
+    role
+  }
+}
+```
+
+**GraphQL Response**
+```json
+{
+  "data": {
+    "users": [
+      { "id": 1, "username": "htb-stdnt", "role": "user" },
+      { "id": 2, "username": "admin",     "role": "admin" }
+    ]
+  }
+}
+```
+
+## Introspection Queries
+
+Introspection is a GraphQL feature that enables users to query the GraphQL API about the structure of the backend system.
+
+**GraphQL Types**
+```json
+{
+  __schema {
+    types {
+      name
+    }
+  }
+}
+```
+
+**GraphQL Queries**
+```json
+{
+  __schema {
+    queryType {
+      fields {
+        name
+        description
+      }
+    }
+  }
+}
+```
+
+**General Introspection**
+```json
+query IntrospectionQuery {
+  __schema {
+    queryType { name }
+    mutationType { name }
+    subscriptionType { name }
+    types { ...FullType }
+    directives {
+      name
+      description
+      locations
+      args { ...InputValue }
+    }
+  }
+}
+fragment FullType on __Type {
+  kind name description
+  fields(includeDeprecated: true) {
+    name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason
+  }
+  inputFields { ...InputValue }
+  interfaces { ...TypeRef }
+  enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason }
+  possibleTypes { ...TypeRef }
+}
+fragment InputValue on __InputValue { name description type { ...TypeRef } defaultValue }
+fragment TypeRef on __Type {
+  kind name
+  ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name }}}}}}}
+}
+```
+
+## Batching Example
+```json
+POST /graphql HTTP/1.1
+Host: 172.17.0.2
+Content-Type: application/json
+
+[
+  { "query": "{user(username: \"admin\") {uuid}}" },
+  { "query": "{post(id: 1) {title}}" }
+]
+```
+
+## Mutation Example
+```json
+mutation {
+  registerUser(input: {
+    username: "vautia"
+    password: "5f4dcc3b5aa765d61d8327deb882cf99"
+    role: "user"
+    msg: "newUser"
+  }) {
+    user {
+      username
+      password
+      msg
+      role
+    }
+  }
+}
+```
+
+## Tools
+
+- [graphw00f](https://github.com/dolevf/graphw00f) – GraphQL endpoint fingerprinting
+- [graphql-voyager](https://apis.guru/graphql-voyager/) – Visual schema explorer
+- [GraphQL-Cop](https://github.com/dolevf/graphql-cop) – Security testing tool
+- [InQL](https://github.com/doyensec/inql) – Burp Suite extension for GraphQL
+- [GraphQL Threat Matrix](https://github.com/nicholasaleks/graphql-threat-matrix)
+
+### graphw00f
+
+```bash
+git clone https://github.com/dolevf/graphw00f
+cd graphw00f
+python3 main.py -f -d -t http://STMIP:STMPO
+```
