@@ -1059,6 +1059,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutations
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1373,6 +1382,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mutations
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1679,6 +1697,152 @@
 <p>XSS vulnerabilities can occur if:
 - GraphQL responses are inserted into the HTML page without proper sanitization
 - if invalid arguments are reflected in error messages</p>
+<h2 id="mutations">Mutations</h2>
+<ul>
+<li>Identify all mutations
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><span class="err">query</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-2"><span class="w">  </span><span class="err">__schema</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><span class="w">    </span><span class="err">mu</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-4"><span class="w">      </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-5"><span class="w">      </span><span class="kc">f</span><span class="err">ields</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-6"><span class="w">        </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-7"><span class="w">        </span><span class="err">args</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-8"><span class="w">          </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-9"><span class="w">          </span><span class="err">de</span><span class="kc">fault</span><span class="err">Value</span>
+</span><span id="__span-15-10"><span class="w">          </span><span class="kc">t</span><span class="err">ype</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-11"><span class="w">            </span><span class="err">...TypeRe</span><span class="kc">f</span>
+</span><span id="__span-15-12"><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-15-13"><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-14"><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-15"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-16"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-17"><span class="p">}</span>
+</span><span id="__span-15-18">
+</span><span id="__span-15-19"><span class="kc">fra</span><span class="err">gme</span><span class="kc">nt</span><span class="w"> </span><span class="err">TypeRe</span><span class="kc">f</span><span class="w"> </span><span class="err">o</span><span class="kc">n</span><span class="w"> </span><span class="err">__Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-20"><span class="w">  </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-21"><span class="w">  </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-22"><span class="w">  </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-23"><span class="w">    </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-24"><span class="w">    </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-25"><span class="w">    </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-26"><span class="w">      </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-27"><span class="w">      </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-28"><span class="w">      </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-29"><span class="w">        </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-30"><span class="w">        </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-31"><span class="w">        </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-32"><span class="w">          </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-33"><span class="w">          </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-34"><span class="w">          </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-35"><span class="w">            </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-36"><span class="w">            </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-37"><span class="w">            </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-38"><span class="w">              </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-39"><span class="w">              </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-40"><span class="w">              </span><span class="err">o</span><span class="kc">f</span><span class="err">Type</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-41"><span class="w">                </span><span class="err">ki</span><span class="kc">n</span><span class="err">d</span>
+</span><span id="__span-15-42"><span class="w">                </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-15-43"><span class="w">              </span><span class="p">}</span>
+</span><span id="__span-15-44"><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-15-45"><span class="w">          </span><span class="p">}</span>
+</span><span id="__span-15-46"><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-47"><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-15-48"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-49"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-50"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Query fields of required inputs from results of above
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><span class="p">{</span><span class="w">   </span>
+</span><span id="__span-16-2"><span class="w">  </span><span class="err">__</span><span class="kc">t</span><span class="err">ype(</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RegisterUserInput&quot;</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-3"><span class="w">    </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-16-4"><span class="w">    </span><span class="err">i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">t</span><span class="err">Fields</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-5"><span class="w">      </span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-16-6"><span class="w">      </span><span class="err">descrip</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span>
+</span><span id="__span-16-7"><span class="w">      </span><span class="err">de</span><span class="kc">fault</span><span class="err">Value</span>
+</span><span id="__span-16-8"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-9"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-10"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Test if escalation available
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="err">mu</span><span class="kc">tat</span><span class="err">io</span><span class="kc">n</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-2"><span class="w">  </span><span class="err">regis</span><span class="kc">ter</span><span class="err">User(i</span><span class="kc">n</span><span class="err">pu</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">user</span><span class="kc">na</span><span class="err">me</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vautiaAdmin&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5f4dcc3b5aa765d61d8327deb882cf99&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">role</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">msg</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hacked!&quot;</span><span class="p">}</span><span class="err">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-3"><span class="w">    </span><span class="err">user</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-4"><span class="w">      </span><span class="err">user</span><span class="kc">na</span><span class="err">me</span>
+</span><span id="__span-17-5"><span class="w">      </span><span class="err">password</span>
+</span><span id="__span-17-6"><span class="w">      </span><span class="err">msg</span>
+</span><span id="__span-17-7"><span class="w">      </span><span class="err">role</span>
+</span><span id="__span-17-8"><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-17-9"><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-17-10"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
 
 
 
