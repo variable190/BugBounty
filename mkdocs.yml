@@ -3,12 +3,12 @@ nav:
   - Home: index.md
   - Bug Bounty Guide:
     - Contents: bug-bounty-guide/index.md
-    - Bug Bounty Hunter Modules:
+    - Web Penetration Tester Modules:
       - Web Requests: bug-bounty-guide/web-requests.md
       - Introduction to Web Applications: bug-bounty-guide/introduction-to-web-applications.md
       - Using Web Proxies: bug-bounty-guide/using-web-proxies.md
       - Information Gathering Web Edition: bug-bounty-guide/information-gathering-web-edition.md
-      - Attacking Web Applications with Ffuf: bug-bounty-guide/attacking-web-applications-with-ffuf.md
+      - Web Fuzzing: bug-bounty-guide/web-fuzzing.md
       - JavaScript Deobfuscation: bug-bounty-guide/javascript-deobfuscation.md
       - Cross-Site Scripting (XSS): bug-bounty-guide/cross-site-scripting-(xss).md
       - SQL Injection Fundamentals: bug-bounty-guide/sql-injection-fundamentals.md
@@ -20,15 +20,10 @@ nav:
       - Broken Authentication: bug-bounty-guide/broken-authentication.md
       - Web Attacks: bug-bounty-guide/web-attacks.md
       - File Inclusion: bug-bounty-guide/file-inclusion.md
-      - Session Security: bug-bounty-guide/session-security.md
-      - Web Service & API Attacks: bug-bounty-guide/web-service-and-api-attacks.md
-      - Hacking WordPress: bug-bounty-guide/hacking-wordpress.md
-      - Bug Bounty Hunting Process: bug-bounty-guide/bug-bounty-hunting-process.md
-    - Web Penetration Tester Modules:
-      - Web Fuzzing: bug-bounty-guide/web-fuzzing.md
       - Attacking GraphQL: bug-bounty-guide/attacking-graphql.md
       - API Attacks: bug-bounty-guide/api-attacks.md
       - Attacking Common Applications: bug-bounty-guide/attacking-common-applications.md
+      - Bug Bounty Hunting Process: bug-bounty-guide/bug-bounty-hunting-process.md
     - Cheat Sheets:
       - FTP: bug-bounty-guide/ftp-cheat.md
       - Gobuster: bug-bounty-guide/gobuster-cheat.md
