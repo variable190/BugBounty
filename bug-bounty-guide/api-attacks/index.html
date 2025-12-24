@@ -1289,12 +1289,29 @@
 <ul>
 <li>Authenticate as one user</li>
 <li>Find what is accessible for their role</li>
-<li>See what aditional can be updated/patched beyond what is required for web app/site function</li>
+<li>Test what aditional can be updated/patched beyond what is required for web app/site function</li>
 </ul>
 <h2 id="unrestricted-resource-consumption">Unrestricted Resource Consumption</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/">API4:2023</a></li>
-<li>The API does not limit the amount of resources users can consume</li>
+<li>
+<p>The API does not limit the amount of resources users can consume</p>
+</li>
+<li>
+<p>Authenticate as one user</p>
+</li>
+<li>Find what is accessible for their role</li>
+<li>Create file with 30 random megabytes
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/urandom<span class="w"> </span><span class="nv">of</span><span class="o">=</span>certificateOfIncorporation.pdf<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">30</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Test if file uploads are unconstrained for size</li>
+<li>Test if file uploads or other requests (password reset for example) can be sent repeatedly causign DDOS</li>
+<li>Test if limited by file type, .exe rather than .pdf for example (allowing for reverse shell upload)
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/urandom<span class="w"> </span><span class="nv">of</span><span class="o">=</span>reverse-shell.exe<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">10</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Test if file upload location is public and if previously uploaded files can be downloaded (could store malware and send link to victim)
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">curl<span class="w"> </span>-O<span class="w"> </span>http://94.237.51.179:51135/SupplierCompaniesCertificatesOfIncorporations/reverse-shell.exe
+</span></code></pre></div></td></tr></table></div></li>
 </ul>
 <h2 id="broken-function-level-authorization">Broken Function Level Authorization</h2>
 <ul>
