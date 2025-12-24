@@ -54,13 +54,29 @@ ffuf -w /opt/useful/seclists/Fuzzing/4-digits-0000-9999.txt:FUZZ -u http://94.23
 
 - Authenticate as one user
 - Find what is accessible for their role
-- See what aditional can be updated/patched beyond what is required for web app/site function
+- Test what aditional can be updated/patched beyond what is required for web app/site function
 
 ## Unrestricted Resource Consumption
 
 - [API4:2023](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)
 - The API does not limit the amount of resources users can consume
 
+- Authenticate as one user
+- Find what is accessible for their role
+- Create file with 30 random megabytes
+```bash
+dd if=/dev/urandom of=certificateOfIncorporation.pdf bs=1M count=30
+```
+- Test if file uploads are unconstrained for size
+- Test if file uploads or other requests (password reset for example) can be sent repeatedly causign DDOS
+- Test if limited by file type, .exe rather than .pdf for example (allowing for reverse shell upload)
+```bash
+dd if=/dev/urandom of=reverse-shell.exe bs=1M count=10
+```
+- Test if file upload location is public and if previously uploaded files can be downloaded (could store malware and send link to victim)
+```bash
+curl -O http://94.237.51.179:51135/SupplierCompaniesCertificatesOfIncorporations/reverse-shell.exe
+```
 
 
 ## Broken Function Level Authorization
