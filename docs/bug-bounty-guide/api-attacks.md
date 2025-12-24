@@ -44,7 +44,17 @@ ffuf -w /opt/useful/seclists/Fuzzing/4-digits-0000-9999.txt:FUZZ -u http://94.23
 - [API3:2023](https://owasp.org/API-Security/editions/2023/en/0xa3-broken-object-property-level-authorization/)
 - The API reveals sensitive data to authorized users that they should not access or permits them to manipulate sensitive properties
 
+### Exposure of Sensitive Information Due to Incompatible Policies
 
+- Authenticate as one user
+- Find what is accessible for their role
+- Retrieve data to see if excessive data is given beyind what is required for the web app/site function
+
+### Improperly Controlled Modification of Dynamically-Determined Object Attributes
+
+- Authenticate as one user
+- Find what is accessible for their role
+- See what aditional can be updated/patched beyond what is required for web app/site function
 
 ## Unrestricted Resource Consumption
 
