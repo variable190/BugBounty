@@ -1232,12 +1232,8 @@
 <h2 id="broken-object-level-authorization">Broken Object Level Authorization</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/">API1:2023</a></li>
-<li>
-<p>The API allows authenticated users to access data they are not authorized to view</p>
-</li>
-<li>
-<p>Authenticate as one user</p>
-</li>
+<li>The API allows authenticated users to access data they are not authorized to view</li>
+<li>Authenticate as one user</li>
 <li>Find what is accessible for their role</li>
 <li>Change the parameter (IDOR)</li>
 <li>Automate the process:
@@ -1257,12 +1253,8 @@
 <h2 id="broken-authentication">Broken Authentication</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa2-broken-authentication/">API2:2023</a></li>
-<li>
-<p>The authentication mechanisms of the API can be bypassed or circumvented, allowing unauthorized access</p>
-</li>
-<li>
-<p>Authenticate as one user</p>
-</li>
+<li>The authentication mechanisms of the API can be bypassed or circumvented, allowing unauthorized access</li>
+<li>Authenticate as one user</li>
 <li>Find what is accessible for their role</li>
 <li>Try changing password to "pass" and inspect error message to see if allows weak passwords</li>
 <li>If weak passwords are allowed can try fuzzing passwords for known users</li>
@@ -1294,12 +1286,8 @@
 <h2 id="unrestricted-resource-consumption">Unrestricted Resource Consumption</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/">API4:2023</a></li>
-<li>
-<p>The API does not limit the amount of resources users can consume</p>
-</li>
-<li>
-<p>Authenticate as one user</p>
-</li>
+<li>The API does not limit the amount of resources users can consume</li>
+<li>Authenticate as one user</li>
 <li>Find what is accessible for their role</li>
 <li>Create file with 30 random megabytes
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">dd<span class="w"> </span><span class="k">if</span><span class="o">=</span>/dev/urandom<span class="w"> </span><span class="nv">of</span><span class="o">=</span>certificateOfIncorporation.pdf<span class="w"> </span><span class="nv">bs</span><span class="o">=</span>1M<span class="w"> </span><span class="nv">count</span><span class="o">=</span><span class="m">30</span>
@@ -1317,31 +1305,50 @@
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa5-broken-function-level-authorization/">API5:2023</a></li>
 <li>The API allows unauthorized users to perform authorized operations</li>
+<li>Authenticate as one user</li>
+<li>Find what is accessible for their role</li>
+<li>Test to see if user can access endpoints they don't have authorisation for</li>
 </ul>
 <h2 id="unrestricted-access-to-sensitive-business-flows">Unrestricted Access to Sensitive Business Flows</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa5-broken-function-level-authorization/">API6:2023</a></li>
 <li>The API exposes sensitive business flows, leading to potential financial losses and other damages</li>
+<li>Example: If we can see when items will be discounted we could by all those items at discount and resell at full price</li>
 </ul>
 <h2 id="server-side-request-forgery">Server Side Request Forgery</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa7-server-side-request-forgery/">API7:2023</a></li>
 <li>The API does not validate requests adequately, allowing attackers to send malicious requests and interact with internal resources</li>
+<li>Upload a file</li>
+<li>See the uploaded file presented</li>
+<li>Test if abile to patch where the uploaded file is retrieved from</li>
+<li>Example <code>file:///etc/passwd</code></li>
+<li>Check the endpoint that retrieves the files contents</li>
 </ul>
 <h2 id="security-misconfiguration">Security Misconfiguration</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa8-security-misconfiguration/">API8:2023</a></li>
 <li>The API suffers from security misconfigurations, including vulnerabilities that lead to Injection Attacks</li>
+<li>Check user inputs for SQLi with a trailing <code>'</code></li>
+<li>Test insecure headers for CSRF vulnerabilities</li>
 </ul>
 <h2 id="improper-inventory-management">Improper Inventory Management</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xa9-improper-inventory-management/">API9:2023</a></li>
 <li>The API does not properly and securely manage version inventory</li>
+<li>Check to see if other versions of the API are available</li>
+<li>Enumerate other versions for vulnerabilities</li>
 </ul>
 <h2 id="unsafe-consumption-of-apis">Unsafe Consumption of APIs</h2>
 <ul>
 <li><a href="https://owasp.org/API-Security/editions/2023/en/0xaa-unsafe-consumption-of-apis/">API10:2023</a></li>
 <li>The API consumes another API unsafely, leading to potential security risks</li>
+<li>Vulnerabilities that can arrise from API-to-API communication:</li>
+<li><strong>Insecure Data Transmission:</strong> APIs communicating over unencrypted channels expose sensitive data to interception, compromising confidentiality and integrity.</li>
+<li><strong>Inadequate Data Validation:</strong> Failing to properly validate and sanitize data received from external APIs before processing or forwarding it to downstream components can lead to injection attacks, data corruption, or even remote code execution.</li>
+<li><strong>Weak Authentication:</strong> Neglecting to implement robust authentication methods when communicating with other APIs can result in unauthorized access to sensitive data or critical functionality.</li>
+<li><strong>Insufficient Rate-Limiting:</strong> An API can overwhelm another API by sending a continuous surge of requests, potentially leading to denial-of-service.</li>
+<li><strong>Inadequate Monitoring:</strong> Insufficient monitoring of API-to-API interactions can make it difficult to detect and respond to security incidents promptly.</li>
 </ul>
 
 
