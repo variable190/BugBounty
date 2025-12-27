@@ -6,7 +6,6 @@
 
 - [API1:2023](https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/)
 - The API allows authenticated users to access data they are not authorized to view
-
 - Authenticate as one user
 - Find what is accessible for their role
 - Change the parameter (IDOR)
@@ -24,7 +23,6 @@ done
 
 - [API2:2023](https://owasp.org/API-Security/editions/2023/en/0xa2-broken-authentication/)
 - The authentication mechanisms of the API can be bypassed or circumvented, allowing unauthorized access
-
 - Authenticate as one user
 - Find what is accessible for their role
 - Try changing password to "pass" and inspect error message to see if allows weak passwords
@@ -60,7 +58,6 @@ ffuf -w /opt/useful/seclists/Fuzzing/4-digits-0000-9999.txt:FUZZ -u http://94.23
 
 - [API4:2023](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)
 - The API does not limit the amount of resources users can consume
-
 - Authenticate as one user
 - Find what is accessible for their role
 - Create file with 30 random megabytes
@@ -78,44 +75,51 @@ dd if=/dev/urandom of=reverse-shell.exe bs=1M count=10
 curl -O http://94.237.51.179:51135/SupplierCompaniesCertificatesOfIncorporations/reverse-shell.exe
 ```
 
-
 ## Broken Function Level Authorization
 
 - [API5:2023](https://owasp.org/API-Security/editions/2023/en/0xa5-broken-function-level-authorization/)
 - The API allows unauthorized users to perform authorized operations
-
-
+- Authenticate as one user
+- Find what is accessible for their role
+- Test to see if user can access endpoints they don't have authorisation for
 
 ## Unrestricted Access to Sensitive Business Flows
 
 - [API6:2023](https://owasp.org/API-Security/editions/2023/en/0xa5-broken-function-level-authorization/)
 - The API exposes sensitive business flows, leading to potential financial losses and other damages
-
-
+- Example: If we can see when items will be discounted we could by all those items at discount and resell at full price
 
 ## Server Side Request Forgery
 
 - [API7:2023](https://owasp.org/API-Security/editions/2023/en/0xa7-server-side-request-forgery/)
 - The API does not validate requests adequately, allowing attackers to send malicious requests and interact with internal resources
-
-
+- Upload a file
+- See the uploaded file presented
+- Test if abile to patch where the uploaded file is retrieved from
+- Example ```file:///etc/passwd```
+- Check the endpoint that retrieves the files contents
 
 ## Security Misconfiguration
 
 - [API8:2023](https://owasp.org/API-Security/editions/2023/en/0xa8-security-misconfiguration/)
 - The API suffers from security misconfigurations, including vulnerabilities that lead to Injection Attacks
-
-
+- Check user inputs for SQLi with a trailing ```'```
+- Test insecure headers for CSRF vulnerabilities
 
 ## Improper Inventory Management
 
 - [API9:2023](https://owasp.org/API-Security/editions/2023/en/0xa9-improper-inventory-management/)
 - The API does not properly and securely manage version inventory
-
-
+- Check to see if other versions of the API are available
+- Enumerate other versions for vulnerabilities
 
 ## Unsafe Consumption of APIs
 
 - [API10:2023](https://owasp.org/API-Security/editions/2023/en/0xaa-unsafe-consumption-of-apis/)
 - The API consumes another API unsafely, leading to potential security risks
-
+- Vulnerabilities that can arrise from API-to-API communication:
+  1. **Insecure Data Transmission:** APIs communicating over unencrypted channels expose sensitive data to interception, compromising confidentiality and integrity.
+  2. **Inadequate Data Validation:** Failing to properly validate and sanitize data received from external APIs before processing or forwarding it to downstream components can lead to injection attacks, data corruption, or even remote code execution.
+  3. **Weak Authentication:** Neglecting to implement robust authentication methods when communicating with other APIs can result in unauthorized access to sensitive data or critical functionality.
+  4. **Insufficient Rate-Limiting:** An API can overwhelm another API by sending a continuous surge of requests, potentially leading to denial-of-service.
+  5. **Inadequate Monitoring:** Insufficient monitoring of API-to-API interactions can make it difficult to detect and respond to security incidents promptly.
