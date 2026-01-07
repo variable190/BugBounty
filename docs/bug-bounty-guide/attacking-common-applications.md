@@ -399,3 +399,72 @@ set DRUPAL_NODE 1
 set LHOST 10.10.14.15
 exploit
 ```
+
+## Tomcat
+
+### Discovery/Footprinting
+
+- grep docs page for version
+```bash
+curl -s http://app-dev.inlanefreight.local:8080/docs/ | grep Tomcat 
+```
+- General folder structure of Tomcat installation:
+```
+├── bin                             # Stores scripts and binaries needed to start and run a Tomcat server
+├── conf                            # Stores various configuration files used by Tomcat
+│   ├── catalina.policy
+│   ├── catalina.properties
+│   ├── context.xml
+│   ├── tomcat-users.xml
+│   ├── tomcat-users.xsd
+│   └── web.xml
+├── lib                             # Stores the various JAR files needed for the correct functioning of Tomcat
+├── logs                            # Log files
+├── temp                            # Tempory files
+├── webapps                         # Default webroot of Tomcat and hosts all the applications
+│   ├── manager
+│   │   ├── images
+│   │   ├── META-INF
+│   │   └── WEB-INF
+|   |       └── web.xml
+│   └── ROOT
+│       └── WEB-INF
+└── work                            # Acts as a cache and is used to store data during runtime
+    └── Catalina
+        └── localhost
+```
+- Each folder inside webapps is expected to have the following structure:
+```
+webapps/customapp
+├── images
+├── index.jsp
+├── META-INF
+│   └── context.xml
+├── status.xsd
+└── WEB-INF
+    ├── jsp
+    |   └── admin.jsp
+    └── web.xml                     # Deployment descriptor, stores information about the routes/classes handling these routes
+    └── lib                         # Stores the libraries needed by that particular application
+    |    └── jdbc_drivers.jar
+    └── classes                     # Classes might contain important business logic as well as sensitive information
+        └── AdminServlet.class   
+``` 
+- Example web.xml file:
+```xml
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.inlanefreight.api.AdminServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+</web-app> 
+```
