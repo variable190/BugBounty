@@ -1112,6 +1112,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discoveryfootprinting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery/Footprinting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1563,6 +1587,30 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discoveryfootprinting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery/Footprinting
+    </span>
+  </a>
   
 </li>
         
@@ -2069,6 +2117,118 @@ Create a .htaccess file to give ourselves access to the folder
 </span><span id="__span-36-6"><span class="nb">set</span><span class="w"> </span>DRUPAL_NODE<span class="w"> </span><span class="m">1</span>
 </span><span id="__span-36-7"><span class="nb">set</span><span class="w"> </span>LHOST<span class="w"> </span><span class="m">10</span>.10.14.15
 </span><span id="__span-36-8">exploit
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="tomcat">Tomcat</h2>
+<h3 id="discoveryfootprinting">Discovery/Footprinting</h3>
+<ul>
+<li>grep docs page for version
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1">curl<span class="w"> </span>-s<span class="w"> </span>http://app-dev.inlanefreight.local:8080/docs/<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Tomcat<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>General folder structure of Tomcat installation:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1">├── bin                             # Stores scripts and binaries needed to start and run a Tomcat server
+</span><span id="__span-38-2">├── conf                            # Stores various configuration files used by Tomcat
+</span><span id="__span-38-3">│   ├── catalina.policy
+</span><span id="__span-38-4">│   ├── catalina.properties
+</span><span id="__span-38-5">│   ├── context.xml
+</span><span id="__span-38-6">│   ├── tomcat-users.xml
+</span><span id="__span-38-7">│   ├── tomcat-users.xsd
+</span><span id="__span-38-8">│   └── web.xml
+</span><span id="__span-38-9">├── lib                             # Stores the various JAR files needed for the correct functioning of Tomcat
+</span><span id="__span-38-10">├── logs                            # Log files
+</span><span id="__span-38-11">├── temp                            # Tempory files
+</span><span id="__span-38-12">├── webapps                         # Default webroot of Tomcat and hosts all the applications
+</span><span id="__span-38-13">│   ├── manager
+</span><span id="__span-38-14">│   │   ├── images
+</span><span id="__span-38-15">│   │   ├── META-INF
+</span><span id="__span-38-16">│   │   └── WEB-INF
+</span><span id="__span-38-17">|   |       └── web.xml
+</span><span id="__span-38-18">│   └── ROOT
+</span><span id="__span-38-19">│       └── WEB-INF
+</span><span id="__span-38-20">└── work                            # Acts as a cache and is used to store data during runtime
+</span><span id="__span-38-21">    └── Catalina
+</span><span id="__span-38-22">        └── localhost
+</span></code></pre></div></td></tr></table></div></li>
+<li>Each folder inside webapps is expected to have the following structure:
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1">webapps/customapp
+</span><span id="__span-39-2">├── images
+</span><span id="__span-39-3">├── index.jsp
+</span><span id="__span-39-4">├── META-INF
+</span><span id="__span-39-5">│   └── context.xml
+</span><span id="__span-39-6">├── status.xsd
+</span><span id="__span-39-7">└── WEB-INF
+</span><span id="__span-39-8">    ├── jsp
+</span><span id="__span-39-9">    |   └── admin.jsp
+</span><span id="__span-39-10">    └── web.xml                     # Deployment descriptor, stores information about the routes/classes handling these routes
+</span><span id="__span-39-11">    └── lib                         # Stores the libraries needed by that particular application
+</span><span id="__span-39-12">    |    └── jdbc_drivers.jar
+</span><span id="__span-39-13">    └── classes                     # Classes might contain important business logic as well as sensitive information
+</span><span id="__span-39-14">        └── AdminServlet.class   
+</span></code></pre></div></td></tr></table></div></li>
+<li>Example web.xml file:
+<div class="language-xml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+</span><span id="__span-40-2">
+</span><span id="__span-40-3"><span class="cp">&lt;!DOCTYPE web-app PUBLIC &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot; &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;&gt;</span>
+</span><span id="__span-40-4">
+</span><span id="__span-40-5"><span class="nt">&lt;web-app&gt;</span>
+</span><span id="__span-40-6"><span class="w">  </span><span class="nt">&lt;servlet&gt;</span>
+</span><span id="__span-40-7"><span class="w">    </span><span class="nt">&lt;servlet-name&gt;</span>AdminServlet<span class="nt">&lt;/servlet-name&gt;</span>
+</span><span id="__span-40-8"><span class="w">    </span><span class="nt">&lt;servlet-class&gt;</span>com.inlanefreight.api.AdminServlet<span class="nt">&lt;/servlet-class&gt;</span>
+</span><span id="__span-40-9"><span class="w">  </span><span class="nt">&lt;/servlet&gt;</span>
+</span><span id="__span-40-10">
+</span><span id="__span-40-11"><span class="w">  </span><span class="nt">&lt;servlet-mapping&gt;</span>
+</span><span id="__span-40-12"><span class="w">    </span><span class="nt">&lt;servlet-name&gt;</span>AdminServlet<span class="nt">&lt;/servlet-name&gt;</span>
+</span><span id="__span-40-13"><span class="w">    </span><span class="nt">&lt;url-pattern&gt;</span>/admin<span class="nt">&lt;/url-pattern&gt;</span>
+</span><span id="__span-40-14"><span class="w">  </span><span class="nt">&lt;/servlet-mapping&gt;</span>
+</span><span id="__span-40-15"><span class="nt">&lt;/web-app&gt;</span><span class="w"> </span>
 </span></code></pre></div></td></tr></table></div></li>
 </ul>
 
