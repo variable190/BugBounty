@@ -151,7 +151,8 @@ set VHOST blog.inlanefreight.local
 show options 
 exploit
 ```
-- Make note of where the shell was uploaded to for later clean up
+
+**Note:** Make note of where the shell was uploaded to for later clean up
 
 #### Vulnerable plugin examples 
 
