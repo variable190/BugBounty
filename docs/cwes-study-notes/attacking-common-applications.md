@@ -59,11 +59,11 @@ External Penetration Test - <Client Name\>
     - Scans
     - Interesting/Notable Hosts
 - Exploitation
-    - \<Hostname or IP\>
-    - \<Hostname or IP\>
+    - <Hostname or IP\>
+    - <Hostname or IP\>
 - Post-Exploitation
-    - \<Hostname or IP\>
-    - \<Hostname or IP\>
+    - <Hostname or IP\>
+    - <Hostname or IP\>
 - Appendix
     - Exploited systems (hostname/IP and method of exploitation)
     - Compromised users (account name, method of compromise, account type (local or domain))
