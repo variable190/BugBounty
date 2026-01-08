@@ -1,32 +1,32 @@
-site_name: Bug Bounty Hub
+site_name: Dan's Cyber Stuff
 nav:
   - Home: index.md
-  - Bug Bounty Guide:
-    - Contents: bug-bounty-guide/index.md
+  - CWES Study Notes:
+    - Contents: cwes-study-notes/index.md
     - Web Penetration Tester Modules:
-      - Web Requests: bug-bounty-guide/web-requests.md
-      - Introduction to Web Applications: bug-bounty-guide/introduction-to-web-applications.md
-      - Using Web Proxies: bug-bounty-guide/using-web-proxies.md
-      - Information Gathering Web Edition: bug-bounty-guide/information-gathering-web-edition.md
-      - Web Fuzzing: bug-bounty-guide/web-fuzzing.md
-      - JavaScript Deobfuscation: bug-bounty-guide/javascript-deobfuscation.md
-      - Cross-Site Scripting (XSS): bug-bounty-guide/cross-site-scripting-(xss).md
-      - SQL Injection Fundamentals: bug-bounty-guide/sql-injection-fundamentals.md
-      - SQLMap Essentials: bug-bounty-guide/sqlmap-essentials.md
-      - Command Injections: bug-bounty-guide/command-injections.md
-      - File Upload Attacks: bug-bounty-guide/file-upload-attacks.md
-      - Server-side Attacks: bug-bounty-guide/server-side-attacks.md
-      - Login Brute Forcing: bug-bounty-guide/login-brute-forcing.md
-      - Broken Authentication: bug-bounty-guide/broken-authentication.md
-      - Web Attacks: bug-bounty-guide/web-attacks.md
-      - File Inclusion: bug-bounty-guide/file-inclusion.md
-      - Attacking GraphQL: bug-bounty-guide/attacking-graphql.md
-      - API Attacks: bug-bounty-guide/api-attacks.md
-      - Attacking Common Applications: bug-bounty-guide/attacking-common-applications.md
-      - Bug Bounty Hunting Process: bug-bounty-guide/bug-bounty-hunting-process.md
-    - Cheat Sheets:
-      - FTP: bug-bounty-guide/ftp-cheat.md
-      - Gobuster: bug-bounty-guide/gobuster-cheat.md
+      - Web Requests: cwes-study-notes/web-requests.md
+      - Introduction to Web Applications: cwes-study-notes/introduction-to-web-applications.md
+      - Using Web Proxies: cwes-study-notes/using-web-proxies.md
+      - Information Gathering Web Edition: cwes-study-notes/information-gathering-web-edition.md
+      - Web Fuzzing: cwes-study-notes/web-fuzzing.md
+      - JavaScript Deobfuscation: cwes-study-notes/javascript-deobfuscation.md
+      - Cross-Site Scripting (XSS): cwes-study-notes/cross-site-scripting-(xss).md
+      - SQL Injection Fundamentals: cwes-study-notes/sql-injection-fundamentals.md
+      - SQLMap Essentials: cwes-study-notes/sqlmap-essentials.md
+      - Command Injections: cwes-study-notes/command-injections.md
+      - File Upload Attacks: cwes-study-notes/file-upload-attacks.md
+      - Server-side Attacks: cwes-study-notes/server-side-attacks.md
+      - Login Brute Forcing: cwes-study-notes/login-brute-forcing.md
+      - Broken Authentication: cwes-study-notes/broken-authentication.md
+      - Web Attacks: cwes-study-notes/web-attacks.md
+      - File Inclusion: cwes-study-notes/file-inclusion.md
+      - Attacking GraphQL: cwes-study-notes/attacking-graphql.md
+      - API Attacks: cwes-study-notes/api-attacks.md
+      - Attacking Common Applications: cwes-study-notes/attacking-common-applications.md
+      - Bug Bounty Hunting Process: cwes-study-notes/bug-bounty-hunting-process.md
+    - Additional Cheat Sheets:
+      - FTP: cwes-study-notes/ftp-cheat.md
+      - Gobuster: cwes-study-notes/gobuster-cheat.md
 
 theme:
   name: material

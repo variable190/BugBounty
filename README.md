@@ -1,2 +1,3 @@
-# BugBounty
-Dan's bug bounty projects
+# Dan's Cyber Stuff
+
+Dan's study notes and cyber portfolio

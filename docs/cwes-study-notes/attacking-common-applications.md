@@ -562,3 +562,7 @@ exploit
 nc -lvnp 8443
 /bin/bash -i
 ```
+
+## Splunk
+
+### Discovery & Enumeration
