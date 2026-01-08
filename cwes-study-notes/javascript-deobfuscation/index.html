@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../web-fuzzing/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../cross-site-scripting-%28xss%29/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
     
     
       
-        <title>Dan's Cyber Stuff</title>
+        <title>JavaScript Deobfuscation - Dan's Cyber Stuff</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,7 +46,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +71,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#javascript-deobfuscation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -79,7 +88,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Dan&#39;s Cyber Stuff" class="md-header__button md-logo" aria-label="Dan's Cyber Stuff" data-md-component="logo">
+    <a href="../.." title="Dan&#39;s Cyber Stuff" class="md-header__button md-logo" aria-label="Dan's Cyber Stuff" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -99,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              JavaScript Deobfuscation
             
           </span>
         </div>
@@ -203,7 +212,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Dan&#39;s Cyber Stuff" class="md-nav__button md-logo" aria-label="Dan's Cyber Stuff" data-md-component="logo">
+    <a href="../.." title="Dan&#39;s Cyber Stuff" class="md-nav__button md-logo" aria-label="Dan's Cyber Stuff" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -221,7 +230,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -240,18 +249,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -267,7 +278,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             CWES Study Notes
@@ -281,7 +292,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -301,18 +312,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -328,7 +341,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             Web Penetration Tester Modules
@@ -342,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/web-requests/" class="md-nav__link">
+      <a href="../web-requests/" class="md-nav__link">
         
   
   
@@ -365,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/introduction-to-web-applications/" class="md-nav__link">
+      <a href="../introduction-to-web-applications/" class="md-nav__link">
         
   
   
@@ -388,7 +401,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/using-web-proxies/" class="md-nav__link">
+      <a href="../using-web-proxies/" class="md-nav__link">
         
   
   
@@ -411,7 +424,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/information-gathering-web-edition/" class="md-nav__link">
+      <a href="../information-gathering-web-edition/" class="md-nav__link">
         
   
   
@@ -434,7 +447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/web-fuzzing/" class="md-nav__link">
+      <a href="../web-fuzzing/" class="md-nav__link">
         
   
   
@@ -454,10 +467,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/cwes-study-notes/javascript-deobfuscation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    JavaScript Deobfuscation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -468,6 +503,62 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-websites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Websites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misc
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -480,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/cross-site-scripting-%28xss%29/" class="md-nav__link">
+      <a href="../cross-site-scripting-%28xss%29/" class="md-nav__link">
         
   
   
@@ -503,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/sql-injection-fundamentals/" class="md-nav__link">
+      <a href="../sql-injection-fundamentals/" class="md-nav__link">
         
   
   
@@ -526,7 +617,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/sqlmap-essentials/" class="md-nav__link">
+      <a href="../sqlmap-essentials/" class="md-nav__link">
         
   
   
@@ -549,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/command-injections/" class="md-nav__link">
+      <a href="../command-injections/" class="md-nav__link">
         
   
   
@@ -572,7 +663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/file-upload-attacks/" class="md-nav__link">
+      <a href="../file-upload-attacks/" class="md-nav__link">
         
   
   
@@ -595,7 +686,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/server-side-attacks/" class="md-nav__link">
+      <a href="../server-side-attacks/" class="md-nav__link">
         
   
   
@@ -618,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/login-brute-forcing/" class="md-nav__link">
+      <a href="../login-brute-forcing/" class="md-nav__link">
         
   
   
@@ -641,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/broken-authentication/" class="md-nav__link">
+      <a href="../broken-authentication/" class="md-nav__link">
         
   
   
@@ -664,7 +755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/web-attacks/" class="md-nav__link">
+      <a href="../web-attacks/" class="md-nav__link">
         
   
   
@@ -687,7 +778,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/file-inclusion/" class="md-nav__link">
+      <a href="../file-inclusion/" class="md-nav__link">
         
   
   
@@ -710,7 +801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/attacking-graphql/" class="md-nav__link">
+      <a href="../attacking-graphql/" class="md-nav__link">
         
   
   
@@ -733,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/api-attacks/" class="md-nav__link">
+      <a href="../api-attacks/" class="md-nav__link">
         
   
   
@@ -756,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/attacking-common-applications/" class="md-nav__link">
+      <a href="../attacking-common-applications/" class="md-nav__link">
         
   
   
@@ -779,7 +870,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/bug-bounty-hunting-process/" class="md-nav__link">
+      <a href="../bug-bounty-hunting-process/" class="md-nav__link">
         
   
   
@@ -848,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/ftp-cheat/" class="md-nav__link">
+      <a href="../ftp-cheat/" class="md-nav__link">
         
   
   
@@ -871,7 +962,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cwes-study-notes/gobuster-cheat/" class="md-nav__link">
+      <a href="../gobuster-cheat/" class="md-nav__link">
         
   
   
@@ -919,6 +1010,52 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Terms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-websites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Useful Websites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#misc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Misc
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -930,8 +1067,196 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="javascript-deobfuscation">JavaScript Deobfuscation</h1>
+<h2 id="terms">Terms</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code minification</td>
+<td>Reduces code to a single line often saved as .min.js.</td>
+</tr>
+<tr>
+<td>Packing</td>
+<td>Obfuscation recognizable from the six function arguments used in the initial function "function(p,a,c,k,e,d)".</td>
+</tr>
+<tr>
+<td>JSFuck</td>
+<td>Programming style based in the atomic parts of JS. Uses only ()+[]! (aa and jj encode are similar).</td>
+</tr>
+<tr>
+<td>Base 64</td>
+<td>Contains only alpha-numeric, + and /. Padded with '='.</td>
+</tr>
+<tr>
+<td>Hex</td>
+<td>Encodes each char into its hex on the ASCII table. Contains 0-9 and a-f.</td>
+</tr>
+<tr>
+<td>Ceasar</td>
+<td>Shifts each char by a fixed number</td>
+</tr>
+<tr>
+<td>Rot13</td>
+<td>Most common ceaser cipher, shifts by 13</td>
+</tr>
+</tbody>
+</table>
+<h2 id="commands">Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>curl http://SERVER_IP:PORT/</code></td>
+<td>cURL GET request</td>
+</tr>
+<tr>
+<td><code>curl -s http://SERVER_IP:PORT/ -X POST</code></td>
+<td>cURL POST request</td>
+</tr>
+<tr>
+<td><code>curl -s http://SERVER_IP:PORT/ -X POST -d "param1=sample"</code></td>
+<td>cURL POST with data</td>
+</tr>
+<tr>
+<td><code>echo hackthebox | base64</code></td>
+<td>base64 encode</td>
+</tr>
+<tr>
+<td><code>echo ENCODED_B64 | base64 -d</code></td>
+<td>base64 decode</td>
+</tr>
+<tr>
+<td><code>echo hackthebox | xxd -p</code></td>
+<td>hex encode</td>
+</tr>
+<tr>
+<td><code>echo ENCODED_HEX | xxd -p -r</code></td>
+<td>hex decode</td>
+</tr>
+<tr>
+<td><code>echo hackthebox | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
+<td>rot13 encode</td>
+</tr>
+<tr>
+<td><code>echo ENCODED_ROT13 | tr 'A-Za-z' 'N-ZA-Mn-za-m'</code></td>
+<td>rot13 decode</td>
+</tr>
+</tbody>
+</table>
+<h2 id="useful-websites">Useful Websites</h2>
+<table>
+<thead>
+<tr>
+<th>Site</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://jsconsole.com/">JS Console</a></td>
+<td>Interactive JavaScript console for testing code.</td>
+</tr>
+<tr>
+<td><a href="https://www.toptal.com/developers/javascript-minifier">JS Minifier</a></td>
+<td>Minifies JavaScript for performance optimization.</td>
+</tr>
+<tr>
+<td><a href="https://beautifytools.com/javascript-obfuscator.php">BeatifyTools</a></td>
+<td>Obfuscates JavaScript to protect code.</td>
+</tr>
+<tr>
+<td><a href="https://obfuscator.io/">JS Obfuscator Tool</a></td>
+<td>Tool to obfuscate JavaScript code securely.</td>
+</tr>
+<tr>
+<td><a href="https://jsfuck.com/">JSFuck</a></td>
+<td>Encodes JavaScript using only six characters.</td>
+</tr>
+<tr>
+<td><a href="https://utf-8.jp/public/jjencode.html">jjencode</a></td>
+<td>Encodes JavaScript with JJEncode technique.</td>
+</tr>
+<tr>
+<td><a href="https://utf-8.jp/public/aaencode.html">aaencode</a></td>
+<td>Encodes JavaScript with AAEncode method.</td>
+</tr>
+<tr>
+<td><a href="https://prettier.io/playground/">Prettier</a></td>
+<td>Formats and beautifies JavaScript code.</td>
+</tr>
+<tr>
+<td><a href="https://beautifier.io/">js-beautify</a></td>
+<td>Beautifies minified or obfuscated JavaScript.</td>
+</tr>
+<tr>
+<td><a href="https://matthewfl.com/unPacker.html">UnPacker</a></td>
+<td>Deobfuscates and unpacks JavaScript code.</td>
+</tr>
+<tr>
+<td><a href="https://rot13.com/">rot13.com</a></td>
+<td>Applies ROT13 encoding/decoding for text.</td>
+</tr>
+<tr>
+<td><a href="https://www.boxentriq.com/code-breaking/cipher-identifier">Cipher Identifier</a></td>
+<td>Identifies cipher types in encoded text.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="misc">Misc</h2>
+<table>
+<thead>
+<tr>
+<th>Command/Action</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ctrl+u</code></td>
+<td>Show HTML source code in Firefox</td>
+</tr>
+<tr>
+<td><code>ctrl+shift+z</code></td>
+<td>Open browser debugger tab</td>
+</tr>
+<tr>
+<td>'{ }' button</td>
+<td>Pretty print in debugger tab</td>
+</tr>
+<tr>
+<td>Unpack</td>
+<td>Replace eval function with console.log</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -967,10 +1292,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": ["content.code.copy"], "search": "/assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
       
     
   </body>
