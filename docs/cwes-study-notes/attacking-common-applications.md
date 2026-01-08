@@ -47,7 +47,7 @@ cat web_discovery.xml | ./aquatone -nmap
 
 ## Example note layout
 
-External Penetration Test \<Client Name\>
+External Penetration Test - <Client Name\>
 
 - Scope (including in-scope IP addresses/ranges, URLs, any fragile hosts, testing timeframes, and any limitations or other relative information we need handy)
 - Client Points of Contact
