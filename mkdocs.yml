@@ -3,7 +3,7 @@ nav:
   - Home: index.md
   - CWES Study Notes:
     - Contents: cwes-study-notes/index.md
-    - Web Penetration Tester Modules:
+    - Web Penetration Tester Course Module Notes:
       - Web Requests: cwes-study-notes/web-requests.md
       - Introduction to Web Applications: cwes-study-notes/introduction-to-web-applications.md
       - Using Web Proxies: cwes-study-notes/using-web-proxies.md
