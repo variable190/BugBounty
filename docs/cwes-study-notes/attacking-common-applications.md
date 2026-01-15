@@ -5,7 +5,7 @@
 | Command | Description |
 |---------|-------------|
 | `sudo vim /etc/hosts` | Opens /etc/hosts with vim to add hostnames |
-| `sudo nmap -p 80,443,8000,8080,8180,8888,10000 --open -oA web_discovery -iL scope_list` | Runs nmap scan on common web ports from scope_list, outputs to web_discovery in all formats |
+| `sudo nmap -p 80,443,8000,8080,8180,8888,10000 --open -oA web_discovery -iL scope_list` | Runs nmap scan on common web ports from scope_list, outputs to web_discovery in all formats, ```scope_list``` will be IP and any vhosts already found |
 | `eyewitness --web -x web_discovery.xml -d <nameofdirectorytobecreated>` | Runs eyewitness on nmap XML output, creates directory |
 | `cat web_discovery.xml \| ./aquatone -nmap` | Pipes nmap XML to aquatone as nmap input |
 | `sudo wpscan --url <http://domainnameoripaddress> --enumerate` | Runs wpscan with enumeration on target URL |
@@ -40,7 +40,7 @@ wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_
 unzip aquatone_linux_amd64_1.7.0.zip
 echo $PATH
 ```
-- move to a $PATH location(```/usr/local/bin```) or current working folder
+- move to a $PATH location(```/usr/local/bin```) or use in current working folder
 ```bash
 cat web_discovery.xml | ./aquatone -nmap
 ```
