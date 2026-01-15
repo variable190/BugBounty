@@ -136,16 +136,16 @@ This retrieves the A record (hostname to IPv4 address). The output includes the 
 **Examples:**
 
 ```bash
-dnsenum --enum inlanefreight.com -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -r
+dnsenum --enum inlanefreight.com:55209 -f /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -r
 ```
 **Note:** -r enables recursive subdomain brute-forcing.
 
 ```bash
-ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt:FUZZ -u https://hackthebox.eu/
+ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt:FUZZ -u http://FUZZ:inlanefreight.htb:55291 
 ```
 
 ```bash
-gobuster dns -d https://hackthebox.eu/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+gobuster dns -do http://inlanefreight.htb:55291 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt
 ```
 
 ## DNS Zone Transfers
@@ -174,7 +174,7 @@ dig @nsztm1.digi.ninja zonetransfer.me axfr
 
 **Examples:**
 ```bash
-gobuster vhost -u http://192.0.2.1 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt --append-domain
+gobuster vhost -u http://192.0.2.1 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
 gobuster vhost -u http://web1337.inlanefreight.htb:8888 -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 60 --append-domain
 ```
 
