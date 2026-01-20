@@ -50,7 +50,7 @@ pipx runpip wenum install setuptools
 |-----------------------------------|--------------------------------------|
 | `sudo sh -c 'echo "SERVER_IP academy.htb" >> /etc/hosts'` | Add DNS entry to hosts file |
 | `echo "SERVER_IP academy.htb" \| sudo tee -a /etc/hosts` | Add DNS entry to hosts file |
-| `for i in $(seq 1 1000); do echo $i >> ids.txt; done` | Create numerical wordlist (1-1000) |
+| `for i in $(seq 1 1000); do echo $i >> ids.txt; done` or ```seq 0 1000 > numbers.txt``` | Create numerical wordlist (1-1000) |
 | `curl http://admin.academy.htb:PORT/admin/admin.php -X POST -d 'id=key' -H 'Content-Type: application/x-www-form-urlencoded'` | Send POST request with data  |
 
 ## SecLists Wordlists
@@ -144,6 +144,8 @@ mutation {
 ```bash
 git clone https://github.com/PandaSt0rm/webfuzz_api.git
 cd webfuzz_api
+python3 -m venv .venv
+source .venv/bin/activate
 pip3 install -r requirements.txt
 python3 api_fuzzer.py http://IP:PORT
 ```
@@ -196,9 +198,9 @@ python3 api_fuzzer.py http://IP:PORT
 
 | Command | Description |
 |---------|-------------|
-| `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -u http://IP:PORT/FUZZ -t 80` | Directory fuzzing, set to 80 threads |
+| `ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -u http://IP:PORT/FUZZ -t 80` | Directory fuzzing, set to 80 threads |
 | `ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -u http://IP:PORT/w2ksvrus/FUZZ -e .php,.html,.txt,.bak,.js -v -rate 500` | File fuzzing, verbose output, limit to 500 request per second |
-| `ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2` | Recursive fuzzing, limit depth to 2 |
+| `ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2` | Recursive fuzzing, limit depth to 2 |
 | `ffuf -u http://STMIP:STMPO/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -recursion -e .php,.txt,.html` | Recursive directory fuzzing |
 | `ffuf -u http://STMIP:STMPO/admin/panel.php?accessID=FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -fw 8` | Value fuzzing |
 | `ffuf -u http://fuzzing_fun.htb:STMPO -w /usr/share/seclists/Discovery/Web-Content/common.txt -H 'Host: FUZZ.fuzzing_fun.htb:STMPO' -ac` | Vhost fuzzing |

