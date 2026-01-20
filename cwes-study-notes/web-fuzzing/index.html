@@ -1872,7 +1872,7 @@
 <td>Add DNS entry to hosts file</td>
 </tr>
 <tr>
-<td><code>for i in $(seq 1 1000); do echo $i &gt;&gt; ids.txt; done</code></td>
+<td><code>for i in $(seq 1 1000); do echo $i &gt;&gt; ids.txt; done</code> or <code>seq 0 1000 &gt; numbers.txt</code></td>
 <td>Create numerical wordlist (1-1000)</td>
 </tr>
 <tr>
@@ -2078,10 +2078,14 @@
 <div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/PandaSt0rm/webfuzz_api.git
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/PandaSt0rm/webfuzz_api.git
 </span><span id="__span-4-2"><span class="nb">cd</span><span class="w"> </span>webfuzz_api
-</span><span id="__span-4-3">pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span><span id="__span-4-4">python3<span class="w"> </span>api_fuzzer.py<span class="w"> </span>http://IP:PORT
+</span><span id="__span-4-3">python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-4-4"><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+</span><span id="__span-4-5">pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-4-6">python3<span class="w"> </span>api_fuzzer.py<span class="w"> </span>http://IP:PORT
 </span></code></pre></div></td></tr></table></div>
 <h2 id="ffuf">FFUF</h2>
 <h3 id="flags">Flags</h3>
@@ -2276,7 +2280,7 @@
 </thead>
 <tbody>
 <tr>
-<td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -u http://IP:PORT/FUZZ -t 80</code></td>
+<td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -u http://IP:PORT/FUZZ -t 80</code></td>
 <td>Directory fuzzing, set to 80 threads</td>
 </tr>
 <tr>
@@ -2284,7 +2288,7 @@
 <td>File fuzzing, verbose output, limit to 500 request per second</td>
 </tr>
 <tr>
-<td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2</code></td>
+<td><code>ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -ic -v -u http://IP:PORT/FUZZ -e .php,.txt,.html -recursion -recursion-depth 2</code></td>
 <td>Recursive fuzzing, limit depth to 2</td>
 </tr>
 <tr>
