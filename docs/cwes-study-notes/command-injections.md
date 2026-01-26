@@ -39,7 +39,7 @@
 | `' or "` | Total must be even |
 | `$@ or \` | Linux only |
 | **Case Manipulation** | |
-| `$(tr "[A-Z]" "[a-z]"<<<"WhOaMi")` | Execute command regardless of cases |
+| `$(tr "[A-Z]" "[a-z]"<<<"WhOaMi")` | Execute command regardless of cases (may need to replace spaces with tabs `%09`) |
 | `$(a="WhOaMi";printf %s "${a,,}")` | Another variation of the technique |
 | **Reversed Commands** | |
 | `echo 'whoami' | rev` | Reverse a string |
